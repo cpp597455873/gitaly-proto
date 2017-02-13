@@ -1,0 +1,5 @@
+/_support/protoc
+/_support/bin
+/_support/.bundle
+/*.zip
+/*.gem

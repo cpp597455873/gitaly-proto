@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+require_relative 'run.rb'
+
+PROTO_INCLUDE = '.'
+PROTO_FILES = %w[gitaly.proto]
+
+ENV['PATH'] = [
+  File.join(ENV['GOPATH'], 'bin'),
+  File.join(Dir.pwd, '_support/protoc/bin'),
+  File.join(Dir.pwd, '_support/bin'),
+  ENV['PATH'],
+].join(':')
+
+def main
+  run!(%W[protoc -I #{PROTO_INCLUDE}] + PROTO_FILES + %w[--go_out=plugins=grpc:go])
+  ruby_lib = 'ruby/lib/gitaly'
+  run!(%W[grpc_tools_ruby_protoc -I #{PROTO_INCLUDE} --ruby_out=#{ruby_lib} --grpc_out=#{ruby_lib}] + PROTO_FILES)
+end
+
+main
