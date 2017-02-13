@@ -1,5 +1,11 @@
 # Protobuf specifications and client libraries for Gitaly
 
+Gitaly is part of GitLab. It is a [server
+application](https://gitlab.com/gitlab-org/gitaly) that uses its own
+gRPC protocol to communicate with its clients. This repository
+contains the protocol definition and automatically generated wrapper
+code for Go and Ruby.
+
 The .proto files define the remote procedure calls for interacting
 with Gitaly. We keep auto-generated client libraries for Ruby and Go
 in their respective subdirectories.
