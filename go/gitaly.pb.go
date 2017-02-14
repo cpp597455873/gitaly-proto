@@ -9,11 +9,16 @@ It is generated from these files:
 	gitaly.proto
 
 It has these top-level messages:
+	Boolean
 	InfoRefsRequest
 	InfoRefsResponse
 	Repository
 	PostReceiveRequest
 	PostReceiveResponse
+	CommitObject
+	FindRefNameRequest
+	RefNamesResponse
+	CommitIsAncestorRequest
 */
 package gitaly
 
@@ -37,6 +42,22 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
+type Boolean struct {
+	True bool `protobuf:"varint,1,opt,name=true" json:"true,omitempty"`
+}
+
+func (m *Boolean) Reset()                    { *m = Boolean{} }
+func (m *Boolean) String() string            { return proto.CompactTextString(m) }
+func (*Boolean) ProtoMessage()               {}
+func (*Boolean) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+
+func (m *Boolean) GetTrue() bool {
+	if m != nil {
+		return m.True
+	}
+	return false
+}
+
 type InfoRefsRequest struct {
 	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
 }
@@ -44,7 +65,7 @@ type InfoRefsRequest struct {
 func (m *InfoRefsRequest) Reset()                    { *m = InfoRefsRequest{} }
 func (m *InfoRefsRequest) String() string            { return proto.CompactTextString(m) }
 func (*InfoRefsRequest) ProtoMessage()               {}
-func (*InfoRefsRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (*InfoRefsRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
 
 func (m *InfoRefsRequest) GetRepository() *Repository {
 	if m != nil {
@@ -60,7 +81,7 @@ type InfoRefsResponse struct {
 func (m *InfoRefsResponse) Reset()                    { *m = InfoRefsResponse{} }
 func (m *InfoRefsResponse) String() string            { return proto.CompactTextString(m) }
 func (*InfoRefsResponse) ProtoMessage()               {}
-func (*InfoRefsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
+func (*InfoRefsResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
 
 func (m *InfoRefsResponse) GetData() []byte {
 	if m != nil {
@@ -76,7 +97,7 @@ type Repository struct {
 func (m *Repository) Reset()                    { *m = Repository{} }
 func (m *Repository) String() string            { return proto.CompactTextString(m) }
 func (*Repository) ProtoMessage()               {}
-func (*Repository) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+func (*Repository) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
 
 func (m *Repository) GetPath() string {
 	if m != nil {
@@ -92,7 +113,7 @@ type PostReceiveRequest struct {
 func (m *PostReceiveRequest) Reset()                    { *m = PostReceiveRequest{} }
 func (m *PostReceiveRequest) String() string            { return proto.CompactTextString(m) }
 func (*PostReceiveRequest) ProtoMessage()               {}
-func (*PostReceiveRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+func (*PostReceiveRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
 
 func (m *PostReceiveRequest) GetRepository() *Repository {
 	if m != nil {
@@ -107,14 +128,119 @@ type PostReceiveResponse struct {
 func (m *PostReceiveResponse) Reset()                    { *m = PostReceiveResponse{} }
 func (m *PostReceiveResponse) String() string            { return proto.CompactTextString(m) }
 func (*PostReceiveResponse) ProtoMessage()               {}
-func (*PostReceiveResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (*PostReceiveResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+
+type CommitObject struct {
+	// SHA1 of the commit object represented as 40 hexadecimal characters
+	Id string `protobuf:"bytes,1,opt,name=id" json:"id,omitempty"`
+}
+
+func (m *CommitObject) Reset()                    { *m = CommitObject{} }
+func (m *CommitObject) String() string            { return proto.CompactTextString(m) }
+func (*CommitObject) ProtoMessage()               {}
+func (*CommitObject) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
+
+func (m *CommitObject) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+type FindRefNameRequest struct {
+	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
+	// Require that the resulting ref contains this commit as an ancestor
+	Containing *CommitObject `protobuf:"bytes,2,opt,name=containing" json:"containing,omitempty"`
+	// Example prefix: "refs/heads/". Type bytes because that is the type of ref names.
+	Prefix []byte `protobuf:"bytes,3,opt,name=prefix,proto3" json:"prefix,omitempty"`
+}
+
+func (m *FindRefNameRequest) Reset()                    { *m = FindRefNameRequest{} }
+func (m *FindRefNameRequest) String() string            { return proto.CompactTextString(m) }
+func (*FindRefNameRequest) ProtoMessage()               {}
+func (*FindRefNameRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
+
+func (m *FindRefNameRequest) GetRepository() *Repository {
+	if m != nil {
+		return m.Repository
+	}
+	return nil
+}
+
+func (m *FindRefNameRequest) GetContaining() *CommitObject {
+	if m != nil {
+		return m.Containing
+	}
+	return nil
+}
+
+func (m *FindRefNameRequest) GetPrefix() []byte {
+	if m != nil {
+		return m.Prefix
+	}
+	return nil
+}
+
+type RefNamesResponse struct {
+	// Example name: "refs/heads/master". Cannot assume UTF8, so the type is bytes.
+	Name [][]byte `protobuf:"bytes,1,rep,name=name,proto3" json:"name,omitempty"`
+}
+
+func (m *RefNamesResponse) Reset()                    { *m = RefNamesResponse{} }
+func (m *RefNamesResponse) String() string            { return proto.CompactTextString(m) }
+func (*RefNamesResponse) ProtoMessage()               {}
+func (*RefNamesResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
+
+func (m *RefNamesResponse) GetName() [][]byte {
+	if m != nil {
+		return m.Name
+	}
+	return nil
+}
+
+type CommitIsAncestorRequest struct {
+	Repository *Repository   `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
+	Ancestor   *CommitObject `protobuf:"bytes,2,opt,name=ancestor" json:"ancestor,omitempty"`
+	Child      *CommitObject `protobuf:"bytes,3,opt,name=child" json:"child,omitempty"`
+}
+
+func (m *CommitIsAncestorRequest) Reset()                    { *m = CommitIsAncestorRequest{} }
+func (m *CommitIsAncestorRequest) String() string            { return proto.CompactTextString(m) }
+func (*CommitIsAncestorRequest) ProtoMessage()               {}
+func (*CommitIsAncestorRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
+
+func (m *CommitIsAncestorRequest) GetRepository() *Repository {
+	if m != nil {
+		return m.Repository
+	}
+	return nil
+}
+
+func (m *CommitIsAncestorRequest) GetAncestor() *CommitObject {
+	if m != nil {
+		return m.Ancestor
+	}
+	return nil
+}
+
+func (m *CommitIsAncestorRequest) GetChild() *CommitObject {
+	if m != nil {
+		return m.Child
+	}
+	return nil
+}
 
 func init() {
+	proto.RegisterType((*Boolean)(nil), "gitaly.Boolean")
 	proto.RegisterType((*InfoRefsRequest)(nil), "gitaly.InfoRefsRequest")
 	proto.RegisterType((*InfoRefsResponse)(nil), "gitaly.InfoRefsResponse")
 	proto.RegisterType((*Repository)(nil), "gitaly.Repository")
 	proto.RegisterType((*PostReceiveRequest)(nil), "gitaly.PostReceiveRequest")
 	proto.RegisterType((*PostReceiveResponse)(nil), "gitaly.PostReceiveResponse")
+	proto.RegisterType((*CommitObject)(nil), "gitaly.CommitObject")
+	proto.RegisterType((*FindRefNameRequest)(nil), "gitaly.FindRefNameRequest")
+	proto.RegisterType((*RefNamesResponse)(nil), "gitaly.RefNamesResponse")
+	proto.RegisterType((*CommitIsAncestorRequest)(nil), "gitaly.CommitIsAncestorRequest")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -344,24 +470,167 @@ var _Notifications_serviceDesc = grpc.ServiceDesc{
 	Metadata: "gitaly.proto",
 }
 
+// Client API for Ref service
+
+type RefClient interface {
+	// Find a Ref matching the given constraints. Response may be empty.
+	FindRefName(ctx context.Context, in *FindRefNameRequest, opts ...grpc.CallOption) (*RefNamesResponse, error)
+}
+
+type refClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewRefClient(cc *grpc.ClientConn) RefClient {
+	return &refClient{cc}
+}
+
+func (c *refClient) FindRefName(ctx context.Context, in *FindRefNameRequest, opts ...grpc.CallOption) (*RefNamesResponse, error) {
+	out := new(RefNamesResponse)
+	err := grpc.Invoke(ctx, "/gitaly.Ref/FindRefName", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Ref service
+
+type RefServer interface {
+	// Find a Ref matching the given constraints. Response may be empty.
+	FindRefName(context.Context, *FindRefNameRequest) (*RefNamesResponse, error)
+}
+
+func RegisterRefServer(s *grpc.Server, srv RefServer) {
+	s.RegisterService(&_Ref_serviceDesc, srv)
+}
+
+func _Ref_FindRefName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindRefNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RefServer).FindRefName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gitaly.Ref/FindRefName",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RefServer).FindRefName(ctx, req.(*FindRefNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Ref_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "gitaly.Ref",
+	HandlerType: (*RefServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "FindRefName",
+			Handler:    _Ref_FindRefName_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "gitaly.proto",
+}
+
+// Client API for Commit service
+
+type CommitClient interface {
+	CommitIsAncestor(ctx context.Context, in *CommitIsAncestorRequest, opts ...grpc.CallOption) (*Boolean, error)
+}
+
+type commitClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewCommitClient(cc *grpc.ClientConn) CommitClient {
+	return &commitClient{cc}
+}
+
+func (c *commitClient) CommitIsAncestor(ctx context.Context, in *CommitIsAncestorRequest, opts ...grpc.CallOption) (*Boolean, error) {
+	out := new(Boolean)
+	err := grpc.Invoke(ctx, "/gitaly.Commit/CommitIsAncestor", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Commit service
+
+type CommitServer interface {
+	CommitIsAncestor(context.Context, *CommitIsAncestorRequest) (*Boolean, error)
+}
+
+func RegisterCommitServer(s *grpc.Server, srv CommitServer) {
+	s.RegisterService(&_Commit_serviceDesc, srv)
+}
+
+func _Commit_CommitIsAncestor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CommitIsAncestorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CommitServer).CommitIsAncestor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gitaly.Commit/CommitIsAncestor",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CommitServer).CommitIsAncestor(ctx, req.(*CommitIsAncestorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Commit_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "gitaly.Commit",
+	HandlerType: (*CommitServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CommitIsAncestor",
+			Handler:    _Commit_CommitIsAncestor_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "gitaly.proto",
+}
+
 func init() { proto.RegisterFile("gitaly.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 256 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xa4, 0x92, 0xc1, 0x4a, 0xc3, 0x40,
-	0x10, 0x86, 0x0d, 0x48, 0xa1, 0xd3, 0x8a, 0x32, 0x45, 0x2c, 0xf1, 0x52, 0xf6, 0x20, 0x9e, 0x8a,
-	0xc4, 0x67, 0x10, 0x22, 0x8a, 0x84, 0xb5, 0x1e, 0x3c, 0xae, 0xe9, 0x44, 0x17, 0x6b, 0x66, 0xcd,
-	0x8e, 0x42, 0x5f, 0xc8, 0xe7, 0x14, 0x37, 0xae, 0xa9, 0xd6, 0x5b, 0x6e, 0xb3, 0xfb, 0xff, 0xf3,
-	0xed, 0xbf, 0xc3, 0xc0, 0xf8, 0xd1, 0x8a, 0x59, 0xad, 0xe7, 0xae, 0x61, 0x61, 0x1c, 0xb4, 0x27,
-	0x75, 0x01, 0xfb, 0x97, 0x75, 0xc5, 0x9a, 0x2a, 0xaf, 0xe9, 0xf5, 0x8d, 0xbc, 0x60, 0x06, 0xd0,
-	0x90, 0x63, 0x6f, 0x85, 0x9b, 0xf5, 0x34, 0x99, 0x25, 0xa7, 0xa3, 0x0c, 0xe7, 0xdf, 0xdd, 0xfa,
-	0x47, 0xd1, 0x1b, 0x2e, 0x75, 0x02, 0x07, 0x1d, 0xc6, 0x3b, 0xae, 0x3d, 0x21, 0xc2, 0xee, 0xd2,
-	0x88, 0x09, 0x84, 0xb1, 0x0e, 0xb5, 0x9a, 0x01, 0x74, 0x84, 0x2f, 0x87, 0x33, 0xf2, 0x14, 0x1c,
-	0x43, 0x1d, 0x6a, 0x95, 0x03, 0x16, 0xec, 0x45, 0x53, 0x49, 0xf6, 0x9d, 0xfa, 0x64, 0x3a, 0x84,
-	0xc9, 0x2f, 0x52, 0x1b, 0x2b, 0xfb, 0x48, 0x60, 0x78, 0xfb, 0x62, 0x1a, 0xc9, 0x17, 0x8b, 0x02,
-	0xaf, 0x00, 0x63, 0xf0, 0x3b, 0xb7, 0x62, 0xb3, 0x2c, 0x4c, 0xf9, 0x8c, 0x47, 0x11, 0xfd, 0x67,
-	0x36, 0xe9, 0x74, 0x5b, 0x68, 0xb1, 0x6a, 0xe7, 0x2c, 0xc1, 0x6b, 0x98, 0x74, 0xf7, 0xe1, 0xd5,
-	0x1e, 0xb4, 0xec, 0x1e, 0xf6, 0x6e, 0x58, 0x6c, 0x65, 0x4b, 0x23, 0x96, 0x6b, 0x8f, 0x39, 0x8c,
-	0x36, 0x3e, 0x84, 0x69, 0xec, 0xde, 0x9e, 0x57, 0x7a, 0xfc, 0xaf, 0x16, 0xe1, 0x0f, 0x83, 0xb0,
-	0x04, 0xe7, 0x9f, 0x01, 0x00, 0x00, 0xff, 0xff, 0x86, 0x0b, 0x65, 0xc1, 0x14, 0x02, 0x00, 0x00,
+	// 454 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xa4, 0x94, 0xd1, 0x6e, 0xd3, 0x30,
+	0x14, 0x86, 0x9b, 0x16, 0xc2, 0x76, 0x5a, 0xd8, 0x74, 0x06, 0x2c, 0x0a, 0x02, 0x26, 0x5f, 0x20,
+	0xc4, 0xc5, 0x34, 0x05, 0x5e, 0x00, 0xd0, 0xa6, 0x4e, 0x4c, 0x23, 0x32, 0xe3, 0x82, 0x4b, 0x2f,
+	0x71, 0x56, 0x43, 0x62, 0x87, 0xd8, 0x45, 0xf4, 0x45, 0x78, 0x04, 0x6e, 0x78, 0x49, 0x14, 0x27,
+	0x69, 0xd2, 0x06, 0x76, 0x93, 0xbb, 0xe3, 0xf8, 0xf7, 0x97, 0xdf, 0xe7, 0xfc, 0x32, 0xcc, 0x6e,
+	0x84, 0x61, 0xe9, 0xea, 0x38, 0x2f, 0x94, 0x51, 0xe8, 0x56, 0x2b, 0xf2, 0x14, 0xee, 0xbd, 0x53,
+	0x2a, 0xe5, 0x4c, 0x22, 0xc2, 0x1d, 0x53, 0x2c, 0xb9, 0xe7, 0x1c, 0x39, 0x2f, 0x77, 0xa8, 0xad,
+	0xc9, 0x29, 0xec, 0x9d, 0xcb, 0x44, 0x51, 0x9e, 0x68, 0xca, 0xbf, 0x2f, 0xb9, 0x36, 0x18, 0x00,
+	0x14, 0x3c, 0x57, 0x5a, 0x18, 0x55, 0xac, 0xac, 0x78, 0x1a, 0xe0, 0x71, 0x0d, 0xa7, 0xeb, 0x1d,
+	0xda, 0x51, 0x91, 0x17, 0xb0, 0xdf, 0x62, 0x74, 0xae, 0xa4, 0xe6, 0xe5, 0xef, 0x62, 0x66, 0x98,
+	0x25, 0xcc, 0xa8, 0xad, 0xc9, 0x11, 0x40, 0x4b, 0x28, 0x15, 0x39, 0x33, 0x0b, 0xab, 0xd8, 0xa5,
+	0xb6, 0x26, 0x73, 0xc0, 0x50, 0x69, 0x43, 0x79, 0xc4, 0xc5, 0x0f, 0x3e, 0xc4, 0xd3, 0x23, 0x38,
+	0xd8, 0x20, 0x55, 0xb6, 0xc8, 0x33, 0x98, 0xbd, 0x57, 0x59, 0x26, 0xcc, 0xc7, 0xeb, 0xaf, 0x3c,
+	0x32, 0xf8, 0x00, 0xc6, 0x22, 0xae, 0x2d, 0x8c, 0x45, 0x4c, 0x7e, 0x39, 0x80, 0x67, 0x42, 0xc6,
+	0x94, 0x27, 0x97, 0x2c, 0x1b, 0xe2, 0x00, 0xdf, 0x00, 0x44, 0x4a, 0x1a, 0x26, 0xa4, 0x90, 0x37,
+	0xde, 0xd8, 0x9e, 0x79, 0xd8, 0x9c, 0xe9, 0x9a, 0xa0, 0x1d, 0x1d, 0x3e, 0x06, 0x37, 0x2f, 0x78,
+	0x22, 0x7e, 0x7a, 0x13, 0xdb, 0xb9, 0x7a, 0x55, 0xf6, 0xb8, 0xf6, 0xb4, 0xd1, 0x63, 0xc9, 0xb2,
+	0x72, 0xa4, 0x93, 0xb2, 0xc7, 0x65, 0x4d, 0xfe, 0x38, 0x70, 0x58, 0xc1, 0xcf, 0xf5, 0x5b, 0x19,
+	0x71, 0x6d, 0x54, 0x31, 0xe4, 0x16, 0x27, 0xb0, 0xc3, 0x6a, 0xcc, 0xad, 0x77, 0x58, 0xab, 0xf0,
+	0x15, 0xdc, 0x8d, 0x16, 0x22, 0x8d, 0xed, 0x05, 0xfe, 0x27, 0xaf, 0x24, 0xc1, 0x6f, 0x07, 0x76,
+	0x3f, 0x65, 0xac, 0x30, 0xf3, 0xab, 0xab, 0x10, 0x3f, 0x00, 0x36, 0x39, 0xfa, 0x9c, 0xa7, 0x8a,
+	0xc5, 0x21, 0x8b, 0xbe, 0xe1, 0x61, 0x03, 0xd8, 0x8a, 0xaa, 0xef, 0xf5, 0x37, 0xea, 0x29, 0x8f,
+	0x4e, 0x1c, 0xbc, 0x80, 0x83, 0xf6, 0xbb, 0x0d, 0xc1, 0x00, 0x5a, 0xf0, 0x05, 0xee, 0x5f, 0x2a,
+	0x23, 0x12, 0x11, 0x31, 0x23, 0x94, 0xd4, 0x38, 0x87, 0x69, 0x27, 0x5f, 0xe8, 0x37, 0xa7, 0xfb,
+	0xf1, 0xf5, 0x9f, 0xfc, 0x73, 0xaf, 0x81, 0x07, 0x17, 0x30, 0xa1, 0x3c, 0xc1, 0x53, 0x98, 0x76,
+	0x82, 0xd7, 0x02, 0xfb, 0x69, 0x6c, 0xad, 0x6e, 0x27, 0x82, 0x8c, 0x82, 0x10, 0xdc, 0xaa, 0xd1,
+	0x78, 0x06, 0xfb, 0xdb, 0x41, 0xc0, 0xe7, 0x9b, 0xc3, 0xe8, 0x45, 0xc4, 0xdf, 0x6b, 0x04, 0xf5,
+	0xb3, 0x41, 0x46, 0xd7, 0xae, 0x7d, 0x52, 0x5e, 0xff, 0x0d, 0x00, 0x00, 0xff, 0xff, 0xf7, 0xee,
+	0x2a, 0x7f, 0x62, 0x04, 0x00, 0x00,
 }

@@ -37,4 +37,33 @@ module Gitaly
 
     Stub = Service.rpc_stub_class
   end
+  module Ref
+    class Service
+
+      include GRPC::GenericService
+
+      self.marshal_class_method = :encode
+      self.unmarshal_class_method = :decode
+      self.service_name = 'gitaly.Ref'
+
+      # Find a Ref matching the given constraints. Response may be empty.
+      rpc :FindRefName, FindRefNameRequest, RefNamesResponse
+    end
+
+    Stub = Service.rpc_stub_class
+  end
+  module Commit
+    class Service
+
+      include GRPC::GenericService
+
+      self.marshal_class_method = :encode
+      self.unmarshal_class_method = :decode
+      self.service_name = 'gitaly.Commit'
+
+      rpc :CommitIsAncestor, CommitIsAncestorRequest, Boolean
+    end
+
+    Stub = Service.rpc_stub_class
+  end
 end

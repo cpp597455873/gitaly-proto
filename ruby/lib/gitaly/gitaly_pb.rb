@@ -4,6 +4,9 @@
 require 'google/protobuf'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
+  add_message "gitaly.Boolean" do
+    optional :true, :bool, 1
+  end
   add_message "gitaly.InfoRefsRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
   end
@@ -18,12 +21,33 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.PostReceiveResponse" do
   end
+  add_message "gitaly.CommitObject" do
+    optional :id, :string, 1
+  end
+  add_message "gitaly.FindRefNameRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :containing, :message, 2, "gitaly.CommitObject"
+    optional :prefix, :bytes, 3
+  end
+  add_message "gitaly.RefNamesResponse" do
+    repeated :name, :bytes, 1
+  end
+  add_message "gitaly.CommitIsAncestorRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :ancestor, :message, 2, "gitaly.CommitObject"
+    optional :child, :message, 3, "gitaly.CommitObject"
+  end
 end
 
 module Gitaly
+  Boolean = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Boolean").msgclass
   InfoRefsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.InfoRefsRequest").msgclass
   InfoRefsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.InfoRefsResponse").msgclass
   Repository = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Repository").msgclass
   PostReceiveRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PostReceiveRequest").msgclass
   PostReceiveResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PostReceiveResponse").msgclass
+  CommitObject = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitObject").msgclass
+  FindRefNameRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindRefNameRequest").msgclass
+  RefNamesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RefNamesResponse").msgclass
+  CommitIsAncestorRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitIsAncestorRequest").msgclass
 end

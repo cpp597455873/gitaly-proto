@@ -15,6 +15,19 @@ service Notifications {
   rpc PostReceive(PostReceiveRequest) returns (PostReceiveResponse) {}
 }
 
+service Ref {
+  // Find a Ref matching the given constraints. Response may be empty.
+  rpc FindRefName(FindRefNameRequest) returns (RefNamesResponse) {}
+}
+
+service Commit {
+  rpc CommitIsAncestor(CommitIsAncestorRequest) returns (Boolean) {}
+}
+
+message Boolean {
+  bool true = 1;
+}
+
 message InfoRefsRequest {
   Repository repository = 1;
 }
@@ -32,3 +45,27 @@ message PostReceiveRequest {
 }
 
 message PostReceiveResponse {}
+
+message CommitObject {
+  // SHA1 of the commit object represented as 40 hexadecimal characters
+  string id = 1;
+}
+
+message FindRefNameRequest {
+  Repository repository = 1;
+  // Require that the resulting ref contains this commit as an ancestor
+  CommitObject containing = 2;
+  // Example prefix: "refs/heads/". Type bytes because that is the type of ref names.
+  bytes prefix = 3;
+}
+
+message RefNamesResponse {
+  // Example name: "refs/heads/master". Cannot assume UTF8, so the type is bytes.
+  repeated bytes name = 1;
+}
+
+message CommitIsAncestorRequest {
+  Repository repository = 1;
+  CommitObject ancestor = 2;
+  CommitObject child = 3;
+}
