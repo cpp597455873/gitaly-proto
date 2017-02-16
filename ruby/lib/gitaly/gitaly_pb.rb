@@ -5,7 +5,7 @@ require 'google/protobuf'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.Boolean" do
-    optional :true, :bool, 1
+    optional :value, :bool, 1
   end
   add_message "gitaly.InfoRefsRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
