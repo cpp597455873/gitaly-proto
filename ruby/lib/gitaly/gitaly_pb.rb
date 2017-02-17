@@ -30,7 +30,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :prefix, :bytes, 3
   end
   add_message "gitaly.RefNamesResponse" do
-    repeated :name, :bytes, 1
+    repeated :names, :bytes, 1
   end
   add_message "gitaly.CommitIsAncestorRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
