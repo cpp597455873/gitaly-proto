@@ -21,12 +21,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.PostReceiveResponse" do
   end
-  add_message "gitaly.CommitObject" do
-    optional :id, :string, 1
-  end
   add_message "gitaly.FindRefNameRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
-    optional :containing, :message, 2, "gitaly.CommitObject"
+    optional :commit_id, :string, 2
     optional :prefix, :bytes, 3
   end
   add_message "gitaly.RefNamesResponse" do
@@ -46,7 +43,6 @@ module Gitaly
   Repository = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Repository").msgclass
   PostReceiveRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PostReceiveRequest").msgclass
   PostReceiveResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PostReceiveResponse").msgclass
-  CommitObject = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitObject").msgclass
   FindRefNameRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindRefNameRequest").msgclass
   RefNamesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RefNamesResponse").msgclass
   CommitIsAncestorRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitIsAncestorRequest").msgclass

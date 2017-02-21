@@ -46,15 +46,10 @@ message PostReceiveRequest {
 
 message PostReceiveResponse {}
 
-message CommitObject {
-  // SHA1 of the commit object represented as 40 hexadecimal characters
-  string id = 1;
-}
-
 message FindRefNameRequest {
   Repository repository = 1;
   // Require that the resulting ref contains this commit as an ancestor
-  CommitObject containing = 2;
+  string commit_id = 2;
   // Example prefix: "refs/heads/". Type bytes because that is the type of ref names.
   bytes prefix = 3;
 }
