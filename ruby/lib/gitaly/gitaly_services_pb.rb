@@ -47,7 +47,7 @@ module Gitaly
       self.service_name = 'gitaly.Ref'
 
       # Find a Ref matching the given constraints. Response may be empty.
-      rpc :FindRefName, FindRefNameRequest, RefNamesResponse
+      rpc :FindRefName, FindRefNameRequest, FindRefNamesResponse
     end
 
     Stub = Service.rpc_stub_class
