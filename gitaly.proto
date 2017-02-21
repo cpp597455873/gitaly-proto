@@ -66,6 +66,6 @@ message RefNamesResponse {
 
 message CommitIsAncestorRequest {
   Repository repository = 1;
-  CommitObject ancestor = 2;
-  CommitObject child = 3;
+  string ancestor_id = 2;
+  string child_id = 3;
 }

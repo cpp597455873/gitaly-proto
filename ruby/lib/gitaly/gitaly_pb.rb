@@ -34,8 +34,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.CommitIsAncestorRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
-    optional :ancestor, :message, 2, "gitaly.CommitObject"
-    optional :child, :message, 3, "gitaly.CommitObject"
+    optional :ancestor_id, :string, 2
+    optional :child_id, :string, 3
   end
 end
 
