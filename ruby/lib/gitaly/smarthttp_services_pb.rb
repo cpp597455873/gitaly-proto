@@ -18,6 +18,10 @@ module Gitaly
       rpc :InfoRefsUploadPack, InfoRefsRequest, stream(InfoRefsResponse)
       # The response body for GET /info/refs?service=git-receive-pack
       rpc :InfoRefsReceivePack, InfoRefsRequest, stream(InfoRefsResponse)
+      # Request and response body for POST /upload-pack
+      rpc :PostUploadPack, stream(PostUploadPackRequest), stream(PostUploadPackResponse)
+      # Request and response body for POST /receive-pack
+      rpc :PostReceivePack, stream(PostReceivePackRequest), stream(PostReceivePackResponse)
     end
 
     Stub = Service.rpc_stub_class
