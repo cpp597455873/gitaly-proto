@@ -16,9 +16,9 @@ module Gitaly
       self.service_name = 'gitaly.SmartHTTP'
 
       # The response body for GET /info/refs?service=git-upload-pack
-      rpc :InfoRefsUploadPack, InfoRefsRequest, stream(InfoRefsResponse)
+      rpc :InfoRefsUploadPack, InfoRefsUploadPackRequest, stream(InfoRefsUploadPackResponse)
       # The response body for GET /info/refs?service=git-receive-pack
-      rpc :InfoRefsReceivePack, InfoRefsRequest, stream(InfoRefsResponse)
+      rpc :InfoRefsReceivePack, InfoRefsReceivePackRequest, stream(InfoRefsReceivePackResponse)
     end
 
     Stub = Service.rpc_stub_class

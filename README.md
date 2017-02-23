@@ -80,3 +80,5 @@ gRPC provides an implementation framework based on these Protobuf concepts.
     return meaningful
     [errors](https://godoc.org/google.golang.org/grpc/codes#Code) to its
     clients.
+1.  Each RPC `FooBar` has its own `FooBarRequest` and `FooBarResponse`
+    message types.
