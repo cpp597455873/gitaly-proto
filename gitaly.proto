@@ -35,6 +35,7 @@ message InfoRefsUploadPackRequest {
 }
 
 message InfoRefsReceivePackRequest {
+  Repository repository = 1;
 }
 
 service Commit {

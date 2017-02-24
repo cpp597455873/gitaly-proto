@@ -9,6 +9,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :repository, :message, 1, "gitaly.Repository"
   end
   add_message "gitaly.InfoRefsReceivePackRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
   end
   add_message "gitaly.CommitIsAncestorResponse" do
     optional :value, :bool, 1
