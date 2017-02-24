@@ -46,10 +46,6 @@ message CommitIsAncestorResponse {
   bool value = 1;
 }
 
-message InfoRefsRequest {
-  Repository repository = 1;
-}
-
 message InfoRefsUploadPackResponse {
   bytes data = 1;
 }
