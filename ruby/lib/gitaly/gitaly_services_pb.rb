@@ -37,4 +37,20 @@ module Gitaly
 
     Stub = Service.rpc_stub_class
   end
+  module Ref
+    class Service
+
+      include GRPC::GenericService
+
+      self.marshal_class_method = :encode
+      self.unmarshal_class_method = :decode
+      self.service_name = 'gitaly.Ref'
+
+      rpc :FindDefaultBranchName, FindDefaultBranchNameRequest, FindDefaultBranchNameResponse
+      rpc :FindAllBranchNames, FindAllBranchNamesRequest, stream(FindAllBranchNamesResponse)
+      rpc :FindAllTagNames, FindAllTagNamesRequest, stream(FindAllTagNamesResponse)
+    end
+
+    Stub = Service.rpc_stub_class
+  end
 end

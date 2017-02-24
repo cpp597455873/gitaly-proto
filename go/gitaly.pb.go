@@ -16,6 +16,12 @@ It has these top-level messages:
 	Repository
 	PostReceiveRequest
 	PostReceiveResponse
+	FindDefaultBranchNameRequest
+	FindAllBranchNamesRequest
+	FindAllTagNamesRequest
+	FindDefaultBranchNameResponse
+	FindAllBranchNamesResponse
+	FindAllTagNamesResponse
 */
 package gitaly
 
@@ -143,6 +149,102 @@ func (m *PostReceiveResponse) String() string            { return proto.CompactT
 func (*PostReceiveResponse) ProtoMessage()               {}
 func (*PostReceiveResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{6} }
 
+type FindDefaultBranchNameRequest struct {
+	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
+}
+
+func (m *FindDefaultBranchNameRequest) Reset()                    { *m = FindDefaultBranchNameRequest{} }
+func (m *FindDefaultBranchNameRequest) String() string            { return proto.CompactTextString(m) }
+func (*FindDefaultBranchNameRequest) ProtoMessage()               {}
+func (*FindDefaultBranchNameRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{7} }
+
+func (m *FindDefaultBranchNameRequest) GetRepository() *Repository {
+	if m != nil {
+		return m.Repository
+	}
+	return nil
+}
+
+type FindAllBranchNamesRequest struct {
+	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
+}
+
+func (m *FindAllBranchNamesRequest) Reset()                    { *m = FindAllBranchNamesRequest{} }
+func (m *FindAllBranchNamesRequest) String() string            { return proto.CompactTextString(m) }
+func (*FindAllBranchNamesRequest) ProtoMessage()               {}
+func (*FindAllBranchNamesRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{8} }
+
+func (m *FindAllBranchNamesRequest) GetRepository() *Repository {
+	if m != nil {
+		return m.Repository
+	}
+	return nil
+}
+
+type FindAllTagNamesRequest struct {
+	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
+}
+
+func (m *FindAllTagNamesRequest) Reset()                    { *m = FindAllTagNamesRequest{} }
+func (m *FindAllTagNamesRequest) String() string            { return proto.CompactTextString(m) }
+func (*FindAllTagNamesRequest) ProtoMessage()               {}
+func (*FindAllTagNamesRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{9} }
+
+func (m *FindAllTagNamesRequest) GetRepository() *Repository {
+	if m != nil {
+		return m.Repository
+	}
+	return nil
+}
+
+type FindDefaultBranchNameResponse struct {
+	Name []byte `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (m *FindDefaultBranchNameResponse) Reset()                    { *m = FindDefaultBranchNameResponse{} }
+func (m *FindDefaultBranchNameResponse) String() string            { return proto.CompactTextString(m) }
+func (*FindDefaultBranchNameResponse) ProtoMessage()               {}
+func (*FindDefaultBranchNameResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{10} }
+
+func (m *FindDefaultBranchNameResponse) GetName() []byte {
+	if m != nil {
+		return m.Name
+	}
+	return nil
+}
+
+type FindAllBranchNamesResponse struct {
+	Names [][]byte `protobuf:"bytes,1,rep,name=names,proto3" json:"names,omitempty"`
+}
+
+func (m *FindAllBranchNamesResponse) Reset()                    { *m = FindAllBranchNamesResponse{} }
+func (m *FindAllBranchNamesResponse) String() string            { return proto.CompactTextString(m) }
+func (*FindAllBranchNamesResponse) ProtoMessage()               {}
+func (*FindAllBranchNamesResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{11} }
+
+func (m *FindAllBranchNamesResponse) GetNames() [][]byte {
+	if m != nil {
+		return m.Names
+	}
+	return nil
+}
+
+type FindAllTagNamesResponse struct {
+	Names [][]byte `protobuf:"bytes,1,rep,name=names,proto3" json:"names,omitempty"`
+}
+
+func (m *FindAllTagNamesResponse) Reset()                    { *m = FindAllTagNamesResponse{} }
+func (m *FindAllTagNamesResponse) String() string            { return proto.CompactTextString(m) }
+func (*FindAllTagNamesResponse) ProtoMessage()               {}
+func (*FindAllTagNamesResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{12} }
+
+func (m *FindAllTagNamesResponse) GetNames() [][]byte {
+	if m != nil {
+		return m.Names
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*InfoRefsUploadPackRequest)(nil), "gitaly.InfoRefsUploadPackRequest")
 	proto.RegisterType((*InfoRefsReceivePackRequest)(nil), "gitaly.InfoRefsReceivePackRequest")
@@ -151,6 +253,12 @@ func init() {
 	proto.RegisterType((*Repository)(nil), "gitaly.Repository")
 	proto.RegisterType((*PostReceiveRequest)(nil), "gitaly.PostReceiveRequest")
 	proto.RegisterType((*PostReceiveResponse)(nil), "gitaly.PostReceiveResponse")
+	proto.RegisterType((*FindDefaultBranchNameRequest)(nil), "gitaly.FindDefaultBranchNameRequest")
+	proto.RegisterType((*FindAllBranchNamesRequest)(nil), "gitaly.FindAllBranchNamesRequest")
+	proto.RegisterType((*FindAllTagNamesRequest)(nil), "gitaly.FindAllTagNamesRequest")
+	proto.RegisterType((*FindDefaultBranchNameResponse)(nil), "gitaly.FindDefaultBranchNameResponse")
+	proto.RegisterType((*FindAllBranchNamesResponse)(nil), "gitaly.FindAllBranchNamesResponse")
+	proto.RegisterType((*FindAllTagNamesResponse)(nil), "gitaly.FindAllTagNamesResponse")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -380,26 +488,220 @@ var _Notifications_serviceDesc = grpc.ServiceDesc{
 	Metadata: "gitaly.proto",
 }
 
+// Client API for Ref service
+
+type RefClient interface {
+	FindDefaultBranchName(ctx context.Context, in *FindDefaultBranchNameRequest, opts ...grpc.CallOption) (*FindDefaultBranchNameResponse, error)
+	FindAllBranchNames(ctx context.Context, in *FindAllBranchNamesRequest, opts ...grpc.CallOption) (Ref_FindAllBranchNamesClient, error)
+	FindAllTagNames(ctx context.Context, in *FindAllTagNamesRequest, opts ...grpc.CallOption) (Ref_FindAllTagNamesClient, error)
+}
+
+type refClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewRefClient(cc *grpc.ClientConn) RefClient {
+	return &refClient{cc}
+}
+
+func (c *refClient) FindDefaultBranchName(ctx context.Context, in *FindDefaultBranchNameRequest, opts ...grpc.CallOption) (*FindDefaultBranchNameResponse, error) {
+	out := new(FindDefaultBranchNameResponse)
+	err := grpc.Invoke(ctx, "/gitaly.Ref/FindDefaultBranchName", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *refClient) FindAllBranchNames(ctx context.Context, in *FindAllBranchNamesRequest, opts ...grpc.CallOption) (Ref_FindAllBranchNamesClient, error) {
+	stream, err := grpc.NewClientStream(ctx, &_Ref_serviceDesc.Streams[0], c.cc, "/gitaly.Ref/FindAllBranchNames", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &refFindAllBranchNamesClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Ref_FindAllBranchNamesClient interface {
+	Recv() (*FindAllBranchNamesResponse, error)
+	grpc.ClientStream
+}
+
+type refFindAllBranchNamesClient struct {
+	grpc.ClientStream
+}
+
+func (x *refFindAllBranchNamesClient) Recv() (*FindAllBranchNamesResponse, error) {
+	m := new(FindAllBranchNamesResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+func (c *refClient) FindAllTagNames(ctx context.Context, in *FindAllTagNamesRequest, opts ...grpc.CallOption) (Ref_FindAllTagNamesClient, error) {
+	stream, err := grpc.NewClientStream(ctx, &_Ref_serviceDesc.Streams[1], c.cc, "/gitaly.Ref/FindAllTagNames", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &refFindAllTagNamesClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Ref_FindAllTagNamesClient interface {
+	Recv() (*FindAllTagNamesResponse, error)
+	grpc.ClientStream
+}
+
+type refFindAllTagNamesClient struct {
+	grpc.ClientStream
+}
+
+func (x *refFindAllTagNamesClient) Recv() (*FindAllTagNamesResponse, error) {
+	m := new(FindAllTagNamesResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
+// Server API for Ref service
+
+type RefServer interface {
+	FindDefaultBranchName(context.Context, *FindDefaultBranchNameRequest) (*FindDefaultBranchNameResponse, error)
+	FindAllBranchNames(*FindAllBranchNamesRequest, Ref_FindAllBranchNamesServer) error
+	FindAllTagNames(*FindAllTagNamesRequest, Ref_FindAllTagNamesServer) error
+}
+
+func RegisterRefServer(s *grpc.Server, srv RefServer) {
+	s.RegisterService(&_Ref_serviceDesc, srv)
+}
+
+func _Ref_FindDefaultBranchName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindDefaultBranchNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RefServer).FindDefaultBranchName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gitaly.Ref/FindDefaultBranchName",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RefServer).FindDefaultBranchName(ctx, req.(*FindDefaultBranchNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Ref_FindAllBranchNames_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(FindAllBranchNamesRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(RefServer).FindAllBranchNames(m, &refFindAllBranchNamesServer{stream})
+}
+
+type Ref_FindAllBranchNamesServer interface {
+	Send(*FindAllBranchNamesResponse) error
+	grpc.ServerStream
+}
+
+type refFindAllBranchNamesServer struct {
+	grpc.ServerStream
+}
+
+func (x *refFindAllBranchNamesServer) Send(m *FindAllBranchNamesResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func _Ref_FindAllTagNames_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(FindAllTagNamesRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(RefServer).FindAllTagNames(m, &refFindAllTagNamesServer{stream})
+}
+
+type Ref_FindAllTagNamesServer interface {
+	Send(*FindAllTagNamesResponse) error
+	grpc.ServerStream
+}
+
+type refFindAllTagNamesServer struct {
+	grpc.ServerStream
+}
+
+func (x *refFindAllTagNamesServer) Send(m *FindAllTagNamesResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+var _Ref_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "gitaly.Ref",
+	HandlerType: (*RefServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "FindDefaultBranchName",
+			Handler:    _Ref_FindDefaultBranchName_Handler,
+		},
+	},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "FindAllBranchNames",
+			Handler:       _Ref_FindAllBranchNames_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "FindAllTagNames",
+			Handler:       _Ref_FindAllTagNames_Handler,
+			ServerStreams: true,
+		},
+	},
+	Metadata: "gitaly.proto",
+}
+
 func init() { proto.RegisterFile("gitaly.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 278 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xa4, 0x92, 0xc1, 0x4e, 0xc3, 0x30,
-	0x0c, 0x86, 0xa9, 0x84, 0x26, 0xcd, 0x1b, 0x17, 0x4f, 0x48, 0xd0, 0x5d, 0x46, 0xb8, 0x70, 0x9a,
-	0x46, 0x79, 0x89, 0x72, 0x81, 0x2a, 0x8c, 0x03, 0x27, 0x94, 0x75, 0x29, 0x44, 0x8c, 0x3a, 0x34,
-	0x06, 0x69, 0x6f, 0xc9, 0x23, 0x21, 0xd2, 0x95, 0x16, 0xb5, 0xeb, 0x65, 0x37, 0x47, 0xfe, 0xfd,
-	0xd9, 0xbf, 0x1d, 0x18, 0xbf, 0x18, 0x56, 0x9b, 0xed, 0xdc, 0x16, 0xc4, 0x84, 0x83, 0xf2, 0x25,
-	0xee, 0xe1, 0xfc, 0x36, 0xcf, 0x48, 0xea, 0xcc, 0x3d, 0xda, 0x0d, 0xa9, 0x75, 0xa2, 0xd2, 0x37,
-	0xa9, 0x3f, 0x3e, 0xb5, 0x63, 0x8c, 0x00, 0x0a, 0x6d, 0xc9, 0x19, 0xa6, 0x62, 0x7b, 0x16, 0xcc,
-	0x82, 0xab, 0x51, 0x84, 0xf3, 0x1d, 0x47, 0xfe, 0x65, 0x64, 0x43, 0x25, 0x12, 0x08, 0x2b, 0xa0,
-	0xd4, 0xa9, 0x36, 0x5f, 0xfa, 0x50, 0xe2, 0xa2, 0x26, 0x36, 0x47, 0x74, 0x96, 0x72, 0xa7, 0x11,
-	0xe1, 0x78, 0xad, 0x58, 0x79, 0xd6, 0x58, 0xfa, 0x58, 0x5c, 0xc3, 0xb4, 0x73, 0x86, 0x9e, 0x92,
-	0x19, 0x40, 0xdd, 0xfe, 0x57, 0x61, 0x15, 0xbf, 0x7a, 0xc5, 0x50, 0xfa, 0x58, 0xc4, 0x80, 0x09,
-	0x39, 0xde, 0x01, 0x0f, 0x31, 0x74, 0x0a, 0x93, 0x7f, 0xa4, 0x72, 0xac, 0xe8, 0x3b, 0x80, 0xe1,
-	0xc3, 0xbb, 0x2a, 0x38, 0x5e, 0x2e, 0x13, 0x7c, 0x06, 0x6c, 0xbb, 0xc6, 0x8b, 0x0a, 0xbd, 0xf7,
-	0x68, 0xa1, 0xe8, 0x93, 0x94, 0xad, 0xc4, 0xd1, 0x22, 0xc0, 0x15, 0x4c, 0x3a, 0x96, 0x84, 0xad,
-	0xf2, 0xf6, 0x15, 0xc3, 0xcb, 0x5e, 0x4d, 0xdd, 0x23, 0x7a, 0x82, 0x93, 0x3b, 0x62, 0x93, 0x99,
-	0x54, 0xb1, 0xa1, 0xdc, 0x61, 0x0c, 0xa3, 0x86, 0x75, 0x0c, 0x2b, 0x50, 0x7b, 0xb3, 0xe1, 0xb4,
-	0x33, 0x57, 0xc1, 0x57, 0x03, 0xff, 0x8f, 0x6f, 0x7e, 0x02, 0x00, 0x00, 0xff, 0xff, 0xd0, 0xc6,
-	0xb5, 0xd0, 0xd7, 0x02, 0x00, 0x00,
+	// 427 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xa4, 0x94, 0xdf, 0xae, 0xd2, 0x40,
+	0x10, 0xc6, 0xad, 0x47, 0x4f, 0xc2, 0x80, 0x31, 0x19, 0x44, 0x61, 0xf1, 0x0f, 0xae, 0x9a, 0x70,
+	0x85, 0x58, 0x9e, 0x40, 0x63, 0x0c, 0x26, 0x06, 0x9a, 0x15, 0x4d, 0xbc, 0x32, 0x4b, 0xd9, 0x42,
+	0x63, 0xe9, 0xd6, 0xee, 0x62, 0xc2, 0x0b, 0xf9, 0x3c, 0x3e, 0x92, 0x69, 0x69, 0x5d, 0xa4, 0x7f,
+	0xce, 0x45, 0xef, 0xb6, 0xd9, 0x6f, 0x7e, 0x33, 0x93, 0xef, 0xdb, 0x42, 0x67, 0xeb, 0x6b, 0x1e,
+	0x1c, 0x27, 0x51, 0x2c, 0xb5, 0xc4, 0xeb, 0xd3, 0x17, 0x5d, 0xc2, 0xe0, 0x63, 0xe8, 0x49, 0x26,
+	0x3c, 0xf5, 0x25, 0x0a, 0x24, 0xdf, 0x38, 0xdc, 0xfd, 0xc1, 0xc4, 0xcf, 0x83, 0x50, 0x1a, 0x6d,
+	0x80, 0x58, 0x44, 0x52, 0xf9, 0x5a, 0xc6, 0xc7, 0xbe, 0x35, 0xb2, 0xc6, 0x6d, 0x1b, 0x27, 0x19,
+	0x87, 0xfd, 0xbb, 0x61, 0x67, 0x2a, 0xea, 0x00, 0xc9, 0x81, 0x4c, 0xb8, 0xc2, 0xff, 0x25, 0x9a,
+	0x12, 0xa7, 0x86, 0x78, 0x3e, 0xa2, 0x8a, 0x64, 0xa8, 0x04, 0x22, 0xdc, 0xd9, 0x70, 0xcd, 0x53,
+	0x56, 0x87, 0xa5, 0x67, 0xfa, 0x06, 0x86, 0xa5, 0x33, 0xd4, 0x94, 0x8c, 0x00, 0x4c, 0xfb, 0x44,
+	0x11, 0x71, 0xbd, 0x4b, 0x15, 0x2d, 0x96, 0x9e, 0xe9, 0x1c, 0xd0, 0x91, 0x4a, 0x67, 0xc0, 0x26,
+	0x0b, 0xf5, 0xa0, 0xfb, 0x1f, 0xe9, 0x34, 0x16, 0x65, 0xf0, 0xf8, 0x83, 0x1f, 0x6e, 0xde, 0x0b,
+	0x8f, 0x1f, 0x02, 0xfd, 0x2e, 0xe6, 0xa1, 0xbb, 0x5b, 0xf0, 0x7d, 0xa3, 0x56, 0x4b, 0x18, 0x24,
+	0xcc, 0xb7, 0x41, 0x60, 0x78, 0xaa, 0x09, 0xf0, 0x13, 0x3c, 0xcc, 0x80, 0x2b, 0xbe, 0x6d, 0x4c,
+	0x9b, 0xc1, 0x93, 0x8a, 0x95, 0x8d, 0x55, 0x21, 0xdf, 0x8b, 0xdc, 0xaa, 0xe4, 0x4c, 0x6d, 0x20,
+	0x65, 0x3b, 0x65, 0x15, 0x0f, 0xe0, 0x6e, 0xa2, 0x52, 0x7d, 0x6b, 0x74, 0x35, 0xee, 0xb0, 0xd3,
+	0x07, 0x7d, 0x0d, 0x8f, 0x0a, 0x63, 0xd7, 0x15, 0xd8, 0x7f, 0x2c, 0x68, 0x7d, 0xde, 0xf3, 0x58,
+	0xcf, 0x57, 0x2b, 0x07, 0xbf, 0x03, 0x16, 0x23, 0x88, 0xcf, 0xf3, 0xed, 0x2a, 0x5f, 0x10, 0xa1,
+	0x75, 0x92, 0xcc, 0xf7, 0x5b, 0x53, 0x0b, 0xd7, 0xd0, 0x2d, 0x49, 0x2c, 0x16, 0xca, 0x8b, 0x4f,
+	0x8a, 0xbc, 0xa8, 0xd5, 0x98, 0x1e, 0xf6, 0x37, 0xb8, 0xb7, 0x90, 0xda, 0xf7, 0x7c, 0x97, 0x6b,
+	0x5f, 0x86, 0x0a, 0xe7, 0xd0, 0x3e, 0xcb, 0x21, 0x92, 0x1c, 0x54, 0x8c, 0x39, 0x19, 0x96, 0xde,
+	0xe5, 0x70, 0xfb, 0xf7, 0x6d, 0xb8, 0x62, 0xc2, 0x43, 0x0f, 0x7a, 0xa5, 0x7e, 0xe2, 0xcb, 0xbc,
+	0xbe, 0x2e, 0xe1, 0xe4, 0xd5, 0x0d, 0xaa, 0xbc, 0x5f, 0xe2, 0x47, 0x31, 0x02, 0xc6, 0x8f, 0xca,
+	0xc8, 0x1b, 0x3f, 0xaa, 0x13, 0x94, 0xfa, 0xf1, 0x15, 0xee, 0x5f, 0xe4, 0x05, 0x9f, 0x5e, 0x94,
+	0x5e, 0xe4, 0x9f, 0x3c, 0xab, 0xbc, 0x37, 0xdc, 0xf5, 0x75, 0xfa, 0xf7, 0x9d, 0xfd, 0x0d, 0x00,
+	0x00, 0xff, 0xff, 0x34, 0x42, 0xcd, 0xdf, 0x8d, 0x05, 0x00, 0x00,
 }

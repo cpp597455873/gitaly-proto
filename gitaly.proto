@@ -15,6 +15,12 @@ service Notifications {
   rpc PostReceive(PostReceiveRequest) returns (PostReceiveResponse) {}
 }
 
+service Ref {
+  rpc FindDefaultBranchName(FindDefaultBranchNameRequest) returns (FindDefaultBranchNameResponse) {}
+  rpc FindAllBranchNames(FindAllBranchNamesRequest) returns (stream FindAllBranchNamesResponse) {}
+  rpc FindAllTagNames(FindAllTagNamesRequest) returns (stream FindAllTagNamesResponse) {}
+}
+
 message InfoRefsUploadPackRequest {
   Repository repository = 1;
 }
@@ -40,3 +46,27 @@ message PostReceiveRequest {
 }
 
 message PostReceiveResponse {}
+
+message FindDefaultBranchNameRequest {
+  Repository repository = 1;
+}
+
+message FindAllBranchNamesRequest {
+  Repository repository = 1;
+}
+
+message FindAllTagNamesRequest {
+  Repository repository = 1;
+}
+
+message FindDefaultBranchNameResponse {
+  bytes name = 1;
+}
+
+message FindAllBranchNamesResponse {
+  repeated bytes names = 1;
+}
+
+message FindAllTagNamesResponse {
+  repeated bytes names = 1;
+}
