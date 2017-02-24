@@ -5,21 +5,29 @@ package gitaly;
 // The Git 'smart HTTP' protocol
 service SmartHTTP {
   // The response body for GET /info/refs?service=git-upload-pack
-  rpc InfoRefsUploadPack(InfoRefsRequest) returns (stream InfoRefsResponse) {}
+  rpc InfoRefsUploadPack(InfoRefsUploadPackRequest) returns (stream InfoRefsUploadPackResponse) {}
 
   // The response body for GET /info/refs?service=git-receive-pack
-  rpc InfoRefsReceivePack(InfoRefsRequest) returns (stream InfoRefsResponse) {}
+  rpc InfoRefsReceivePack(InfoRefsReceivePackRequest) returns (stream InfoRefsReceivePackResponse) {}
 }
 
 service Notifications {
   rpc PostReceive(PostReceiveRequest) returns (PostReceiveResponse) {}
 }
 
-message InfoRefsRequest {
+message InfoRefsUploadPackRequest {
   Repository repository = 1;
 }
 
-message InfoRefsResponse {
+message InfoRefsReceivePackRequest {
+  Repository repository = 1;
+}
+
+message InfoRefsUploadPackResponse {
+  bytes data = 1;
+}
+
+message InfoRefsReceivePackResponse {
   bytes data = 1;
 }
 
