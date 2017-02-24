@@ -2,13 +2,15 @@ syntax = "proto3";
 
 package gitaly;
 
+import "shared.proto";
+
 // The Git 'smart HTTP' protocol
 service SmartHTTP {
   // The response body for GET /info/refs?service=git-upload-pack
-  rpc InfoRefsUploadPack(InfoRefsRequest) returns (stream InfoRefsResponse) {}
+  rpc InfoRefsUploadPack(InfoRefsUploadPackRequest) returns (stream InfoRefsUploadPackResponse) {}
 
   // The response body for GET /info/refs?service=git-receive-pack
-  rpc InfoRefsReceivePack(InfoRefsRequest) returns (stream InfoRefsResponse) {}
+  rpc InfoRefsReceivePack(InfoRefsReceivePackRequest) returns (stream InfoRefsReceivePackResponse) {}
 }
 
 service Notifications {
@@ -16,8 +18,23 @@ service Notifications {
 }
 
 service Ref {
+  rpc FindDefaultBranchName(FindDefaultBranchNameRequest) returns (FindDefaultBranchNameResponse) {}
+  rpc FindAllBranchNames(FindAllBranchNamesRequest) returns (stream FindAllBranchNamesResponse) {}
+  rpc FindAllTagNames(FindAllTagNamesRequest) returns (stream FindAllTagNamesResponse) {}
   // Find a Ref matching the given constraints. Response may be empty.
   rpc FindRefName(FindRefNameRequest) returns (FindRefNameResponse) {}
+}
+
+service Diff {
+  // Returns stream of CommitDiffResponse: 1 per changed file
+  rpc CommitDiff(CommitDiffRequest) returns (stream CommitDiffResponse) {};
+}
+
+message InfoRefsUploadPackRequest {
+  Repository repository = 1;
+}
+
+message InfoRefsReceivePackRequest {
 }
 
 service Commit {
@@ -32,12 +49,12 @@ message InfoRefsRequest {
   Repository repository = 1;
 }
 
-message InfoRefsResponse {
+message InfoRefsUploadPackResponse {
   bytes data = 1;
 }
 
-message Repository {
-  string path = 1;
+message InfoRefsReceivePackResponse {
+  bytes data = 1;
 }
 
 message PostReceiveRequest {
@@ -63,4 +80,47 @@ message CommitIsAncestorRequest {
   Repository repository = 1;
   string ancestor_id = 2;
   string child_id = 3;
+}
+
+message FindDefaultBranchNameRequest {
+  Repository repository = 1;
+}
+
+message FindAllBranchNamesRequest {
+  Repository repository = 1;
+}
+
+message FindAllTagNamesRequest {
+  Repository repository = 1;
+}
+
+message FindDefaultBranchNameResponse {
+  bytes name = 1;
+}
+
+message FindAllBranchNamesResponse {
+  repeated bytes names = 1;
+}
+
+message FindAllTagNamesResponse {
+  repeated bytes names = 1;
+}
+
+message CommitDiffRequest {
+  Repository repository = 1;
+  string left_commit_id = 2;
+  string right_commit_id = 3;
+}
+
+// A CommitDiffResponse corresponds to a single changed file in a commit.
+message CommitDiffResponse {
+  bytes from_path = 1;
+  bytes to_path = 2;
+  // Blob ID as returned via `git diff --full-index`
+  string from_id = 3;
+  string to_id = 4;
+  int32 old_mode = 5;
+  int32 new_mode = 6;
+  bool binary = 7;
+  repeated bytes raw_chunks = 8;
 }

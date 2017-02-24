@@ -2,18 +2,20 @@
 require_relative 'run.rb'
 
 def main
-  no_changes_in_protos!
+  no_changes!
   run!(%w[_support/install-protoc])
   run!(%w[_support/generate-from-proto])
-  no_changes_in_protos!
+  no_changes!
   puts 'OK! The gRPC / Protobuf clients are up-to-date'
 end
 
-def no_changes_in_protos!
-  changes = capture!(%w[git status --porcelain -- protos]).chomp
-  if changes.lines.any?
-    puts changes
-    abort 'error: detected changes in /protos'
+def no_changes!
+  changes = capture!(%w[git status --porcelain]).chomp.lines
+  # _support/Gemfile.lock might change due to the CI Bundler version. Ignore all of _support.
+  changes = changes.reject { |l| l =~ /^.. _support/ }
+  if changes.any?
+    run!(%w[git diff])
+    abort 'error: detected changes'
   end
 end
 

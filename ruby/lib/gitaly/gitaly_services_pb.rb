@@ -16,9 +16,9 @@ module Gitaly
       self.service_name = 'gitaly.SmartHTTP'
 
       # The response body for GET /info/refs?service=git-upload-pack
-      rpc :InfoRefsUploadPack, InfoRefsRequest, stream(InfoRefsResponse)
+      rpc :InfoRefsUploadPack, InfoRefsUploadPackRequest, stream(InfoRefsUploadPackResponse)
       # The response body for GET /info/refs?service=git-receive-pack
-      rpc :InfoRefsReceivePack, InfoRefsRequest, stream(InfoRefsResponse)
+      rpc :InfoRefsReceivePack, InfoRefsReceivePackRequest, stream(InfoRefsReceivePackResponse)
     end
 
     Stub = Service.rpc_stub_class
@@ -46,8 +46,26 @@ module Gitaly
       self.unmarshal_class_method = :decode
       self.service_name = 'gitaly.Ref'
 
+      rpc :FindDefaultBranchName, FindDefaultBranchNameRequest, FindDefaultBranchNameResponse
+      rpc :FindAllBranchNames, FindAllBranchNamesRequest, stream(FindAllBranchNamesResponse)
+      rpc :FindAllTagNames, FindAllTagNamesRequest, stream(FindAllTagNamesResponse)
       # Find a Ref matching the given constraints. Response may be empty.
       rpc :FindRefName, FindRefNameRequest, FindRefNameResponse
+    end
+
+    Stub = Service.rpc_stub_class
+  end
+  module Diff
+    class Service
+
+      include GRPC::GenericService
+
+      self.marshal_class_method = :encode
+      self.unmarshal_class_method = :decode
+      self.service_name = 'gitaly.Diff'
+
+      # Returns stream of CommitDiffResponse: 1 per changed file
+      rpc :CommitDiff, CommitDiffRequest, stream(CommitDiffResponse)
     end
 
     Stub = Service.rpc_stub_class

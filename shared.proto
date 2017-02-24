@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package gitaly;
+
+message Repository {
+  string path = 1;
+}
+
+message ExitStatus {
+  int32 value = 1;
+}
