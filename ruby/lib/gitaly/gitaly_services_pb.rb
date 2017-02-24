@@ -53,4 +53,19 @@ module Gitaly
 
     Stub = Service.rpc_stub_class
   end
+  module Diff
+    class Service
+
+      include GRPC::GenericService
+
+      self.marshal_class_method = :encode
+      self.unmarshal_class_method = :decode
+      self.service_name = 'gitaly.Diff'
+
+      # Returns stream of CommitDiffResponse: 1 per changed file
+      rpc :CommitDiff, CommitDiffRequest, stream(CommitDiffResponse)
+    end
+
+    Stub = Service.rpc_stub_class
+  end
 end
