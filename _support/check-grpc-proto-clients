@@ -14,7 +14,7 @@ def no_changes!
   # _support/Gemfile.lock might change due to the CI Bundler version. Ignore all of _support.
   changes = changes.reject { |l| l =~ /^.. _support/ }
   if changes.any?
-    puts changes
+    run!(%w[git diff])
     abort 'error: detected changes'
   end
 end
