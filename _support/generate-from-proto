@@ -2,7 +2,7 @@
 require_relative 'run.rb'
 
 PROTO_INCLUDE = '.'
-PROTO_FILES = Dir['*.proto']
+PROTO_FILES = Dir['*.proto'].sort
 
 ENV['PATH'] = [
   File.join(ENV['GOPATH'], 'bin'),
