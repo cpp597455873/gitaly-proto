@@ -4,7 +4,7 @@
 require 'google/protobuf'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
-  add_message "gitaly.Boolean" do
+  add_message "gitaly.CommitIsAncestorResponse" do
     optional :value, :bool, 1
   end
   add_message "gitaly.InfoRefsRequest" do
@@ -26,8 +26,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :commit_id, :string, 2
     optional :prefix, :bytes, 3
   end
-  add_message "gitaly.FindRefNamesResponse" do
-    optional :names, :bytes, 1
+  add_message "gitaly.FindRefNameResponse" do
+    optional :name, :bytes, 1
   end
   add_message "gitaly.CommitIsAncestorRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
@@ -37,13 +37,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
 end
 
 module Gitaly
-  Boolean = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Boolean").msgclass
+  CommitIsAncestorResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitIsAncestorResponse").msgclass
   InfoRefsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.InfoRefsRequest").msgclass
   InfoRefsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.InfoRefsResponse").msgclass
   Repository = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Repository").msgclass
   PostReceiveRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PostReceiveRequest").msgclass
   PostReceiveResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PostReceiveResponse").msgclass
   FindRefNameRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindRefNameRequest").msgclass
-  FindRefNamesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindRefNamesResponse").msgclass
+  FindRefNameResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindRefNameResponse").msgclass
   CommitIsAncestorRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitIsAncestorRequest").msgclass
 end

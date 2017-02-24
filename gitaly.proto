@@ -17,14 +17,14 @@ service Notifications {
 
 service Ref {
   // Find a Ref matching the given constraints. Response may be empty.
-  rpc FindRefName(FindRefNameRequest) returns (FindRefNamesResponse) {}
+  rpc FindRefName(FindRefNameRequest) returns (FindRefNameResponse) {}
 }
 
 service Commit {
-  rpc CommitIsAncestor(CommitIsAncestorRequest) returns (Boolean) {}
+  rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) {}
 }
 
-message Boolean {
+message CommitIsAncestorResponse {
   bool value = 1;
 }
 
@@ -54,9 +54,9 @@ message FindRefNameRequest {
   bytes prefix = 3;
 }
 
-message FindRefNamesResponse {
+message FindRefNameResponse {
   // Example name: "refs/heads/master". Cannot assume UTF8, so the type is bytes.
-  bytes names = 1;
+  bytes name = 1;
 }
 
 message CommitIsAncestorRequest {
