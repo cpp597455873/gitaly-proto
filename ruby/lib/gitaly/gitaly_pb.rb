@@ -5,20 +5,8 @@ require 'google/protobuf'
 
 require 'shared_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
-  add_message "gitaly.InfoRefsUploadPackRequest" do
-    optional :repository, :message, 1, "gitaly.Repository"
-  end
-  add_message "gitaly.InfoRefsReceivePackRequest" do
-    optional :repository, :message, 1, "gitaly.Repository"
-  end
   add_message "gitaly.CommitIsAncestorResponse" do
     optional :value, :bool, 1
-  end
-  add_message "gitaly.InfoRefsUploadPackResponse" do
-    optional :data, :bytes, 1
-  end
-  add_message "gitaly.InfoRefsReceivePackResponse" do
-    optional :data, :bytes, 1
   end
   add_message "gitaly.PostReceiveRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
@@ -74,11 +62,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
 end
 
 module Gitaly
-  InfoRefsUploadPackRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.InfoRefsUploadPackRequest").msgclass
-  InfoRefsReceivePackRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.InfoRefsReceivePackRequest").msgclass
   CommitIsAncestorResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitIsAncestorResponse").msgclass
-  InfoRefsUploadPackResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.InfoRefsUploadPackResponse").msgclass
-  InfoRefsReceivePackResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.InfoRefsReceivePackResponse").msgclass
   PostReceiveRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PostReceiveRequest").msgclass
   PostReceiveResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PostReceiveResponse").msgclass
   FindRefNameRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindRefNameRequest").msgclass
