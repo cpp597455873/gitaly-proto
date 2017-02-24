@@ -49,6 +49,8 @@ module Gitaly
       rpc :FindDefaultBranchName, FindDefaultBranchNameRequest, FindDefaultBranchNameResponse
       rpc :FindAllBranchNames, FindAllBranchNamesRequest, stream(FindAllBranchNamesResponse)
       rpc :FindAllTagNames, FindAllTagNamesRequest, stream(FindAllTagNamesResponse)
+      # Find a Ref matching the given constraints. Response may be empty.
+      rpc :FindRefName, FindRefNameRequest, FindRefNameResponse
     end
 
     Stub = Service.rpc_stub_class
@@ -64,6 +66,20 @@ module Gitaly
 
       # Returns stream of CommitDiffResponse: 1 per changed file
       rpc :CommitDiff, CommitDiffRequest, stream(CommitDiffResponse)
+    end
+
+    Stub = Service.rpc_stub_class
+  end
+  module Commit
+    class Service
+
+      include GRPC::GenericService
+
+      self.marshal_class_method = :encode
+      self.unmarshal_class_method = :decode
+      self.service_name = 'gitaly.Commit'
+
+      rpc :CommitIsAncestor, CommitIsAncestorRequest, CommitIsAncestorResponse
     end
 
     Stub = Service.rpc_stub_class
