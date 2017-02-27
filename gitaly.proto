@@ -4,15 +4,6 @@ package gitaly;
 
 import "shared.proto";
 
-// The Git 'smart HTTP' protocol
-service SmartHTTP {
-  // The response body for GET /info/refs?service=git-upload-pack
-  rpc InfoRefsUploadPack(InfoRefsUploadPackRequest) returns (stream InfoRefsUploadPackResponse) {}
-
-  // The response body for GET /info/refs?service=git-receive-pack
-  rpc InfoRefsReceivePack(InfoRefsReceivePackRequest) returns (stream InfoRefsReceivePackResponse) {}
-}
-
 service Notifications {
   rpc PostReceive(PostReceiveRequest) returns (PostReceiveResponse) {}
 }
@@ -21,6 +12,8 @@ service Ref {
   rpc FindDefaultBranchName(FindDefaultBranchNameRequest) returns (FindDefaultBranchNameResponse) {}
   rpc FindAllBranchNames(FindAllBranchNamesRequest) returns (stream FindAllBranchNamesResponse) {}
   rpc FindAllTagNames(FindAllTagNamesRequest) returns (stream FindAllTagNamesResponse) {}
+  // Find a Ref matching the given constraints. Response may be empty.
+  rpc FindRefName(FindRefNameRequest) returns (FindRefNameResponse) {}
 }
 
 service Diff {
@@ -28,20 +21,12 @@ service Diff {
   rpc CommitDiff(CommitDiffRequest) returns (stream CommitDiffResponse) {};
 }
 
-message InfoRefsUploadPackRequest {
-  Repository repository = 1;
+service Commit {
+  rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) {}
 }
 
-message InfoRefsReceivePackRequest {
-  Repository repository = 1;
-}
-
-message InfoRefsUploadPackResponse {
-  bytes data = 1;
-}
-
-message InfoRefsReceivePackResponse {
-  bytes data = 1;
+message CommitIsAncestorResponse {
+  bool value = 1;
 }
 
 message PostReceiveRequest {
@@ -49,6 +34,25 @@ message PostReceiveRequest {
 }
 
 message PostReceiveResponse {}
+
+message FindRefNameRequest {
+  Repository repository = 1;
+  // Require that the resulting ref contains this commit as an ancestor
+  string commit_id = 2;
+  // Example prefix: "refs/heads/". Type bytes because that is the type of ref names.
+  bytes prefix = 3;
+}
+
+message FindRefNameResponse {
+  // Example name: "refs/heads/master". Cannot assume UTF8, so the type is bytes.
+  bytes name = 1;
+}
+
+message CommitIsAncestorRequest {
+  Repository repository = 1;
+  string ancestor_id = 2;
+  string child_id = 3;
+}
 
 message FindDefaultBranchNameRequest {
   Repository repository = 1;

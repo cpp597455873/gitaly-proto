@@ -2,31 +2,28 @@ package helper
 
 import (
 	"io"
+
+	pb "gitlab.com/gitlab-org/gitaly-proto/go"
 )
 
-type DataGetter interface {
-	GetData() []byte
+type InfoRefsClient interface {
+	Recv() (*pb.InfoRefsResponse, error)
 }
 
-func DataWithError(dg DataGetter, err error) ([]byte, error) {
-	return dg.GetData(), err
+type InfoRefsClientWriterTo struct {
+	InfoRefsClient
 }
 
-// Example use:
-//
-// BytesReceiver(func() ([]byte, error) { DataWithError(c.Recv()) }).WriteTo(writer)
-type BytesReceiver func() ([]byte, error)
-
-func (br BytesReceiver) WriteTo(w io.Writer) (total int64, err error) {
+func (clientReader *InfoRefsClientWriterTo) WriteTo(w io.Writer) (total int64, err error) {
 	for {
-		b, err := br()
+		response, err := clientReader.Recv()
 		if err == io.EOF {
 			return total, nil
 		} else if err != nil {
 			return total, err
 		}
 
-		n, err := w.Write(b)
+		n, err := w.Write(response.GetData())
 		total += int64(n)
 		if err != nil {
 			return total, err

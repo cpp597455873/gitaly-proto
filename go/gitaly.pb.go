@@ -8,15 +8,16 @@ Package gitaly is a generated protocol buffer package.
 It is generated from these files:
 	gitaly.proto
 	shared.proto
+	smarthttp.proto
 	ssh.proto
 
 It has these top-level messages:
-	InfoRefsUploadPackRequest
-	InfoRefsReceivePackRequest
-	InfoRefsUploadPackResponse
-	InfoRefsReceivePackResponse
+	CommitIsAncestorResponse
 	PostReceiveRequest
 	PostReceiveResponse
+	FindRefNameRequest
+	FindRefNameResponse
+	CommitIsAncestorRequest
 	FindDefaultBranchNameRequest
 	FindAllBranchNamesRequest
 	FindAllTagNamesRequest
@@ -27,6 +28,8 @@ It has these top-level messages:
 	CommitDiffResponse
 	Repository
 	ExitStatus
+	InfoRefsRequest
+	InfoRefsResponse
 	SSHUploadPackRequest
 	SSHUploadPackResponse
 	SSHReceivePackRequest
@@ -54,68 +57,20 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
-type InfoRefsUploadPackRequest struct {
-	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
+type CommitIsAncestorResponse struct {
+	Value bool `protobuf:"varint,1,opt,name=value" json:"value,omitempty"`
 }
 
-func (m *InfoRefsUploadPackRequest) Reset()                    { *m = InfoRefsUploadPackRequest{} }
-func (m *InfoRefsUploadPackRequest) String() string            { return proto.CompactTextString(m) }
-func (*InfoRefsUploadPackRequest) ProtoMessage()               {}
-func (*InfoRefsUploadPackRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
+func (m *CommitIsAncestorResponse) Reset()                    { *m = CommitIsAncestorResponse{} }
+func (m *CommitIsAncestorResponse) String() string            { return proto.CompactTextString(m) }
+func (*CommitIsAncestorResponse) ProtoMessage()               {}
+func (*CommitIsAncestorResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{0} }
 
-func (m *InfoRefsUploadPackRequest) GetRepository() *Repository {
+func (m *CommitIsAncestorResponse) GetValue() bool {
 	if m != nil {
-		return m.Repository
+		return m.Value
 	}
-	return nil
-}
-
-type InfoRefsReceivePackRequest struct {
-	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-}
-
-func (m *InfoRefsReceivePackRequest) Reset()                    { *m = InfoRefsReceivePackRequest{} }
-func (m *InfoRefsReceivePackRequest) String() string            { return proto.CompactTextString(m) }
-func (*InfoRefsReceivePackRequest) ProtoMessage()               {}
-func (*InfoRefsReceivePackRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
-
-func (m *InfoRefsReceivePackRequest) GetRepository() *Repository {
-	if m != nil {
-		return m.Repository
-	}
-	return nil
-}
-
-type InfoRefsUploadPackResponse struct {
-	Data []byte `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
-}
-
-func (m *InfoRefsUploadPackResponse) Reset()                    { *m = InfoRefsUploadPackResponse{} }
-func (m *InfoRefsUploadPackResponse) String() string            { return proto.CompactTextString(m) }
-func (*InfoRefsUploadPackResponse) ProtoMessage()               {}
-func (*InfoRefsUploadPackResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
-
-func (m *InfoRefsUploadPackResponse) GetData() []byte {
-	if m != nil {
-		return m.Data
-	}
-	return nil
-}
-
-type InfoRefsReceivePackResponse struct {
-	Data []byte `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
-}
-
-func (m *InfoRefsReceivePackResponse) Reset()                    { *m = InfoRefsReceivePackResponse{} }
-func (m *InfoRefsReceivePackResponse) String() string            { return proto.CompactTextString(m) }
-func (*InfoRefsReceivePackResponse) ProtoMessage()               {}
-func (*InfoRefsReceivePackResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
-
-func (m *InfoRefsReceivePackResponse) GetData() []byte {
-	if m != nil {
-		return m.Data
-	}
-	return nil
+	return false
 }
 
 type PostReceiveRequest struct {
@@ -125,7 +80,7 @@ type PostReceiveRequest struct {
 func (m *PostReceiveRequest) Reset()                    { *m = PostReceiveRequest{} }
 func (m *PostReceiveRequest) String() string            { return proto.CompactTextString(m) }
 func (*PostReceiveRequest) ProtoMessage()               {}
-func (*PostReceiveRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+func (*PostReceiveRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{1} }
 
 func (m *PostReceiveRequest) GetRepository() *Repository {
 	if m != nil {
@@ -140,7 +95,90 @@ type PostReceiveResponse struct {
 func (m *PostReceiveResponse) Reset()                    { *m = PostReceiveResponse{} }
 func (m *PostReceiveResponse) String() string            { return proto.CompactTextString(m) }
 func (*PostReceiveResponse) ProtoMessage()               {}
-func (*PostReceiveResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+func (*PostReceiveResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{2} }
+
+type FindRefNameRequest struct {
+	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
+	// Require that the resulting ref contains this commit as an ancestor
+	CommitId string `protobuf:"bytes,2,opt,name=commit_id,json=commitId" json:"commit_id,omitempty"`
+	// Example prefix: "refs/heads/". Type bytes because that is the type of ref names.
+	Prefix []byte `protobuf:"bytes,3,opt,name=prefix,proto3" json:"prefix,omitempty"`
+}
+
+func (m *FindRefNameRequest) Reset()                    { *m = FindRefNameRequest{} }
+func (m *FindRefNameRequest) String() string            { return proto.CompactTextString(m) }
+func (*FindRefNameRequest) ProtoMessage()               {}
+func (*FindRefNameRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{3} }
+
+func (m *FindRefNameRequest) GetRepository() *Repository {
+	if m != nil {
+		return m.Repository
+	}
+	return nil
+}
+
+func (m *FindRefNameRequest) GetCommitId() string {
+	if m != nil {
+		return m.CommitId
+	}
+	return ""
+}
+
+func (m *FindRefNameRequest) GetPrefix() []byte {
+	if m != nil {
+		return m.Prefix
+	}
+	return nil
+}
+
+type FindRefNameResponse struct {
+	// Example name: "refs/heads/master". Cannot assume UTF8, so the type is bytes.
+	Name []byte `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+}
+
+func (m *FindRefNameResponse) Reset()                    { *m = FindRefNameResponse{} }
+func (m *FindRefNameResponse) String() string            { return proto.CompactTextString(m) }
+func (*FindRefNameResponse) ProtoMessage()               {}
+func (*FindRefNameResponse) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{4} }
+
+func (m *FindRefNameResponse) GetName() []byte {
+	if m != nil {
+		return m.Name
+	}
+	return nil
+}
+
+type CommitIsAncestorRequest struct {
+	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
+	AncestorId string      `protobuf:"bytes,2,opt,name=ancestor_id,json=ancestorId" json:"ancestor_id,omitempty"`
+	ChildId    string      `protobuf:"bytes,3,opt,name=child_id,json=childId" json:"child_id,omitempty"`
+}
+
+func (m *CommitIsAncestorRequest) Reset()                    { *m = CommitIsAncestorRequest{} }
+func (m *CommitIsAncestorRequest) String() string            { return proto.CompactTextString(m) }
+func (*CommitIsAncestorRequest) ProtoMessage()               {}
+func (*CommitIsAncestorRequest) Descriptor() ([]byte, []int) { return fileDescriptor0, []int{5} }
+
+func (m *CommitIsAncestorRequest) GetRepository() *Repository {
+	if m != nil {
+		return m.Repository
+	}
+	return nil
+}
+
+func (m *CommitIsAncestorRequest) GetAncestorId() string {
+	if m != nil {
+		return m.AncestorId
+	}
+	return ""
+}
+
+func (m *CommitIsAncestorRequest) GetChildId() string {
+	if m != nil {
+		return m.ChildId
+	}
+	return ""
+}
 
 type FindDefaultBranchNameRequest struct {
 	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
@@ -345,12 +383,12 @@ func (m *CommitDiffResponse) GetRawChunks() [][]byte {
 }
 
 func init() {
-	proto.RegisterType((*InfoRefsUploadPackRequest)(nil), "gitaly.InfoRefsUploadPackRequest")
-	proto.RegisterType((*InfoRefsReceivePackRequest)(nil), "gitaly.InfoRefsReceivePackRequest")
-	proto.RegisterType((*InfoRefsUploadPackResponse)(nil), "gitaly.InfoRefsUploadPackResponse")
-	proto.RegisterType((*InfoRefsReceivePackResponse)(nil), "gitaly.InfoRefsReceivePackResponse")
+	proto.RegisterType((*CommitIsAncestorResponse)(nil), "gitaly.CommitIsAncestorResponse")
 	proto.RegisterType((*PostReceiveRequest)(nil), "gitaly.PostReceiveRequest")
 	proto.RegisterType((*PostReceiveResponse)(nil), "gitaly.PostReceiveResponse")
+	proto.RegisterType((*FindRefNameRequest)(nil), "gitaly.FindRefNameRequest")
+	proto.RegisterType((*FindRefNameResponse)(nil), "gitaly.FindRefNameResponse")
+	proto.RegisterType((*CommitIsAncestorRequest)(nil), "gitaly.CommitIsAncestorRequest")
 	proto.RegisterType((*FindDefaultBranchNameRequest)(nil), "gitaly.FindDefaultBranchNameRequest")
 	proto.RegisterType((*FindAllBranchNamesRequest)(nil), "gitaly.FindAllBranchNamesRequest")
 	proto.RegisterType((*FindAllTagNamesRequest)(nil), "gitaly.FindAllTagNamesRequest")
@@ -368,161 +406,6 @@ var _ grpc.ClientConn
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
-
-// Client API for SmartHTTP service
-
-type SmartHTTPClient interface {
-	// The response body for GET /info/refs?service=git-upload-pack
-	InfoRefsUploadPack(ctx context.Context, in *InfoRefsUploadPackRequest, opts ...grpc.CallOption) (SmartHTTP_InfoRefsUploadPackClient, error)
-	// The response body for GET /info/refs?service=git-receive-pack
-	InfoRefsReceivePack(ctx context.Context, in *InfoRefsReceivePackRequest, opts ...grpc.CallOption) (SmartHTTP_InfoRefsReceivePackClient, error)
-}
-
-type smartHTTPClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewSmartHTTPClient(cc *grpc.ClientConn) SmartHTTPClient {
-	return &smartHTTPClient{cc}
-}
-
-func (c *smartHTTPClient) InfoRefsUploadPack(ctx context.Context, in *InfoRefsUploadPackRequest, opts ...grpc.CallOption) (SmartHTTP_InfoRefsUploadPackClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_SmartHTTP_serviceDesc.Streams[0], c.cc, "/gitaly.SmartHTTP/InfoRefsUploadPack", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &smartHTTPInfoRefsUploadPackClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type SmartHTTP_InfoRefsUploadPackClient interface {
-	Recv() (*InfoRefsUploadPackResponse, error)
-	grpc.ClientStream
-}
-
-type smartHTTPInfoRefsUploadPackClient struct {
-	grpc.ClientStream
-}
-
-func (x *smartHTTPInfoRefsUploadPackClient) Recv() (*InfoRefsUploadPackResponse, error) {
-	m := new(InfoRefsUploadPackResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *smartHTTPClient) InfoRefsReceivePack(ctx context.Context, in *InfoRefsReceivePackRequest, opts ...grpc.CallOption) (SmartHTTP_InfoRefsReceivePackClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_SmartHTTP_serviceDesc.Streams[1], c.cc, "/gitaly.SmartHTTP/InfoRefsReceivePack", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &smartHTTPInfoRefsReceivePackClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type SmartHTTP_InfoRefsReceivePackClient interface {
-	Recv() (*InfoRefsReceivePackResponse, error)
-	grpc.ClientStream
-}
-
-type smartHTTPInfoRefsReceivePackClient struct {
-	grpc.ClientStream
-}
-
-func (x *smartHTTPInfoRefsReceivePackClient) Recv() (*InfoRefsReceivePackResponse, error) {
-	m := new(InfoRefsReceivePackResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-// Server API for SmartHTTP service
-
-type SmartHTTPServer interface {
-	// The response body for GET /info/refs?service=git-upload-pack
-	InfoRefsUploadPack(*InfoRefsUploadPackRequest, SmartHTTP_InfoRefsUploadPackServer) error
-	// The response body for GET /info/refs?service=git-receive-pack
-	InfoRefsReceivePack(*InfoRefsReceivePackRequest, SmartHTTP_InfoRefsReceivePackServer) error
-}
-
-func RegisterSmartHTTPServer(s *grpc.Server, srv SmartHTTPServer) {
-	s.RegisterService(&_SmartHTTP_serviceDesc, srv)
-}
-
-func _SmartHTTP_InfoRefsUploadPack_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(InfoRefsUploadPackRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(SmartHTTPServer).InfoRefsUploadPack(m, &smartHTTPInfoRefsUploadPackServer{stream})
-}
-
-type SmartHTTP_InfoRefsUploadPackServer interface {
-	Send(*InfoRefsUploadPackResponse) error
-	grpc.ServerStream
-}
-
-type smartHTTPInfoRefsUploadPackServer struct {
-	grpc.ServerStream
-}
-
-func (x *smartHTTPInfoRefsUploadPackServer) Send(m *InfoRefsUploadPackResponse) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _SmartHTTP_InfoRefsReceivePack_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(InfoRefsReceivePackRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(SmartHTTPServer).InfoRefsReceivePack(m, &smartHTTPInfoRefsReceivePackServer{stream})
-}
-
-type SmartHTTP_InfoRefsReceivePackServer interface {
-	Send(*InfoRefsReceivePackResponse) error
-	grpc.ServerStream
-}
-
-type smartHTTPInfoRefsReceivePackServer struct {
-	grpc.ServerStream
-}
-
-func (x *smartHTTPInfoRefsReceivePackServer) Send(m *InfoRefsReceivePackResponse) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-var _SmartHTTP_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "gitaly.SmartHTTP",
-	HandlerType: (*SmartHTTPServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "InfoRefsUploadPack",
-			Handler:       _SmartHTTP_InfoRefsUploadPack_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "InfoRefsReceivePack",
-			Handler:       _SmartHTTP_InfoRefsReceivePack_Handler,
-			ServerStreams: true,
-		},
-	},
-	Metadata: "gitaly.proto",
-}
 
 // Client API for Notifications service
 
@@ -594,6 +477,8 @@ type RefClient interface {
 	FindDefaultBranchName(ctx context.Context, in *FindDefaultBranchNameRequest, opts ...grpc.CallOption) (*FindDefaultBranchNameResponse, error)
 	FindAllBranchNames(ctx context.Context, in *FindAllBranchNamesRequest, opts ...grpc.CallOption) (Ref_FindAllBranchNamesClient, error)
 	FindAllTagNames(ctx context.Context, in *FindAllTagNamesRequest, opts ...grpc.CallOption) (Ref_FindAllTagNamesClient, error)
+	// Find a Ref matching the given constraints. Response may be empty.
+	FindRefName(ctx context.Context, in *FindRefNameRequest, opts ...grpc.CallOption) (*FindRefNameResponse, error)
 }
 
 type refClient struct {
@@ -677,12 +562,23 @@ func (x *refFindAllTagNamesClient) Recv() (*FindAllTagNamesResponse, error) {
 	return m, nil
 }
 
+func (c *refClient) FindRefName(ctx context.Context, in *FindRefNameRequest, opts ...grpc.CallOption) (*FindRefNameResponse, error) {
+	out := new(FindRefNameResponse)
+	err := grpc.Invoke(ctx, "/gitaly.Ref/FindRefName", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for Ref service
 
 type RefServer interface {
 	FindDefaultBranchName(context.Context, *FindDefaultBranchNameRequest) (*FindDefaultBranchNameResponse, error)
 	FindAllBranchNames(*FindAllBranchNamesRequest, Ref_FindAllBranchNamesServer) error
 	FindAllTagNames(*FindAllTagNamesRequest, Ref_FindAllTagNamesServer) error
+	// Find a Ref matching the given constraints. Response may be empty.
+	FindRefName(context.Context, *FindRefNameRequest) (*FindRefNameResponse, error)
 }
 
 func RegisterRefServer(s *grpc.Server, srv RefServer) {
@@ -749,6 +645,24 @@ func (x *refFindAllTagNamesServer) Send(m *FindAllTagNamesResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _Ref_FindRefName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindRefNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(RefServer).FindRefName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gitaly.Ref/FindRefName",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(RefServer).FindRefName(ctx, req.(*FindRefNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Ref_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "gitaly.Ref",
 	HandlerType: (*RefServer)(nil),
@@ -756,6 +670,10 @@ var _Ref_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "FindDefaultBranchName",
 			Handler:    _Ref_FindDefaultBranchName_Handler,
+		},
+		{
+			MethodName: "FindRefName",
+			Handler:    _Ref_FindRefName_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
@@ -866,48 +784,115 @@ var _Diff_serviceDesc = grpc.ServiceDesc{
 	Metadata: "gitaly.proto",
 }
 
+// Client API for Commit service
+
+type CommitClient interface {
+	CommitIsAncestor(ctx context.Context, in *CommitIsAncestorRequest, opts ...grpc.CallOption) (*CommitIsAncestorResponse, error)
+}
+
+type commitClient struct {
+	cc *grpc.ClientConn
+}
+
+func NewCommitClient(cc *grpc.ClientConn) CommitClient {
+	return &commitClient{cc}
+}
+
+func (c *commitClient) CommitIsAncestor(ctx context.Context, in *CommitIsAncestorRequest, opts ...grpc.CallOption) (*CommitIsAncestorResponse, error) {
+	out := new(CommitIsAncestorResponse)
+	err := grpc.Invoke(ctx, "/gitaly.Commit/CommitIsAncestor", in, out, c.cc, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// Server API for Commit service
+
+type CommitServer interface {
+	CommitIsAncestor(context.Context, *CommitIsAncestorRequest) (*CommitIsAncestorResponse, error)
+}
+
+func RegisterCommitServer(s *grpc.Server, srv CommitServer) {
+	s.RegisterService(&_Commit_serviceDesc, srv)
+}
+
+func _Commit_CommitIsAncestor_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CommitIsAncestorRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CommitServer).CommitIsAncestor(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gitaly.Commit/CommitIsAncestor",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CommitServer).CommitIsAncestor(ctx, req.(*CommitIsAncestorRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Commit_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "gitaly.Commit",
+	HandlerType: (*CommitServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CommitIsAncestor",
+			Handler:    _Commit_CommitIsAncestor_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "gitaly.proto",
+}
+
 func init() { proto.RegisterFile("gitaly.proto", fileDescriptor0) }
 
 var fileDescriptor0 = []byte{
-	// 629 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xa4, 0x55, 0xe1, 0x52, 0xd3, 0x40,
-	0x10, 0x36, 0xd0, 0x96, 0x76, 0x29, 0x32, 0x2e, 0x02, 0x6d, 0x10, 0xad, 0x11, 0x9d, 0xfe, 0x42,
-	0x2c, 0x4f, 0xa0, 0x30, 0x4a, 0x67, 0x14, 0x3a, 0x27, 0x3a, 0xe3, 0xaf, 0xce, 0xd1, 0xbb, 0x90,
-	0x1b, 0x92, 0x5c, 0x4d, 0x0e, 0x3b, 0x3c, 0x88, 0xaf, 0xe0, 0xf3, 0xf8, 0x12, 0xbe, 0x87, 0x93,
-	0x4b, 0x42, 0x62, 0x93, 0xd6, 0x1f, 0xf9, 0x97, 0xdb, 0xef, 0xdb, 0x6f, 0xf7, 0x6e, 0xe7, 0xdb,
-	0x40, 0xfb, 0x5a, 0x28, 0xea, 0xde, 0x1d, 0x4e, 0x03, 0xa9, 0x24, 0x36, 0xe2, 0x93, 0xd9, 0x0e,
-	0x1d, 0x1a, 0x70, 0x16, 0x47, 0xad, 0x0b, 0xe8, 0x0e, 0x7d, 0x5b, 0x12, 0x6e, 0x87, 0x5f, 0xa6,
-	0xae, 0xa4, 0x6c, 0x44, 0x27, 0x37, 0x84, 0x7f, 0xbf, 0xe5, 0xa1, 0xc2, 0x01, 0x40, 0xc0, 0xa7,
-	0x32, 0x14, 0x4a, 0x06, 0x77, 0x1d, 0xa3, 0x67, 0xf4, 0xd7, 0x07, 0x78, 0x98, 0xa8, 0x92, 0x7b,
-	0x84, 0xe4, 0x58, 0xd6, 0x08, 0xcc, 0x54, 0x90, 0xf0, 0x09, 0x17, 0x3f, 0x78, 0x55, 0xc5, 0xa3,
-	0x4c, 0x31, 0xdf, 0x62, 0x38, 0x95, 0x7e, 0xc8, 0x11, 0xa1, 0xc6, 0xa8, 0xa2, 0x5a, 0xab, 0x4d,
-	0xf4, 0xb7, 0xf5, 0x06, 0xf6, 0x4a, 0x7b, 0x58, 0x92, 0x72, 0x06, 0x38, 0x92, 0xa1, 0x4a, 0xe8,
-	0x55, 0xda, 0xdd, 0x86, 0xad, 0x7f, 0x94, 0xe2, 0xa2, 0x16, 0x81, 0x27, 0xef, 0x85, 0xcf, 0x4e,
-	0xb9, 0x4d, 0x6f, 0x5d, 0xf5, 0x2e, 0xa0, 0xfe, 0xc4, 0x39, 0xa7, 0x5e, 0xa5, 0x52, 0x17, 0xd0,
-	0x8d, 0x34, 0xdf, 0xba, 0x6e, 0xa6, 0x17, 0x56, 0x11, 0xfc, 0x08, 0x3b, 0x89, 0xe0, 0x25, 0xbd,
-	0xae, 0xac, 0x76, 0x0c, 0xfb, 0x0b, 0xae, 0x9c, 0x0d, 0xc2, 0xa7, 0x1e, 0x4f, 0x07, 0x11, 0x7d,
-	0x5b, 0x03, 0x30, 0xcb, 0xee, 0x94, 0x64, 0x3c, 0x86, 0x7a, 0xc4, 0x0a, 0x3b, 0x46, 0x6f, 0xb5,
-	0xdf, 0x26, 0xf1, 0xc1, 0x7a, 0x0d, 0xbb, 0x85, 0xb6, 0x97, 0x26, 0xfc, 0x34, 0xe0, 0xd1, 0x89,
-	0xf4, 0x3c, 0xa1, 0x4e, 0x85, 0x6d, 0x57, 0xb8, 0x23, 0x1e, 0xc0, 0x43, 0x97, 0xdb, 0x6a, 0x3c,
-	0xd1, 0x6a, 0x63, 0xc1, 0x3a, 0x2b, 0x3d, 0xa3, 0xdf, 0x22, 0xed, 0x28, 0x1a, 0x97, 0x18, 0x32,
-	0x7c, 0x05, 0x9b, 0x81, 0xb8, 0x76, 0xf2, 0xb4, 0x55, 0x4d, 0xdb, 0xd0, 0xe1, 0x94, 0x67, 0xfd,
-	0x31, 0x00, 0xf3, 0x7d, 0x25, 0x97, 0xd8, 0x83, 0x96, 0x1d, 0x48, 0x6f, 0x3c, 0xa5, 0xca, 0x49,
-	0x1e, 0xab, 0x19, 0x05, 0x46, 0x54, 0x39, 0xb8, 0x0b, 0x6b, 0x4a, 0xc6, 0xd0, 0x8a, 0x86, 0x1a,
-	0x4a, 0xa6, 0x80, 0xce, 0xba, 0x2f, 0xd6, 0x88, 0x8e, 0x43, 0x86, 0x5b, 0x50, 0x57, 0x32, 0x0a,
-	0xd7, 0x74, 0xb8, 0xa6, 0xe4, 0x90, 0x61, 0x17, 0x9a, 0xd2, 0x65, 0x63, 0x4f, 0x32, 0xde, 0xa9,
-	0xf7, 0x8c, 0x7e, 0x9d, 0xac, 0x49, 0x97, 0x7d, 0x92, 0x8c, 0x47, 0x90, 0xcf, 0x67, 0x31, 0xd4,
-	0x88, 0x21, 0x9f, 0xcf, 0x34, 0xb4, 0x03, 0x8d, 0x2b, 0xe1, 0xd3, 0xe0, 0xae, 0xb3, 0xd6, 0x33,
-	0xfa, 0x4d, 0x92, 0x9c, 0x70, 0x1f, 0x20, 0xa0, 0xb3, 0xf1, 0xc4, 0xb9, 0xf5, 0x6f, 0xc2, 0x4e,
-	0x53, 0xbf, 0x7d, 0x2b, 0xa0, 0xb3, 0x13, 0x1d, 0x18, 0xfc, 0x36, 0xa0, 0xf5, 0xd9, 0xa3, 0x81,
-	0x3a, 0xbb, 0xbc, 0x1c, 0xe1, 0x18, 0xb0, 0x68, 0x70, 0x7c, 0x9e, 0xbe, 0xfc, 0xc2, 0xfd, 0x64,
-	0x5a, 0xcb, 0x28, 0x89, 0xef, 0x1e, 0x1c, 0x19, 0x78, 0x05, 0x5b, 0x25, 0xfb, 0x00, 0x0b, 0xe9,
-	0xc5, 0x85, 0x65, 0xbe, 0x58, 0xca, 0xc9, 0x6a, 0x0c, 0xbe, 0xc1, 0xc6, 0xb9, 0x54, 0xc2, 0x16,
-	0x13, 0xaa, 0x84, 0xf4, 0x43, 0x3c, 0x83, 0xf5, 0xdc, 0x1e, 0x40, 0x33, 0x15, 0x2a, 0xae, 0x19,
-	0x73, 0xaf, 0x14, 0x4b, 0xc5, 0x07, 0xbf, 0x56, 0x60, 0x95, 0x70, 0x1b, 0x6d, 0xd8, 0x2e, 0xf5,
-	0x13, 0x1e, 0xa4, 0xf9, 0xcb, 0x36, 0x8c, 0xf9, 0xf2, 0x3f, 0xac, 0xb4, 0x5e, 0x34, 0x8f, 0xa2,
-	0x05, 0xb3, 0x79, 0x2c, 0x5c, 0x39, 0xd9, 0x3c, 0x16, 0x3b, 0x58, 0xcf, 0xe3, 0x2b, 0x6c, 0xce,
-	0xf9, 0x15, 0x9f, 0xce, 0xa5, 0xce, 0xed, 0x1f, 0xf3, 0xd9, 0x42, 0x3c, 0x37, 0x83, 0x0b, 0xa8,
-	0x45, 0xbe, 0xc1, 0x0f, 0x00, 0x99, 0x8b, 0xb0, 0x9b, 0xa6, 0x16, 0x1c, 0x6f, 0x9a, 0x65, 0x50,
-	0x26, 0x78, 0xd5, 0xd0, 0x3f, 0xc9, 0xe3, 0xbf, 0x01, 0x00, 0x00, 0xff, 0xff, 0x27, 0xf2, 0x52,
-	0xe9, 0x4a, 0x07, 0x00, 0x00,
+	// 675 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xa4, 0x55, 0xdf, 0x52, 0xd3, 0x4e,
+	0x14, 0x26, 0xb4, 0x4d, 0xdb, 0xd3, 0xf2, 0xe3, 0xe7, 0x41, 0x20, 0x04, 0x91, 0x9a, 0x41, 0xa7,
+	0xde, 0x20, 0x13, 0x9e, 0x00, 0x61, 0x94, 0xce, 0x28, 0x30, 0x3b, 0x8e, 0x8e, 0x57, 0x9d, 0x25,
+	0xd9, 0x90, 0x1d, 0xd3, 0x6c, 0x4d, 0xb6, 0x54, 0x2e, 0x7c, 0x00, 0x1f, 0xc0, 0x47, 0xf4, 0xde,
+	0x47, 0x70, 0x92, 0x4d, 0x48, 0xfa, 0x87, 0x3a, 0x63, 0xef, 0x7a, 0xce, 0x77, 0xfe, 0xed, 0xe9,
+	0x77, 0xbe, 0x40, 0xfb, 0x86, 0x4b, 0x1a, 0xdc, 0x1d, 0x0e, 0x23, 0x21, 0x05, 0xea, 0xca, 0x32,
+	0xdb, 0xb1, 0x4f, 0x23, 0xe6, 0x2a, 0xaf, 0x75, 0x04, 0xc6, 0xa9, 0x18, 0x0c, 0xb8, 0xec, 0xc5,
+	0x27, 0xa1, 0xc3, 0x62, 0x29, 0x22, 0xc2, 0xe2, 0xa1, 0x08, 0x63, 0x86, 0x8f, 0xa1, 0x76, 0x4b,
+	0x83, 0x11, 0x33, 0xb4, 0x8e, 0xd6, 0x6d, 0x10, 0x65, 0x58, 0xe7, 0x80, 0x57, 0x22, 0x96, 0x84,
+	0x39, 0x8c, 0xdf, 0x32, 0xc2, 0xbe, 0x8e, 0x58, 0x2c, 0xd1, 0x06, 0x88, 0xd8, 0x50, 0xc4, 0x5c,
+	0x8a, 0xe8, 0x2e, 0x4d, 0x68, 0xd9, 0x78, 0x98, 0x0d, 0x40, 0xee, 0x11, 0x52, 0x8a, 0xb2, 0x36,
+	0x61, 0x63, 0xa2, 0x92, 0x6a, 0x6b, 0x7d, 0x07, 0x7c, 0xc3, 0x43, 0x97, 0x30, 0xef, 0x82, 0x0e,
+	0x96, 0x69, 0x80, 0xbb, 0xd0, 0x74, 0xd2, 0xc7, 0xf5, 0xb9, 0x6b, 0xac, 0x76, 0xb4, 0x6e, 0x93,
+	0x34, 0x94, 0xa3, 0xe7, 0xe2, 0x16, 0xe8, 0xc3, 0x88, 0x79, 0xfc, 0x9b, 0x51, 0xe9, 0x68, 0xdd,
+	0x36, 0xc9, 0x2c, 0xeb, 0x25, 0x6c, 0x4c, 0xb4, 0xcf, 0x96, 0x81, 0x50, 0x0d, 0xe9, 0x40, 0xed,
+	0xa2, 0x4d, 0xd2, 0xdf, 0xd6, 0x0f, 0x0d, 0xb6, 0x67, 0xb7, 0xf7, 0xef, 0xf3, 0xee, 0x43, 0x8b,
+	0x66, 0x65, 0x8a, 0x89, 0x21, 0x77, 0xf5, 0x5c, 0xdc, 0x81, 0x86, 0xe3, 0xf3, 0xc0, 0x4d, 0xd0,
+	0x4a, 0x8a, 0xd6, 0x53, 0xbb, 0xe7, 0x5a, 0x04, 0x9e, 0x24, 0x63, 0x9f, 0x31, 0x8f, 0x8e, 0x02,
+	0xf9, 0x3a, 0xa2, 0xa1, 0xe3, 0x2f, 0xb9, 0x3f, 0xeb, 0x12, 0x76, 0x92, 0x9a, 0x27, 0x41, 0x50,
+	0xd4, 0x8b, 0x97, 0x29, 0xf8, 0x0e, 0xb6, 0xb2, 0x82, 0x1f, 0xe8, 0xcd, 0xd2, 0xd5, 0x8e, 0x61,
+	0xef, 0x81, 0x27, 0x2f, 0xf8, 0xcf, 0x6c, 0x30, 0xe7, 0xbd, 0xa9, 0xa0, 0x7c, 0x12, 0x15, 0x1b,
+	0x5a, 0xa7, 0xd2, 0x6d, 0x13, 0x65, 0x58, 0xaf, 0x60, 0x7b, 0x66, 0xec, 0x85, 0x09, 0x3f, 0x35,
+	0x78, 0xa4, 0x88, 0x71, 0xc6, 0x3d, 0x6f, 0x19, 0x4a, 0x1c, 0xc0, 0x7f, 0x01, 0xf3, 0x64, 0x7f,
+	0x9a, 0xc7, 0xed, 0xc4, 0x7b, 0x9a, 0x73, 0xf9, 0x05, 0xac, 0x47, 0xfc, 0xc6, 0x2f, 0x87, 0x29,
+	0x7a, 0xac, 0xa5, 0xee, 0x3c, 0xce, 0xfa, 0xa5, 0x01, 0x96, 0xe7, 0xca, 0x1e, 0xb1, 0x0b, 0x4d,
+	0x2f, 0x12, 0x83, 0xfe, 0x90, 0x4a, 0x3f, 0x5b, 0x56, 0x23, 0x71, 0x5c, 0x51, 0xe9, 0xe3, 0x36,
+	0xd4, 0xa5, 0x50, 0xd0, 0xaa, 0x3a, 0x14, 0x29, 0x72, 0x20, 0xcd, 0xba, 0x6f, 0xa6, 0x27, 0x66,
+	0xcf, 0xc5, 0x0d, 0xa8, 0x49, 0x91, 0xb8, 0xab, 0xa9, 0xbb, 0x2a, 0x85, 0xa2, 0xae, 0x08, 0xdc,
+	0xfe, 0x40, 0xb8, 0xcc, 0xa8, 0x75, 0xb4, 0x6e, 0x8d, 0xd4, 0x45, 0xe0, 0xbe, 0x17, 0x2e, 0x4b,
+	0xa0, 0x90, 0x8d, 0x15, 0xa4, 0x2b, 0x28, 0x64, 0xe3, 0x14, 0xda, 0x02, 0xfd, 0x9a, 0x87, 0x34,
+	0xba, 0x33, 0xea, 0xa9, 0x06, 0x65, 0x16, 0xee, 0x01, 0x44, 0x74, 0xdc, 0x77, 0xfc, 0x51, 0xf8,
+	0x25, 0x36, 0x1a, 0xe9, 0xee, 0x9b, 0x11, 0x1d, 0x9f, 0xa6, 0x0e, 0xfb, 0x33, 0xac, 0x5d, 0x08,
+	0xc9, 0x3d, 0xee, 0x50, 0xc9, 0x45, 0x18, 0xe3, 0x39, 0xb4, 0x4a, 0x52, 0x83, 0x66, 0xbe, 0xf5,
+	0x59, 0x25, 0x33, 0x77, 0xe7, 0x62, 0x99, 0x36, 0xad, 0xd8, 0xbf, 0x57, 0xa1, 0x42, 0x98, 0x87,
+	0x1e, 0x6c, 0xce, 0x25, 0x1f, 0x1e, 0xe4, 0xf9, 0x8b, 0xce, 0xd1, 0x7c, 0xfe, 0x97, 0xa8, 0xbc,
+	0x1f, 0xf6, 0x95, 0x1a, 0x4e, 0xf2, 0x15, 0x9f, 0x95, 0xd3, 0xe7, 0xde, 0xa7, 0x69, 0x2d, 0x0a,
+	0xc9, 0xcb, 0x1f, 0x69, 0xf8, 0x11, 0xd6, 0xa7, 0xc8, 0x8d, 0x4f, 0xa7, 0x52, 0xa7, 0x8e, 0xd5,
+	0xdc, 0x7f, 0x10, 0x2f, 0xd5, 0x3d, 0x87, 0x56, 0x49, 0x47, 0x8b, 0x95, 0xcf, 0x6a, 0x7b, 0xb1,
+	0xf2, 0x39, 0xc2, 0x6b, 0xad, 0xd8, 0x97, 0x50, 0x4d, 0xe8, 0x8a, 0x6f, 0x01, 0x0a, 0xf2, 0xe2,
+	0x4e, 0x9e, 0x34, 0x73, 0x68, 0xa6, 0x39, 0x0f, 0x2a, 0x46, 0xb3, 0x29, 0xe8, 0x0a, 0xc1, 0x4f,
+	0xf0, 0xff, 0xb4, 0x80, 0xe3, 0xfe, 0x64, 0xf6, 0x8c, 0xb4, 0x9b, 0x9d, 0x87, 0x03, 0xf2, 0x26,
+	0xd7, 0x7a, 0xfa, 0x79, 0x3d, 0xfe, 0x13, 0x00, 0x00, 0xff, 0xff, 0x56, 0xf0, 0xf5, 0xb9, 0x84,
+	0x07, 0x00, 0x00,
 }
