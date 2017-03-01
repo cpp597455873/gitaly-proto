@@ -82,6 +82,10 @@ gRPC provides an implementation framework based on these Protobuf concepts.
     clients.
 1.  Each RPC `FooBar` has its own `FooBarRequest` and `FooBarResponse`
     message types.
+1.  We never make backwards incompatible changes to an RPC that is
+    already implemented on either the client side or server side.
+    Instead we just create a new RPC call and start a deprecation
+    procedure (see below) for the old one.
 
 ## Contributing
 
@@ -92,3 +96,7 @@ for changes. Some of the code in the Go client libraries is sensitive
 to implementation details of the Go standard library (specifically,
 the ouput of gzip). **Use the same Go version as .gitlab-ci.yml (Go
 1.8)** when generating new client libraries for a merge request.
+
+## How to deprecate an RPC call
+
+See [DEPRECATION.md](DEPRECATION.md).
