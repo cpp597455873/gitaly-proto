@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package gitaly;
+
+import "shared.proto";
+
+service Notifications {
+  rpc PostReceive(PostReceiveRequest) returns (PostReceiveResponse) {}
+}
+
+message PostReceiveRequest {
+  Repository repository = 1;
+}
+
+message PostReceiveResponse {}

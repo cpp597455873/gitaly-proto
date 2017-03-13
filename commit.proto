@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package gitaly;
+
+import "shared.proto";
+
+service Commit {
+  rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) {}
+}
+
+message CommitIsAncestorRequest {
+  Repository repository = 1;
+  string ancestor_id = 2;
+  string child_id = 3;
+}
+
+message CommitIsAncestorResponse {
+  bool value = 1;
+}

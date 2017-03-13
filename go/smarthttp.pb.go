@@ -25,7 +25,7 @@ type InfoRefsRequest struct {
 func (m *InfoRefsRequest) Reset()                    { *m = InfoRefsRequest{} }
 func (m *InfoRefsRequest) String() string            { return proto.CompactTextString(m) }
 func (*InfoRefsRequest) ProtoMessage()               {}
-func (*InfoRefsRequest) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{0} }
+func (*InfoRefsRequest) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{0} }
 
 func (m *InfoRefsRequest) GetRepository() *Repository {
 	if m != nil {
@@ -41,7 +41,7 @@ type InfoRefsResponse struct {
 func (m *InfoRefsResponse) Reset()                    { *m = InfoRefsResponse{} }
 func (m *InfoRefsResponse) String() string            { return proto.CompactTextString(m) }
 func (*InfoRefsResponse) ProtoMessage()               {}
-func (*InfoRefsResponse) Descriptor() ([]byte, []int) { return fileDescriptor2, []int{1} }
+func (*InfoRefsResponse) Descriptor() ([]byte, []int) { return fileDescriptor5, []int{1} }
 
 func (m *InfoRefsResponse) GetData() []byte {
 	if m != nil {
@@ -218,9 +218,9 @@ var _SmartHTTP_serviceDesc = grpc.ServiceDesc{
 	Metadata: "smarthttp.proto",
 }
 
-func init() { proto.RegisterFile("smarthttp.proto", fileDescriptor2) }
+func init() { proto.RegisterFile("smarthttp.proto", fileDescriptor5) }
 
-var fileDescriptor2 = []byte{
+var fileDescriptor5 = []byte{
 	// 200 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x09, 0x6e, 0x88, 0x02, 0xff, 0xe2, 0xe2, 0x2f, 0xce, 0x4d, 0x2c,
 	0x2a, 0xc9, 0x28, 0x29, 0x29, 0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4b, 0xcf, 0x2c,

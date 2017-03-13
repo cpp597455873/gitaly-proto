@@ -3,7 +3,13 @@ $:.unshift(File.expand_path('../gitaly', __FILE__))
 
 require 'gitaly/version'
 
-require 'gitaly/gitaly_services_pb'
+require 'gitaly/commit_services_pb'
+
+require 'gitaly/diff_services_pb'
+
+require 'gitaly/notifications_services_pb'
+
+require 'gitaly/ref_services_pb'
 
 require 'gitaly/smarthttp_services_pb'
 
