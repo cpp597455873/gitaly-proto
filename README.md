@@ -82,3 +82,13 @@ gRPC provides an implementation framework based on these Protobuf concepts.
     clients.
 1.  Each RPC `FooBar` has its own `FooBarRequest` and `FooBarResponse`
     message types.
+
+## Contributing
+
+The CI at https://gitlab.com/gitlab-org/gitaly-proto regenerates the
+client libraries to guard against the mistake of updating the .proto
+files but not the client libraries. This check uses `git diff` to look
+for changes. Some of the code in the Go client libraries is sensitive
+to implementation details of the Go standard library (specifically,
+the ouput of gzip). **Use the same Go version as .gitlab-ci.yml (Go
+1.8)** when generating new client libraries for a merge request.
