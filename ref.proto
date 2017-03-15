@@ -3,6 +3,7 @@ syntax = "proto3";
 package gitaly;
 
 import "shared.proto";
+import "google/protobuf/timestamp.proto";
 
 service Ref {
   rpc FindDefaultBranchName(FindDefaultBranchNameRequest) returns (FindDefaultBranchNameResponse) {}
@@ -10,6 +11,8 @@ service Ref {
   rpc FindAllTagNames(FindAllTagNamesRequest) returns (stream FindAllTagNamesResponse) {}
   // Find a Ref matching the given constraints. Response may be empty.
   rpc FindRefName(FindRefNameRequest) returns (FindRefNameResponse) {}
+  // Return a stream so we can divide the response in chunks of branches
+  rpc FindLocalBranches(FindLocalBranchesRequest) returns (stream FindLocalBranchesResponse) {}
 }
 
 message FindDefaultBranchNameRequest {
@@ -47,4 +50,32 @@ message FindRefNameRequest {
 message FindRefNameResponse {
   // Example name: "refs/heads/master". Cannot assume UTF8, so the type is bytes.
   bytes name = 1;
+}
+
+message FindLocalBranchesRequest {
+  Repository repository = 1;
+  enum SortBy {
+    NAME = 0;
+    UPDATED_ASC = 1;
+    UPDATED_DESC = 2;
+  }
+  SortBy sort_by = 2;
+}
+
+message FindLocalBranchesResponse {
+  repeated FindLocalBranchResponse branches = 1;
+}
+
+message FindLocalBranchResponse {
+  bytes name = 1;
+  string commit_id = 2;
+  bytes commit_subject = 3;
+  FindLocalBranchCommitAuthor commit_author = 4;
+  FindLocalBranchCommitAuthor commit_committer = 5;
+}
+
+message FindLocalBranchCommitAuthor {
+  bytes name = 1;
+  bytes email = 2;
+  google.protobuf.Timestamp date = 3;
 }

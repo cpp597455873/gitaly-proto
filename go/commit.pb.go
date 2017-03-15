@@ -29,6 +29,10 @@ It has these top-level messages:
 	FindAllTagNamesResponse
 	FindRefNameRequest
 	FindRefNameResponse
+	FindLocalBranchesRequest
+	FindLocalBranchesResponse
+	FindLocalBranchResponse
+	FindLocalBranchCommitAuthor
 	Repository
 	ExitStatus
 	InfoRefsRequest
