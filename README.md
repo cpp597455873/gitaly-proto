@@ -97,6 +97,19 @@ to implementation details of the Go standard library (specifically,
 the ouput of gzip). **Use the same Go version as .gitlab-ci.yml (Go
 1.8)** when generating new client libraries for a merge request.
 
+### Build process
+
+After you change or add a .proto file you need to re-generate the Go
+and Ruby libraries before committing your change.
+
+```
+# Install dependencies
+_support/install-protoc
+
+# Re-generate Go and Ruby libraries
+_support/generate-from-proto
+```
+
 ## How to deprecate an RPC call
 
 See [DEPRECATION.md](DEPRECATION.md).
