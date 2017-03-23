@@ -19,6 +19,8 @@ module Gitaly
       rpc :FindAllTagNames, FindAllTagNamesRequest, stream(FindAllTagNamesResponse)
       # Find a Ref matching the given constraints. Response may be empty.
       rpc :FindRefName, FindRefNameRequest, FindRefNameResponse
+      # Return a stream so we can divide the response in chunks of branches
+      rpc :FindLocalBranches, FindLocalBranchesRequest, stream(FindLocalBranchesResponse)
     end
 
     Stub = Service.rpc_stub_class
