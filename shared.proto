@@ -4,6 +4,8 @@ package gitaly;
 
 message Repository {
   string path = 1;
+  string storage_name = 2;
+  string relative_path = 3;
 }
 
 message ExitStatus {
