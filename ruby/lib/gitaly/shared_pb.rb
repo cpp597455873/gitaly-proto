@@ -6,6 +6,8 @@ require 'google/protobuf'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.Repository" do
     optional :path, :string, 1
+    optional :storage_name, :string, 2
+    optional :relative_path, :string, 3
   end
   add_message "gitaly.ExitStatus" do
     optional :value, :int32, 1
