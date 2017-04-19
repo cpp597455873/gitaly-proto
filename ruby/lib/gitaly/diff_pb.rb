@@ -10,6 +10,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :left_commit_id, :string, 2
     optional :right_commit_id, :string, 3
     optional :ignore_whitespace_change, :bool, 4
+    repeated :paths, :bytes, 5
   end
   add_message "gitaly.CommitDiffResponse" do
     optional :from_path, :bytes, 1

@@ -14,6 +14,7 @@ message CommitDiffRequest {
   string left_commit_id = 2;
   string right_commit_id = 3;
   bool ignore_whitespace_change = 4;
+  repeated bytes paths = 5;
 }
 
 // A CommitDiffResponse corresponds to a single changed file in a commit.
