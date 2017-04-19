@@ -81,7 +81,8 @@ gRPC provides an implementation framework based on these Protobuf concepts.
     [errors](https://godoc.org/google.golang.org/grpc/codes#Code) to its
     clients.
 1.  Each RPC `FooBar` has its own `FooBarRequest` and `FooBarResponse`
-    message types.
+    message types. Try to keep the structure of these messages as flat as
+    possible. Only add abstractions when they have a practical benefit.
 1.  We never make backwards incompatible changes to an RPC that is
     already implemented on either the client side or server side.
     Instead we just create a new RPC call and start a deprecation
