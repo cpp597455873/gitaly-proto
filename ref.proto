@@ -4,15 +4,45 @@ package gitaly;
 
 import "shared.proto";
 import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
 
 service Ref {
-  rpc FindDefaultBranchName(FindDefaultBranchNameRequest) returns (FindDefaultBranchNameResponse) {}
-  rpc FindAllBranchNames(FindAllBranchNamesRequest) returns (stream FindAllBranchNamesResponse) {}
-  rpc FindAllTagNames(FindAllTagNamesRequest) returns (stream FindAllTagNamesResponse) {}
+  rpc FindDefaultBranchName(FindDefaultBranchNameRequest) returns (FindDefaultBranchNameResponse) {
+    option (google.api.http) = {
+      post: "/v1/ref/find_default_branch_name"
+      body: "*"
+    };
+  }
+
+  rpc FindAllBranchNames(FindAllBranchNamesRequest) returns (stream FindAllBranchNamesResponse) {
+    option (google.api.http) = {
+      post: "/v1/ref/find_all_branch_names"
+      body: "*"
+    };
+  }
+
+  rpc FindAllTagNames(FindAllTagNamesRequest) returns (stream FindAllTagNamesResponse) {
+    option (google.api.http) = {
+      post: "/v1/ref/find_all_tag_names"
+      body: "*"
+    };
+  }
+
   // Find a Ref matching the given constraints. Response may be empty.
-  rpc FindRefName(FindRefNameRequest) returns (FindRefNameResponse) {}
+  rpc FindRefName(FindRefNameRequest) returns (FindRefNameResponse) {
+    option (google.api.http) = {
+      post: "/v1/ref/find_ref_name"
+      body: "*"
+    };
+  }
+
   // Return a stream so we can divide the response in chunks of branches
-  rpc FindLocalBranches(FindLocalBranchesRequest) returns (stream FindLocalBranchesResponse) {}
+  rpc FindLocalBranches(FindLocalBranchesRequest) returns (stream FindLocalBranchesResponse) {
+    option (google.api.http) = {
+      post: "/v1/ref/find_local_branches"
+      body: "*"
+    };
+  }
 }
 
 message FindDefaultBranchNameRequest {

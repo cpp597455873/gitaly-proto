@@ -1,0 +1,170 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ssh.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/ssh/ssh_receive_pack": {
+      "post": {
+        "summary": "To forward 'git receive-pack' to Gitaly for SSH sessions",
+        "operationId": "SSHReceivePack",
+        "responses": {
+          "200": {
+            "description": "(streaming responses)",
+            "schema": {
+              "$ref": "#/definitions/gitalySSHReceivePackResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "(streaming inputs)",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitalySSHReceivePackRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SSH"
+        ]
+      }
+    },
+    "/v1/ssh/ssh_upload_pack": {
+      "post": {
+        "summary": "To forward 'git upload-pack' to Gitaly for SSH sessions",
+        "operationId": "SSHUploadPack",
+        "responses": {
+          "200": {
+            "description": "(streaming responses)",
+            "schema": {
+              "$ref": "#/definitions/gitalySSHUploadPackResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "(streaming inputs)",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitalySSHUploadPackRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SSH"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "gitalyExitStatus": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "gitalyRepository": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "storage_name": {
+          "type": "string"
+        },
+        "relative_path": {
+          "type": "string"
+        }
+      }
+    },
+    "gitalySSHReceivePackRequest": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "$ref": "#/definitions/gitalyRepository",
+          "description": "'repository' must be present in the first message."
+        },
+        "stdin": {
+          "type": "string",
+          "format": "byte",
+          "title": "A chunk of raw data to be copied to 'git upload-pack' standard input"
+        },
+        "gl_id": {
+          "type": "string",
+          "title": "Contents of GL_ID environment variable for 'git receive-pack'"
+        }
+      }
+    },
+    "gitalySSHReceivePackResponse": {
+      "type": "object",
+      "properties": {
+        "stdout": {
+          "type": "string",
+          "format": "byte",
+          "title": "A chunk of raw data from 'git receive-pack' standard output"
+        },
+        "stderr": {
+          "type": "string",
+          "format": "byte",
+          "title": "A chunk of raw data from 'git receive-pack' standard error"
+        },
+        "exit_status": {
+          "$ref": "#/definitions/gitalyExitStatus",
+          "description": "This field may be nil. This is intentional: only when the remote\ncommand has finished can we return its exit status."
+        }
+      }
+    },
+    "gitalySSHUploadPackRequest": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "$ref": "#/definitions/gitalyRepository",
+          "description": "'repository' must be present in the first message."
+        },
+        "stdin": {
+          "type": "string",
+          "format": "byte",
+          "title": "A chunk of raw data to be copied to 'git upload-pack' standard input"
+        }
+      }
+    },
+    "gitalySSHUploadPackResponse": {
+      "type": "object",
+      "properties": {
+        "stdout": {
+          "type": "string",
+          "format": "byte",
+          "title": "A chunk of raw data from 'git upload-pack' standard output"
+        },
+        "stderr": {
+          "type": "string",
+          "format": "byte",
+          "title": "A chunk of raw data from 'git upload-pack' standard error"
+        },
+        "exit_status": {
+          "$ref": "#/definitions/gitalyExitStatus",
+          "description": "This field may be nil. This is intentional: only when the remote\ncommand has finished can we return its exit status."
+        }
+      }
+    }
+  }
+}

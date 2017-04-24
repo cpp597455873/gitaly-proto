@@ -1,0 +1,321 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ref.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/ref/find_all_branch_names": {
+      "post": {
+        "operationId": "FindAllBranchNames",
+        "responses": {
+          "200": {
+            "description": "(streaming responses)",
+            "schema": {
+              "$ref": "#/definitions/gitalyFindAllBranchNamesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitalyFindAllBranchNamesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Ref"
+        ]
+      }
+    },
+    "/v1/ref/find_all_tag_names": {
+      "post": {
+        "operationId": "FindAllTagNames",
+        "responses": {
+          "200": {
+            "description": "(streaming responses)",
+            "schema": {
+              "$ref": "#/definitions/gitalyFindAllTagNamesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitalyFindAllTagNamesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Ref"
+        ]
+      }
+    },
+    "/v1/ref/find_default_branch_name": {
+      "post": {
+        "operationId": "FindDefaultBranchName",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/gitalyFindDefaultBranchNameResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitalyFindDefaultBranchNameRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Ref"
+        ]
+      }
+    },
+    "/v1/ref/find_local_branches": {
+      "post": {
+        "summary": "Return a stream so we can divide the response in chunks of branches",
+        "operationId": "FindLocalBranches",
+        "responses": {
+          "200": {
+            "description": "(streaming responses)",
+            "schema": {
+              "$ref": "#/definitions/gitalyFindLocalBranchesResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitalyFindLocalBranchesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Ref"
+        ]
+      }
+    },
+    "/v1/ref/find_ref_name": {
+      "post": {
+        "summary": "Find a Ref matching the given constraints. Response may be empty.",
+        "operationId": "FindRefName",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/gitalyFindRefNameResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitalyFindRefNameRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Ref"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "FindLocalBranchesRequestSortBy": {
+      "type": "string",
+      "enum": [
+        "NAME",
+        "UPDATED_ASC",
+        "UPDATED_DESC"
+      ],
+      "default": "NAME"
+    },
+    "gitalyFindAllBranchNamesRequest": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "$ref": "#/definitions/gitalyRepository"
+        }
+      }
+    },
+    "gitalyFindAllBranchNamesResponse": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "byte"
+          }
+        }
+      }
+    },
+    "gitalyFindAllTagNamesRequest": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "$ref": "#/definitions/gitalyRepository"
+        }
+      }
+    },
+    "gitalyFindAllTagNamesResponse": {
+      "type": "object",
+      "properties": {
+        "names": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "byte"
+          }
+        }
+      }
+    },
+    "gitalyFindDefaultBranchNameRequest": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "$ref": "#/definitions/gitalyRepository"
+        }
+      }
+    },
+    "gitalyFindDefaultBranchNameResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "gitalyFindLocalBranchCommitAuthor": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "format": "byte"
+        },
+        "email": {
+          "type": "string",
+          "format": "byte"
+        },
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "gitalyFindLocalBranchResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "format": "byte"
+        },
+        "commit_id": {
+          "type": "string"
+        },
+        "commit_subject": {
+          "type": "string",
+          "format": "byte"
+        },
+        "commit_author": {
+          "$ref": "#/definitions/gitalyFindLocalBranchCommitAuthor"
+        },
+        "commit_committer": {
+          "$ref": "#/definitions/gitalyFindLocalBranchCommitAuthor"
+        }
+      }
+    },
+    "gitalyFindLocalBranchesRequest": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "$ref": "#/definitions/gitalyRepository"
+        },
+        "sort_by": {
+          "$ref": "#/definitions/FindLocalBranchesRequestSortBy"
+        }
+      }
+    },
+    "gitalyFindLocalBranchesResponse": {
+      "type": "object",
+      "properties": {
+        "branches": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/gitalyFindLocalBranchResponse"
+          }
+        }
+      }
+    },
+    "gitalyFindRefNameRequest": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "$ref": "#/definitions/gitalyRepository"
+        },
+        "commit_id": {
+          "type": "string",
+          "title": "Require that the resulting ref contains this commit as an ancestor"
+        },
+        "prefix": {
+          "type": "string",
+          "format": "byte",
+          "description": "Example prefix: \"refs/heads/\". Type bytes because that is the type of ref names."
+        }
+      }
+    },
+    "gitalyFindRefNameResponse": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "format": "byte",
+          "description": "Example name: \"refs/heads/master\". Cannot assume UTF8, so the type is bytes."
+        }
+      }
+    },
+    "gitalyRepository": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "storage_name": {
+          "type": "string"
+        },
+        "relative_path": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

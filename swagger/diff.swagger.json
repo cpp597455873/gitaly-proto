@@ -1,0 +1,116 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "diff.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/diff/commit_diff": {
+      "post": {
+        "summary": "Returns stream of CommitDiffResponse: 1 per changed file",
+        "operationId": "CommitDiff",
+        "responses": {
+          "200": {
+            "description": "(streaming responses)",
+            "schema": {
+              "$ref": "#/definitions/gitalyCommitDiffResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitalyCommitDiffRequest"
+            }
+          }
+        ],
+        "tags": [
+          "Diff"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "gitalyCommitDiffRequest": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "$ref": "#/definitions/gitalyRepository"
+        },
+        "left_commit_id": {
+          "type": "string"
+        },
+        "right_commit_id": {
+          "type": "string"
+        }
+      }
+    },
+    "gitalyCommitDiffResponse": {
+      "type": "object",
+      "properties": {
+        "from_path": {
+          "type": "string",
+          "format": "byte"
+        },
+        "to_path": {
+          "type": "string",
+          "format": "byte"
+        },
+        "from_id": {
+          "type": "string",
+          "title": "Blob ID as returned via `git diff --full-index`"
+        },
+        "to_id": {
+          "type": "string"
+        },
+        "old_mode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "new_mode": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "binary": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "raw_chunks": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "byte"
+          }
+        }
+      },
+      "description": "A CommitDiffResponse corresponds to a single changed file in a commit."
+    },
+    "gitalyRepository": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "storage_name": {
+          "type": "string"
+        },
+        "relative_path": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

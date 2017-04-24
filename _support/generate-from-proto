@@ -5,13 +5,14 @@ require 'fileutils'
 
 require_relative 'run.rb'
 
+GO_PATH = ENV['GOPATH']
 PROTO_INCLUDE = '.'
 PROTO_FILES = Dir['*.proto'].sort
 RUBY_PREFIX = 'ruby/lib'
 RUBY_VERSION_FILE = 'gitaly/version.rb'
 
 ENV['PATH'] = [
-  File.join(ENV['GOPATH'], 'bin'),
+  File.join(GO_PATH, 'bin'),
   File.join(Dir.pwd, '_support/protoc/bin'),
   File.join(Dir.pwd, '_support/bin'),
   ENV['PATH'],
@@ -19,11 +20,12 @@ ENV['PATH'] = [
 
 def main
   FileUtils.rm(Dir['go/**/*.pb.go'])
-  run!(%W[protoc -I #{PROTO_INCLUDE}] + PROTO_FILES + %w[--go_out=plugins=grpc:go])
+  FileUtils.rm(Dir['swagger/**'])
+  run!(%W[protoc -I#{GO_PATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis -I #{PROTO_INCLUDE}] + PROTO_FILES + %w[--go_out=plugins=grpc:go --grpc-gateway_out=go --swagger_out=logtostderr=true:swagger])
 
   FileUtils.rm(Dir[File.join(RUBY_PREFIX, '**/*_pb.rb')])
   ruby_lib_gitaly = File.join(RUBY_PREFIX, 'gitaly')
-  run!(%W[grpc_tools_ruby_protoc -I #{PROTO_INCLUDE} --ruby_out=#{ruby_lib_gitaly} --grpc_out=#{ruby_lib_gitaly}] + PROTO_FILES)
+  run!(%W[grpc_tools_ruby_protoc -I#{GO_PATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis -I #{PROTO_INCLUDE} --ruby_out=#{ruby_lib_gitaly} --grpc_out=#{ruby_lib_gitaly}] + PROTO_FILES)
   write_ruby_requires
 end
 

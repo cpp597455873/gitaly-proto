@@ -3,13 +3,24 @@ syntax = "proto3";
 package gitaly;
 
 import "shared.proto";
+import "google/api/annotations.proto";
 
 service SSH {
   // To forward 'git upload-pack' to Gitaly for SSH sessions
-  rpc SSHUploadPack(stream SSHUploadPackRequest) returns (stream SSHUploadPackResponse) {}
+  rpc SSHUploadPack(stream SSHUploadPackRequest) returns (stream SSHUploadPackResponse) {
+    option (google.api.http) = {
+      post: "/v1/ssh/ssh_upload_pack"
+      body: "*"
+    };
+  }
 
   // To forward 'git receive-pack' to Gitaly for SSH sessions
-  rpc SSHReceivePack(stream SSHReceivePackRequest) returns (stream SSHReceivePackResponse) {}
+  rpc SSHReceivePack(stream SSHReceivePackRequest) returns (stream SSHReceivePackResponse) {
+    option (google.api.http) = {
+      post: "/v1/ssh/ssh_receive_pack"
+      body: "*"
+    };
+  }
 }
 
 message SSHUploadPackRequest {

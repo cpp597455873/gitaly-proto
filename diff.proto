@@ -3,10 +3,16 @@ syntax = "proto3";
 package gitaly;
 
 import "shared.proto";
+import "google/api/annotations.proto";
 
 service Diff {
   // Returns stream of CommitDiffResponse: 1 per changed file
-  rpc CommitDiff(CommitDiffRequest) returns (stream CommitDiffResponse) {};
+  rpc CommitDiff(CommitDiffRequest) returns (stream CommitDiffResponse) {
+    option (google.api.http) = {
+      post: "/v1/diff/commit_diff"
+      body: "*"
+    };    
+  };
 }
 
 message CommitDiffRequest {

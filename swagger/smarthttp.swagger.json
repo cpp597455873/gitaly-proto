@@ -1,0 +1,214 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "smarthttp.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/smart_http/info_refs_receive_pack": {
+      "post": {
+        "summary": "The response body for GET /info/refs?service=git-receive-pack",
+        "operationId": "InfoRefsReceivePack",
+        "responses": {
+          "200": {
+            "description": "(streaming responses)",
+            "schema": {
+              "$ref": "#/definitions/gitalyInfoRefsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitalyInfoRefsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SmartHTTP"
+        ]
+      }
+    },
+    "/v1/smart_http/info_refs_upload_pack": {
+      "post": {
+        "summary": "The response body for GET /info/refs?service=git-upload-pack",
+        "operationId": "InfoRefsUploadPack",
+        "responses": {
+          "200": {
+            "description": "(streaming responses)",
+            "schema": {
+              "$ref": "#/definitions/gitalyInfoRefsResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitalyInfoRefsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SmartHTTP"
+        ]
+      }
+    },
+    "/v1/smart_http/post_receive_pack": {
+      "post": {
+        "summary": "Request and response body for POST /receive-pack",
+        "operationId": "PostReceivePack",
+        "responses": {
+          "200": {
+            "description": "(streaming responses)",
+            "schema": {
+              "$ref": "#/definitions/gitalyPostReceivePackResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "(streaming inputs)",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitalyPostReceivePackRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SmartHTTP"
+        ]
+      }
+    },
+    "/v1/smart_http/post_upload_pack": {
+      "post": {
+        "summary": "Request and response body for POST /upload-pack",
+        "operationId": "PostUploadPack",
+        "responses": {
+          "200": {
+            "description": "(streaming responses)",
+            "schema": {
+              "$ref": "#/definitions/gitalyPostUploadPackResponse"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "(streaming inputs)",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gitalyPostUploadPackRequest"
+            }
+          }
+        ],
+        "tags": [
+          "SmartHTTP"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "gitalyInfoRefsRequest": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "$ref": "#/definitions/gitalyRepository"
+        }
+      }
+    },
+    "gitalyInfoRefsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "format": "byte"
+        }
+      }
+    },
+    "gitalyPostReceivePackRequest": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "$ref": "#/definitions/gitalyRepository",
+          "title": "repository should only be present in the first message of the stream"
+        },
+        "data": {
+          "type": "string",
+          "format": "byte",
+          "title": "Raw data to be copied to stdin of 'git receive-pack'"
+        },
+        "gl_id": {
+          "type": "string",
+          "description": "gl_id becomes env variable GL_ID, used by the Git {pre,post}-receive\nhooks. Should only be present in the first message of the stream."
+        }
+      }
+    },
+    "gitalyPostReceivePackResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "format": "byte",
+          "title": "Raw data from stdout of 'git receive-pack'"
+        }
+      }
+    },
+    "gitalyPostUploadPackRequest": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "$ref": "#/definitions/gitalyRepository",
+          "title": "repository should only be present in the first message of the stream"
+        },
+        "data": {
+          "type": "string",
+          "format": "byte",
+          "title": "Raw data to be copied to stdin of 'git upload-pack'"
+        }
+      }
+    },
+    "gitalyPostUploadPackResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "format": "byte",
+          "title": "Raw data from stdout of 'git upload-pack'"
+        }
+      }
+    },
+    "gitalyRepository": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "storage_name": {
+          "type": "string"
+        },
+        "relative_path": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
