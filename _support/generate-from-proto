@@ -20,8 +20,18 @@ ENV['PATH'] = [
 
 def main
   FileUtils.rm(Dir['go/**/*.pb.go'])
+  FileUtils.rm(Dir['gateway/**/*.pb.gw.go'])
   FileUtils.rm(Dir['swagger/**'])
-  run!(%W[protoc -I#{GO_PATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis -I #{PROTO_INCLUDE}] + PROTO_FILES + %w[--go_out=plugins=grpc:go --grpc-gateway_out=go --swagger_out=logtostderr=true:swagger])
+  run!(%W[protoc -I#{GO_PATH}/src/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis -I #{PROTO_INCLUDE}] + PROTO_FILES + %w[--go_out=plugins=grpc:go --grpc-gateway_out=gateway --swagger_out=logtostderr=true:swagger])
+
+  # Merge the swagger definitions into a single file
+  run!(%W[#{__dir__}/merge-swagger-definitions])
+
+  # Generate a swagger client
+  FileUtils.rm(Dir['ruby_swagger/**/*.rb'])  
+  run!(%W[swagger-codegen generate -i swagger/main.json -l ruby -o ruby_swagger/])
+  
+  
 
   FileUtils.rm(Dir[File.join(RUBY_PREFIX, '**/*_pb.rb')])
   ruby_lib_gitaly = File.join(RUBY_PREFIX, 'gitaly')

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+cd "${DIR}/../swagger"
+
+echo "{}" > main.json
+
+for i in *.swagger.json; do 
+    jq -s '.[0] * .[1]' $i main.json > main.json.tmp
+    mv main.json.tmp main.json
+done
