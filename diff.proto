@@ -7,6 +7,8 @@ import "shared.proto";
 service Diff {
   // Returns stream of CommitDiffResponse: 1 per changed file
   rpc CommitDiff(CommitDiffRequest) returns (stream CommitDiffResponse) {};
+  // Return a stream so we can divide the response in chunks of deltas
+  rpc CommitDelta(CommitDeltaRequest) returns (stream CommitDeltaResponse) {};
 }
 
 message CommitDiffRequest {
@@ -28,4 +30,25 @@ message CommitDiffResponse {
   int32 new_mode = 6;
   bool binary = 7;
   repeated bytes raw_chunks = 8;
+}
+
+message CommitDeltaRequest {
+  Repository repository = 1;
+  string left_commit_id = 2;
+  string right_commit_id = 3;
+  repeated bytes paths = 4;
+}
+
+message CommitDelta {
+  bytes from_path = 1;
+  bytes to_path = 2;
+  // Blob ID as returned via `git diff --full-index`
+  string from_id = 3;
+  string to_id = 4;
+  int32 old_mode = 5;
+  int32 new_mode = 6;
+}
+
+message CommitDeltaResponse {
+  repeated CommitDelta deltas = 1;
 }

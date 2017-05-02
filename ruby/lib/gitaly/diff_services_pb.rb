@@ -16,6 +16,8 @@ module Gitaly
 
       # Returns stream of CommitDiffResponse: 1 per changed file
       rpc :CommitDiff, CommitDiffRequest, stream(CommitDiffResponse)
+      # Return a stream so we can divide the response in chunks of deltas
+      rpc :CommitDelta, CommitDeltaRequest, stream(CommitDeltaResponse)
     end
 
     Stub = Service.rpc_stub_class
