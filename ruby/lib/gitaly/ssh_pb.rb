@@ -18,6 +18,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :stdin, :bytes, 2
     optional :gl_id, :string, 3
+    optional :gl_repository, :string, 4
   end
   add_message "gitaly.SSHReceivePackResponse" do
     optional :stdout, :bytes, 1

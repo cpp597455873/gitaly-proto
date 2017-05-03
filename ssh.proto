@@ -34,8 +34,10 @@ message SSHReceivePackRequest {
   Repository repository = 1;
   // A chunk of raw data to be copied to 'git upload-pack' standard input
   bytes stdin = 2;
-  // Contents of GL_ID environment variable for 'git receive-pack'
+  // Contents of GL_ID and GL_REPOSITORY environment variables for
+  // 'git receive-pack'
   string gl_id = 3;
+  string gl_repository = 4;
 }
 
 message SSHReceivePackResponse {
@@ -47,4 +49,3 @@ message SSHReceivePackResponse {
   // command has finished can we return its exit status.
   ExitStatus exit_status = 3;
 }
-
