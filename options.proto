@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package gitaly;
+
+import "google/protobuf/descriptor.proto";
+
+message FeatureStatus {
+
+  enum StatusType {
+    DISABLED = 0;
+    OPT_IN = 1;
+    OPT_OUT = 2;
+    ENABLED = 3;
+  }
+
+  // The type of data that can be assigned to the label.
+  StatusType status = 1;
+
+  // The label key.
+  string feature_flag = 2;
+}
+
+extend google.protobuf.MethodOptions {
+  // See `FeatureStatus`.
+  FeatureStatus feature_status = 50000; 
+}

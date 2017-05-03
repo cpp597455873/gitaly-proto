@@ -4,15 +4,46 @@ package gitaly;
 
 import "shared.proto";
 import "google/protobuf/timestamp.proto";
+import "options.proto";
 
 service Ref {
-  rpc FindDefaultBranchName(FindDefaultBranchNameRequest) returns (FindDefaultBranchNameResponse) {}
-  rpc FindAllBranchNames(FindAllBranchNamesRequest) returns (stream FindAllBranchNamesResponse) {}
-  rpc FindAllTagNames(FindAllTagNamesRequest) returns (stream FindAllTagNamesResponse) {}
+
+  rpc FindDefaultBranchName(FindDefaultBranchNameRequest) returns (FindDefaultBranchNameResponse) {
+    option (gitaly.feature_status) = { 
+      status: OPT_IN,
+      feature_flag: "GITALY_REF_FIND_DEFAULT_BRANCH_NAME" 
+    };
+  }
+
+  rpc FindAllBranchNames(FindAllBranchNamesRequest) returns (stream FindAllBranchNamesResponse) {
+    option (gitaly.feature_status) = { 
+      status: OPT_IN,
+      feature_flag: "GITALY_REF_FIND_ALL_BRANCH_NAMES" 
+    };
+  }
+
+  rpc FindAllTagNames(FindAllTagNamesRequest) returns (stream FindAllTagNamesResponse) {
+    option (gitaly.feature_status) = { 
+      status: OPT_IN,
+      feature_flag: "GITALY_REF_FIND_ALL_TAG_NAMES" 
+    };
+  }
+
   // Find a Ref matching the given constraints. Response may be empty.
-  rpc FindRefName(FindRefNameRequest) returns (FindRefNameResponse) {}
+  rpc FindRefName(FindRefNameRequest) returns (FindRefNameResponse) {
+    option (gitaly.feature_status) = { 
+      status: OPT_IN,
+      feature_flag: "GITALY_REF_FIND_REF_NAME" 
+    };
+  }
+
   // Return a stream so we can divide the response in chunks of branches
-  rpc FindLocalBranches(FindLocalBranchesRequest) returns (stream FindLocalBranchesResponse) {}
+  rpc FindLocalBranches(FindLocalBranchesRequest) returns (stream FindLocalBranchesResponse) {
+    option (gitaly.feature_status) = { 
+      status: OPT_IN,
+      feature_flag: "GITALY_REF_FIND_LOCAL_BRANCHES" 
+    };
+  }
 }
 
 message FindDefaultBranchNameRequest {

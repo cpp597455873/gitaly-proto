@@ -4,6 +4,7 @@
 require 'google/protobuf'
 
 require 'shared_pb'
+require 'options_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.InfoRefsRequest" do
     optional :repository, :message, 1, "gitaly.Repository"

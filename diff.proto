@@ -3,10 +3,16 @@ syntax = "proto3";
 package gitaly;
 
 import "shared.proto";
+import "options.proto";
 
 service Diff {
   // Returns stream of CommitDiffResponse: 1 per changed file
-  rpc CommitDiff(CommitDiffRequest) returns (stream CommitDiffResponse) {};
+  rpc CommitDiff(CommitDiffRequest) returns (stream CommitDiffResponse) {
+    option (gitaly.feature_status) = { 
+      status: ENABLED,
+      feature_flag: "GITALY_DIFF_COMMIT_DIFF" 
+    };
+  };
 }
 
 message CommitDiffRequest {

@@ -3,9 +3,15 @@ syntax = "proto3";
 package gitaly;
 
 import "shared.proto";
+import "options.proto";
 
 service Notifications {
-  rpc PostReceive(PostReceiveRequest) returns (PostReceiveResponse) {}
+  rpc PostReceive(PostReceiveRequest) returns (PostReceiveResponse) {
+    option (gitaly.feature_status) = { 
+      status: ENABLED,
+      feature_flag: "GITALY_NOTIFICATIONS_POST_RECEIVE" 
+    };
+  }
 }
 
 message PostReceiveRequest {

@@ -3,9 +3,15 @@ syntax = "proto3";
 package gitaly;
 
 import "shared.proto";
+import "options.proto";
 
 service Commit {
-  rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) {}
+  rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) {
+    option (gitaly.feature_status) = { 
+      status: ENABLED,
+      feature_flag: "GITALY_COMMIT_COMMIT_IS_ANCESTOR" 
+    };
+  }
 }
 
 message CommitIsAncestorRequest {
