@@ -22,9 +22,29 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :binary, :bool, 7
     repeated :raw_chunks, :bytes, 8
   end
+  add_message "gitaly.CommitDeltaRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :left_commit_id, :string, 2
+    optional :right_commit_id, :string, 3
+    repeated :paths, :bytes, 4
+  end
+  add_message "gitaly.CommitDelta" do
+    optional :from_path, :bytes, 1
+    optional :to_path, :bytes, 2
+    optional :from_id, :string, 3
+    optional :to_id, :string, 4
+    optional :old_mode, :int32, 5
+    optional :new_mode, :int32, 6
+  end
+  add_message "gitaly.CommitDeltaResponse" do
+    repeated :deltas, :message, 1, "gitaly.CommitDelta"
+  end
 end
 
 module Gitaly
   CommitDiffRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitDiffRequest").msgclass
   CommitDiffResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitDiffResponse").msgclass
+  CommitDeltaRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitDeltaRequest").msgclass
+  CommitDelta = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitDelta").msgclass
+  CommitDeltaResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitDeltaResponse").msgclass
 end
