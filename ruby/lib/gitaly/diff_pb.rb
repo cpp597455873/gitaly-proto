@@ -20,7 +20,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :old_mode, :int32, 5
     optional :new_mode, :int32, 6
     optional :binary, :bool, 7
-    repeated :raw_chunks, :bytes, 8
+    optional :raw_patch_data, :bytes, 9
+    optional :end_of_patch, :bool, 10
   end
   add_message "gitaly.CommitDeltaRequest" do
     optional :repository, :message, 1, "gitaly.Repository"

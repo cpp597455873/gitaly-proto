@@ -14,7 +14,7 @@ module Gitaly
       self.unmarshal_class_method = :decode
       self.service_name = 'gitaly.Diff'
 
-      # Returns stream of CommitDiffResponse: 1 per changed file
+      # Returns stream of CommitDiffResponse with patches chunked over messages
       rpc :CommitDiff, CommitDiffRequest, stream(CommitDiffResponse)
       # Return a stream so we can divide the response in chunks of deltas
       rpc :CommitDelta, CommitDeltaRequest, stream(CommitDeltaResponse)
