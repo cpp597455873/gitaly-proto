@@ -6,6 +6,7 @@ import "shared.proto";
 
 service Commit {
   rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) {}
+  rpc TreeEntry(TreeEntryRequest) returns (stream TreeEntryResponse) {};
 }
 
 message CommitIsAncestorRequest {
@@ -16,4 +17,25 @@ message CommitIsAncestorRequest {
 
 message CommitIsAncestorResponse {
   bool value = 1;
+}
+
+message TreeEntryRequest {
+  Repository repository = 1;
+  bytes revision = 2; // commit ID or refname
+  bytes path = 3; // entry path relative to repository root
+  int64 limit = 4;
+}
+
+message TreeEntryResponse {
+  enum ObjectType {
+    COMMIT = 0;
+    BLOB = 1;
+    TREE = 2;
+    TAG = 3;
+  }
+  ObjectType type = 1;
+  string oid = 2; // SHA1 object ID
+  int64 size = 3;
+  int32 mode = 4; // file mode
+  bytes data = 5; // raw object contents
 }

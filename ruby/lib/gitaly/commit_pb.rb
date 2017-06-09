@@ -13,9 +13,31 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.CommitIsAncestorResponse" do
     optional :value, :bool, 1
   end
+  add_message "gitaly.TreeEntryRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :revision, :bytes, 2
+    optional :path, :bytes, 3
+    optional :limit, :int64, 4
+  end
+  add_message "gitaly.TreeEntryResponse" do
+    optional :type, :enum, 1, "gitaly.TreeEntryResponse.ObjectType"
+    optional :oid, :string, 2
+    optional :size, :int64, 3
+    optional :mode, :int32, 4
+    optional :data, :bytes, 5
+  end
+  add_enum "gitaly.TreeEntryResponse.ObjectType" do
+    value :COMMIT, 0
+    value :BLOB, 1
+    value :TREE, 2
+    value :TAG, 3
+  end
 end
 
 module Gitaly
   CommitIsAncestorRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitIsAncestorRequest").msgclass
   CommitIsAncestorResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitIsAncestorResponse").msgclass
+  TreeEntryRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.TreeEntryRequest").msgclass
+  TreeEntryResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.TreeEntryResponse").msgclass
+  TreeEntryResponse::ObjectType = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.TreeEntryResponse.ObjectType").enummodule
 end
