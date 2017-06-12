@@ -15,6 +15,7 @@ module Gitaly
       self.service_name = 'gitaly.Commit'
 
       rpc :CommitIsAncestor, CommitIsAncestorRequest, CommitIsAncestorResponse
+      rpc :TreeEntry, TreeEntryRequest, stream(TreeEntryResponse)
     end
 
     Stub = Service.rpc_stub_class
