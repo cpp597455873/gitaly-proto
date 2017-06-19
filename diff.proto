@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package gitaly;
 
-import "shared.proto";
+import "repository.proto";
 
 service Diff {
   // Returns stream of CommitDiffResponse with patches chunked over messages
