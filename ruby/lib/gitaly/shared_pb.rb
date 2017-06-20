@@ -3,10 +3,23 @@
 
 require 'google/protobuf'
 
+require 'google/protobuf/timestamp_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.Repository" do
     optional :storage_name, :string, 2
     optional :relative_path, :string, 3
+  end
+  add_message "gitaly.GitCommit" do
+    optional :id, :string, 1
+    optional :subject, :bytes, 2
+    optional :author, :message, 4, "gitaly.CommitAuthor"
+    optional :committer, :message, 5, "gitaly.CommitAuthor"
+    repeated :parent_ids, :string, 6
+  end
+  add_message "gitaly.CommitAuthor" do
+    optional :name, :bytes, 1
+    optional :email, :bytes, 2
+    optional :date, :message, 3, "google.protobuf.Timestamp"
   end
   add_message "gitaly.ExitStatus" do
     optional :value, :int32, 1
@@ -15,5 +28,7 @@ end
 
 module Gitaly
   Repository = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Repository").msgclass
+  GitCommit = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GitCommit").msgclass
+  CommitAuthor = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitAuthor").msgclass
   ExitStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ExitStatus").msgclass
 end

@@ -6,7 +6,8 @@ import "shared.proto";
 
 service CommitService {
   rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) {}
-  rpc TreeEntry(TreeEntryRequest) returns (stream TreeEntryResponse) {};
+  rpc TreeEntry(TreeEntryRequest) returns (stream TreeEntryResponse) {}
+  rpc CommitsBetween(CommitsBetweenRequest) returns (stream CommitsBetweenResponse) {}
 }
 
 message CommitIsAncestorRequest {
@@ -38,4 +39,14 @@ message TreeEntryResponse {
   int64 size = 3;
   int32 mode = 4; // file mode
   bytes data = 5; // raw object contents
+}
+
+message CommitsBetweenRequest {
+  Repository repository = 1;
+  bytes from = 2;
+  bytes to = 3;
+}
+
+message CommitsBetweenResponse {
+  repeated GitCommit commits = 1;
 }

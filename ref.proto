@@ -3,7 +3,6 @@ syntax = "proto3";
 package gitaly;
 
 import "shared.proto";
-import "google/protobuf/timestamp.proto";
 
 service RefService {
   rpc FindDefaultBranchName(FindDefaultBranchNameRequest) returns (FindDefaultBranchNameResponse) {}
@@ -68,14 +67,5 @@ message FindLocalBranchesResponse {
 
 message FindLocalBranchResponse {
   bytes name = 1;
-  string commit_id = 2;
-  bytes commit_subject = 3;
-  FindLocalBranchCommitAuthor commit_author = 4;
-  FindLocalBranchCommitAuthor commit_committer = 5;
-}
-
-message FindLocalBranchCommitAuthor {
-  bytes name = 1;
-  bytes email = 2;
-  google.protobuf.Timestamp date = 3;
+  GitCommit target = 2;
 }
