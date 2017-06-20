@@ -3,7 +3,6 @@ syntax = "proto3";
 package gitaly;
 
 import "shared.proto";
-import "repository.proto";
 
 service SSH {
   // To forward 'git upload-pack' to Gitaly for SSH sessions

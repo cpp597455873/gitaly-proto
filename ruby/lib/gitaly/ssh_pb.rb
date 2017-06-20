@@ -4,7 +4,6 @@
 require 'google/protobuf'
 
 require 'shared_pb'
-require 'repository_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.SSHUploadPackRequest" do
     optional :repository, :message, 1, "gitaly.Repository"

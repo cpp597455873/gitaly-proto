@@ -2,17 +2,10 @@ syntax = "proto3";
 
 package gitaly;
 
+import "shared.proto";
+
 service RepositoryService {
   rpc Exists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {}
-}
-
-message Repository {
-  // DEPRECATED: https://gitlab.com/gitlab-org/gitaly/issues/151
-  reserved 1;
-  reserved "path";
-
-  string storage_name = 2;
-  string relative_path = 3;
 }
 
 message RepositoryExistsRequest {

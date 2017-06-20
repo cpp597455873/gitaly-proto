@@ -11,7 +11,7 @@ require 'gitaly/notifications_services_pb'
 
 require 'gitaly/ref_services_pb'
 
-require 'gitaly/repository_services_pb'
+require 'gitaly/repository-service_services_pb'
 
 require 'gitaly/smarthttp_services_pb'
 

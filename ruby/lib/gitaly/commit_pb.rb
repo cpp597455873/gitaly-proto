@@ -3,7 +3,7 @@
 
 require 'google/protobuf'
 
-require 'repository_pb'
+require 'shared_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.CommitIsAncestorRequest" do
     optional :repository, :message, 1, "gitaly.Repository"

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package gitaly;
 
-import "repository.proto";
+import "shared.proto";
 import "google/protobuf/timestamp.proto";
 
 service Ref {
