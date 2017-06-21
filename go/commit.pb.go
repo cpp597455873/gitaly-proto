@@ -9,6 +9,7 @@ It is generated from these files:
 	diff.proto
 	notifications.proto
 	ref.proto
+	repository-service.proto
 	shared.proto
 	smarthttp.proto
 	ssh.proto
@@ -37,6 +38,8 @@ It has these top-level messages:
 	FindLocalBranchesResponse
 	FindLocalBranchResponse
 	FindLocalBranchCommitAuthor
+	RepositoryExistsRequest
+	RepositoryExistsResponse
 	Repository
 	ExitStatus
 	InfoRefsRequest
