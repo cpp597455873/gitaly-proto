@@ -4,15 +4,6 @@ package gitaly;
 
 import "shared.proto";
 
-// DEPRECATED
-service SSH {
-  // To forward 'git upload-pack' to Gitaly for SSH sessions
-  rpc SSHUploadPack(stream SSHUploadPackRequest) returns (stream SSHUploadPackResponse) {}
-
-  // To forward 'git receive-pack' to Gitaly for SSH sessions
-  rpc SSHReceivePack(stream SSHReceivePackRequest) returns (stream SSHReceivePackResponse) {}
-}
-
 service SSHService {
   // To forward 'git upload-pack' to Gitaly for SSH sessions
   rpc SSHUploadPack(stream SSHUploadPackRequest) returns (stream SSHUploadPackResponse) {}

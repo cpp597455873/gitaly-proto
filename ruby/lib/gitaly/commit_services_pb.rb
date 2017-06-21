@@ -5,14 +5,14 @@ require 'grpc'
 require 'commit_pb'
 
 module Gitaly
-  module Commit
+  module CommitService
     class Service
 
       include GRPC::GenericService
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode
-      self.service_name = 'gitaly.Commit'
+      self.service_name = 'gitaly.CommitService'
 
       rpc :CommitIsAncestor, CommitIsAncestorRequest, CommitIsAncestorResponse
       rpc :TreeEntry, TreeEntryRequest, stream(TreeEntryResponse)

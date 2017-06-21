@@ -4,22 +4,6 @@ package gitaly;
 
 import "shared.proto";
 
-// DEPRECATED
-service SmartHTTP {
-  // The response body for GET /info/refs?service=git-upload-pack
-  rpc InfoRefsUploadPack(InfoRefsRequest) returns (stream InfoRefsResponse) {}
-
-  // The response body for GET /info/refs?service=git-receive-pack
-  rpc InfoRefsReceivePack(InfoRefsRequest) returns (stream InfoRefsResponse) {}
-
-  // Request and response body for POST /upload-pack
-  rpc PostUploadPack(stream PostUploadPackRequest) returns (stream PostUploadPackResponse) {}
-
-  // Request and response body for POST /receive-pack
-  rpc PostReceivePack(stream PostReceivePackRequest) returns (stream PostReceivePackResponse) {}
-}
-
-
 service SmartHTTPService {
   // The response body for GET /info/refs?service=git-upload-pack
   rpc InfoRefsUploadPack(InfoRefsRequest) returns (stream InfoRefsResponse) {}

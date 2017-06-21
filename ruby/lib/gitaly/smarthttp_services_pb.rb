@@ -5,28 +5,6 @@ require 'grpc'
 require 'smarthttp_pb'
 
 module Gitaly
-  module SmartHTTP
-    # DEPRECATED
-    class Service
-
-      include GRPC::GenericService
-
-      self.marshal_class_method = :encode
-      self.unmarshal_class_method = :decode
-      self.service_name = 'gitaly.SmartHTTP'
-
-      # The response body for GET /info/refs?service=git-upload-pack
-      rpc :InfoRefsUploadPack, InfoRefsRequest, stream(InfoRefsResponse)
-      # The response body for GET /info/refs?service=git-receive-pack
-      rpc :InfoRefsReceivePack, InfoRefsRequest, stream(InfoRefsResponse)
-      # Request and response body for POST /upload-pack
-      rpc :PostUploadPack, stream(PostUploadPackRequest), stream(PostUploadPackResponse)
-      # Request and response body for POST /receive-pack
-      rpc :PostReceivePack, stream(PostReceivePackRequest), stream(PostReceivePackResponse)
-    end
-
-    Stub = Service.rpc_stub_class
-  end
   module SmartHTTPService
     class Service
 

@@ -5,14 +5,14 @@ require 'grpc'
 require 'diff_pb'
 
 module Gitaly
-  module Diff
+  module DiffService
     class Service
 
       include GRPC::GenericService
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode
-      self.service_name = 'gitaly.Diff'
+      self.service_name = 'gitaly.DiffService'
 
       # Returns stream of CommitDiffResponse with patches chunked over messages
       rpc :CommitDiff, CommitDiffRequest, stream(CommitDiffResponse)
