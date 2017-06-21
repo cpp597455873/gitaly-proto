@@ -6,6 +6,7 @@ require 'ssh_pb'
 
 module Gitaly
   module SSH
+    # DEPRECATED
     class Service
 
       include GRPC::GenericService
@@ -13,6 +14,23 @@ module Gitaly
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode
       self.service_name = 'gitaly.SSH'
+
+      # To forward 'git upload-pack' to Gitaly for SSH sessions
+      rpc :SSHUploadPack, stream(SSHUploadPackRequest), stream(SSHUploadPackResponse)
+      # To forward 'git receive-pack' to Gitaly for SSH sessions
+      rpc :SSHReceivePack, stream(SSHReceivePackRequest), stream(SSHReceivePackResponse)
+    end
+
+    Stub = Service.rpc_stub_class
+  end
+  module SSHService
+    class Service
+
+      include GRPC::GenericService
+
+      self.marshal_class_method = :encode
+      self.unmarshal_class_method = :decode
+      self.service_name = 'gitaly.SSHService'
 
       # To forward 'git upload-pack' to Gitaly for SSH sessions
       rpc :SSHUploadPack, stream(SSHUploadPackRequest), stream(SSHUploadPackResponse)
