@@ -13,87 +13,55 @@ import "ssh.proto";
 
 // Deprecated
 service Commit {
-  rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) {
-    option deprecated = true;
-  }
-  rpc TreeEntry(TreeEntryRequest) returns (stream TreeEntryResponse) {
-    option deprecated = true;
-  };
+  rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) { }
+  rpc TreeEntry(TreeEntryRequest) returns (stream TreeEntryResponse) { };
 }
 
 // Deprecated
 service Diff {
   // Returns stream of CommitDiffResponse with patches chunked over messages
-  rpc CommitDiff(CommitDiffRequest) returns (stream CommitDiffResponse) {
-    option deprecated = true;
-  };
+  rpc CommitDiff(CommitDiffRequest) returns (stream CommitDiffResponse) { };
 
   // Return a stream so we can divide the response in chunks of deltas
-  rpc CommitDelta(CommitDeltaRequest) returns (stream CommitDeltaResponse) {
-    option deprecated = true;
-  };
+  rpc CommitDelta(CommitDeltaRequest) returns (stream CommitDeltaResponse) { };
 }
 
 // Deprecated
 service Notifications {
-  rpc PostReceive(PostReceiveRequest) returns (PostReceiveResponse) {
-    option deprecated = true;
-  }
+  rpc PostReceive(PostReceiveRequest) returns (PostReceiveResponse) { }
 }
 
 // Deprecated
 service Ref {
-  rpc FindDefaultBranchName(FindDefaultBranchNameRequest) returns (FindDefaultBranchNameResponse) {
-    option deprecated = true;
-  }
-  rpc FindAllBranchNames(FindAllBranchNamesRequest) returns (stream FindAllBranchNamesResponse) {
-    option deprecated = true;
-  }
-  rpc FindAllTagNames(FindAllTagNamesRequest) returns (stream FindAllTagNamesResponse) {
-    option deprecated = true;
-  }
+  rpc FindDefaultBranchName(FindDefaultBranchNameRequest) returns (FindDefaultBranchNameResponse) { }
+  rpc FindAllBranchNames(FindAllBranchNamesRequest) returns (stream FindAllBranchNamesResponse) { }
+  rpc FindAllTagNames(FindAllTagNamesRequest) returns (stream FindAllTagNamesResponse) { }
   // Find a Ref matching the given constraints. Response may be empty.
-  rpc FindRefName(FindRefNameRequest) returns (FindRefNameResponse) {
-    option deprecated = true;
-  }
+  rpc FindRefName(FindRefNameRequest) returns (FindRefNameResponse) { }
   // Return a stream so we can divide the response in chunks of branches
-  rpc FindLocalBranches(FindLocalBranchesRequest) returns (stream FindLocalBranchesResponse) {
-    option deprecated = true;
-  }
+  rpc FindLocalBranches(FindLocalBranchesRequest) returns (stream FindLocalBranchesResponse) { }
 }
 
 // DEPRECATED
 service SmartHTTP {
   // The response body for GET /info/refs?service=git-upload-pack
-  rpc InfoRefsUploadPack(InfoRefsRequest) returns (stream InfoRefsResponse) {
-    option deprecated = true;
-  }
+  rpc InfoRefsUploadPack(InfoRefsRequest) returns (stream InfoRefsResponse) { }
 
   // The response body for GET /info/refs?service=git-receive-pack
-  rpc InfoRefsReceivePack(InfoRefsRequest) returns (stream InfoRefsResponse) {
-    option deprecated = true;
-  }
+  rpc InfoRefsReceivePack(InfoRefsRequest) returns (stream InfoRefsResponse) { }
 
   // Request and response body for POST /upload-pack
-  rpc PostUploadPack(stream PostUploadPackRequest) returns (stream PostUploadPackResponse) {
-    option deprecated = true;
-  }
+  rpc PostUploadPack(stream PostUploadPackRequest) returns (stream PostUploadPackResponse) { }
 
   // Request and response body for POST /receive-pack
-  rpc PostReceivePack(stream PostReceivePackRequest) returns (stream PostReceivePackResponse) {
-    option deprecated = true;
-  }
+  rpc PostReceivePack(stream PostReceivePackRequest) returns (stream PostReceivePackResponse) { }
 }
 
 // DEPRECATED
 service SSH {
   // To forward 'git upload-pack' to Gitaly for SSH sessions
-  rpc SSHUploadPack(stream SSHUploadPackRequest) returns (stream SSHUploadPackResponse) {
-    option deprecated = true;
-  }
+  rpc SSHUploadPack(stream SSHUploadPackRequest) returns (stream SSHUploadPackResponse) { }
 
   // To forward 'git receive-pack' to Gitaly for SSH sessions
-  rpc SSHReceivePack(stream SSHReceivePackRequest) returns (stream SSHReceivePackResponse) {
-    option deprecated = true;
-  }
+  rpc SSHReceivePack(stream SSHReceivePackRequest) returns (stream SSHReceivePackResponse) { }
 }
