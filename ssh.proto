@@ -4,7 +4,7 @@ package gitaly;
 
 import "shared.proto";
 
-service SSH {
+service SSHService {
   // To forward 'git upload-pack' to Gitaly for SSH sessions
   rpc SSHUploadPack(stream SSHUploadPackRequest) returns (stream SSHUploadPackResponse) {}
 

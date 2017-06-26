@@ -4,7 +4,7 @@ package gitaly;
 
 import "shared.proto";
 
-service Diff {
+service DiffService {
   // Returns stream of CommitDiffResponse with patches chunked over messages
   rpc CommitDiff(CommitDiffRequest) returns (stream CommitDiffResponse) {};
   // Return a stream so we can divide the response in chunks of deltas

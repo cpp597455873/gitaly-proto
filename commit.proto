@@ -4,7 +4,7 @@ package gitaly;
 
 import "shared.proto";
 
-service Commit {
+service CommitService {
   rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) {}
   rpc TreeEntry(TreeEntryRequest) returns (stream TreeEntryResponse) {};
 }

@@ -5,14 +5,14 @@ require 'grpc'
 require 'ssh_pb'
 
 module Gitaly
-  module SSH
+  module SSHService
     class Service
 
       include GRPC::GenericService
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode
-      self.service_name = 'gitaly.SSH'
+      self.service_name = 'gitaly.SSHService'
 
       # To forward 'git upload-pack' to Gitaly for SSH sessions
       rpc :SSHUploadPack, stream(SSHUploadPackRequest), stream(SSHUploadPackResponse)
