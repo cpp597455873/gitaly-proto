@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package gitaly;
+
+import "shared.proto";
+
+service RepositoryService {
+  rpc Exists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {}
+}
+
+message RepositoryExistsRequest {
+  Repository repository = 1;
+}
+
+message RepositoryExistsResponse {
+  bool exists = 1;
+}
