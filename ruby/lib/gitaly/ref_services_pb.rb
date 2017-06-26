@@ -5,14 +5,14 @@ require 'grpc'
 require 'ref_pb'
 
 module Gitaly
-  module Ref
+  module RefService
     class Service
 
       include GRPC::GenericService
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode
-      self.service_name = 'gitaly.Ref'
+      self.service_name = 'gitaly.RefService'
 
       rpc :FindDefaultBranchName, FindDefaultBranchNameRequest, FindDefaultBranchNameResponse
       rpc :FindAllBranchNames, FindAllBranchNamesRequest, stream(FindAllBranchNamesResponse)

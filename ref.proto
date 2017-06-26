@@ -5,7 +5,7 @@ package gitaly;
 import "shared.proto";
 import "google/protobuf/timestamp.proto";
 
-service Ref {
+service RefService {
   rpc FindDefaultBranchName(FindDefaultBranchNameRequest) returns (FindDefaultBranchNameResponse) {}
   rpc FindAllBranchNames(FindAllBranchNamesRequest) returns (stream FindAllBranchNamesResponse) {}
   rpc FindAllTagNames(FindAllTagNamesRequest) returns (stream FindAllTagNamesResponse) {}

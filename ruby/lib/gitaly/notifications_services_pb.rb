@@ -5,14 +5,14 @@ require 'grpc'
 require 'notifications_pb'
 
 module Gitaly
-  module Notifications
+  module NotificationService
     class Service
 
       include GRPC::GenericService
 
       self.marshal_class_method = :encode
       self.unmarshal_class_method = :decode
-      self.service_name = 'gitaly.Notifications'
+      self.service_name = 'gitaly.NotificationService'
 
       rpc :PostReceive, PostReceiveRequest, PostReceiveResponse
     end
