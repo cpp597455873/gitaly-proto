@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package gitaly;
 
+import "google/protobuf/timestamp.proto";
+
 message Repository {
   // DEPRECATED: https://gitlab.com/gitlab-org/gitaly/issues/151
   reserved 1;
@@ -9,6 +11,20 @@ message Repository {
 
   string storage_name = 2;
   string relative_path = 3;
+}
+
+message GitCommit {
+  string id = 1;
+  bytes subject = 2;
+  CommitAuthor author = 4;
+  CommitAuthor committer = 5;
+  repeated string parent_ids = 6;
+}
+
+message CommitAuthor {
+  bytes name = 1;
+  bytes email = 2;
+  google.protobuf.Timestamp date = 3;
 }
 
 message ExitStatus {

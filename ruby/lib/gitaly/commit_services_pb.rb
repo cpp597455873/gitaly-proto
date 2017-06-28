@@ -16,6 +16,7 @@ module Gitaly
 
       rpc :CommitIsAncestor, CommitIsAncestorRequest, CommitIsAncestorResponse
       rpc :TreeEntry, TreeEntryRequest, stream(TreeEntryResponse)
+      rpc :CommitsBetween, CommitsBetweenRequest, stream(CommitsBetweenResponse)
     end
 
     Stub = Service.rpc_stub_class
