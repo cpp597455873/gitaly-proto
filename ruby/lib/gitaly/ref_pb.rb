@@ -4,6 +4,7 @@
 require 'google/protobuf'
 
 require 'shared_pb'
+require 'google/protobuf/timestamp_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FindDefaultBranchNameRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
@@ -45,7 +46,15 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.FindLocalBranchResponse" do
     optional :name, :bytes, 1
-    optional :target, :message, 2, "gitaly.GitCommit"
+    optional :commit_id, :string, 2
+    optional :commit_subject, :bytes, 3
+    optional :commit_author, :message, 4, "gitaly.FindLocalBranchCommitAuthor"
+    optional :commit_committer, :message, 5, "gitaly.FindLocalBranchCommitAuthor"
+  end
+  add_message "gitaly.FindLocalBranchCommitAuthor" do
+    optional :name, :bytes, 1
+    optional :email, :bytes, 2
+    optional :date, :message, 3, "google.protobuf.Timestamp"
   end
 end
 
@@ -62,4 +71,5 @@ module Gitaly
   FindLocalBranchesRequest::SortBy = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindLocalBranchesRequest.SortBy").enummodule
   FindLocalBranchesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindLocalBranchesResponse").msgclass
   FindLocalBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindLocalBranchResponse").msgclass
+  FindLocalBranchCommitAuthor = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindLocalBranchCommitAuthor").msgclass
 end
