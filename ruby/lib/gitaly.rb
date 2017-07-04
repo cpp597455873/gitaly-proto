@@ -3,6 +3,8 @@ $:.unshift(File.expand_path('../gitaly', __FILE__))
 
 require 'gitaly/version'
 
+require 'gitaly/blob_services_pb'
+
 require 'gitaly/commit_services_pb'
 
 require 'gitaly/deprecated-services_services_pb'
