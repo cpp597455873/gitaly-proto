@@ -40,6 +40,7 @@ It has these top-level messages:
 	FindLocalBranchesRequest
 	FindLocalBranchesResponse
 	FindLocalBranchResponse
+	FindLocalBranchCommitAuthor
 	RepositoryExistsRequest
 	RepositoryExistsResponse
 	Repository
