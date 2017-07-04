@@ -8,6 +8,7 @@ service CommitService {
   rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) {}
   rpc TreeEntry(TreeEntryRequest) returns (stream TreeEntryResponse) {}
   rpc CommitsBetween(CommitsBetweenRequest) returns (stream CommitsBetweenResponse) {}
+  rpc CountCommits(CountCommitsRequest) returns (CountCommitsResponse) {}
 }
 
 message CommitIsAncestorRequest {
@@ -49,4 +50,13 @@ message CommitsBetweenRequest {
 
 message CommitsBetweenResponse {
   repeated GitCommit commits = 1;
+}
+
+message CountCommitsRequest {
+  Repository repository = 1;
+  bytes revision = 2;
+}
+
+message CountCommitsResponse {
+  int32 count = 1;
 }
