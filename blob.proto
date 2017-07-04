@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package gitaly;
+
+import "shared.proto";
+
+service BlobService {
+  // GetBlob returns the contents of a blob object referenced by its object
+  // ID. We use a stream to return a chunked arbitrarily large binary
+  // response
+  rpc GetBlob(GetBlobRequest) returns (stream GetBlobResponse) {}
+}
+
+message GetBlobRequest {
+  Repository repository = 1;
+  string oid = 2; // Object ID (SHA1) of the blob we want to get
+}
+
+message GetBlobResponse {
+  int64 size = 1; // Blob size; present only in first response message
+  bytes data = 2; // Chunk of blob data
+}
