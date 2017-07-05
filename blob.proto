@@ -19,4 +19,5 @@ message GetBlobRequest {
 message GetBlobResponse {
   int64 size = 1; // Blob size; present only in first response message
   bytes data = 2; // Chunk of blob data
+  string oid = 3; // Object ID of the actual blob returned. Empty if no blob was found.
 }
