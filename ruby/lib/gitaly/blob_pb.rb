@@ -12,6 +12,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.GetBlobResponse" do
     optional :size, :int64, 1
     optional :data, :bytes, 2
+    optional :oid, :string, 3
   end
 end
 
