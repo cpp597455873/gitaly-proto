@@ -40,6 +40,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.CommitsBetweenResponse" do
     repeated :commits, :message, 1, "gitaly.GitCommit"
   end
+  add_message "gitaly.CountCommitsRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :revision, :bytes, 2
+  end
+  add_message "gitaly.CountCommitsResponse" do
+    optional :count, :int32, 1
+  end
 end
 
 module Gitaly
@@ -50,4 +57,6 @@ module Gitaly
   TreeEntryResponse::ObjectType = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.TreeEntryResponse.ObjectType").enummodule
   CommitsBetweenRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitsBetweenRequest").msgclass
   CommitsBetweenResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitsBetweenResponse").msgclass
+  CountCommitsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CountCommitsRequest").msgclass
+  CountCommitsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CountCommitsResponse").msgclass
 end
