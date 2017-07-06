@@ -13,11 +13,17 @@ service BlobService {
 
 message GetBlobRequest {
   Repository repository = 1;
-  string oid = 2; // Object ID (SHA1) of the blob we want to get
+  // Object ID (SHA1) of the blob we want to get
+  string oid = 2;
+  // Maximum number of bytes we want to receive. Use '-1' to get the full blob no matter how big.
+  int64 limit = 3;
 }
 
 message GetBlobResponse {
-  int64 size = 1; // Blob size; present only in first response message
-  bytes data = 2; // Chunk of blob data
-  string oid = 3; // Object ID of the actual blob returned. Empty if no blob was found.
+  // Blob size; present only in first response message
+  int64 size = 1; 
+  // Chunk of blob data
+  bytes data = 2; 
+  // Object ID of the actual blob returned. Empty if no blob was found.
+  string oid = 3;
 }
