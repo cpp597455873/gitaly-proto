@@ -87,6 +87,9 @@ gRPC provides an implementation framework based on these Protobuf concepts.
     already implemented on either the client side or server side.
     Instead we just create a new RPC call and start a deprecation
     procedure (see below) for the old one.
+1.  It is encouraged to put comments (starting with `//`) in .proto files.
+    Please put comments on their own lines. This will cause them to be
+    treated as documentation by the protoc compiler.
 
 ## Contributing
 
