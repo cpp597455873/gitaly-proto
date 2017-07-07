@@ -8,6 +8,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.GetBlobRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :oid, :string, 2
+    optional :limit, :int64, 3
   end
   add_message "gitaly.GetBlobResponse" do
     optional :size, :int64, 1
