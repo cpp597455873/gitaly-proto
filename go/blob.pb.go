@@ -27,6 +27,9 @@ It has these top-level messages:
 	CommitsBetweenResponse
 	CountCommitsRequest
 	CountCommitsResponse
+	TreeEntry
+	GetTreeEntriesRequest
+	GetTreeEntriesResponse
 	CommitDiffRequest
 	CommitDiffResponse
 	CommitDeltaRequest

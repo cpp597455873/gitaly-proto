@@ -9,6 +9,7 @@ service CommitService {
   rpc TreeEntry(TreeEntryRequest) returns (stream TreeEntryResponse) {}
   rpc CommitsBetween(CommitsBetweenRequest) returns (stream CommitsBetweenResponse) {}
   rpc CountCommits(CountCommitsRequest) returns (CountCommitsResponse) {}
+  rpc GetTreeEntries(GetTreeEntriesRequest) returns (stream GetTreeEntriesResponse) {}
 }
 
 message CommitIsAncestorRequest {
@@ -64,4 +65,33 @@ message CountCommitsRequest {
 
 message CountCommitsResponse {
   int32 count = 1;
+}
+
+message TreeEntry {
+  enum EntryType {
+    BLOB = 0;
+    TREE = 1;
+    COMMIT = 3;
+  }
+  // OID of the object this tree entry points to
+  string oid = 1;
+  // OID of the tree attached to commit_oid
+  string root_oid = 2;
+  // Path relative to repository root
+  bytes path = 3;
+  EntryType type = 4;
+  // File mode e.g. 0644
+  int32 mode = 5;
+  // The commit object via which this entry was retrieved
+  string commit_oid = 6;
+}
+
+message GetTreeEntriesRequest {
+  Repository repository = 1;
+  bytes revision = 2;
+  bytes path = 3;
+}
+
+message GetTreeEntriesResponse {
+  repeated TreeEntry entries = 1;
 }

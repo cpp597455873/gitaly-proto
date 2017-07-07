@@ -47,6 +47,27 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.CountCommitsResponse" do
     optional :count, :int32, 1
   end
+  add_message "gitaly.TreeEntry" do
+    optional :oid, :string, 1
+    optional :root_oid, :string, 2
+    optional :path, :bytes, 3
+    optional :type, :enum, 4, "gitaly.TreeEntry.EntryType"
+    optional :mode, :int32, 5
+    optional :commit_oid, :string, 6
+  end
+  add_enum "gitaly.TreeEntry.EntryType" do
+    value :BLOB, 0
+    value :TREE, 1
+    value :COMMIT, 3
+  end
+  add_message "gitaly.GetTreeEntriesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :revision, :bytes, 2
+    optional :path, :bytes, 3
+  end
+  add_message "gitaly.GetTreeEntriesResponse" do
+    repeated :entries, :message, 1, "gitaly.TreeEntry"
+  end
 end
 
 module Gitaly
@@ -59,4 +80,8 @@ module Gitaly
   CommitsBetweenResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitsBetweenResponse").msgclass
   CountCommitsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CountCommitsRequest").msgclass
   CountCommitsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CountCommitsResponse").msgclass
+  TreeEntry = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.TreeEntry").msgclass
+  TreeEntry::EntryType = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.TreeEntry.EntryType").enummodule
+  GetTreeEntriesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetTreeEntriesRequest").msgclass
+  GetTreeEntriesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetTreeEntriesResponse").msgclass
 end
