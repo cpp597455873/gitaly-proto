@@ -10,6 +10,7 @@ service CommitService {
   rpc CommitsBetween(CommitsBetweenRequest) returns (stream CommitsBetweenResponse) {}
   rpc CountCommits(CountCommitsRequest) returns (CountCommitsResponse) {}
   rpc GetTreeEntries(GetTreeEntriesRequest) returns (stream GetTreeEntriesResponse) {}
+  rpc ListFiles(ListFilesRequest) returns (stream ListFilesResponse) {}
 }
 
 message CommitIsAncestorRequest {
@@ -94,4 +95,15 @@ message GetTreeEntriesRequest {
 
 message GetTreeEntriesResponse {
   repeated TreeEntry entries = 1;
+}
+
+message ListFilesRequest {
+  Repository repository = 1;
+  bytes revision = 2;
+}
+
+// A single 'page' of the paginated response
+message ListFilesResponse {
+  // Remember to force encoding utf-8 on the client side
+  repeated bytes paths = 1;
 }
