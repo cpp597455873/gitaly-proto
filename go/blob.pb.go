@@ -30,6 +30,8 @@ It has these top-level messages:
 	TreeEntry
 	GetTreeEntriesRequest
 	GetTreeEntriesResponse
+	ListFilesRequest
+	ListFilesResponse
 	CommitDiffRequest
 	CommitDiffResponse
 	CommitDeltaRequest

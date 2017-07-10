@@ -68,6 +68,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.GetTreeEntriesResponse" do
     repeated :entries, :message, 1, "gitaly.TreeEntry"
   end
+  add_message "gitaly.ListFilesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :revision, :bytes, 2
+  end
+  add_message "gitaly.ListFilesResponse" do
+    repeated :paths, :bytes, 1
+  end
 end
 
 module Gitaly
@@ -84,4 +91,6 @@ module Gitaly
   TreeEntry::EntryType = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.TreeEntry.EntryType").enummodule
   GetTreeEntriesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetTreeEntriesRequest").msgclass
   GetTreeEntriesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetTreeEntriesResponse").msgclass
+  ListFilesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListFilesRequest").msgclass
+  ListFilesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListFilesResponse").msgclass
 end
