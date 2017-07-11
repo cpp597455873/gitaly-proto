@@ -15,6 +15,7 @@ service CommitService {
   rpc CommitStats(CommitStatsRequest) returns (CommitStatsResponse) {}
   // Use a stream to paginate the result set
   rpc FindAllCommits(FindAllCommitsRequest) returns (stream FindAllCommitsResponse) {};
+  rpc CommitLanguages(CommitLanguagesRequest) returns (CommitLanguagesResponse) {}
 }
 
 message CommitStatsRequest {
@@ -151,4 +152,18 @@ message FindAllCommitsRequest {
 // A single 'page' of the result set
 message FindAllCommitsResponse {
   repeated GitCommit commits = 1;
+}
+
+message CommitLanguagesRequest {
+  Repository repository = 1;
+  bytes revision = 2;
+}
+
+message CommitLanguagesResponse {
+  message Language {
+    string name = 1;
+    float share = 2;
+    string color = 3;
+  }
+  repeated Language languages = 1;
 }
