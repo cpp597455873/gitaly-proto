@@ -75,6 +75,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.ListFilesResponse" do
     repeated :paths, :bytes, 1
   end
+  add_message "gitaly.FindCommitRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :revision, :bytes, 2
+  end
+  add_message "gitaly.FindCommitResponse" do
+    optional :commit, :message, 1, "gitaly.GitCommit"
+  end
 end
 
 module Gitaly
@@ -93,4 +100,6 @@ module Gitaly
   GetTreeEntriesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetTreeEntriesResponse").msgclass
   ListFilesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListFilesRequest").msgclass
   ListFilesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListFilesResponse").msgclass
+  FindCommitRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindCommitRequest").msgclass
+  FindCommitResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindCommitResponse").msgclass
 end

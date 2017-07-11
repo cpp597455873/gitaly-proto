@@ -11,6 +11,7 @@ service CommitService {
   rpc CountCommits(CountCommitsRequest) returns (CountCommitsResponse) {}
   rpc GetTreeEntries(GetTreeEntriesRequest) returns (stream GetTreeEntriesResponse) {}
   rpc ListFiles(ListFilesRequest) returns (stream ListFilesResponse) {}
+  rpc FindCommit(FindCommitRequest) returns (FindCommitResponse) {}
 }
 
 message CommitIsAncestorRequest {
@@ -106,4 +107,14 @@ message ListFilesRequest {
 message ListFilesResponse {
   // Remember to force encoding utf-8 on the client side
   repeated bytes paths = 1;
+}
+
+message FindCommitRequest {
+  Repository repository = 1;
+  bytes revision = 2;
+}
+
+message FindCommitResponse {
+  // commit is nil when the commit was not found
+  GitCommit commit = 1;
 }
