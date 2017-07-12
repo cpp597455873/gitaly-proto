@@ -5,6 +5,15 @@ require 'google/protobuf'
 
 require 'shared_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
+  add_message "gitaly.CommitStatsRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :revision, :bytes, 2
+  end
+  add_message "gitaly.CommitStatsResponse" do
+    optional :oid, :string, 1
+    optional :additions, :int32, 2
+    optional :deletions, :int32, 3
+  end
   add_message "gitaly.CommitIsAncestorRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :ancestor_id, :string, 2
@@ -85,6 +94,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
 end
 
 module Gitaly
+  CommitStatsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitStatsRequest").msgclass
+  CommitStatsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitStatsResponse").msgclass
   CommitIsAncestorRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitIsAncestorRequest").msgclass
   CommitIsAncestorResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitIsAncestorResponse").msgclass
   TreeEntryRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.TreeEntryRequest").msgclass
