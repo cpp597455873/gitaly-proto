@@ -20,6 +20,7 @@ module Gitaly
       rpc :CountCommits, CountCommitsRequest, CountCommitsResponse
       rpc :GetTreeEntries, GetTreeEntriesRequest, stream(GetTreeEntriesResponse)
       rpc :ListFiles, ListFilesRequest, stream(ListFilesResponse)
+      rpc :FindCommit, FindCommitRequest, FindCommitResponse
     end
 
     Stub = Service.rpc_stub_class

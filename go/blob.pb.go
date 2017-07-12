@@ -32,6 +32,8 @@ It has these top-level messages:
 	GetTreeEntriesResponse
 	ListFilesRequest
 	ListFilesResponse
+	FindCommitRequest
+	FindCommitResponse
 	CommitDiffRequest
 	CommitDiffResponse
 	CommitDeltaRequest
