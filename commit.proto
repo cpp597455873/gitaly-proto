@@ -12,6 +12,19 @@ service CommitService {
   rpc GetTreeEntries(GetTreeEntriesRequest) returns (stream GetTreeEntriesResponse) {}
   rpc ListFiles(ListFilesRequest) returns (stream ListFilesResponse) {}
   rpc FindCommit(FindCommitRequest) returns (FindCommitResponse) {}
+  rpc CommitStats(CommitStatsRequest) returns (CommitStatsResponse) {}
+}
+
+message CommitStatsRequest {
+  Repository repository = 1;
+  bytes revision = 2;
+}
+
+message CommitStatsResponse {
+  // OID is the commit. Empty means not found
+  string oid = 1;
+  int32 additions = 2;
+  int32 deletions = 3;
 }
 
 message CommitIsAncestorRequest {

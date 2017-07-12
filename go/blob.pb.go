@@ -19,6 +19,8 @@ It is generated from these files:
 It has these top-level messages:
 	GetBlobRequest
 	GetBlobResponse
+	CommitStatsRequest
+	CommitStatsResponse
 	CommitIsAncestorRequest
 	CommitIsAncestorResponse
 	TreeEntryRequest
