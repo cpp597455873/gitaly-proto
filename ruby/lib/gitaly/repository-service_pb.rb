@@ -11,9 +11,32 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.RepositoryExistsResponse" do
     optional :exists, :bool, 1
   end
+  add_message "gitaly.RepackIncrementalRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+  end
+  add_message "gitaly.RepackIncrementalResponse" do
+  end
+  add_message "gitaly.RepackFullRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :create_bitmap, :bool, 2
+  end
+  add_message "gitaly.RepackFullResponse" do
+  end
+  add_message "gitaly.GarbageCollectRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :create_bitmap, :bool, 2
+  end
+  add_message "gitaly.GarbageCollectResponse" do
+  end
 end
 
 module Gitaly
   RepositoryExistsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepositoryExistsRequest").msgclass
   RepositoryExistsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepositoryExistsResponse").msgclass
+  RepackIncrementalRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepackIncrementalRequest").msgclass
+  RepackIncrementalResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepackIncrementalResponse").msgclass
+  RepackFullRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepackFullRequest").msgclass
+  RepackFullResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepackFullResponse").msgclass
+  GarbageCollectRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GarbageCollectRequest").msgclass
+  GarbageCollectResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GarbageCollectResponse").msgclass
 end
