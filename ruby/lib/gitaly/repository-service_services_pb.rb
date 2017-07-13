@@ -15,6 +15,9 @@ module Gitaly
       self.service_name = 'gitaly.RepositoryService'
 
       rpc :Exists, RepositoryExistsRequest, RepositoryExistsResponse
+      rpc :RepackIncremental, RepackIncrementalRequest, RepackIncrementalResponse
+      rpc :RepackFull, RepackFullRequest, RepackFullResponse
+      rpc :GarbageCollect, GarbageCollectRequest, GarbageCollectResponse
     end
 
     Stub = Service.rpc_stub_class

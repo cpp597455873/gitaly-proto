@@ -6,6 +6,9 @@ import "shared.proto";
 
 service RepositoryService {
   rpc Exists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {}
+  rpc RepackIncremental(RepackIncrementalRequest) returns (RepackIncrementalResponse) {};
+  rpc RepackFull(RepackFullRequest) returns (RepackFullResponse) {};
+  rpc GarbageCollect(GarbageCollectRequest) returns (GarbageCollectResponse) {};
 }
 
 message RepositoryExistsRequest {
@@ -15,3 +18,23 @@ message RepositoryExistsRequest {
 message RepositoryExistsResponse {
   bool exists = 1;
 }
+
+message RepackIncrementalRequest {
+  Repository repository = 1;
+}
+
+message RepackIncrementalResponse {}
+
+message RepackFullRequest {
+  Repository repository = 1;
+  bool create_bitmap = 2;
+}
+
+message RepackFullResponse {}
+
+message GarbageCollectRequest {
+  Repository repository = 1;
+  bool create_bitmap = 2;
+}
+
+message GarbageCollectResponse {}
