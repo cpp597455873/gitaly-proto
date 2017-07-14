@@ -11,6 +11,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :right_commit_id, :string, 3
     optional :ignore_whitespace_change, :bool, 4
     repeated :paths, :bytes, 5
+    optional :collapse_diffs, :bool, 6
+    optional :enforce_limits, :bool, 7
+    optional :max_files, :int32, 8
+    optional :max_lines, :int32, 9
+    optional :max_bytes, :int32, 10
+    optional :safe_max_files, :int32, 11
+    optional :safe_max_lines, :int32, 12
+    optional :safe_max_bytes, :int32, 13
   end
   add_message "gitaly.CommitDiffResponse" do
     optional :from_path, :bytes, 1
@@ -22,6 +30,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :binary, :bool, 7
     optional :raw_patch_data, :bytes, 9
     optional :end_of_patch, :bool, 10
+    optional :overflow_marker, :bool, 11
+    optional :collapsed, :bool, 12
   end
   add_message "gitaly.CommitDeltaRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
