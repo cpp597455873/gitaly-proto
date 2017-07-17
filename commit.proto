@@ -13,6 +13,8 @@ service CommitService {
   rpc ListFiles(ListFilesRequest) returns (stream ListFilesResponse) {}
   rpc FindCommit(FindCommitRequest) returns (FindCommitResponse) {}
   rpc CommitStats(CommitStatsRequest) returns (CommitStatsResponse) {}
+  // Use a stream to paginate the result set
+  rpc FindAllCommits(FindAllCommitsRequest) returns (stream FindAllCommitsResponse) {};
 }
 
 message CommitStatsRequest {
@@ -130,4 +132,23 @@ message FindCommitRequest {
 message FindCommitResponse {
   // commit is nil when the commit was not found
   GitCommit commit = 1;
+}
+
+message FindAllCommitsRequest {
+  Repository repository = 1;
+  // When nil, return all commits reachable by any branch in the repo
+  bytes revision = 2;
+  int32 max_count = 3;
+  int32 skip = 4;
+  enum Order {
+    NONE = 0;
+    TOPO = 1;
+    DATE = 2;
+  }
+  Order order = 5;
+}
+
+// A single 'page' of the result set
+message FindAllCommitsResponse {
+  repeated GitCommit commits = 1;
 }
