@@ -13,6 +13,7 @@ service RefService {
   rpc FindRefName(FindRefNameRequest) returns (FindRefNameResponse) {}
   // Return a stream so we can divide the response in chunks of branches
   rpc FindLocalBranches(FindLocalBranchesRequest) returns (stream FindLocalBranchesResponse) {}
+  rpc FindAllBranches(FindAllBranchesRequest) returns (stream FindAllBranchesResponse) {}
 }
 
 message FindDefaultBranchNameRequest {
@@ -78,4 +79,16 @@ message FindLocalBranchCommitAuthor {
   bytes name = 1;
   bytes email = 2;
   google.protobuf.Timestamp date = 3;
+}
+
+message FindAllBranchesRequest {
+  Repository repository = 1;
+}
+
+message FindAllBranchesResponse {
+  message Branch {
+    bytes name = 1;
+    GitCommit target = 2;
+  }
+  repeated Branch branches = 1;
 }
