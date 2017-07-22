@@ -17,6 +17,8 @@ message SSHUploadPackRequest {
   Repository repository = 1;
   // A chunk of raw data to be copied to 'git upload-pack' standard input
   bytes stdin = 2;
+  // GIT_CONFIG_PARAMETERS to use with `git-upload-pack`
+  string git_config_parameters = 3;
 }
 
 message SSHUploadPackResponse {
