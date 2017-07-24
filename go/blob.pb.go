@@ -57,6 +57,8 @@ It has these top-level messages:
 	FindLocalBranchesResponse
 	FindLocalBranchResponse
 	FindLocalBranchCommitAuthor
+	FindAllBranchesRequest
+	FindAllBranchesResponse
 	RepositoryExistsRequest
 	RepositoryExistsResponse
 	RepackIncrementalRequest

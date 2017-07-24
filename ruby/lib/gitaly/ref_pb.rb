@@ -56,6 +56,16 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :email, :bytes, 2
     optional :date, :message, 3, "google.protobuf.Timestamp"
   end
+  add_message "gitaly.FindAllBranchesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+  end
+  add_message "gitaly.FindAllBranchesResponse" do
+    repeated :branches, :message, 1, "gitaly.FindAllBranchesResponse.Branch"
+  end
+  add_message "gitaly.FindAllBranchesResponse.Branch" do
+    optional :name, :bytes, 1
+    optional :target, :message, 2, "gitaly.GitCommit"
+  end
 end
 
 module Gitaly
@@ -72,4 +82,7 @@ module Gitaly
   FindLocalBranchesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindLocalBranchesResponse").msgclass
   FindLocalBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindLocalBranchResponse").msgclass
   FindLocalBranchCommitAuthor = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindLocalBranchCommitAuthor").msgclass
+  FindAllBranchesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllBranchesRequest").msgclass
+  FindAllBranchesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllBranchesResponse").msgclass
+  FindAllBranchesResponse::Branch = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllBranchesResponse.Branch").msgclass
 end
