@@ -24,6 +24,7 @@ module Gitaly
       rpc :CommitStats, CommitStatsRequest, CommitStatsResponse
       # Use a stream to paginate the result set
       rpc :FindAllCommits, FindAllCommitsRequest, stream(FindAllCommitsResponse)
+      rpc :CommitLanguages, CommitLanguagesRequest, CommitLanguagesResponse
     end
 
     Stub = Service.rpc_stub_class

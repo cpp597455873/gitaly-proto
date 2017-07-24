@@ -106,6 +106,18 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FindAllCommitsResponse" do
     repeated :commits, :message, 1, "gitaly.GitCommit"
   end
+  add_message "gitaly.CommitLanguagesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :revision, :bytes, 2
+  end
+  add_message "gitaly.CommitLanguagesResponse" do
+    repeated :languages, :message, 1, "gitaly.CommitLanguagesResponse.Language"
+  end
+  add_message "gitaly.CommitLanguagesResponse.Language" do
+    optional :name, :string, 1
+    optional :share, :float, 2
+    optional :color, :string, 3
+  end
 end
 
 module Gitaly
@@ -131,4 +143,7 @@ module Gitaly
   FindAllCommitsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllCommitsRequest").msgclass
   FindAllCommitsRequest::Order = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllCommitsRequest.Order").enummodule
   FindAllCommitsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllCommitsResponse").msgclass
+  CommitLanguagesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitLanguagesRequest").msgclass
+  CommitLanguagesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitLanguagesResponse").msgclass
+  CommitLanguagesResponse::Language = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitLanguagesResponse.Language").msgclass
 end
