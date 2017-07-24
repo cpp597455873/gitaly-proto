@@ -14,6 +14,7 @@ service RefService {
   // Return a stream so we can divide the response in chunks of branches
   rpc FindLocalBranches(FindLocalBranchesRequest) returns (stream FindLocalBranchesResponse) {}
   rpc FindAllBranches(FindAllBranchesRequest) returns (stream FindAllBranchesResponse) {}
+  rpc FindAllTags(FindAllTagsRequest) returns (stream FindAllTagsResponse) {}
 }
 
 message FindDefaultBranchNameRequest {
@@ -91,4 +92,18 @@ message FindAllBranchesResponse {
     GitCommit target = 2;
   }
   repeated Branch branches = 1;
+}
+
+message FindAllTagsRequest {
+  Repository repository = 1;
+}
+
+message FindAllTagsResponse {
+  message Tag {
+    bytes name = 1;
+    string id = 2;
+    GitCommit target_commit = 3;
+    bytes message = 4;
+  }
+  repeated Tag tags = 1;
 }

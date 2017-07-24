@@ -22,6 +22,7 @@ module Gitaly
       # Return a stream so we can divide the response in chunks of branches
       rpc :FindLocalBranches, FindLocalBranchesRequest, stream(FindLocalBranchesResponse)
       rpc :FindAllBranches, FindAllBranchesRequest, stream(FindAllBranchesResponse)
+      rpc :FindAllTags, FindAllTagsRequest, stream(FindAllTagsResponse)
     end
 
     Stub = Service.rpc_stub_class
