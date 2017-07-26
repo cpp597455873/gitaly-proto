@@ -18,7 +18,7 @@ message SSHUploadPackRequest {
   // A chunk of raw data to be copied to 'git upload-pack' standard input
   bytes stdin = 2;
   // Parameters to use with git -c (key=value pairs)
-  repeated bytes git_config_parameters = 3;
+  repeated string git_config_parameters = 3;
 }
 
 message SSHUploadPackResponse {
