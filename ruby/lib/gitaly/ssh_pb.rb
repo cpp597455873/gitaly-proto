@@ -8,7 +8,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.SSHUploadPackRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :stdin, :bytes, 2
-    repeated :git_config_parameters, :string, 3
+    repeated :git_config_options, :string, 4
   end
   add_message "gitaly.SSHUploadPackResponse" do
     optional :stdout, :bytes, 1
