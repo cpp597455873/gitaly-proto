@@ -3,6 +3,7 @@ syntax = "proto3";
 package gitaly;
 
 import "shared.proto";
+import "google/protobuf/timestamp.proto";
 
 service CommitService {
   rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) {}
@@ -79,6 +80,9 @@ message CommitsBetweenResponse {
 message CountCommitsRequest {
   Repository repository = 1;
   bytes revision = 2;
+  google.protobuf.Timestamp after = 3;
+  google.protobuf.Timestamp before = 4;
+  bytes path = 5;
 }
 
 message CountCommitsResponse {
