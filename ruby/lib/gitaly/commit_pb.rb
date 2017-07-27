@@ -4,6 +4,7 @@
 require 'google/protobuf'
 
 require 'shared_pb'
+require 'google/protobuf/timestamp_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.CommitStatsRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
@@ -52,6 +53,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.CountCommitsRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :revision, :bytes, 2
+    optional :after, :message, 3, "google.protobuf.Timestamp"
+    optional :before, :message, 4, "google.protobuf.Timestamp"
+    optional :path, :bytes, 5
   end
   add_message "gitaly.CountCommitsResponse" do
     optional :count, :int32, 1
