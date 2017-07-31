@@ -42,6 +42,8 @@ It has these top-level messages:
 	CommitLanguagesResponse
 	RawBlameRequest
 	RawBlameResponse
+	LastCommitIdForPathRequest
+	LastCommitIdForPathResponse
 	CommitDiffRequest
 	CommitDiffResponse
 	CommitDeltaRequest
