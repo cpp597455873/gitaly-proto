@@ -26,6 +26,7 @@ module Gitaly
       rpc :FindAllCommits, FindAllCommitsRequest, stream(FindAllCommitsResponse)
       rpc :CommitLanguages, CommitLanguagesRequest, CommitLanguagesResponse
       rpc :RawBlame, RawBlameRequest, stream(RawBlameResponse)
+      rpc :LastCommitForPath, LastCommitForPathRequest, LastCommitForPathResponse
     end
 
     Stub = Service.rpc_stub_class

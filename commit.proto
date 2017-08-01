@@ -18,6 +18,7 @@ service CommitService {
   rpc FindAllCommits(FindAllCommitsRequest) returns (stream FindAllCommitsResponse) {};
   rpc CommitLanguages(CommitLanguagesRequest) returns (CommitLanguagesResponse) {}
   rpc RawBlame(RawBlameRequest) returns (stream RawBlameResponse) {}
+  rpc LastCommitForPath(LastCommitForPathRequest) returns (LastCommitForPathResponse) {}
 }
 
 message CommitStatsRequest {
@@ -181,4 +182,15 @@ message RawBlameRequest {
 
 message RawBlameResponse {
   bytes data = 1;
+}
+
+message LastCommitForPathRequest {
+  Repository repository = 1;
+  bytes revision = 2;
+  bytes path = 3;
+}
+
+message LastCommitForPathResponse {
+  // commit is nil when the commit was not found
+  GitCommit commit = 1;
 }

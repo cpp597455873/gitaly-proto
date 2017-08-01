@@ -130,6 +130,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.RawBlameResponse" do
     optional :data, :bytes, 1
   end
+  add_message "gitaly.LastCommitForPathRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :revision, :bytes, 2
+    optional :path, :bytes, 3
+  end
+  add_message "gitaly.LastCommitForPathResponse" do
+    optional :commit, :message, 1, "gitaly.GitCommit"
+  end
 end
 
 module Gitaly
@@ -160,4 +168,6 @@ module Gitaly
   CommitLanguagesResponse::Language = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitLanguagesResponse.Language").msgclass
   RawBlameRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RawBlameRequest").msgclass
   RawBlameResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RawBlameResponse").msgclass
+  LastCommitForPathRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.LastCommitForPathRequest").msgclass
+  LastCommitForPathResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.LastCommitForPathResponse").msgclass
 end
