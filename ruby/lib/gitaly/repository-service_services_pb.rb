@@ -14,10 +14,12 @@ module Gitaly
       self.unmarshal_class_method = :decode
       self.service_name = 'gitaly.RepositoryService'
 
-      rpc :Exists, RepositoryExistsRequest, RepositoryExistsResponse
+      rpc :RepositoryExists, RepositoryExistsRequest, RepositoryExistsResponse
       rpc :RepackIncremental, RepackIncrementalRequest, RepackIncrementalResponse
       rpc :RepackFull, RepackFullRequest, RepackFullResponse
       rpc :GarbageCollect, GarbageCollectRequest, GarbageCollectResponse
+      # Deprecated, use the RepositoryExists RPC instead.
+      rpc :Exists, RepositoryExistsRequest, RepositoryExistsResponse
     end
 
     Stub = Service.rpc_stub_class

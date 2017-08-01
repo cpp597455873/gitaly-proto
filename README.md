@@ -90,6 +90,9 @@ gRPC provides an implementation framework based on these Protobuf concepts.
 1.  It is encouraged to put comments (starting with `//`) in .proto files.
     Please put comments on their own lines. This will cause them to be
     treated as documentation by the protoc compiler.
+1.  When choosing an RPC name don't use the service name as context.
+    Good: `service CommitService { rpc CommitExists }`. Bad:
+    `service CommitService { rpc Exists }`.
 
 ## Contributing
 
