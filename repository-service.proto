@@ -9,6 +9,7 @@ service RepositoryService {
   rpc RepackIncremental(RepackIncrementalRequest) returns (RepackIncrementalResponse) {};
   rpc RepackFull(RepackFullRequest) returns (RepackFullResponse) {};
   rpc GarbageCollect(GarbageCollectRequest) returns (GarbageCollectResponse) {};
+  rpc RepositorySize(RepositorySizeRequest) returns (RepositorySizeResponse) {}
 
   // Deprecated, use the RepositoryExists RPC instead.
   rpc Exists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {}
@@ -41,3 +42,12 @@ message GarbageCollectRequest {
 }
 
 message GarbageCollectResponse {}
+
+message RepositorySizeRequest {
+  Repository repository = 1;
+}
+
+message RepositorySizeResponse {
+  // Repository size in kilobytes
+  int64 size = 1;
+}

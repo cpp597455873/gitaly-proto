@@ -18,6 +18,7 @@ module Gitaly
       rpc :RepackIncremental, RepackIncrementalRequest, RepackIncrementalResponse
       rpc :RepackFull, RepackFullRequest, RepackFullResponse
       rpc :GarbageCollect, GarbageCollectRequest, GarbageCollectResponse
+      rpc :RepositorySize, RepositorySizeRequest, RepositorySizeResponse
       # Deprecated, use the RepositoryExists RPC instead.
       rpc :Exists, RepositoryExistsRequest, RepositoryExistsResponse
     end
