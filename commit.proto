@@ -16,6 +16,7 @@ service CommitService {
   rpc CommitStats(CommitStatsRequest) returns (CommitStatsResponse) {}
   // Use a stream to paginate the result set
   rpc FindAllCommits(FindAllCommitsRequest) returns (stream FindAllCommitsResponse) {};
+  rpc FindCommits(FindCommitsRequest) returns (stream FindCommitsResponse) {}
   rpc CommitLanguages(CommitLanguagesRequest) returns (CommitLanguagesResponse) {}
   rpc RawBlame(RawBlameRequest) returns (stream RawBlameResponse) {}
   rpc LastCommitForPath(LastCommitForPathRequest) returns (LastCommitForPathResponse) {}
@@ -158,6 +159,24 @@ message FindAllCommitsRequest {
 
 // A single 'page' of the result set
 message FindAllCommitsResponse {
+  repeated GitCommit commits = 1;
+}
+
+message FindCommitsRequest {
+  Repository repository = 1;
+  bytes revision = 2;
+  int32 limit = 3;
+  int32 offset = 4;
+  repeated bytes paths = 5;
+  bool follow = 6;
+  bool skip_merges = 7;
+  bool disable_walk = 8;
+  google.protobuf.Timestamp after = 9;
+  google.protobuf.Timestamp before = 10;
+}
+
+// A single 'page' of the result set
+message FindCommitsResponse {
   repeated GitCommit commits = 1;
 }
 

@@ -24,6 +24,7 @@ module Gitaly
       rpc :CommitStats, CommitStatsRequest, CommitStatsResponse
       # Use a stream to paginate the result set
       rpc :FindAllCommits, FindAllCommitsRequest, stream(FindAllCommitsResponse)
+      rpc :FindCommits, FindCommitsRequest, stream(FindCommitsResponse)
       rpc :CommitLanguages, CommitLanguagesRequest, CommitLanguagesResponse
       rpc :RawBlame, RawBlameRequest, stream(RawBlameResponse)
       rpc :LastCommitForPath, LastCommitForPathRequest, LastCommitForPathResponse
