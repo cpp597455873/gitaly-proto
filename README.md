@@ -120,3 +120,21 @@ _support/generate-from-proto
 ## How to deprecate an RPC call
 
 See [DEPRECATION.md](DEPRECATION.md).
+
+## How to manually push the gem
+
+If the release script fails the gem may not be pushed. This is how you can do that after the fact:
+
+```shell
+# Use a sub-shell to limit scope of 'set -e'
+(
+  set -e
+
+  # Replace X.Y.Z with the version you are pushing
+  GEM_VERSION=X.Y.Z
+
+  git checkout v$GEM_VERSION
+  gem build gitaly.gemspec
+  gem push gitaly-$GEM_VERSION.gem
+)
+```
