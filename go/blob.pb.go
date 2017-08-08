@@ -38,6 +38,8 @@ It has these top-level messages:
 	FindCommitResponse
 	FindAllCommitsRequest
 	FindAllCommitsResponse
+	FindCommitsRequest
+	FindCommitsResponse
 	CommitLanguagesRequest
 	CommitLanguagesResponse
 	RawBlameRequest

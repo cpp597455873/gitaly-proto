@@ -110,6 +110,21 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FindAllCommitsResponse" do
     repeated :commits, :message, 1, "gitaly.GitCommit"
   end
+  add_message "gitaly.FindCommitsRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :revision, :bytes, 2
+    optional :limit, :int32, 3
+    optional :offset, :int32, 4
+    repeated :paths, :bytes, 5
+    optional :follow, :bool, 6
+    optional :skip_merges, :bool, 7
+    optional :disable_walk, :bool, 8
+    optional :after, :message, 9, "google.protobuf.Timestamp"
+    optional :before, :message, 10, "google.protobuf.Timestamp"
+  end
+  add_message "gitaly.FindCommitsResponse" do
+    repeated :commits, :message, 1, "gitaly.GitCommit"
+  end
   add_message "gitaly.CommitLanguagesRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :revision, :bytes, 2
@@ -174,6 +189,8 @@ module Gitaly
   FindAllCommitsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllCommitsRequest").msgclass
   FindAllCommitsRequest::Order = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllCommitsRequest.Order").enummodule
   FindAllCommitsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllCommitsResponse").msgclass
+  FindCommitsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindCommitsRequest").msgclass
+  FindCommitsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindCommitsResponse").msgclass
   CommitLanguagesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitLanguagesRequest").msgclass
   CommitLanguagesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitLanguagesResponse").msgclass
   CommitLanguagesResponse::Language = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitLanguagesResponse.Language").msgclass
