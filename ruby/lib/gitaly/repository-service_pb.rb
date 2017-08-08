@@ -34,6 +34,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.RepositorySizeResponse" do
     optional :size, :int64, 1
   end
+  add_message "gitaly.ApplyGitattributesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :revision, :bytes, 2
+  end
+  add_message "gitaly.ApplyGitattributesResponse" do
+  end
 end
 
 module Gitaly
@@ -47,4 +53,6 @@ module Gitaly
   GarbageCollectResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GarbageCollectResponse").msgclass
   RepositorySizeRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepositorySizeRequest").msgclass
   RepositorySizeResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepositorySizeResponse").msgclass
+  ApplyGitattributesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ApplyGitattributesRequest").msgclass
+  ApplyGitattributesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ApplyGitattributesResponse").msgclass
 end

@@ -81,6 +81,8 @@ It has these top-level messages:
 	GarbageCollectResponse
 	RepositorySizeRequest
 	RepositorySizeResponse
+	ApplyGitattributesRequest
+	ApplyGitattributesResponse
 	Repository
 	GitCommit
 	CommitAuthor

@@ -10,6 +10,7 @@ service RepositoryService {
   rpc RepackFull(RepackFullRequest) returns (RepackFullResponse) {};
   rpc GarbageCollect(GarbageCollectRequest) returns (GarbageCollectResponse) {};
   rpc RepositorySize(RepositorySizeRequest) returns (RepositorySizeResponse) {}
+  rpc ApplyGitattributes(ApplyGitattributesRequest) returns (ApplyGitattributesResponse) {}
 
   // Deprecated, use the RepositoryExists RPC instead.
   rpc Exists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {}
@@ -51,3 +52,10 @@ message RepositorySizeResponse {
   // Repository size in kilobytes
   int64 size = 1;
 }
+
+message ApplyGitattributesRequest {
+  Repository repository = 1;
+  bytes revision = 2;
+}
+
+message ApplyGitattributesResponse {}
