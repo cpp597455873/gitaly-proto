@@ -11,6 +11,12 @@ message Repository {
 
   string storage_name = 2;
   string relative_path = 3;
+  // Sets the GIT_OBJECT_DIRECTORY envvar on git commands to the value of this field.
+  // It influences the object storage directory the SHA1 directories are created underneath.
+  string git_object_directory = 4;
+  // Sets the GIT_ALTERNATE_OBJECT_DIRECTORIES envvar on git commands to the values of this field.
+  // It influences the list of Git object directories which can be used to search for Git objects.
+  repeated string git_alternate_object_directories = 5;
 }
 
 message GitCommit {
