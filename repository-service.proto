@@ -11,6 +11,7 @@ service RepositoryService {
   rpc GarbageCollect(GarbageCollectRequest) returns (GarbageCollectResponse) {};
   rpc RepositorySize(RepositorySizeRequest) returns (RepositorySizeResponse) {}
   rpc ApplyGitattributes(ApplyGitattributesRequest) returns (ApplyGitattributesResponse) {}
+  rpc FetchRemote(FetchRemoteRequest) returns (FetchRemoteResponse) {};
 
   // Deprecated, use the RepositoryExists RPC instead.
   rpc Exists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {}
@@ -59,3 +60,13 @@ message ApplyGitattributesRequest {
 }
 
 message ApplyGitattributesResponse {}
+
+message FetchRemoteRequest {
+  Repository repository = 1;
+  string remote = 2;
+  bool force = 3;
+  bool no_tags = 4;
+  int32 timeout = 5;
+}
+
+message FetchRemoteResponse {}
