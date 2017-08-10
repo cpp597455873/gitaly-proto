@@ -20,6 +20,7 @@ module Gitaly
       rpc :GarbageCollect, GarbageCollectRequest, GarbageCollectResponse
       rpc :RepositorySize, RepositorySizeRequest, RepositorySizeResponse
       rpc :ApplyGitattributes, ApplyGitattributesRequest, ApplyGitattributesResponse
+      rpc :FetchRemote, FetchRemoteRequest, FetchRemoteResponse
       # Deprecated, use the RepositoryExists RPC instead.
       rpc :Exists, RepositoryExistsRequest, RepositoryExistsResponse
     end
