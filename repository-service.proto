@@ -67,6 +67,8 @@ message FetchRemoteRequest {
   bool force = 3;
   bool no_tags = 4;
   int32 timeout = 5;
+  string ssh_key = 6;
+  string known_hosts = 7; 
 }
 
 message FetchRemoteResponse {}
