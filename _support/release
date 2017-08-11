@@ -6,8 +6,13 @@ require_relative 'run.rb'
 GEM_NAME = 'gitaly'
 RUBY_PREFIX = 'ruby/lib'
 RUBY_VERSION_FILE = 'gitaly/version.rb'
+REMOTES = {
+  'gitlab.com' => 'gitlab-org/gitaly-proto.git',
+  'dev.gitlab.org' => 'gitlab/gitaly-proto.git',
+}
 
-def main(version)
+
+def main(version, ssh)
   run!(%w[_support/generate-from-proto])
   puts 'Testing for changed files'
   run!(%w[git diff --quiet --exit-code])
@@ -23,10 +28,8 @@ def main(version)
   puts "Proceed to publish version #{version}? Enter 'Yes' to continue; Ctrl-C to abort"
   $stdout.flush
   abort unless $stdin.gets.chomp == 'Yes'
-  %w[
-    https://gitlab.com/gitlab-org/gitaly-proto.git
-    https://dev.gitlab.org/gitlab/gitaly-proto.git
-  ].each do |remote|
+  REMOTES.each do |host, repo|
+    remote = ssh ? "git@#{host}:#{repo}" : "https://#{host}/#{repo}"
     run!(%W[git push #{remote} HEAD #{tag_name}])
   end
   run!(%W[gem push #{GEM_NAME}-#{version}.gem])
@@ -56,8 +59,14 @@ def error(msg)
   warn "#{$0}: #{msg}"
 end
 
+ssh = false
+if ARGV.first == '--ssh'
+  ssh = true
+  ARGV.shift
+end
+
 unless ARGV.count == 1
-  warn "Usage: #{$0} VERSION"
+  warn "Usage: #{$0} [--ssh] VERSION"
   warn "Specify version as x.y.z"
   abort
 end
@@ -69,4 +78,4 @@ unless git_root_current_file == Dir.pwd
   abort
 end
 
-main(ARGV.first)
+main(ARGV.first, ssh)
