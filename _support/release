@@ -8,7 +8,6 @@ RUBY_PREFIX = 'ruby/lib'
 RUBY_VERSION_FILE = 'gitaly/version.rb'
 REMOTES = {
   'gitlab.com' => 'gitlab-org/gitaly-proto.git',
-  'dev.gitlab.org' => 'gitlab/gitaly-proto.git',
 }
 
 
