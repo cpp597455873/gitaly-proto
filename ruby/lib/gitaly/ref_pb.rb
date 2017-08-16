@@ -78,6 +78,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :target_commit, :message, 3, "gitaly.GitCommit"
     optional :message, :bytes, 4
   end
+  add_message "gitaly.RefExistsRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :ref, :bytes, 2
+  end
+  add_message "gitaly.RefExistsResponse" do
+    optional :value, :bool, 1
+  end
 end
 
 module Gitaly
@@ -100,4 +107,6 @@ module Gitaly
   FindAllTagsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllTagsRequest").msgclass
   FindAllTagsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllTagsResponse").msgclass
   FindAllTagsResponse::Tag = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllTagsResponse.Tag").msgclass
+  RefExistsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RefExistsRequest").msgclass
+  RefExistsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RefExistsResponse").msgclass
 end
