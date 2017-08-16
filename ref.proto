@@ -15,6 +15,7 @@ service RefService {
   rpc FindLocalBranches(FindLocalBranchesRequest) returns (stream FindLocalBranchesResponse) {}
   rpc FindAllBranches(FindAllBranchesRequest) returns (stream FindAllBranchesResponse) {}
   rpc FindAllTags(FindAllTagsRequest) returns (stream FindAllTagsResponse) {}
+  rpc RefExists(RefExistsRequest) returns (RefExistsResponse) {}
 }
 
 message FindDefaultBranchNameRequest {
@@ -106,4 +107,14 @@ message FindAllTagsResponse {
     bytes message = 4;
   }
   repeated Tag tags = 1;
+}
+
+message RefExistsRequest {
+  Repository repository = 1;
+  // Any ref, e.g. 'refs/heads/master' or 'refs/tags/v1.0.1'. Must start with 'refs/'.
+  bytes ref = 2;
+}
+
+message RefExistsResponse {
+  bool value = 1;
 }

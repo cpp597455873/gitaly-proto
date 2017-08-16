@@ -23,6 +23,7 @@ module Gitaly
       rpc :FindLocalBranches, FindLocalBranchesRequest, stream(FindLocalBranchesResponse)
       rpc :FindAllBranches, FindAllBranchesRequest, stream(FindAllBranchesResponse)
       rpc :FindAllTags, FindAllTagsRequest, stream(FindAllTagsResponse)
+      rpc :RefExists, RefExistsRequest, RefExistsResponse
     end
 
     Stub = Service.rpc_stub_class
