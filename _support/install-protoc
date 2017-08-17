@@ -14,7 +14,7 @@ PROTOC_DOWNLOAD = {
     'sha256' => '7c98f9e8a3d77e49a072861b7a9b18ffb22c98e37d2a80650264661bfaad5b3a',
   }
 }
-PROTOC_DIR = '_support/protoc'
+PROTOC_DIR = '_build/protoc'
 
 def main
   current_platform = platform
@@ -27,13 +27,6 @@ def main
   FileUtils.rm_rf(PROTOC_DIR)
   FileUtils.mkdir_p(PROTOC_DIR)
   run!(%W[unzip #{File.expand_path(File.basename(PROTOC_DOWNLOAD[current_platform]['url']))}], PROTOC_DIR)
-
-  # Go-specific libraries
-  %w[proto protoc-gen-go].each do |pkg|
-    run!(%W[go get -u github.com/golang/protobuf/#{pkg}])
-  end
-
-  run!(%w[bundle install --binstubs], '_support')
 end
 
 def platform

@@ -10,7 +10,7 @@ The .proto files define the remote procedure calls for interacting
 with Gitaly. We keep auto-generated client libraries for Ruby and Go
 in their respective subdirectories.
 
-Use the `_support/generate-from-proto` script from the root of the
+Use the `make generate` script from the root of the
 repository to regenerate the client libraries after updating .proto
 files.
 
@@ -30,7 +30,7 @@ these to define the Gitaly **protocol**.
     commit xxx), message/stream (example: get contents of blob xxx),
     stream/message (example: create new blob with contents xxx),
     stream/stream (example: git SSH session).
--   **service** a logical group of RPC's. 
+-   **service** a logical group of RPC's.
 -   **message** like a JSON object except it has pre-defined types.
 -   **stream** an unbounded sequence of messages. In the Ruby clients
     this looks like an Enumerator.
@@ -110,16 +110,23 @@ After you change or add a .proto file you need to re-generate the Go
 and Ruby libraries before committing your change.
 
 ```
-# Install dependencies
-_support/install-protoc
-
 # Re-generate Go and Ruby libraries
-_support/generate-from-proto
+make generate
 ```
 
 ## How to deprecate an RPC call
 
 See [DEPRECATION.md](DEPRECATION.md).
+
+## Release
+
+This will tag and release the gitaly-proto library, including
+pushing the gem to rubygems.org
+
+```
+make release version=X.Y.Z
+```
+
 
 ## How to manually push the gem
 

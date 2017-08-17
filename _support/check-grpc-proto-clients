@@ -3,7 +3,6 @@ require_relative 'run.rb'
 
 def main
   no_changes!
-  run!(%w[_support/install-protoc])
   run!(%w[_support/generate-from-proto])
   no_changes!
   puts 'OK! The gRPC / Protobuf clients are up-to-date'
