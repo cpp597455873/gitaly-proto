@@ -12,8 +12,8 @@ RUBY_VERSION_FILE = 'gitaly/version.rb'
 
 ENV['PATH'] = [
   File.join(ENV['GOPATH'], 'bin'),
-  File.join(Dir.pwd, '_support/protoc/bin'),
-  File.join(Dir.pwd, '_support/bin'),
+  File.join(Dir.pwd, '_build/protoc/bin'),
+  File.join(Dir.pwd, '_build/bin'),
   ENV['PATH'],
 ].join(':')
 
