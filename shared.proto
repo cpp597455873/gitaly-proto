@@ -19,6 +19,7 @@ message Repository {
   repeated string git_alternate_object_directories = 5;
 }
 
+// Corresponds to Gitlab::Git::Commit
 message GitCommit {
   string id = 1;
   bytes subject = 2;
@@ -36,4 +37,10 @@ message CommitAuthor {
 
 message ExitStatus {
   int32 value = 1;
+}
+
+// Corresponds to Gitlab::Git::Branch
+message Branch {
+  bytes name = 1;
+  GitCommit target_commit = 2;
 }
