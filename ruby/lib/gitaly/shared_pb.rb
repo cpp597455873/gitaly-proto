@@ -27,6 +27,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.ExitStatus" do
     optional :value, :int32, 1
   end
+  add_message "gitaly.Branch" do
+    optional :name, :bytes, 1
+    optional :target_commit, :message, 2, "gitaly.GitCommit"
+  end
 end
 
 module Gitaly
@@ -34,4 +38,5 @@ module Gitaly
   GitCommit = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GitCommit").msgclass
   CommitAuthor = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitAuthor").msgclass
   ExitStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ExitStatus").msgclass
+  Branch = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Branch").msgclass
 end
