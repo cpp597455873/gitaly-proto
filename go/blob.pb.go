@@ -9,6 +9,7 @@ It is generated from these files:
 	commit.proto
 	deprecated-services.proto
 	diff.proto
+	namespace.proto
 	notifications.proto
 	ref.proto
 	repository-service.proto
@@ -55,6 +56,14 @@ It has these top-level messages:
 	CommitDeltaResponse
 	CommitPatchRequest
 	CommitPatchResponse
+	AddNamespaceRequest
+	RemoveNamespaceRequest
+	RenameNamespaceRequest
+	NamespaceExistsRequest
+	NamespaceExistsResponse
+	AddNamespaceResponse
+	RemoveNamespaceResponse
+	RenameNamespaceResponse
 	PostReceiveRequest
 	PostReceiveResponse
 	FindDefaultBranchNameRequest
