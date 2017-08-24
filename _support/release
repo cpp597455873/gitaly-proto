@@ -3,7 +3,7 @@ require 'erb'
 
 require_relative 'run.rb'
 
-GEM_NAME = 'gitaly'
+GEM_NAME = 'gitaly-proto'
 RUBY_PREFIX = 'ruby/lib'
 RUBY_VERSION_FILE = 'gitaly/version.rb'
 REMOTES = {
