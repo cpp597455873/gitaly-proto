@@ -24,6 +24,8 @@ module Gitaly
       rpc :FindAllBranches, FindAllBranchesRequest, stream(FindAllBranchesResponse)
       rpc :FindAllTags, FindAllTagsRequest, stream(FindAllTagsResponse)
       rpc :RefExists, RefExistsRequest, RefExistsResponse
+      rpc :CreateBranch, CreateBranchRequest, CreateBranchResponse
+      rpc :DeleteBranch, DeleteBranchRequest, DeleteBranchResponse
     end
 
     Stub = Service.rpc_stub_class

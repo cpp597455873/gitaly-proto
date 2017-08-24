@@ -16,6 +16,8 @@ service RefService {
   rpc FindAllBranches(FindAllBranchesRequest) returns (stream FindAllBranchesResponse) {}
   rpc FindAllTags(FindAllTagsRequest) returns (stream FindAllTagsResponse) {}
   rpc RefExists(RefExistsRequest) returns (RefExistsResponse) {}
+  rpc CreateBranch(CreateBranchRequest) returns (CreateBranchResponse) {}
+  rpc DeleteBranch(DeleteBranchRequest) returns (DeleteBranchResponse) {}
 }
 
 message FindDefaultBranchNameRequest {
@@ -118,3 +120,28 @@ message RefExistsRequest {
 message RefExistsResponse {
   bool value = 1;
 }
+
+message CreateBranchRequest {
+  Repository repository = 1;
+  bytes name = 2;
+  bytes start_point = 3;
+}
+
+message CreateBranchResponse {
+  enum Status {
+    OK = 0;
+    ERR_EXISTS = 1;
+    ERR_INVALID = 2;
+    ERR_INVALID_START_POINT = 3;
+  }
+  Status status = 1;
+  Branch branch = 2;
+}
+
+message DeleteBranchRequest {
+  Repository repository = 1;
+  bytes name = 2;
+}
+
+// Not clear if we need to do status signaling; we can add fields later.
+message DeleteBranchResponse {}
