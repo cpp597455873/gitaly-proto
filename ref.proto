@@ -18,6 +18,7 @@ service RefService {
   rpc RefExists(RefExistsRequest) returns (RefExistsResponse) {}
   rpc CreateBranch(CreateBranchRequest) returns (CreateBranchResponse) {}
   rpc DeleteBranch(DeleteBranchRequest) returns (DeleteBranchResponse) {}
+  rpc FindBranch(FindBranchRequest) returns (FindBranchResponse) {}
 }
 
 message FindDefaultBranchNameRequest {
@@ -145,3 +146,13 @@ message DeleteBranchRequest {
 
 // Not clear if we need to do status signaling; we can add fields later.
 message DeleteBranchResponse {}
+
+message FindBranchRequest {
+  Repository repository = 1;
+  // Name can be 'master' but also 'refs/heads/master'
+  bytes name = 2;
+}
+
+message FindBranchResponse {
+  Branch branch = 1;
+}

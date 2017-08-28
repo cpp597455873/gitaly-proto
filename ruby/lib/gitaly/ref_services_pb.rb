@@ -26,6 +26,7 @@ module Gitaly
       rpc :RefExists, RefExistsRequest, RefExistsResponse
       rpc :CreateBranch, CreateBranchRequest, CreateBranchResponse
       rpc :DeleteBranch, DeleteBranchRequest, DeleteBranchResponse
+      rpc :FindBranch, FindBranchRequest, FindBranchResponse
     end
 
     Stub = Service.rpc_stub_class
