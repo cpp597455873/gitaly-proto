@@ -84,6 +84,10 @@ It has these top-level messages:
 	FindAllTagsResponse
 	RefExistsRequest
 	RefExistsResponse
+	CreateBranchRequest
+	CreateBranchResponse
+	DeleteBranchRequest
+	DeleteBranchResponse
 	RepositoryExistsRequest
 	RepositoryExistsResponse
 	RepackIncrementalRequest

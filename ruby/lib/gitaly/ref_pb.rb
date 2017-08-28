@@ -85,6 +85,27 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.RefExistsResponse" do
     optional :value, :bool, 1
   end
+  add_message "gitaly.CreateBranchRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :name, :bytes, 2
+    optional :start_point, :bytes, 3
+  end
+  add_message "gitaly.CreateBranchResponse" do
+    optional :status, :enum, 1, "gitaly.CreateBranchResponse.Status"
+    optional :branch, :message, 2, "gitaly.Branch"
+  end
+  add_enum "gitaly.CreateBranchResponse.Status" do
+    value :OK, 0
+    value :ERR_EXISTS, 1
+    value :ERR_INVALID, 2
+    value :ERR_INVALID_START_POINT, 3
+  end
+  add_message "gitaly.DeleteBranchRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :name, :bytes, 2
+  end
+  add_message "gitaly.DeleteBranchResponse" do
+  end
 end
 
 module Gitaly
@@ -109,4 +130,9 @@ module Gitaly
   FindAllTagsResponse::Tag = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllTagsResponse.Tag").msgclass
   RefExistsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RefExistsRequest").msgclass
   RefExistsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RefExistsResponse").msgclass
+  CreateBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateBranchRequest").msgclass
+  CreateBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateBranchResponse").msgclass
+  CreateBranchResponse::Status = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateBranchResponse.Status").enummodule
+  DeleteBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DeleteBranchRequest").msgclass
+  DeleteBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DeleteBranchResponse").msgclass
 end
