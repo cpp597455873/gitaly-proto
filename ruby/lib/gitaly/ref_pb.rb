@@ -106,6 +106,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.DeleteBranchResponse" do
   end
+  add_message "gitaly.FindBranchRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :name, :bytes, 2
+  end
+  add_message "gitaly.FindBranchResponse" do
+    optional :branch, :message, 1, "gitaly.Branch"
+  end
 end
 
 module Gitaly
@@ -135,4 +142,6 @@ module Gitaly
   CreateBranchResponse::Status = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateBranchResponse.Status").enummodule
   DeleteBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DeleteBranchRequest").msgclass
   DeleteBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DeleteBranchResponse").msgclass
+  FindBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindBranchRequest").msgclass
+  FindBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindBranchResponse").msgclass
 end

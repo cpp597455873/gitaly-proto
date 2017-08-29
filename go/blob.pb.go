@@ -88,6 +88,8 @@ It has these top-level messages:
 	CreateBranchResponse
 	DeleteBranchRequest
 	DeleteBranchResponse
+	FindBranchRequest
+	FindBranchResponse
 	RepositoryExistsRequest
 	RepositoryExistsResponse
 	RepackIncrementalRequest
