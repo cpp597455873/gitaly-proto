@@ -110,6 +110,8 @@ message TreeEntry {
   int32 mode = 5;
   // The commit object via which this entry was retrieved
   string commit_oid = 6;
+  // Relative path of the first subdir that doesn't have only one directory descendant
+  bytes flat_path = 7;
 }
 
 message GetTreeEntriesRequest {
