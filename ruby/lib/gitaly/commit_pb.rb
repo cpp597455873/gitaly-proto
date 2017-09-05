@@ -67,6 +67,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :type, :enum, 4, "gitaly.TreeEntry.EntryType"
     optional :mode, :int32, 5
     optional :commit_oid, :string, 6
+    optional :flat_path, :bytes, 7
   end
   add_enum "gitaly.TreeEntry.EntryType" do
     value :BLOB, 0
