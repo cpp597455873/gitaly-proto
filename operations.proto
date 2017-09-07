@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package gitaly;
+
+import "shared.proto";
+
+service OperationService {
+  rpc UserCreateBranch(UserCreateBranchRequest) returns (UserCreateBranchResponse) {}
+}
+
+message UserCreateBranchRequest {
+  Repository repository = 1;
+  bytes branch_name = 2;
+  User user = 3;
+  bytes start_point = 4;
+}
+
+message UserCreateBranchResponse {
+  Branch branch = 1;
+}
