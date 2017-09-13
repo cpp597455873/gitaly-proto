@@ -43,10 +43,11 @@ message PostReceivePackRequest {
   Repository repository = 1;
   // Raw data to be copied to stdin of 'git receive-pack'
   bytes data = 2;
-  // gl_id and gl_repository becomes env variables, used by the Git {pre,post}-receive
+  // gl_id, gl_repository, and gl_username become env variables, used by the Git {pre,post}-receive
   // hooks. They should only be present in the first message of the stream.
   string gl_id = 3;
   string gl_repository = 4;
+  string gl_username = 5;
 }
 
 message PostReceivePackResponse {
