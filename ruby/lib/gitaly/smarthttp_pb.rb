@@ -23,6 +23,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :data, :bytes, 2
     optional :gl_id, :string, 3
     optional :gl_repository, :string, 4
+    optional :gl_username, :string, 5
   end
   add_message "gitaly.PostReceivePackResponse" do
     optional :data, :bytes, 1
