@@ -44,3 +44,9 @@ message Branch {
   bytes name = 1;
   GitCommit target_commit = 2;
 }
+
+message User {
+  string gl_id = 1;
+  bytes name = 2;
+  bytes email = 3;
+}

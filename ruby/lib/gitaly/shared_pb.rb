@@ -31,6 +31,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :name, :bytes, 1
     optional :target_commit, :message, 2, "gitaly.GitCommit"
   end
+  add_message "gitaly.User" do
+    optional :gl_id, :string, 1
+    optional :name, :bytes, 2
+    optional :email, :bytes, 3
+  end
 end
 
 module Gitaly
@@ -39,4 +44,5 @@ module Gitaly
   CommitAuthor = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitAuthor").msgclass
   ExitStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ExitStatus").msgclass
   Branch = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Branch").msgclass
+  User = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.User").msgclass
 end
