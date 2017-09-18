@@ -43,6 +43,18 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :exists, :bool, 2
     optional :pre_receive_error, :string, 3
   end
+  add_message "gitaly.UserMergeBranchRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :user, :message, 2, "gitaly.User"
+    optional :commit_id, :string, 3
+    optional :branch, :bytes, 4
+    optional :message, :bytes, 5
+    optional :apply, :bool, 6
+  end
+  add_message "gitaly.UserMergeBranchResponse" do
+    optional :commit_id, :string, 1
+    optional :applied, :bool, 2
+  end
 end
 
 module Gitaly
@@ -54,4 +66,6 @@ module Gitaly
   UserDeleteTagResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserDeleteTagResponse").msgclass
   UserCreateTagRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCreateTagRequest").msgclass
   UserCreateTagResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCreateTagResponse").msgclass
+  UserMergeBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserMergeBranchRequest").msgclass
+  UserMergeBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserMergeBranchResponse").msgclass
 end
