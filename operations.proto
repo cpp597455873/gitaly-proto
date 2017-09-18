@@ -6,6 +6,7 @@ import "shared.proto";
 
 service OperationService {
   rpc UserCreateBranch(UserCreateBranchRequest) returns (UserCreateBranchResponse) {}
+  rpc UserDeleteTag(UserDeleteTagRequest) returns (UserDeleteTagResponse) {}
 }
 
 message UserCreateBranchRequest {
@@ -18,3 +19,11 @@ message UserCreateBranchRequest {
 message UserCreateBranchResponse {
   Branch branch = 1;
 }
+
+message UserDeleteTagRequest {
+  Repository repository = 1;
+  bytes tag_name = 2;
+  User user = 3;
+}
+
+message UserDeleteTagResponse {}
