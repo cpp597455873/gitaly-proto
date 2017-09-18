@@ -5,7 +5,7 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     faraday (0.13.1)
       multipart-post (>= 1.2, < 3)
-    google-protobuf (3.4.1)
+    google-protobuf (3.4.1.1)
     googleauth (0.5.3)
       faraday (~> 0.12)
       jwt (~> 1.4)
