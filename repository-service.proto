@@ -12,6 +12,7 @@ service RepositoryService {
   rpc RepositorySize(RepositorySizeRequest) returns (RepositorySizeResponse) {}
   rpc ApplyGitattributes(ApplyGitattributesRequest) returns (ApplyGitattributesResponse) {}
   rpc FetchRemote(FetchRemoteRequest) returns (FetchRemoteResponse) {};
+  rpc CreateRepository(CreateRepositoryRequest) returns (CreateRepositoryResponse) {};
 
   // Deprecated, use the RepositoryExists RPC instead.
   rpc Exists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {}
@@ -72,3 +73,9 @@ message FetchRemoteRequest {
 }
 
 message FetchRemoteResponse {}
+
+message CreateRepositoryRequest {
+  Repository repository = 1;
+}
+
+message CreateRepositoryResponse {}

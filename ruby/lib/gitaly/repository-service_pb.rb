@@ -51,6 +51,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.FetchRemoteResponse" do
   end
+  add_message "gitaly.CreateRepositoryRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+  end
+  add_message "gitaly.CreateRepositoryResponse" do
+  end
 end
 
 module Gitaly
@@ -68,4 +73,6 @@ module Gitaly
   ApplyGitattributesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ApplyGitattributesResponse").msgclass
   FetchRemoteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchRemoteRequest").msgclass
   FetchRemoteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchRemoteResponse").msgclass
+  CreateRepositoryRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateRepositoryRequest").msgclass
+  CreateRepositoryResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateRepositoryResponse").msgclass
 end
