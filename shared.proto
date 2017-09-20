@@ -17,6 +17,9 @@ message Repository {
   // Sets the GIT_ALTERNATE_OBJECT_DIRECTORIES envvar on git commands to the values of this field.
   // It influences the list of Git object directories which can be used to search for Git objects.
   repeated string git_alternate_object_directories = 5;
+  // Used in callbacks to GitLab so that it knows what repository the event is
+  // associated with. May be left empty on RPC's that do not perform callbacks.
+  string gl_repository = 6;
 }
 
 // Corresponds to Gitlab::Git::Commit
