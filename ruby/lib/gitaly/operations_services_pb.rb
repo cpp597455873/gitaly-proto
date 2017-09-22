@@ -15,6 +15,7 @@ module Gitaly
       self.service_name = 'gitaly.OperationService'
 
       rpc :UserCreateBranch, UserCreateBranchRequest, UserCreateBranchResponse
+      rpc :UserDeleteBranch, UserDeleteBranchRequest, UserDeleteBranchResponse
       rpc :UserDeleteTag, UserDeleteTagRequest, UserDeleteTagResponse
     end
 
