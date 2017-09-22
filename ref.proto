@@ -103,12 +103,6 @@ message FindAllTagsRequest {
 }
 
 message FindAllTagsResponse {
-  message Tag {
-    bytes name = 1;
-    string id = 2;
-    GitCommit target_commit = 3;
-    bytes message = 4;
-  }
   repeated Tag tags = 1;
 }
 

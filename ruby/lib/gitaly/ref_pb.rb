@@ -70,13 +70,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :repository, :message, 1, "gitaly.Repository"
   end
   add_message "gitaly.FindAllTagsResponse" do
-    repeated :tags, :message, 1, "gitaly.FindAllTagsResponse.Tag"
-  end
-  add_message "gitaly.FindAllTagsResponse.Tag" do
-    optional :name, :bytes, 1
-    optional :id, :string, 2
-    optional :target_commit, :message, 3, "gitaly.GitCommit"
-    optional :message, :bytes, 4
+    repeated :tags, :message, 1, "gitaly.Tag"
   end
   add_message "gitaly.RefExistsRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
@@ -134,7 +128,6 @@ module Gitaly
   FindAllBranchesResponse::Branch = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllBranchesResponse.Branch").msgclass
   FindAllTagsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllTagsRequest").msgclass
   FindAllTagsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllTagsResponse").msgclass
-  FindAllTagsResponse::Tag = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllTagsResponse.Tag").msgclass
   RefExistsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RefExistsRequest").msgclass
   RefExistsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RefExistsResponse").msgclass
   CreateBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateBranchRequest").msgclass

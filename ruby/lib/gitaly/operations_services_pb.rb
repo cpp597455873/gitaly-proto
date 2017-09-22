@@ -16,6 +16,7 @@ module Gitaly
 
       rpc :UserCreateBranch, UserCreateBranchRequest, UserCreateBranchResponse
       rpc :UserDeleteBranch, UserDeleteBranchRequest, UserDeleteBranchResponse
+      rpc :UserCreateTag, UserCreateTagRequest, UserCreateTagResponse
       rpc :UserDeleteTag, UserDeleteTagRequest, UserDeleteTagResponse
     end
 

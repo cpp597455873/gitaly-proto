@@ -30,6 +30,18 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.UserDeleteTagResponse" do
     optional :pre_receive_error, :string, 1
   end
+  add_message "gitaly.UserCreateTagRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :tag_name, :bytes, 2
+    optional :user, :message, 3, "gitaly.User"
+    optional :target_revision, :bytes, 4
+    optional :message, :bytes, 5
+  end
+  add_message "gitaly.UserCreateTagResponse" do
+    optional :tag, :message, 1, "gitaly.Tag"
+    optional :exists, :bool, 2
+    optional :pre_receive_error, :string, 3
+  end
 end
 
 module Gitaly
@@ -39,4 +51,6 @@ module Gitaly
   UserDeleteBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserDeleteBranchResponse").msgclass
   UserDeleteTagRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserDeleteTagRequest").msgclass
   UserDeleteTagResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserDeleteTagResponse").msgclass
+  UserCreateTagRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCreateTagRequest").msgclass
+  UserCreateTagResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCreateTagResponse").msgclass
 end
