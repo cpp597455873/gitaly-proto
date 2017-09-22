@@ -111,6 +111,8 @@ It has these top-level messages:
 	FetchRemoteResponse
 	CreateRepositoryRequest
 	CreateRepositoryResponse
+	GetArchiveRequest
+	GetArchiveResponse
 	Repository
 	GitCommit
 	CommitAuthor
