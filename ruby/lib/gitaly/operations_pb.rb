@@ -13,6 +13,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.UserCreateBranchResponse" do
     optional :branch, :message, 1, "gitaly.Branch"
+    optional :pre_receive_error, :string, 2
   end
   add_message "gitaly.UserDeleteBranchRequest" do
     optional :repository, :message, 1, "gitaly.Repository"

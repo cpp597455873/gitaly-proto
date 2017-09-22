@@ -19,6 +19,9 @@ message UserCreateBranchRequest {
 
 message UserCreateBranchResponse {
   Branch branch = 1;
+  // Error returned by the pre-receive hook. If no error was thrown,
+  // it's the empty string ("")
+  string pre_receive_error = 2;
 }
 
 message UserDeleteBranchRequest {
