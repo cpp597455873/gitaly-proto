@@ -28,6 +28,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :user, :message, 3, "gitaly.User"
   end
   add_message "gitaly.UserDeleteTagResponse" do
+    optional :pre_receive_error, :string, 1
   end
 end
 

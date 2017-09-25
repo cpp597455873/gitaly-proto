@@ -38,4 +38,6 @@ message UserDeleteTagRequest {
   User user = 3;
 }
 
-message UserDeleteTagResponse {}
+message UserDeleteTagResponse {
+  string pre_receive_error = 1;
+}
