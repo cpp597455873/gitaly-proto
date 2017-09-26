@@ -7,6 +7,7 @@ import "shared.proto";
 service OperationService {
   rpc UserCreateBranch(UserCreateBranchRequest) returns (UserCreateBranchResponse) {}
   rpc UserDeleteBranch(UserDeleteBranchRequest) returns (UserDeleteBranchResponse) {}
+  rpc UserCreateTag(UserCreateTagRequest) returns (UserCreateTagResponse) {}
   rpc UserDeleteTag(UserDeleteTagRequest) returns (UserDeleteTagResponse) {}
 }
 
@@ -40,4 +41,18 @@ message UserDeleteTagRequest {
 
 message UserDeleteTagResponse {
   string pre_receive_error = 1;
+}
+
+message UserCreateTagRequest {
+  Repository repository = 1;
+  bytes tag_name = 2;
+  User user = 3;
+  bytes target_revision = 4;
+  bytes message = 5;
+}
+
+message UserCreateTagResponse {
+  Tag tag = 1;
+  bool exists = 2;
+  string pre_receive_error = 3;
 }

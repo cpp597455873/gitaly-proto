@@ -48,6 +48,13 @@ message Branch {
   GitCommit target_commit = 2;
 }
 
+message Tag {
+  bytes name = 1;
+  string id = 2;
+  GitCommit target_commit = 3;
+  bytes message = 4;
+}
+
 message User {
   string gl_id = 1;
   bytes name = 2;
