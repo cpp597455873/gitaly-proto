@@ -56,6 +56,21 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.CreateRepositoryResponse" do
   end
+  add_message "gitaly.GetArchiveRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :commit_id, :string, 2
+    optional :prefix, :string, 3
+    optional :format, :enum, 4, "gitaly.GetArchiveRequest.Format"
+  end
+  add_enum "gitaly.GetArchiveRequest.Format" do
+    value :ZIP, 0
+    value :TAR, 1
+    value :TAR_GZ, 2
+    value :TAR_BZ2, 3
+  end
+  add_message "gitaly.GetArchiveResponse" do
+    optional :data, :bytes, 1
+  end
 end
 
 module Gitaly
@@ -75,4 +90,7 @@ module Gitaly
   FetchRemoteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchRemoteResponse").msgclass
   CreateRepositoryRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateRepositoryRequest").msgclass
   CreateRepositoryResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateRepositoryResponse").msgclass
+  GetArchiveRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetArchiveRequest").msgclass
+  GetArchiveRequest::Format = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetArchiveRequest.Format").enummodule
+  GetArchiveResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetArchiveResponse").msgclass
 end

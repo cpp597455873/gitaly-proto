@@ -22,6 +22,7 @@ module Gitaly
       rpc :ApplyGitattributes, ApplyGitattributesRequest, ApplyGitattributesResponse
       rpc :FetchRemote, FetchRemoteRequest, FetchRemoteResponse
       rpc :CreateRepository, CreateRepositoryRequest, CreateRepositoryResponse
+      rpc :GetArchive, GetArchiveRequest, stream(GetArchiveResponse)
       # Deprecated, use the RepositoryExists RPC instead.
       rpc :Exists, RepositoryExistsRequest, RepositoryExistsResponse
     end

@@ -13,6 +13,7 @@ service RepositoryService {
   rpc ApplyGitattributes(ApplyGitattributesRequest) returns (ApplyGitattributesResponse) {}
   rpc FetchRemote(FetchRemoteRequest) returns (FetchRemoteResponse) {};
   rpc CreateRepository(CreateRepositoryRequest) returns (CreateRepositoryResponse) {};
+  rpc GetArchive(GetArchiveRequest) returns (stream GetArchiveResponse) {}
 
   // Deprecated, use the RepositoryExists RPC instead.
   rpc Exists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {}
@@ -79,3 +80,21 @@ message CreateRepositoryRequest {
 }
 
 message CreateRepositoryResponse {}
+
+message GetArchiveRequest {
+  enum Format {
+    ZIP = 0;
+    TAR = 1;
+    TAR_GZ = 2;
+    TAR_BZ2 = 3;
+  }
+
+  Repository repository = 1;
+  string commit_id = 2;
+  string prefix = 3;
+  Format format = 4;
+}
+
+message GetArchiveResponse {
+  bytes data = 1;
+}
