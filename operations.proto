@@ -31,7 +31,9 @@ message UserDeleteBranchRequest {
   User user = 3;
 }
 
-message UserDeleteBranchResponse {}
+message UserDeleteBranchResponse {
+  string pre_receive_error = 1;
+}
 
 message UserDeleteTagRequest {
   Repository repository = 1;

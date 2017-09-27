@@ -21,6 +21,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :user, :message, 3, "gitaly.User"
   end
   add_message "gitaly.UserDeleteBranchResponse" do
+    optional :pre_receive_error, :string, 1
   end
   add_message "gitaly.UserDeleteTagRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
