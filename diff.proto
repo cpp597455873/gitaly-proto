@@ -10,6 +10,8 @@ service DiffService {
   // Return a stream so we can divide the response in chunks of deltas
   rpc CommitDelta(CommitDeltaRequest) returns (stream CommitDeltaResponse) {};
   rpc CommitPatch(CommitPatchRequest) returns (stream CommitPatchResponse) {};
+  rpc RawDiff(RawDiffRequest) returns (stream RawDiffResponse) {};
+  rpc RawPatch(RawPatchRequest) returns (stream RawPatchResponse) {};
 }
 
 message CommitDiffRequest {
@@ -75,5 +77,25 @@ message CommitPatchRequest {
 }
 
 message CommitPatchResponse {
+  bytes data = 1;
+}
+
+message RawDiffRequest {
+  Repository repository = 1;
+  string left_commit_id = 2;
+  string right_commit_id = 3;
+}
+
+message RawDiffResponse {
+  bytes data = 1;
+}
+
+message RawPatchRequest {
+  Repository repository = 1;
+  string left_commit_id = 2;
+  string right_commit_id = 3;
+}
+
+message RawPatchResponse {
   bytes data = 1;
 }

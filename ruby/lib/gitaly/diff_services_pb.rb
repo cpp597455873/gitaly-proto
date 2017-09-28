@@ -19,6 +19,8 @@ module Gitaly
       # Return a stream so we can divide the response in chunks of deltas
       rpc :CommitDelta, CommitDeltaRequest, stream(CommitDeltaResponse)
       rpc :CommitPatch, CommitPatchRequest, stream(CommitPatchResponse)
+      rpc :RawDiff, RawDiffRequest, stream(RawDiffResponse)
+      rpc :RawPatch, RawPatchRequest, stream(RawPatchResponse)
     end
 
     Stub = Service.rpc_stub_class
