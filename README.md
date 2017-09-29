@@ -16,7 +16,7 @@ files.
 
 See
 [developers.google.com](https://developers.google.com/protocol-buffers/docs/proto3)
-for documentation of the 'proto3' Protocul buffer specification
+for documentation of the 'proto3' Protocol buffer specification
 language.
 
 ## gRPC/Protobuf concepts
