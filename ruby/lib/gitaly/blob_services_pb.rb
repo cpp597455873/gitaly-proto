@@ -18,6 +18,11 @@ module Gitaly
       # ID. We use a stream to return a chunked arbitrarily large binary
       # response
       rpc :GetBlob, GetBlobRequest, stream(GetBlobResponse)
+      # GetBlobsBySHA returns the contents of a blob objects referenced by their object
+      # ID. We use a stream to return a chunked arbitrarily large binary response.
+      # The blobs are sent in a continous stream, the caller is responsible for spliting
+      # them up into multiple blobs by their object IDs.
+      rpc :GetBlobs, GetBlobsRequest, stream(GetBlobsResponse)
     end
 
     Stub = Service.rpc_stub_class

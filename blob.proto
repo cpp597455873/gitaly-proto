@@ -9,6 +9,11 @@ service BlobService {
   // ID. We use a stream to return a chunked arbitrarily large binary
   // response
   rpc GetBlob(GetBlobRequest) returns (stream GetBlobResponse) {}
+  // GetBlobsBySHA returns the contents of a blob objects referenced by their object
+  // ID. We use a stream to return a chunked arbitrarily large binary response.
+  // The blobs are sent in a continous stream, the caller is responsible for spliting
+  // them up into multiple blobs by their object IDs.
+  rpc GetBlobs(GetBlobsRequest) returns (stream GetBlobsResponse) {}
 }
 
 message GetBlobRequest {
@@ -25,5 +30,22 @@ message GetBlobResponse {
   // Chunk of blob data
   bytes data = 2; 
   // Object ID of the actual blob returned. Empty if no blob was found.
+  string oid = 3;
+}
+
+message GetBlobsRequest {
+  Repository repository = 1;
+  // Object IDs (SHA1) of the blobs we want to get
+  repeated string oids = 2;
+  // Maximum number of bytes we want to receive. Use '-1' to get the full blobs no matter how big.
+  int64 limit = 3;
+}
+
+message GetBlobsResponse {
+  // Blob size; present only on the first message per blob
+  int64 size = 1; 
+  // Chunk of blob data
+  bytes data = 2; 
+  // Object ID of the current blob. Only present on the first message per blob. Empty if no blob was found.
   string oid = 3;
 }
