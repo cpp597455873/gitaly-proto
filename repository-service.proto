@@ -14,6 +14,7 @@ service RepositoryService {
   rpc FetchRemote(FetchRemoteRequest) returns (FetchRemoteResponse) {};
   rpc CreateRepository(CreateRepositoryRequest) returns (CreateRepositoryResponse) {};
   rpc GetArchive(GetArchiveRequest) returns (stream GetArchiveResponse) {}
+  rpc HasLocalBranches(HasLocalBranchesRequest) returns (HasLocalBranchesResponse) {}
 
   // Deprecated, use the RepositoryExists RPC instead.
   rpc Exists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {}
@@ -97,4 +98,12 @@ message GetArchiveRequest {
 
 message GetArchiveResponse {
   bytes data = 1;
+}
+
+message HasLocalBranchesRequest {
+  Repository repository = 1;
+}
+
+message HasLocalBranchesResponse {
+  bool value = 1;
 }
