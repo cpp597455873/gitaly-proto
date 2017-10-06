@@ -71,6 +71,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.GetArchiveResponse" do
     optional :data, :bytes, 1
   end
+  add_message "gitaly.HasLocalBranchesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+  end
+  add_message "gitaly.HasLocalBranchesResponse" do
+    optional :value, :bool, 1
+  end
 end
 
 module Gitaly
@@ -93,4 +99,6 @@ module Gitaly
   GetArchiveRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetArchiveRequest").msgclass
   GetArchiveRequest::Format = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetArchiveRequest.Format").enummodule
   GetArchiveResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetArchiveResponse").msgclass
+  HasLocalBranchesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.HasLocalBranchesRequest").msgclass
+  HasLocalBranchesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.HasLocalBranchesResponse").msgclass
 end
