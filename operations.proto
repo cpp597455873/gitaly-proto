@@ -9,6 +9,7 @@ service OperationService {
   rpc UserDeleteBranch(UserDeleteBranchRequest) returns (UserDeleteBranchResponse) {}
   rpc UserCreateTag(UserCreateTagRequest) returns (UserCreateTagResponse) {}
   rpc UserDeleteTag(UserDeleteTagRequest) returns (UserDeleteTagResponse) {}
+  rpc UserMergeBranch(stream UserMergeBranchRequest) returns (stream UserMergeBranchResponse) {}
 }
 
 message UserCreateBranchRequest {
@@ -57,4 +58,27 @@ message UserCreateTagResponse {
   Tag tag = 1;
   bool exists = 2;
   string pre_receive_error = 3;
+}
+
+message UserMergeBranchRequest {
+  // First message
+  Repository repository = 1;
+  User user = 2;
+  string commit_id = 3;
+  bytes branch = 4;
+  bytes message = 5;
+
+  // Second message
+  // Tell the server to apply the merge to the branch
+  bool apply = 6;
+}
+
+message UserMergeBranchResponse {
+  // First message
+  // The merge commit the branch will be updated to. The caller can still abort the merge.
+  string commit_id = 1;
+
+  // Second message
+  // If set, the merge has been applied to the branch.
+  bool applied = 2;
 }
