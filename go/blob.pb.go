@@ -17,6 +17,7 @@ It is generated from these files:
 	shared.proto
 	smarthttp.proto
 	ssh.proto
+	wiki.proto
 
 It has these top-level messages:
 	GetBlobRequest
@@ -142,6 +143,9 @@ It has these top-level messages:
 	SSHUploadPackResponse
 	SSHReceivePackRequest
 	SSHReceivePackResponse
+	WikiPageVersion
+	WikiGetPageVersionsRequest
+	WikiGetPageVersionsResponse
 */
 package gitaly
 
