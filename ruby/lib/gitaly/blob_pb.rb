@@ -15,9 +15,21 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :data, :bytes, 2
     optional :oid, :string, 3
   end
+  add_message "gitaly.GetBlobsRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    repeated :oids, :string, 2
+    optional :limit, :int64, 3
+  end
+  add_message "gitaly.GetBlobsResponse" do
+    optional :size, :int64, 1
+    optional :data, :bytes, 2
+    optional :oid, :string, 3
+  end
 end
 
 module Gitaly
   GetBlobRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetBlobRequest").msgclass
   GetBlobResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetBlobResponse").msgclass
+  GetBlobsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetBlobsRequest").msgclass
+  GetBlobsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetBlobsResponse").msgclass
 end
