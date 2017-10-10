@@ -78,7 +78,17 @@ message UserMergeBranchResponse {
   // The merge commit the branch will be updated to. The caller can still abort the merge.
   string commit_id = 1;
 
+  reserved 2;
   // Second message
   // If set, the merge has been applied to the branch.
-  bool applied = 2;
+  OperationBranchUpdate branch_update = 3;
+}
+
+message OperationBranchUpdate {
+  // If this string is non-empty the branch has been updated.
+  string commit_id = 1;
+  // Used for cache invalidation in GitLab
+  bool repo_created = 2;
+  // Used for cache invalidation in GitLab
+  bool branch_created = 3;
 }
