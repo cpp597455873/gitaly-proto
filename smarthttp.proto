@@ -31,6 +31,8 @@ message PostUploadPackRequest {
   Repository repository = 1;
   // Raw data to be copied to stdin of 'git upload-pack'
   bytes data = 2;
+  // Parameters to use with git -c (key=value pairs)
+  repeated string git_config_options = 3;
 }
 
 message PostUploadPackResponse {
