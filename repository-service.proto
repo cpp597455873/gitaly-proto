@@ -15,9 +15,6 @@ service RepositoryService {
   rpc CreateRepository(CreateRepositoryRequest) returns (CreateRepositoryResponse) {};
   rpc GetArchive(GetArchiveRequest) returns (stream GetArchiveResponse) {}
   rpc HasLocalBranches(HasLocalBranchesRequest) returns (HasLocalBranchesResponse) {}
-
-  // Deprecated, use the RepositoryExists RPC instead.
-  rpc Exists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {}
 }
 
 message RepositoryExistsRequest {
