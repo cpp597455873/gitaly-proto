@@ -5,6 +5,11 @@ require 'google/protobuf'
 
 require 'shared_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
+  add_message "gitaly.WikiCommitDetails" do
+    optional :name, :bytes, 1
+    optional :email, :bytes, 2
+    optional :message, :bytes, 3
+  end
   add_message "gitaly.WikiPageVersion" do
     optional :commit, :message, 1, "gitaly.GitCommit"
     optional :format, :string, 2
@@ -16,10 +21,23 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.WikiGetPageVersionsResponse" do
     repeated :versions, :message, 1, "gitaly.WikiPageVersion"
   end
+  add_message "gitaly.WikiWritePageRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :name, :bytes, 2
+    optional :format, :string, 3
+    optional :commit_details, :message, 4, "gitaly.WikiCommitDetails"
+    optional :content, :bytes, 5
+  end
+  add_message "gitaly.WikiWritePageResponse" do
+    optional :duplicate_error, :bytes, 1
+  end
 end
 
 module Gitaly
+  WikiCommitDetails = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiCommitDetails").msgclass
   WikiPageVersion = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiPageVersion").msgclass
   WikiGetPageVersionsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiGetPageVersionsRequest").msgclass
   WikiGetPageVersionsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiGetPageVersionsResponse").msgclass
+  WikiWritePageRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiWritePageRequest").msgclass
+  WikiWritePageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiWritePageResponse").msgclass
 end

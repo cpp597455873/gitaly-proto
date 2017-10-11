@@ -15,6 +15,7 @@ module Gitaly
       self.service_name = 'gitaly.WikiService'
 
       rpc :WikiGetPageVersions, WikiGetPageVersionsRequest, stream(WikiGetPageVersionsResponse)
+      rpc :WikiWritePage, stream(WikiWritePageRequest), WikiWritePageResponse
     end
 
     Stub = Service.rpc_stub_class
