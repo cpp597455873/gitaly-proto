@@ -24,8 +24,6 @@ module Gitaly
       rpc :CreateRepository, CreateRepositoryRequest, CreateRepositoryResponse
       rpc :GetArchive, GetArchiveRequest, stream(GetArchiveResponse)
       rpc :HasLocalBranches, HasLocalBranchesRequest, HasLocalBranchesResponse
-      # Deprecated, use the RepositoryExists RPC instead.
-      rpc :Exists, RepositoryExistsRequest, RepositoryExistsResponse
     end
 
     Stub = Service.rpc_stub_class
