@@ -14,6 +14,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.PostUploadPackRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :data, :bytes, 2
+    repeated :git_config_options, :string, 3
   end
   add_message "gitaly.PostUploadPackResponse" do
     optional :data, :bytes, 1
