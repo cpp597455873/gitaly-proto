@@ -84,6 +84,7 @@ It has these top-level messages:
 	UserCreateTagResponse
 	UserMergeBranchRequest
 	UserMergeBranchResponse
+	OperationBranchUpdate
 	FindDefaultBranchNameRequest
 	FindDefaultBranchNameResponse
 	FindAllBranchNamesRequest
