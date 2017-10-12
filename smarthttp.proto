@@ -20,6 +20,8 @@ service SmartHTTPService {
 
 message InfoRefsRequest {
   Repository repository = 1;
+  // Parameters to use with git -c (key=value pairs)
+  repeated string git_config_options = 2;
 }
 
 message InfoRefsResponse {

@@ -7,6 +7,7 @@ require 'shared_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.InfoRefsRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
+    repeated :git_config_options, :string, 2
   end
   add_message "gitaly.InfoRefsResponse" do
     optional :data, :bytes, 1
