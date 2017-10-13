@@ -5,20 +5,41 @@ import "shared.proto";
 package gitaly;
 
 service WikiService {
-	rpc WikiGetPageVersions(WikiGetPageVersionsRequest) returns (stream WikiGetPageVersionsResponse) {}
+  rpc WikiGetPageVersions(WikiGetPageVersionsRequest) returns (stream WikiGetPageVersionsResponse) {}
+  rpc WikiWritePage(stream WikiWritePageRequest) returns (WikiWritePageResponse) {}
+}
+
+message WikiCommitDetails {
+  bytes name = 1;
+  bytes email = 2;
+  bytes message = 3;
 }
 
 message WikiPageVersion {
-	GitCommit commit = 1;
-	string format = 2;
+  GitCommit commit = 1;
+  string format = 2;
 }
 
 message WikiGetPageVersionsRequest {
-	Repository repository = 1;
-	bytes page_path = 2;
+  Repository repository = 1;
+  bytes page_path = 2;
 }
 
 message WikiGetPageVersionsResponse {
-	repeated WikiPageVersion versions = 1;
+  repeated WikiPageVersion versions = 1;
 }
 
+// This message is sent in a stream because the 'content' field may be large.
+message WikiWritePageRequest {
+  // These following fields are only present in the first message.
+  Repository repository = 1;
+  bytes name = 2;
+  string format = 3;
+  WikiCommitDetails commit_details = 4;
+  // This field is present in all messages.
+  bytes content = 5;
+}
+
+message WikiWritePageResponse {
+  bytes duplicate_error = 1;
+}
