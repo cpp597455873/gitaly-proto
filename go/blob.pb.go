@@ -41,6 +41,8 @@ It has these top-level messages:
 	ListFilesResponse
 	FindCommitRequest
 	FindCommitResponse
+	ListCommitsByOidRequest
+	ListCommitsByOidResponse
 	FindAllCommitsRequest
 	FindAllCommitsResponse
 	FindCommitsRequest

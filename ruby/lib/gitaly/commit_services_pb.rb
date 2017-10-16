@@ -29,6 +29,7 @@ module Gitaly
       rpc :RawBlame, RawBlameRequest, stream(RawBlameResponse)
       rpc :LastCommitForPath, LastCommitForPathRequest, LastCommitForPathResponse
       rpc :CommitsByMessage, CommitsByMessageRequest, stream(CommitsByMessageResponse)
+      rpc :ListCommitsByOid, ListCommitsByOidRequest, stream(ListCommitsByOidResponse)
     end
 
     Stub = Service.rpc_stub_class

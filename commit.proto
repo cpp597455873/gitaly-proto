@@ -15,12 +15,14 @@ service CommitService {
   rpc FindCommit(FindCommitRequest) returns (FindCommitResponse) {}
   rpc CommitStats(CommitStatsRequest) returns (CommitStatsResponse) {}
   // Use a stream to paginate the result set
-  rpc FindAllCommits(FindAllCommitsRequest) returns (stream FindAllCommitsResponse) {};
+  rpc FindAllCommits(FindAllCommitsRequest) returns (stream FindAllCommitsResponse) {}
   rpc FindCommits(FindCommitsRequest) returns (stream FindCommitsResponse) {}
   rpc CommitLanguages(CommitLanguagesRequest) returns (CommitLanguagesResponse) {}
   rpc RawBlame(RawBlameRequest) returns (stream RawBlameResponse) {}
   rpc LastCommitForPath(LastCommitForPathRequest) returns (LastCommitForPathResponse) {}
   rpc CommitsByMessage(CommitsByMessageRequest) returns (stream CommitsByMessageResponse) {}
+
+  rpc ListCommitsByOid(ListCommitsByOidRequest) returns (stream ListCommitsByOidResponse) {}
 }
 
 message CommitStatsRequest {
@@ -142,6 +144,15 @@ message FindCommitRequest {
 
 message FindCommitResponse {
   // commit is nil when the commit was not found
+  GitCommit commit = 1;
+}
+
+message ListCommitsByOidRequest {
+  Repository repository = 1;
+  repeated string oid = 2;
+}
+
+message ListCommitsByOidResponse {
   GitCommit commit = 1;
 }
 
