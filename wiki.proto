@@ -8,6 +8,7 @@ service WikiService {
   rpc WikiGetPageVersions(WikiGetPageVersionsRequest) returns (stream WikiGetPageVersionsResponse) {}
   rpc WikiWritePage(stream WikiWritePageRequest) returns (WikiWritePageResponse) {}
   rpc WikiUpdatePage(stream WikiUpdatePageRequest) returns (WikiUpdatePageResponse) {}
+  rpc WikiDeletePage(WikiDeletePageRequest) returns (WikiDeletePageResponse) {}
 }
 
 message WikiCommitDetails {
@@ -59,3 +60,11 @@ message WikiUpdatePageRequest {
 message WikiUpdatePageResponse {
   bytes error = 1;
 }
+
+message WikiDeletePageRequest {
+  Repository repository = 1;
+  bytes page_path = 2;
+  WikiCommitDetails commit_details = 3;
+}
+
+message WikiDeletePageResponse {}
