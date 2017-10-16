@@ -152,6 +152,8 @@ It has these top-level messages:
 	WikiGetPageVersionsResponse
 	WikiWritePageRequest
 	WikiWritePageResponse
+	WikiUpdatePageRequest
+	WikiUpdatePageResponse
 */
 package gitaly
 

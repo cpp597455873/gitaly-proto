@@ -16,6 +16,7 @@ module Gitaly
 
       rpc :WikiGetPageVersions, WikiGetPageVersionsRequest, stream(WikiGetPageVersionsResponse)
       rpc :WikiWritePage, stream(WikiWritePageRequest), WikiWritePageResponse
+      rpc :WikiUpdatePage, stream(WikiUpdatePageRequest), WikiUpdatePageResponse
     end
 
     Stub = Service.rpc_stub_class
