@@ -15,6 +15,7 @@ service RepositoryService {
   rpc CreateRepository(CreateRepositoryRequest) returns (CreateRepositoryResponse) {};
   rpc GetArchive(GetArchiveRequest) returns (stream GetArchiveResponse) {}
   rpc HasLocalBranches(HasLocalBranchesRequest) returns (HasLocalBranchesResponse) {}
+  rpc ChangeStorage(ChangeStorageRequest) returns (ChangeStorageResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -104,3 +105,10 @@ message HasLocalBranchesRequest {
 message HasLocalBranchesResponse {
   bool value = 1;
 }
+
+message ChangeStorageRequest {
+  Repository repository = 1;
+  string new_storage_name = 2;
+}
+
+message ChangeStorageResponse {}

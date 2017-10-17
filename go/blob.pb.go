@@ -131,6 +131,8 @@ It has these top-level messages:
 	GetArchiveResponse
 	HasLocalBranchesRequest
 	HasLocalBranchesResponse
+	ChangeStorageRequest
+	ChangeStorageResponse
 	Repository
 	GitCommit
 	CommitAuthor
