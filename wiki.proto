@@ -9,6 +9,8 @@ service WikiService {
   rpc WikiWritePage(stream WikiWritePageRequest) returns (WikiWritePageResponse) {}
   rpc WikiUpdatePage(stream WikiUpdatePageRequest) returns (WikiUpdatePageResponse) {}
   rpc WikiDeletePage(WikiDeletePageRequest) returns (WikiDeletePageResponse) {}
+  // WikiFindPage returns a stream because the page's raw_data field may be arbitrarily large.
+  rpc WikiFindPage(WikiFindPageRequest) returns (stream WikiFindPageResponse) {}
 }
 
 message WikiCommitDetails {
@@ -20,6 +22,20 @@ message WikiCommitDetails {
 message WikiPageVersion {
   GitCommit commit = 1;
   string format = 2;
+}
+
+message WikiPage {
+  // These fields are only present in the first message of a WikiPage stream
+  WikiPageVersion version = 1;
+  string format = 2;
+  bytes title = 3;
+  string url_path = 4;
+  bytes path = 5;
+  bytes name = 6;
+  bool historical = 7;
+
+  // This field is present in all messages of a WikiPage stream
+  bytes raw_data = 8;
 }
 
 message WikiGetPageVersionsRequest {
@@ -68,3 +84,16 @@ message WikiDeletePageRequest {
 }
 
 message WikiDeletePageResponse {}
+
+message WikiFindPageRequest {
+  Repository repository = 1;
+  bytes title = 2;
+  bytes revision = 3;
+  bytes directory = 4;
+}
+
+// WikiFindPageResponse is a stream because we need multiple WikiPage
+// messages to send the raw_data field.
+message WikiFindPageResponse {
+  WikiPage page = 1;
+}
