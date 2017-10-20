@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package gitaly;
+
+import "shared.proto";
+
+service ConflictsService {
+    rpc ListConflictFiles(ListConflictFilesRequest) returns (stream ListConflictFilesResponse) {}
+}
+
+message ListConflictFilesRequest {
+    Repository repository = 1;
+    string our_commit_oid = 2;
+    Repository target_repository = 3;
+    string their_commit_oid = 4;
+}
+
+message ConflictFileHeader {
+    Repository repository = 1;
+    string commit_oid = 2;
+    bytes their_path = 3;
+    bytes our_path = 4;
+    int32 our_mode = 5;
+}
+
+message ConflictFile {
+    oneof conflict_file_payload {
+        ConflictFileHeader header = 1;
+        bytes content = 2;
+    }
+}
+
+message ListConflictFilesResponse {
+    repeated ConflictFile files = 1;
+}
