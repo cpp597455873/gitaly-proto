@@ -15,6 +15,7 @@ module Gitaly
       self.service_name = 'gitaly.ConflictsService'
 
       rpc :ListConflictFiles, ListConflictFilesRequest, stream(ListConflictFilesResponse)
+      rpc :ResolveConflicts, stream(ResolveConflictsRequest), ResolveConflictsResponse
     end
 
     Stub = Service.rpc_stub_class

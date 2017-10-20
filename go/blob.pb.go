@@ -62,6 +62,9 @@ It has these top-level messages:
 	ConflictFileHeader
 	ConflictFile
 	ListConflictFilesResponse
+	ResolveConflictsRequestHeader
+	ResolveConflictsRequest
+	ResolveConflictsResponse
 	CommitDiffRequest
 	CommitDiffResponse
 	CommitDeltaRequest
