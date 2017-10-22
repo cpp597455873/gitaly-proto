@@ -45,8 +45,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :page_path, :bytes, 2
     optional :title, :bytes, 3
-    optional :commit_details, :message, 4, "gitaly.WikiCommitDetails"
-    optional :content, :bytes, 5
+    optional :format, :string, 4
+    optional :commit_details, :message, 5, "gitaly.WikiCommitDetails"
+    optional :content, :bytes, 6
   end
   add_message "gitaly.WikiUpdatePageResponse" do
     optional :error, :bytes, 1
