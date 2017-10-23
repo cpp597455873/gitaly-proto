@@ -67,10 +67,11 @@ message WikiUpdatePageRequest {
   Repository repository = 1;
   bytes page_path = 2;
   bytes title = 3;
-  WikiCommitDetails commit_details = 4;
+  string format = 4;
+  WikiCommitDetails commit_details = 5;
 
   // This field is present in all messages
-  bytes content = 5;
+  bytes content = 6;
 }
 
 message WikiUpdatePageResponse {
