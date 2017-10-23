@@ -10,6 +10,7 @@ service OperationService {
   rpc UserCreateTag(UserCreateTagRequest) returns (UserCreateTagResponse) {}
   rpc UserDeleteTag(UserDeleteTagRequest) returns (UserDeleteTagResponse) {}
   rpc UserMergeBranch(stream UserMergeBranchRequest) returns (stream UserMergeBranchResponse) {}
+  rpc UserFFBranch(UserFFBranchRequest) returns (UserFFBranchResponse) {}
 }
 
 message UserCreateBranchRequest {
@@ -91,4 +92,15 @@ message OperationBranchUpdate {
   bool repo_created = 2;
   // Used for cache invalidation in GitLab
   bool branch_created = 3;
+}
+
+message UserFFBranchRequest {
+  Repository repository = 1;
+  User user = 2;
+  string commit_id = 3;
+  bytes branch = 4;
+}
+
+message UserFFBranchResponse {
+  OperationBranchUpdate branch_update = 3;
 }

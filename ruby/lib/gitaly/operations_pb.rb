@@ -60,6 +60,15 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :repo_created, :bool, 2
     optional :branch_created, :bool, 3
   end
+  add_message "gitaly.UserFFBranchRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :user, :message, 2, "gitaly.User"
+    optional :commit_id, :string, 3
+    optional :branch, :bytes, 4
+  end
+  add_message "gitaly.UserFFBranchResponse" do
+    optional :branch_update, :message, 3, "gitaly.OperationBranchUpdate"
+  end
 end
 
 module Gitaly
@@ -74,4 +83,6 @@ module Gitaly
   UserMergeBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserMergeBranchRequest").msgclass
   UserMergeBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserMergeBranchResponse").msgclass
   OperationBranchUpdate = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.OperationBranchUpdate").msgclass
+  UserFFBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserFFBranchRequest").msgclass
+  UserFFBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserFFBranchResponse").msgclass
 end
