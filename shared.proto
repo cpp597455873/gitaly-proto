@@ -59,4 +59,5 @@ message User {
   string gl_id = 1;
   bytes name = 2;
   bytes email = 3;
+  string gl_username = 4;
 }

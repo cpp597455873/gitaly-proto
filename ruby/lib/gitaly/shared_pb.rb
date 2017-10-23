@@ -42,6 +42,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :gl_id, :string, 1
     optional :name, :bytes, 2
     optional :email, :bytes, 3
+    optional :gl_username, :string, 4
   end
 end
 
