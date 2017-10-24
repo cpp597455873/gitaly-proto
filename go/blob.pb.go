@@ -87,6 +87,8 @@ It has these top-level messages:
 	UserMergeBranchRequest
 	UserMergeBranchResponse
 	OperationBranchUpdate
+	UserFFBranchRequest
+	UserFFBranchResponse
 	FindDefaultBranchNameRequest
 	FindDefaultBranchNameResponse
 	FindAllBranchNamesRequest
