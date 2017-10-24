@@ -2,6 +2,9 @@ TARGET_DIR := $(CURDIR)/_build
 TARGET_SETUP := $(TARGET_DIR)/.ok
 BIN_BUILD_DIR := $(TARGET_DIR)/bin
 
+unexport GOROOT
+unexport GOBIN
+
 export GOPATH := $(TARGET_DIR)
 export PATH := $(GOPATH)/bin:$(PATH)
 
@@ -9,6 +12,7 @@ export PATH := $(GOPATH)/bin:$(PATH)
 PROTOC = $(TARGET_DIR)/protoc/bin/protoc
 PROTOC_GEN_RUBY = $(BIN_BUILD_DIR)/grpc_tools_ruby_protoc
 PROTOC_GEN_GO = $(BIN_BUILD_DIR)/protoc-gen-go
+PROTOC_GEN_DOC = $(BIN_BUILD_DIR)/protoc-gen-doc
 
 .PHONY: all
 all: generate
@@ -18,13 +22,13 @@ $(TARGET_SETUP):
 	mkdir -p $(BIN_BUILD_DIR)
 	touch $(TARGET_SETUP)
 
-.PHONY: build
+.PHONY: generate
 generate: install-developer-tools
 	_support/generate-from-proto
 
 .PHONY: clean
 clean:
-	rm -rf $(TARGET_DIR)
+	rm -rf $(TARGET_DIR) public
 
 .PHONY: release
 release: install-developer-tools
@@ -40,6 +44,13 @@ check-grpc-proto-clients: install-developer-tools
 .PHONY: install-developer-tools
 install-developer-tools: $(TARGET_SETUP) $(PROTOC) $(PROTOC_GEN_GO) $(PROTOC_GEN_RUBY)
 
+.PHONY: docs
+docs: $(TARGET_SETUP) $(PROTOC_GEN_DOC) $(PROTOC)
+	rm -rf public && mkdir public
+	$(PROTOC) --doc_out=./public \
+	          --plugin=protoc-gen-doc=$(PROTOC_GEN_DOC) \
+	          *.proto
+
 $(PROTOC): $(TARGET_SETUP)
 	_support/install-protoc
 
@@ -48,3 +59,6 @@ $(PROTOC_GEN_GO): $(TARGET_SETUP)
 
 $(PROTOC_GEN_RUBY): $(TARGET_SETUP) _support/Gemfile
 	bundle install --gemfile=_support/Gemfile --binstubs=$(BIN_BUILD_DIR)
+
+$(PROTOC_GEN_DOC): $(TARGET_SETUP)
+	go get -v -u github.com/pseudomuto/protoc-gen-doc/cmd/...

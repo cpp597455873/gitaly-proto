@@ -12,3 +12,12 @@ check-grpc-proto-clients:
   script:
     - "# Check for the mistake of updating .proto files but not regenerating clients"
     - make check-grpc-proto-clients
+
+pages:
+  script:
+    - make docs
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
