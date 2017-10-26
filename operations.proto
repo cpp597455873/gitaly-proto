@@ -102,5 +102,6 @@ message UserFFBranchRequest {
 }
 
 message UserFFBranchResponse {
-  OperationBranchUpdate branch_update = 3;
+  OperationBranchUpdate branch_update = 1;
+  string pre_receive_error = 2;
 }
