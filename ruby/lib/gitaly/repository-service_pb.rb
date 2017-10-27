@@ -83,6 +83,15 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.ChangeStorageResponse" do
   end
+  add_message "gitaly.ListMergedBranchesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :into, :string, 2
+    repeated :branches, :string, 3
+  end
+  add_message "gitaly.ListMergedBranchesResponse" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    repeated :branches, :string, 2
+  end
 end
 
 module Gitaly
@@ -109,4 +118,6 @@ module Gitaly
   HasLocalBranchesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.HasLocalBranchesResponse").msgclass
   ChangeStorageRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ChangeStorageRequest").msgclass
   ChangeStorageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ChangeStorageResponse").msgclass
+  ListMergedBranchesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListMergedBranchesRequest").msgclass
+  ListMergedBranchesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListMergedBranchesResponse").msgclass
 end

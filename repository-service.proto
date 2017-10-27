@@ -16,6 +16,7 @@ service RepositoryService {
   rpc GetArchive(GetArchiveRequest) returns (stream GetArchiveResponse) {}
   rpc HasLocalBranches(HasLocalBranchesRequest) returns (HasLocalBranchesResponse) {}
   rpc ChangeStorage(ChangeStorageRequest) returns (ChangeStorageResponse) {}
+  rpc ListMergedBranches(ListMergedBranchesRequest) returns (ListMergedBranchesResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -112,3 +113,14 @@ message ChangeStorageRequest {
 }
 
 message ChangeStorageResponse {}
+
+message ListMergedBranchesRequest {
+  Repository repository = 1;
+  string into = 2;
+  repeated string branches = 3;
+}
+
+message ListMergedBranchesResponse {
+  Repository repository = 1;
+  repeated string branches = 2;
+}
