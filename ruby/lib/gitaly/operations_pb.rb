@@ -67,7 +67,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :branch, :bytes, 4
   end
   add_message "gitaly.UserFFBranchResponse" do
-    optional :branch_update, :message, 3, "gitaly.OperationBranchUpdate"
+    optional :branch_update, :message, 1, "gitaly.OperationBranchUpdate"
+    optional :pre_receive_error, :string, 2
   end
 end
 
