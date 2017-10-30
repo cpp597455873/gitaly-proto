@@ -20,6 +20,7 @@ module Gitaly
       rpc :WikiDeletePage, WikiDeletePageRequest, WikiDeletePageResponse
       # WikiFindPage returns a stream because the page's raw_data field may be arbitrarily large.
       rpc :WikiFindPage, WikiFindPageRequest, stream(WikiFindPageResponse)
+      rpc :WikiFindFile, WikiFindFileRequest, stream(WikiFindFileResponse)
     end
 
     Stub = Service.rpc_stub_class
