@@ -15,6 +15,7 @@ module Gitaly
       self.service_name = 'gitaly.RepositoryService'
 
       rpc :RepositoryExists, RepositoryExistsRequest, RepositoryExistsResponse
+      rpc :RepositoryIsEmpty, RepositoryIsEmptyRequest, RepositoryIsEmptyResponse
       rpc :RepackIncremental, RepackIncrementalRequest, RepackIncrementalResponse
       rpc :RepackFull, RepackFullRequest, RepackFullResponse
       rpc :GarbageCollect, GarbageCollectRequest, GarbageCollectResponse
