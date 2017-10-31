@@ -11,6 +11,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.RepositoryExistsResponse" do
     optional :exists, :bool, 1
   end
+  add_message "gitaly.RepositoryIsEmptyRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+  end
+  add_message "gitaly.RepositoryIsEmptyResponse" do
+    optional :is_empty, :bool, 1
+  end
   add_message "gitaly.RepackIncrementalRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
   end
@@ -88,6 +94,8 @@ end
 module Gitaly
   RepositoryExistsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepositoryExistsRequest").msgclass
   RepositoryExistsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepositoryExistsResponse").msgclass
+  RepositoryIsEmptyRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepositoryIsEmptyRequest").msgclass
+  RepositoryIsEmptyResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepositoryIsEmptyResponse").msgclass
   RepackIncrementalRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepackIncrementalRequest").msgclass
   RepackIncrementalResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepackIncrementalResponse").msgclass
   RepackFullRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RepackFullRequest").msgclass
