@@ -79,6 +79,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :raw_data, :bytes, 3
     optional :path, :bytes, 4
   end
+  add_message "gitaly.WikiGetAllPagesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+  end
+  add_message "gitaly.WikiGetAllPagesResponse" do
+    optional :page, :message, 1, "gitaly.WikiPage"
+    optional :end_of_page, :bool, 2
+  end
 end
 
 module Gitaly
@@ -97,4 +104,6 @@ module Gitaly
   WikiFindPageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiFindPageResponse").msgclass
   WikiFindFileRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiFindFileRequest").msgclass
   WikiFindFileResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiFindFileResponse").msgclass
+  WikiGetAllPagesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiGetAllPagesRequest").msgclass
+  WikiGetAllPagesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiGetAllPagesResponse").msgclass
 end
