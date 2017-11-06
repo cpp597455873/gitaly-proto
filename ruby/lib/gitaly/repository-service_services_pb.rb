@@ -26,6 +26,7 @@ module Gitaly
       rpc :GetArchive, GetArchiveRequest, stream(GetArchiveResponse)
       rpc :HasLocalBranches, HasLocalBranchesRequest, HasLocalBranchesResponse
       rpc :ChangeStorage, ChangeStorageRequest, ChangeStorageResponse
+      rpc :FetchSourceBranch, FetchSourceBranchRequest, FetchSourceBranchResponse
     end
 
     Stub = Service.rpc_stub_class
