@@ -89,6 +89,15 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.ChangeStorageResponse" do
   end
+  add_message "gitaly.FetchSourceBranchRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :source_repository, :message, 2, "gitaly.Repository"
+    optional :source_branch, :bytes, 3
+    optional :target_ref, :bytes, 4
+  end
+  add_message "gitaly.FetchSourceBranchResponse" do
+    optional :result, :bool, 1
+  end
 end
 
 module Gitaly
@@ -117,4 +126,6 @@ module Gitaly
   HasLocalBranchesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.HasLocalBranchesResponse").msgclass
   ChangeStorageRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ChangeStorageRequest").msgclass
   ChangeStorageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ChangeStorageResponse").msgclass
+  FetchSourceBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchSourceBranchRequest").msgclass
+  FetchSourceBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchSourceBranchResponse").msgclass
 end
