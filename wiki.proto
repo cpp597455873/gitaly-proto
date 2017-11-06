@@ -12,6 +12,7 @@ service WikiService {
   // WikiFindPage returns a stream because the page's raw_data field may be arbitrarily large.
   rpc WikiFindPage(WikiFindPageRequest) returns (stream WikiFindPageResponse) {}
   rpc WikiFindFile(WikiFindFileRequest) returns (stream WikiFindFileResponse) {}
+  rpc WikiGetAllPages(WikiGetAllPagesRequest) returns (stream WikiGetAllPagesResponse) {}
 }
 
 message WikiCommitDetails {
@@ -113,4 +114,15 @@ message WikiFindFileResponse {
   string mime_type = 2;
   bytes raw_data = 3;
   bytes path = 4;
+}
+
+message WikiGetAllPagesRequest {
+  Repository repository = 1;
+}
+
+// The WikiGetAllPagesResponse stream is a concatenation of WikiPage streams
+message WikiGetAllPagesResponse {
+  WikiPage page = 1;
+  // When end_of_page is true it signals a change of page for the next Response message (if any)
+  bool end_of_page = 2;
 }

@@ -169,6 +169,8 @@ It has these top-level messages:
 	WikiFindPageResponse
 	WikiFindFileRequest
 	WikiFindFileResponse
+	WikiGetAllPagesRequest
+	WikiGetAllPagesResponse
 */
 package gitaly
 
