@@ -19,6 +19,7 @@ service RefService {
   rpc CreateBranch(CreateBranchRequest) returns (CreateBranchResponse) {}
   rpc DeleteBranch(DeleteBranchRequest) returns (DeleteBranchResponse) {}
   rpc FindBranch(FindBranchRequest) returns (FindBranchResponse) {}
+  rpc DeleteRefs(DeleteRefsRequest) returns (DeleteRefsResponse) {}
 }
 
 message FindDefaultBranchNameRequest {
@@ -150,3 +151,10 @@ message FindBranchRequest {
 message FindBranchResponse {
   Branch branch = 1;
 }
+
+message DeleteRefsRequest{
+  Repository repository = 1;
+  repeated bytes except_with_prefix = 2;
+}
+
+message DeleteRefsResponse {}

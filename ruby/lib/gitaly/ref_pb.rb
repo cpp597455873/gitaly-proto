@@ -107,6 +107,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FindBranchResponse" do
     optional :branch, :message, 1, "gitaly.Branch"
   end
+  add_message "gitaly.DeleteRefsRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    repeated :except_with_prefix, :bytes, 2
+  end
+  add_message "gitaly.DeleteRefsResponse" do
+  end
 end
 
 module Gitaly
@@ -137,4 +143,6 @@ module Gitaly
   DeleteBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DeleteBranchResponse").msgclass
   FindBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindBranchRequest").msgclass
   FindBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindBranchResponse").msgclass
+  DeleteRefsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DeleteRefsRequest").msgclass
+  DeleteRefsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DeleteRefsResponse").msgclass
 end
