@@ -104,6 +104,8 @@ to implementation details of the Go standard library (specifically,
 the ouput of gzip). **Use the same Go version as .gitlab-ci.yml (Go
 1.8)** when generating new client libraries for a merge request.
 
+[DCO + License](CONTRIBUTING.md)
+
 ### Build process
 
 After you change or add a .proto file you need to re-generate the Go
