@@ -89,6 +89,8 @@ It has these top-level messages:
 	OperationBranchUpdate
 	UserFFBranchRequest
 	UserFFBranchResponse
+	UserCherryPickRequest
+	UserCherryPickResponse
 	FindDefaultBranchNameRequest
 	FindDefaultBranchNameResponse
 	FindAllBranchNamesRequest
