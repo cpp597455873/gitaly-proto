@@ -172,16 +172,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.CommitsByMessageResponse" do
     repeated :commits, :message, 1, "gitaly.GitCommit"
   end
-  add_message "gitaly.ListShasWithSignaturesRequest" do
+  add_message "gitaly.FilterShasWithSignaturesRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     repeated :shas, :bytes, 2
   end
-  add_message "gitaly.ListShasWithSignaturesResponse" do
-    repeated :signatures, :message, 1, "gitaly.ListShasWithSignaturesResponse.GitSignature"
-  end
-  add_message "gitaly.ListShasWithSignaturesResponse.GitSignature" do
-    optional :signature, :bytes, 1
-    optional :signed_data, :bytes, 2
+  add_message "gitaly.FilterShasWithSignaturesResponse" do
+    repeated :shas, :bytes, 1
   end
 end
 
@@ -221,7 +217,6 @@ module Gitaly
   LastCommitForPathResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.LastCommitForPathResponse").msgclass
   CommitsByMessageRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitsByMessageRequest").msgclass
   CommitsByMessageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitsByMessageResponse").msgclass
-  ListShasWithSignaturesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListShasWithSignaturesRequest").msgclass
-  ListShasWithSignaturesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListShasWithSignaturesResponse").msgclass
-  ListShasWithSignaturesResponse::GitSignature = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListShasWithSignaturesResponse.GitSignature").msgclass
+  FilterShasWithSignaturesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FilterShasWithSignaturesRequest").msgclass
+  FilterShasWithSignaturesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FilterShasWithSignaturesResponse").msgclass
 end

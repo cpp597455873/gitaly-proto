@@ -30,7 +30,7 @@ module Gitaly
       rpc :LastCommitForPath, LastCommitForPathRequest, LastCommitForPathResponse
       rpc :CommitsByMessage, CommitsByMessageRequest, stream(CommitsByMessageResponse)
       rpc :ListCommitsByOid, ListCommitsByOidRequest, stream(ListCommitsByOidResponse)
-      rpc :ListShasWithSignatures, stream(ListShasWithSignaturesRequest), stream(ListShasWithSignaturesResponse)
+      rpc :FilterShasWithSignatures, stream(FilterShasWithSignaturesRequest), stream(FilterShasWithSignaturesResponse)
     end
 
     Stub = Service.rpc_stub_class
