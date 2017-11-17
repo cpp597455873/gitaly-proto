@@ -249,9 +249,5 @@ message ListShasWithSignaturesRequest {
 }
 
 message ListShasWithSignaturesResponse {
-  message GitSignature {
-    bytes signature = 1;
-    bytes signed_data = 2;
-  }
-  repeated GitSignature signatures = 1;
+  repeated bytes shas = 1;
 }
