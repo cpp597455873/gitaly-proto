@@ -23,6 +23,7 @@ service CommitService {
   rpc CommitsByMessage(CommitsByMessageRequest) returns (stream CommitsByMessageResponse) {}
 
   rpc ListCommitsByOid(ListCommitsByOidRequest) returns (stream ListCommitsByOidResponse) {}
+  rpc ListShasWithSignatures(stream ListShasWithSignaturesRequest) returns (stream ListShasWithSignaturesResponse) {}
 }
 
 message CommitStatsRequest {
@@ -240,4 +241,17 @@ message CommitsByMessageRequest {
 // One 'page' of the paginated response of CommitsByMessage
 message CommitsByMessageResponse {
   repeated GitCommit commits = 1;
+}
+
+message ListShasWithSignaturesRequest {
+  Repository repository = 1;
+  repeated bytes shas = 2;
+}
+
+message ListShasWithSignaturesResponse {
+  message GitSignature {
+    bytes signature = 1;
+    bytes signed_data = 2;
+  }
+  repeated GitSignature signatures = 1;
 }
