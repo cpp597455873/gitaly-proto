@@ -55,8 +55,8 @@ It has these top-level messages:
 	LastCommitForPathResponse
 	CommitsByMessageRequest
 	CommitsByMessageResponse
-	ListShasWithSignaturesRequest
-	ListShasWithSignaturesResponse
+	FilterShasWithSignaturesRequest
+	FilterShasWithSignaturesResponse
 	CommitDiffRequest
 	CommitDiffResponse
 	CommitDeltaRequest
