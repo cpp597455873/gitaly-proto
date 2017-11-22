@@ -11,6 +11,7 @@ service OperationService {
   rpc UserDeleteTag(UserDeleteTagRequest) returns (UserDeleteTagResponse) {}
   rpc UserMergeBranch(stream UserMergeBranchRequest) returns (stream UserMergeBranchResponse) {}
   rpc UserFFBranch(UserFFBranchRequest) returns (UserFFBranchResponse) {}
+  rpc UserCherryPick(UserCherryPickRequest) returns (UserCherryPickResponse) {}
 }
 
 message UserCreateBranchRequest {
@@ -104,4 +105,21 @@ message UserFFBranchRequest {
 message UserFFBranchResponse {
   OperationBranchUpdate branch_update = 1;
   string pre_receive_error = 2;
+}
+
+message UserCherryPickRequest {
+  Repository repository = 1;
+  User user = 2;
+  GitCommit commit = 3;
+  bytes branch_name = 4;
+  bytes message = 5;
+  bytes start_branch_name = 6;
+  Repository start_repository = 7;
+}
+
+message UserCherryPickResponse {
+  OperationBranchUpdate branch_update = 1;
+  bool create_tree_error = 2;
+  string commit_error = 3;
+  string pre_receive_error = 4;
 }

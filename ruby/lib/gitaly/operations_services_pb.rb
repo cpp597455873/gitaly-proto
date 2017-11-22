@@ -20,6 +20,7 @@ module Gitaly
       rpc :UserDeleteTag, UserDeleteTagRequest, UserDeleteTagResponse
       rpc :UserMergeBranch, stream(UserMergeBranchRequest), stream(UserMergeBranchResponse)
       rpc :UserFFBranch, UserFFBranchRequest, UserFFBranchResponse
+      rpc :UserCherryPick, UserCherryPickRequest, UserCherryPickResponse
     end
 
     Stub = Service.rpc_stub_class
