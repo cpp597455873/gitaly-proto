@@ -98,6 +98,22 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FetchSourceBranchResponse" do
     optional :result, :bool, 1
   end
+  add_message "gitaly.Compare" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :base, :message, 2, "gitaly.GitCommit"
+    optional :head, :message, 3, "gitaly.GitCommit"
+    optional :straight, :bool, 4
+  end
+  add_message "gitaly.CompareSourceBranchRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :source_repository, :message, 2, "gitaly.Repository"
+    optional :source_branch, :bytes, 3
+    optional :target_branch, :bytes, 4
+    optional :straight, :bool, 5
+  end
+  add_message "gitaly.CompareSourceBranchResponse" do
+    optional :compare, :message, 1, "gitaly.Compare"
+  end
 end
 
 module Gitaly
@@ -128,4 +144,7 @@ module Gitaly
   ChangeStorageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ChangeStorageResponse").msgclass
   FetchSourceBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchSourceBranchRequest").msgclass
   FetchSourceBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchSourceBranchResponse").msgclass
+  Compare = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Compare").msgclass
+  CompareSourceBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CompareSourceBranchRequest").msgclass
+  CompareSourceBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CompareSourceBranchResponse").msgclass
 end

@@ -18,6 +18,7 @@ service RepositoryService {
   rpc HasLocalBranches(HasLocalBranchesRequest) returns (HasLocalBranchesResponse) {}
   rpc ChangeStorage(ChangeStorageRequest) returns (ChangeStorageResponse) {}
   rpc FetchSourceBranch(FetchSourceBranchRequest) returns (FetchSourceBranchResponse) {}
+  rpc CompareSourceBranch(CompareSourceBranchRequest) returns (CompareSourceBranchResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -132,4 +133,23 @@ message FetchSourceBranchRequest {
 
 message FetchSourceBranchResponse {
   bool result = 1;
+}
+
+message Compare {
+  Repository repository = 1;
+  GitCommit base = 2;
+  GitCommit head = 3;
+  bool straight = 4;
+}
+
+message CompareSourceBranchRequest {
+  Repository repository = 1;
+  Repository source_repository = 2;
+  bytes source_branch = 3;
+  bytes target_branch = 4;
+  bool straight = 5;
+}
+
+message CompareSourceBranchResponse {
+  Compare compare = 1;
 }

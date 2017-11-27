@@ -145,6 +145,9 @@ It has these top-level messages:
 	ChangeStorageResponse
 	FetchSourceBranchRequest
 	FetchSourceBranchResponse
+	Compare
+	CompareSourceBranchRequest
+	CompareSourceBranchResponse
 	Repository
 	GitCommit
 	CommitAuthor
