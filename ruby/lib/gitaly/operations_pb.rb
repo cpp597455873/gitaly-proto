@@ -81,7 +81,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.UserCherryPickResponse" do
     optional :branch_update, :message, 1, "gitaly.OperationBranchUpdate"
-    optional :create_tree_error, :bool, 2
+    optional :create_tree_error, :string, 2
     optional :commit_error, :string, 3
     optional :pre_receive_error, :string, 4
   end
