@@ -101,7 +101,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :oid, :string, 2
   end
   add_message "gitaly.ListCommitsByOidResponse" do
-    repeated :commit, :message, 1, "gitaly.GitCommit"
+    repeated :commits, :message, 1, "gitaly.GitCommit"
   end
   add_message "gitaly.FindAllCommitsRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
