@@ -154,7 +154,7 @@ message ListCommitsByOidRequest {
 }
 
 message ListCommitsByOidResponse {
-  repeated GitCommit commit = 1;
+  repeated GitCommit commits = 1;
 }
 
 message FindAllCommitsRequest {
