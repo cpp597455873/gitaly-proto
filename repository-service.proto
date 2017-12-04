@@ -18,6 +18,8 @@ service RepositoryService {
   rpc HasLocalBranches(HasLocalBranchesRequest) returns (HasLocalBranchesResponse) {}
   rpc ChangeStorage(ChangeStorageRequest) returns (ChangeStorageResponse) {}
   rpc FetchSourceBranch(FetchSourceBranchRequest) returns (FetchSourceBranchResponse) {}
+  rpc Fsck(FsckRequest) returns (FsckResponse) {}
+  rpc WriteRef(WriteRefRequest) returns (WriteRefResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -132,4 +134,22 @@ message FetchSourceBranchRequest {
 
 message FetchSourceBranchResponse {
   bool result = 1;
+}
+
+message FsckRequest {
+  Repository repository = 1;
+}
+
+message FsckResponse {
+  bytes error = 1;
+}
+
+message WriteRefRequest {
+  Repository repository = 1;
+  bytes ref = 2;
+  bytes revision = 3;
+}
+
+message WriteRefResponse {
+  bytes error = 1;
 }

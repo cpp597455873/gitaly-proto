@@ -98,6 +98,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FetchSourceBranchResponse" do
     optional :result, :bool, 1
   end
+  add_message "gitaly.FsckRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+  end
+  add_message "gitaly.FsckResponse" do
+    optional :error, :bytes, 1
+  end
+  add_message "gitaly.WriteRefRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :ref, :bytes, 2
+    optional :revision, :bytes, 3
+  end
+  add_message "gitaly.WriteRefResponse" do
+    optional :error, :bytes, 1
+  end
 end
 
 module Gitaly
@@ -128,4 +142,8 @@ module Gitaly
   ChangeStorageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ChangeStorageResponse").msgclass
   FetchSourceBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchSourceBranchRequest").msgclass
   FetchSourceBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchSourceBranchResponse").msgclass
+  FsckRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FsckRequest").msgclass
+  FsckResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FsckResponse").msgclass
+  WriteRefRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WriteRefRequest").msgclass
+  WriteRefResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WriteRefResponse").msgclass
 end
