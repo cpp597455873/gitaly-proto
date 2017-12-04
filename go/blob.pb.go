@@ -93,6 +93,8 @@ It has these top-level messages:
 	UserFFBranchResponse
 	UserCherryPickRequest
 	UserCherryPickResponse
+	UserRevertRequest
+	UserRevertResponse
 	FindDefaultBranchNameRequest
 	FindDefaultBranchNameResponse
 	FindAllBranchNamesRequest

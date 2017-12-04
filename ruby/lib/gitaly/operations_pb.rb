@@ -85,6 +85,21 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :commit_error, :string, 3
     optional :pre_receive_error, :string, 4
   end
+  add_message "gitaly.UserRevertRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :user, :message, 2, "gitaly.User"
+    optional :commit, :message, 3, "gitaly.GitCommit"
+    optional :branch_name, :bytes, 4
+    optional :message, :bytes, 5
+    optional :start_branch_name, :bytes, 6
+    optional :start_repository, :message, 7, "gitaly.Repository"
+  end
+  add_message "gitaly.UserRevertResponse" do
+    optional :branch_update, :message, 1, "gitaly.OperationBranchUpdate"
+    optional :create_tree_error, :string, 2
+    optional :commit_error, :string, 3
+    optional :pre_receive_error, :string, 4
+  end
 end
 
 module Gitaly
@@ -103,4 +118,6 @@ module Gitaly
   UserFFBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserFFBranchResponse").msgclass
   UserCherryPickRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCherryPickRequest").msgclass
   UserCherryPickResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCherryPickResponse").msgclass
+  UserRevertRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserRevertRequest").msgclass
+  UserRevertResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserRevertResponse").msgclass
 end

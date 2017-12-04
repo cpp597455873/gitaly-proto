@@ -21,6 +21,7 @@ module Gitaly
       rpc :UserMergeBranch, stream(UserMergeBranchRequest), stream(UserMergeBranchResponse)
       rpc :UserFFBranch, UserFFBranchRequest, UserFFBranchResponse
       rpc :UserCherryPick, UserCherryPickRequest, UserCherryPickResponse
+      rpc :UserRevert, UserRevertRequest, UserRevertResponse
     end
 
     Stub = Service.rpc_stub_class
