@@ -108,6 +108,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :ref, :bytes, 2
     optional :revision, :bytes, 3
+    optional :force, :bool, 4
   end
   add_message "gitaly.WriteRefResponse" do
     optional :error, :bytes, 1
