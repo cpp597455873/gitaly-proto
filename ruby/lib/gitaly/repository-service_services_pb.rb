@@ -27,6 +27,8 @@ module Gitaly
       rpc :HasLocalBranches, HasLocalBranchesRequest, HasLocalBranchesResponse
       rpc :ChangeStorage, ChangeStorageRequest, ChangeStorageResponse
       rpc :FetchSourceBranch, FetchSourceBranchRequest, FetchSourceBranchResponse
+      rpc :Fsck, FsckRequest, FsckResponse
+      rpc :WriteRef, WriteRefRequest, WriteRefResponse
     end
 
     Stub = Service.rpc_stub_class
