@@ -113,6 +113,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.WriteRefResponse" do
     optional :error, :bytes, 1
   end
+  add_message "gitaly.FindMergeBaseRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    repeated :revisions, :bytes, 2
+  end
+  add_message "gitaly.FindMergeBaseResponse" do
+    optional :base, :string, 1
+  end
 end
 
 module Gitaly
@@ -147,4 +154,6 @@ module Gitaly
   FsckResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FsckResponse").msgclass
   WriteRefRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WriteRefRequest").msgclass
   WriteRefResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WriteRefResponse").msgclass
+  FindMergeBaseRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindMergeBaseRequest").msgclass
+  FindMergeBaseResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindMergeBaseResponse").msgclass
 end
