@@ -58,6 +58,8 @@ It has these top-level messages:
 	CommitsByMessageResponse
 	FilterShasWithSignaturesRequest
 	FilterShasWithSignaturesResponse
+	ListTreeEntriesRequest
+	ListTreeEntriesResponse
 	ListConflictFilesRequest
 	ConflictFileHeader
 	ConflictFile

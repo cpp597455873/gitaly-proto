@@ -23,6 +23,7 @@ service CommitService {
   rpc CommitsByMessage(CommitsByMessageRequest) returns (stream CommitsByMessageResponse) {}
 
   rpc ListCommitsByOid(ListCommitsByOidRequest) returns (stream ListCommitsByOidResponse) {}
+  rpc ListTreeEntries(ListTreeEntriesRequest) returns (stream ListTreeEntriesResponse) {}
   rpc FilterShasWithSignatures(stream FilterShasWithSignaturesRequest) returns (stream FilterShasWithSignaturesResponse) {}
 }
 
@@ -250,4 +251,25 @@ message FilterShasWithSignaturesRequest {
 
 message FilterShasWithSignaturesResponse {
   repeated bytes shas = 1;
+}
+
+message ListTreeEntriesRequest {
+  message RevisionPath {
+    // commit ID
+    bytes oid = 1;
+    // entry path relative to repository root
+    bytes path = 2;
+  }
+  Repository repository = 1;
+  RevisionPath commit_blob = 2;
+  int64 limit = 3;
+}
+
+message ListTreeEntriesResponse {
+  // Blob size; present only in first response message
+  int64 size = 1;
+  // Chunk of blob data
+  bytes data = 2;
+  // Object ID of the actual blob returned. Empty if no blob was found.
+  string oid = 3;
 }

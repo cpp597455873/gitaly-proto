@@ -179,6 +179,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FilterShasWithSignaturesResponse" do
     repeated :shas, :bytes, 1
   end
+  add_message "gitaly.ListTreeEntriesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :commit_blob, :message, 2, "gitaly.ListTreeEntriesRequest.RevisionPath"
+    optional :limit, :int64, 3
+  end
+  add_message "gitaly.ListTreeEntriesRequest.RevisionPath" do
+    optional :oid, :bytes, 1
+    optional :path, :bytes, 2
+  end
+  add_message "gitaly.ListTreeEntriesResponse" do
+    optional :size, :int64, 1
+    optional :data, :bytes, 2
+    optional :oid, :string, 3
+  end
 end
 
 module Gitaly
@@ -219,4 +233,7 @@ module Gitaly
   CommitsByMessageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitsByMessageResponse").msgclass
   FilterShasWithSignaturesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FilterShasWithSignaturesRequest").msgclass
   FilterShasWithSignaturesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FilterShasWithSignaturesResponse").msgclass
+  ListTreeEntriesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListTreeEntriesRequest").msgclass
+  ListTreeEntriesRequest::RevisionPath = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListTreeEntriesRequest.RevisionPath").msgclass
+  ListTreeEntriesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListTreeEntriesResponse").msgclass
 end

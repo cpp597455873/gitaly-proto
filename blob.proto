@@ -26,9 +26,9 @@ message GetBlobRequest {
 
 message GetBlobResponse {
   // Blob size; present only in first response message
-  int64 size = 1; 
+  int64 size = 1;
   // Chunk of blob data
-  bytes data = 2; 
+  bytes data = 2;
   // Object ID of the actual blob returned. Empty if no blob was found.
   string oid = 3;
 }
@@ -43,9 +43,9 @@ message GetBlobsRequest {
 
 message GetBlobsResponse {
   // Blob size; present only on the first message per blob
-  int64 size = 1; 
+  int64 size = 1;
   // Chunk of blob data
-  bytes data = 2; 
+  bytes data = 2;
   // Object ID of the current blob. Only present on the first message per blob. Empty if no blob was found.
   string oid = 3;
 }

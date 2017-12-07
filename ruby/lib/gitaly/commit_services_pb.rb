@@ -30,6 +30,7 @@ module Gitaly
       rpc :LastCommitForPath, LastCommitForPathRequest, LastCommitForPathResponse
       rpc :CommitsByMessage, CommitsByMessageRequest, stream(CommitsByMessageResponse)
       rpc :ListCommitsByOid, ListCommitsByOidRequest, stream(ListCommitsByOidResponse)
+      rpc :ListTreeEntries, ListTreeEntriesRequest, stream(ListTreeEntriesResponse)
       rpc :FilterShasWithSignatures, stream(FilterShasWithSignaturesRequest), stream(FilterShasWithSignaturesResponse)
     end
 
