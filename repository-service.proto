@@ -20,6 +20,7 @@ service RepositoryService {
   rpc FetchSourceBranch(FetchSourceBranchRequest) returns (FetchSourceBranchResponse) {}
   rpc Fsck(FsckRequest) returns (FsckResponse) {}
   rpc WriteRef(WriteRefRequest) returns (WriteRefResponse) {}
+  rpc FindMergeBase(FindMergeBaseRequest) returns (FindMergeBaseResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -153,4 +154,16 @@ message WriteRefRequest {
 
 message WriteRefResponse {
   bytes error = 1;
+}
+
+message FindMergeBaseRequest {
+  Repository repository = 1;
+  // We use a repeated field because rugged supports finding a base
+  // for more than 2 revisions, so if we needed that in the future we don't
+  // need to change the protocol.
+  repeated bytes revisions = 2;
+}
+
+message FindMergeBaseResponse {
+  string base = 1;
 }
