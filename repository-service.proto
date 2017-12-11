@@ -21,6 +21,7 @@ service RepositoryService {
   rpc Fsck(FsckRequest) returns (FsckResponse) {}
   rpc WriteRef(WriteRefRequest) returns (WriteRefResponse) {}
   rpc FindMergeBase(FindMergeBaseRequest) returns (FindMergeBaseResponse) {}
+  rpc CreateFork(CreateForkRequest) returns (CreateForkResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -167,3 +168,10 @@ message FindMergeBaseRequest {
 message FindMergeBaseResponse {
   string base = 1;
 }
+
+message CreateForkRequest {
+  Repository repository = 1;
+  Repository source_repository = 2;
+}
+
+message CreateForkResponse {}
