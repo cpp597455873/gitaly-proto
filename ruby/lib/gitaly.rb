@@ -21,6 +21,8 @@ require 'gitaly/operations_services_pb'
 
 require 'gitaly/ref_services_pb'
 
+require 'gitaly/remote_services_pb'
+
 require 'gitaly/repository-service_services_pb'
 
 require 'gitaly/smarthttp_services_pb'

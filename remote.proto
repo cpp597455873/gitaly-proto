@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package gitaly;
+
+import "shared.proto";
+
+service RemoteService {
+    rpc AddRemote(AddRemoteRequest) returns (AddRemoteResponse) {}
+    rpc FetchInternalRemote(FetchInternalRemoteRequest) returns (FetchInternalRemoteResponse) {}
+    rpc RemoveRemote(RemoveRemoteRequest) returns (RemoveRemoteResponse) {}
+}
+
+message AddRemoteRequest {
+    Repository repository = 1;
+    string name = 2;
+    string url = 3;
+    // If set the remote is configured as a mirror with that mapping
+    string mirror_refmap = 4;
+}
+
+message AddRemoteResponse {}
+
+message RemoveRemoteRequest {
+    Repository repository = 1;
+    string name = 2;
+}
+
+message RemoveRemoteResponse {
+    bool result = 1;
+}
+
+message FetchInternalRemoteRequest {
+    Repository repository = 1;
+    Repository remote_repository = 2;
+}
+
+message FetchInternalRemoteResponse {
+    bool result = 1;
+}
