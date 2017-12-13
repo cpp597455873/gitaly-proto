@@ -8,8 +8,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.ListConflictFilesRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :our_commit_oid, :string, 2
-    optional :target_repository, :message, 3, "gitaly.Repository"
-    optional :their_commit_oid, :string, 4
+    optional :their_commit_oid, :string, 3
   end
   add_message "gitaly.ConflictFileHeader" do
     optional :repository, :message, 1, "gitaly.Repository"

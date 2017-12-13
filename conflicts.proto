@@ -12,8 +12,7 @@ service ConflictsService {
 message ListConflictFilesRequest {
     Repository repository = 1;
     string our_commit_oid = 2;
-    Repository target_repository = 3;
-    string their_commit_oid = 4;
+    string their_commit_oid = 3;
 }
 
 message ConflictFileHeader {
