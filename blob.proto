@@ -14,6 +14,10 @@ service BlobService {
   // The blobs are sent in a continous stream, the caller is responsible for spliting
   // them up into multiple blobs by their object IDs.
   rpc GetBlobs(GetBlobsRequest) returns (stream GetBlobsResponse) {}
+
+  // ListBlobsByRevisionPath returns the blob for each (commit_oid, path) passed in
+  // Commit oid and path can vary between each request and might not have any relation to each other
+  rpc ListBlobsByRevisionPaths(ListBlobsByRevisionPathsRequest) returns (stream ListBlobsByRevisionPathsResponse) {}
 }
 
 message GetBlobRequest {
@@ -26,9 +30,9 @@ message GetBlobRequest {
 
 message GetBlobResponse {
   // Blob size; present only in first response message
-  int64 size = 1; 
+  int64 size = 1;
   // Chunk of blob data
-  bytes data = 2; 
+  bytes data = 2;
   // Object ID of the actual blob returned. Empty if no blob was found.
   string oid = 3;
 }
@@ -43,9 +47,27 @@ message GetBlobsRequest {
 
 message GetBlobsResponse {
   // Blob size; present only on the first message per blob
-  int64 size = 1; 
+  int64 size = 1;
   // Chunk of blob data
-  bytes data = 2; 
+  bytes data = 2;
   // Object ID of the current blob. Only present on the first message per blob. Empty if no blob was found.
   string oid = 3;
+}
+
+message ListBlobsByRevisionPathsRequest {
+  Repository repository = 1;
+
+  message RevisionPath {
+    string revision =1;
+    string path = 2;
+    int64 limit =3;
+  }
+
+  repeated RevisionPath revision_paths = 2;
+}
+
+message ListBlobsByRevisionPathsResponse {
+  string oid = 1;
+  bytes data = 2;
+  int64 size = 3;
 }

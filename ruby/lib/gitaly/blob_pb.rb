@@ -25,6 +25,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :data, :bytes, 2
     optional :oid, :string, 3
   end
+  add_message "gitaly.ListBlobsByRevisionPathsRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    repeated :revision_paths, :message, 2, "gitaly.ListBlobsByRevisionPathsRequest.RevisionPath"
+  end
+  add_message "gitaly.ListBlobsByRevisionPathsRequest.RevisionPath" do
+    optional :revision, :string, 1
+    optional :path, :string, 2
+    optional :limit, :int64, 3
+  end
+  add_message "gitaly.ListBlobsByRevisionPathsResponse" do
+    optional :oid, :string, 1
+    optional :data, :bytes, 2
+    optional :size, :int64, 3
+  end
 end
 
 module Gitaly
@@ -32,4 +46,7 @@ module Gitaly
   GetBlobResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetBlobResponse").msgclass
   GetBlobsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetBlobsRequest").msgclass
   GetBlobsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetBlobsResponse").msgclass
+  ListBlobsByRevisionPathsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListBlobsByRevisionPathsRequest").msgclass
+  ListBlobsByRevisionPathsRequest::RevisionPath = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListBlobsByRevisionPathsRequest.RevisionPath").msgclass
+  ListBlobsByRevisionPathsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListBlobsByRevisionPathsResponse").msgclass
 end

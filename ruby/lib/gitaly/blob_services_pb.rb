@@ -23,6 +23,9 @@ module Gitaly
       # The blobs are sent in a continous stream, the caller is responsible for spliting
       # them up into multiple blobs by their object IDs.
       rpc :GetBlobs, GetBlobsRequest, stream(GetBlobsResponse)
+      # ListBlobsByRevisionPath returns the blob for each (commit_oid, path) passed in
+      # Commit oid and path can vary between each request and might not have any relation to each other
+      rpc :ListBlobsByRevisionPaths, ListBlobsByRevisionPathsRequest, stream(ListBlobsByRevisionPathsResponse)
     end
 
     Stub = Service.rpc_stub_class
