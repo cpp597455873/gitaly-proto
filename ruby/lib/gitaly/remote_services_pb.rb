@@ -17,6 +17,7 @@ module Gitaly
       rpc :AddRemote, AddRemoteRequest, AddRemoteResponse
       rpc :FetchInternalRemote, FetchInternalRemoteRequest, FetchInternalRemoteResponse
       rpc :RemoveRemote, RemoveRemoteRequest, RemoveRemoteResponse
+      rpc :UpdateRemoteMirror, stream(UpdateRemoteMirrorRequest), UpdateRemoteMirrorResponse
     end
 
     Stub = Service.rpc_stub_class

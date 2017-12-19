@@ -136,6 +136,8 @@ It has these top-level messages:
 	RemoveRemoteResponse
 	FetchInternalRemoteRequest
 	FetchInternalRemoteResponse
+	UpdateRemoteMirrorRequest
+	UpdateRemoteMirrorResponse
 	RepositoryExistsRequest
 	RepositoryExistsResponse
 	RepositoryIsEmptyRequest
