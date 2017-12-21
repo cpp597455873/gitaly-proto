@@ -120,6 +120,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FindMergeBaseResponse" do
     optional :base, :string, 1
   end
+  add_message "gitaly.CreateForkRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :source_repository, :message, 2, "gitaly.Repository"
+  end
+  add_message "gitaly.CreateForkResponse" do
+  end
 end
 
 module Gitaly
@@ -156,4 +162,6 @@ module Gitaly
   WriteRefResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WriteRefResponse").msgclass
   FindMergeBaseRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindMergeBaseRequest").msgclass
   FindMergeBaseResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindMergeBaseResponse").msgclass
+  CreateForkRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateForkRequest").msgclass
+  CreateForkResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateForkResponse").msgclass
 end

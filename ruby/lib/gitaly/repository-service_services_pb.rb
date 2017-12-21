@@ -30,6 +30,7 @@ module Gitaly
       rpc :Fsck, FsckRequest, FsckResponse
       rpc :WriteRef, WriteRefRequest, WriteRefResponse
       rpc :FindMergeBase, FindMergeBaseRequest, FindMergeBaseResponse
+      rpc :CreateFork, CreateForkRequest, CreateForkResponse
     end
 
     Stub = Service.rpc_stub_class
