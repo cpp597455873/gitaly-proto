@@ -25,7 +25,6 @@ module Gitaly
       rpc :CreateRepository, CreateRepositoryRequest, CreateRepositoryResponse
       rpc :GetArchive, GetArchiveRequest, stream(GetArchiveResponse)
       rpc :HasLocalBranches, HasLocalBranchesRequest, HasLocalBranchesResponse
-      rpc :ChangeStorage, ChangeStorageRequest, ChangeStorageResponse
       rpc :FetchSourceBranch, FetchSourceBranchRequest, FetchSourceBranchResponse
       rpc :Fsck, FsckRequest, FsckResponse
       rpc :WriteRef, WriteRefRequest, WriteRefResponse
