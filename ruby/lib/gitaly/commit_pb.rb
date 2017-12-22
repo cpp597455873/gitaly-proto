@@ -56,6 +56,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :after, :message, 3, "google.protobuf.Timestamp"
     optional :before, :message, 4, "google.protobuf.Timestamp"
     optional :path, :bytes, 5
+    optional :max_count, :int32, 6
   end
   add_message "gitaly.CountCommitsResponse" do
     optional :count, :int32, 1
