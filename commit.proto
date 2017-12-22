@@ -90,6 +90,7 @@ message CountCommitsRequest {
   google.protobuf.Timestamp after = 3;
   google.protobuf.Timestamp before = 4;
   bytes path = 5;
+  int32 max_count = 6;
 }
 
 message CountCommitsResponse {
