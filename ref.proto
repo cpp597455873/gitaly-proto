@@ -89,6 +89,11 @@ message FindLocalBranchCommitAuthor {
 
 message FindAllBranchesRequest {
   Repository repository = 1;
+  // Only return branches that are merged into root ref
+  bool merged_only = 2;
+  // If merged_only is true, this is a list of branches from which we
+  // return those merged into the root ref
+  repeated bytes merged_branches = 3;
 }
 
 message FindAllBranchesResponse {

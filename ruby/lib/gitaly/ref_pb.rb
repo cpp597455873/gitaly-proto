@@ -58,6 +58,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.FindAllBranchesRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
+    optional :merged_only, :bool, 2
+    repeated :merged_branches, :bytes, 3
   end
   add_message "gitaly.FindAllBranchesResponse" do
     repeated :branches, :message, 1, "gitaly.FindAllBranchesResponse.Branch"
