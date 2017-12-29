@@ -14,6 +14,7 @@ service OperationService {
   rpc UserCherryPick(UserCherryPickRequest) returns (UserCherryPickResponse) {}
   rpc UserRevert(UserRevertRequest) returns (UserRevertResponse) {}
   rpc UserCommitFiles(stream UserCommitFilesRequest) returns (UserCommitFilesResponse) {}
+  rpc UserRebase(UserRebaseRequest) returns (UserRebaseResponse) {}
 }
 
 message UserCreateBranchRequest {
@@ -186,4 +187,20 @@ message UserCommitFilesRequest {
 
 message UserCommitFilesResponse {
   OperationBranchUpdate branch_update = 1;
+}
+
+message UserRebaseRequest {
+  Repository repository = 1;
+  User user = 2;
+  string rebase_id = 3;
+  bytes branch = 4;
+  string branch_sha = 5;
+  Repository remote_repository = 6;
+  bytes remote_branch = 7;
+}
+
+message UserRebaseResponse {
+  string rebase_sha = 1;
+  string pre_receive_error = 2;
+  string git_error = 3;
 }
