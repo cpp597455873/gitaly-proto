@@ -30,6 +30,7 @@ module Gitaly
       rpc :WriteRef, WriteRefRequest, WriteRefResponse
       rpc :FindMergeBase, FindMergeBaseRequest, FindMergeBaseResponse
       rpc :CreateFork, CreateForkRequest, CreateForkResponse
+      rpc :IsRebaseInProgress, IsRebaseInProgressRequest, IsRebaseInProgressResponse
     end
 
     Stub = Service.rpc_stub_class
