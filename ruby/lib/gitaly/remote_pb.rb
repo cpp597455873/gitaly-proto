@@ -9,7 +9,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :name, :string, 2
     optional :url, :string, 3
-    optional :mirror_refmap, :string, 4
+    repeated :mirror_refmaps, :string, 5
   end
   add_message "gitaly.AddRemoteResponse" do
   end
