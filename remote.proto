@@ -14,8 +14,11 @@ message AddRemoteRequest {
     Repository repository = 1;
     string name = 2;
     string url = 3;
-    // If set the remote is configured as a mirror with that mapping
-    string mirror_refmap = 4;
+    // DEPRECATED: https://gitlab.com/gitlab-org/gitaly-proto/merge_requests/137
+    reserved 4;
+    reserved "mirror_refmap";
+    // If any, the remote is configured as a mirror with those mappings
+    repeated string mirror_refmaps = 5;
 }
 
 message AddRemoteResponse {}
