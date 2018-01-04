@@ -104,6 +104,11 @@ It has these top-level messages:
 	UserCherryPickResponse
 	UserRevertRequest
 	UserRevertResponse
+	UserCommitFilesActionHeader
+	UserCommitFilesAction
+	UserCommitFilesRequestHeader
+	UserCommitFilesRequest
+	UserCommitFilesResponse
 	FindDefaultBranchNameRequest
 	FindDefaultBranchNameResponse
 	FindAllBranchNamesRequest

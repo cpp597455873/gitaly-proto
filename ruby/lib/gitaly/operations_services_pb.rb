@@ -22,6 +22,7 @@ module Gitaly
       rpc :UserFFBranch, UserFFBranchRequest, UserFFBranchResponse
       rpc :UserCherryPick, UserCherryPickRequest, UserCherryPickResponse
       rpc :UserRevert, UserRevertRequest, UserRevertResponse
+      rpc :UserCommitFiles, stream(UserCommitFilesRequest), UserCommitFilesResponse
     end
 
     Stub = Service.rpc_stub_class

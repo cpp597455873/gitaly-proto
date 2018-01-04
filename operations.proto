@@ -13,6 +13,7 @@ service OperationService {
   rpc UserFFBranch(UserFFBranchRequest) returns (UserFFBranchResponse) {}
   rpc UserCherryPick(UserCherryPickRequest) returns (UserCherryPickResponse) {}
   rpc UserRevert(UserRevertRequest) returns (UserRevertResponse) {}
+  rpc UserCommitFiles(stream UserCommitFilesRequest) returns (UserCommitFilesResponse) {}
 }
 
 message UserCreateBranchRequest {
@@ -140,4 +141,49 @@ message UserRevertResponse {
   string create_tree_error = 2;
   string commit_error = 3;
   string pre_receive_error = 4;
+}
+
+message UserCommitFilesActionHeader {
+  enum ActionType {
+    CREATE = 0;
+    CREATE_DIR = 1;
+    UPDATE = 2;
+    MOVE = 3;
+    DELETE = 4;
+  }
+  ActionType action = 1;
+  string file_path = 2;
+  string previous_path = 3;
+  bool base64_content = 4;
+}
+
+message UserCommitFilesAction {
+  oneof user_commit_files_action_payload {
+    UserCommitFilesActionHeader header = 1;
+    bytes content = 2;
+  }
+}
+
+message UserCommitFilesRequestHeader {
+  Repository repository = 1;
+  User user = 2;
+  bytes branch_name = 3;
+  bytes commit_message = 4;
+  bytes commit_author_name = 5;
+  bytes commit_author_email = 6;
+  bytes start_branch_name = 7;
+  Repository start_repository = 8;
+}
+
+message UserCommitFilesRequest {
+  oneof user_commit_files_request_payload {
+    // For each request stream there should be first a request with a header and
+    // then n requests with actions
+    UserCommitFilesRequestHeader header = 1;
+    UserCommitFilesAction action = 2;
+  }
+}
+
+message UserCommitFilesResponse {
+  OperationBranchUpdate branch_update = 1;
 }
