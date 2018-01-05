@@ -130,6 +130,10 @@ It has these top-level messages:
 	FindBranchResponse
 	DeleteRefsRequest
 	DeleteRefsResponse
+	ListBranchNamesContainingCommitRequest
+	ListBranchNamesContainingCommitResponse
+	ListTagNamesContainingCommitRequest
+	ListTagNamesContainingCommitResponse
 	AddRemoteRequest
 	AddRemoteResponse
 	RemoveRemoteRequest
