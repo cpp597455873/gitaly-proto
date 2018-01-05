@@ -8,6 +8,7 @@ service RemoteService {
     rpc AddRemote(AddRemoteRequest) returns (AddRemoteResponse) {}
     rpc FetchInternalRemote(FetchInternalRemoteRequest) returns (FetchInternalRemoteResponse) {}
     rpc RemoveRemote(RemoveRemoteRequest) returns (RemoveRemoteResponse) {}
+    rpc UpdateRemoteMirror(stream UpdateRemoteMirrorRequest) returns (UpdateRemoteMirrorResponse) {}
 }
 
 message AddRemoteRequest {
@@ -40,3 +41,11 @@ message FetchInternalRemoteRequest {
 message FetchInternalRemoteResponse {
     bool result = 1;
 }
+
+message UpdateRemoteMirrorRequest {
+    Repository repository = 1;
+    string ref_name = 2;
+    repeated bytes only_branches_matching = 3;
+}
+
+message UpdateRemoteMirrorResponse {}
