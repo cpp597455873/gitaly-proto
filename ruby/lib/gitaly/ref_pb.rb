@@ -115,6 +115,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.DeleteRefsResponse" do
   end
+  add_message "gitaly.ListBranchNamesContainingCommitRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :commit_id, :string, 2
+  end
+  add_message "gitaly.ListBranchNamesContainingCommitResponse" do
+    repeated :branch_names, :string, 1
+  end
+  add_message "gitaly.ListTagNamesContainingCommitRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :commit_id, :string, 2
+  end
+  add_message "gitaly.ListTagNamesContainingCommitResponse" do
+    repeated :tag_names, :string, 1
+  end
 end
 
 module Gitaly
@@ -147,4 +161,8 @@ module Gitaly
   FindBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindBranchResponse").msgclass
   DeleteRefsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DeleteRefsRequest").msgclass
   DeleteRefsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DeleteRefsResponse").msgclass
+  ListBranchNamesContainingCommitRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListBranchNamesContainingCommitRequest").msgclass
+  ListBranchNamesContainingCommitResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListBranchNamesContainingCommitResponse").msgclass
+  ListTagNamesContainingCommitRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListTagNamesContainingCommitRequest").msgclass
+  ListTagNamesContainingCommitResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListTagNamesContainingCommitResponse").msgclass
 end

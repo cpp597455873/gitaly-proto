@@ -20,6 +20,9 @@ service RefService {
   rpc DeleteBranch(DeleteBranchRequest) returns (DeleteBranchResponse) {}
   rpc FindBranch(FindBranchRequest) returns (FindBranchResponse) {}
   rpc DeleteRefs(DeleteRefsRequest) returns (DeleteRefsResponse) {}
+
+  rpc ListBranchNamesContainingCommit(ListBranchNamesContainingCommitRequest) returns (ListBranchNamesContainingCommitResponse) {}
+  rpc ListTagNamesContainingCommit(ListTagNamesContainingCommitRequest) returns (ListTagNamesContainingCommitResponse) {}
 }
 
 message FindDefaultBranchNameRequest {
@@ -163,3 +166,21 @@ message DeleteRefsRequest{
 }
 
 message DeleteRefsResponse {}
+
+message ListBranchNamesContainingCommitRequest {
+  Repository repository = 1;
+  string commit_id = 2;
+}
+
+message ListBranchNamesContainingCommitResponse {
+  repeated string branch_names = 1;
+}
+
+message ListTagNamesContainingCommitRequest {
+  Repository repository = 1;
+  string commit_id = 2;
+}
+
+message ListTagNamesContainingCommitResponse {
+  repeated string tag_names = 1;
+}
