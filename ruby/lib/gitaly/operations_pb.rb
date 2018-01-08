@@ -100,6 +100,44 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :commit_error, :string, 3
     optional :pre_receive_error, :string, 4
   end
+  add_message "gitaly.UserCommitFilesActionHeader" do
+    optional :action, :enum, 1, "gitaly.UserCommitFilesActionHeader.ActionType"
+    optional :file_path, :string, 2
+    optional :previous_path, :string, 3
+    optional :base64_content, :bool, 4
+  end
+  add_enum "gitaly.UserCommitFilesActionHeader.ActionType" do
+    value :CREATE, 0
+    value :CREATE_DIR, 1
+    value :UPDATE, 2
+    value :MOVE, 3
+    value :DELETE, 4
+  end
+  add_message "gitaly.UserCommitFilesAction" do
+    oneof :user_commit_files_action_payload do
+      optional :header, :message, 1, "gitaly.UserCommitFilesActionHeader"
+      optional :content, :bytes, 2
+    end
+  end
+  add_message "gitaly.UserCommitFilesRequestHeader" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :user, :message, 2, "gitaly.User"
+    optional :branch_name, :bytes, 3
+    optional :commit_message, :bytes, 4
+    optional :commit_author_name, :bytes, 5
+    optional :commit_author_email, :bytes, 6
+    optional :start_branch_name, :bytes, 7
+    optional :start_repository, :message, 8, "gitaly.Repository"
+  end
+  add_message "gitaly.UserCommitFilesRequest" do
+    oneof :user_commit_files_request_payload do
+      optional :header, :message, 1, "gitaly.UserCommitFilesRequestHeader"
+      optional :action, :message, 2, "gitaly.UserCommitFilesAction"
+    end
+  end
+  add_message "gitaly.UserCommitFilesResponse" do
+    optional :branch_update, :message, 1, "gitaly.OperationBranchUpdate"
+  end
 end
 
 module Gitaly
@@ -120,4 +158,10 @@ module Gitaly
   UserCherryPickResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCherryPickResponse").msgclass
   UserRevertRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserRevertRequest").msgclass
   UserRevertResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserRevertResponse").msgclass
+  UserCommitFilesActionHeader = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCommitFilesActionHeader").msgclass
+  UserCommitFilesActionHeader::ActionType = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCommitFilesActionHeader.ActionType").enummodule
+  UserCommitFilesAction = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCommitFilesAction").msgclass
+  UserCommitFilesRequestHeader = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCommitFilesRequestHeader").msgclass
+  UserCommitFilesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCommitFilesRequest").msgclass
+  UserCommitFilesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCommitFilesResponse").msgclass
 end
