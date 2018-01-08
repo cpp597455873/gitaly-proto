@@ -21,6 +21,7 @@ service RepositoryService {
   rpc WriteRef(WriteRefRequest) returns (WriteRefResponse) {}
   rpc FindMergeBase(FindMergeBaseRequest) returns (FindMergeBaseResponse) {}
   rpc CreateFork(CreateForkRequest) returns (CreateForkResponse) {}
+  rpc IsRebaseInProgress(IsRebaseInProgressRequest) returns (IsRebaseInProgressResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -167,3 +168,12 @@ message CreateForkRequest {
 }
 
 message CreateForkResponse {}
+
+message IsRebaseInProgressRequest {
+  Repository repository = 1;
+  string rebase_id = 2;
+}
+
+message IsRebaseInProgressResponse {
+  bool in_progress = 1;
+}

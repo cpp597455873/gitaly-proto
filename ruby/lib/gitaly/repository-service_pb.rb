@@ -120,6 +120,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.CreateForkResponse" do
   end
+  add_message "gitaly.IsRebaseInProgressRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :rebase_id, :string, 2
+  end
+  add_message "gitaly.IsRebaseInProgressResponse" do
+    optional :in_progress, :bool, 1
+  end
 end
 
 module Gitaly
@@ -156,4 +163,6 @@ module Gitaly
   FindMergeBaseResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindMergeBaseResponse").msgclass
   CreateForkRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateForkRequest").msgclass
   CreateForkResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateForkResponse").msgclass
+  IsRebaseInProgressRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.IsRebaseInProgressRequest").msgclass
+  IsRebaseInProgressResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.IsRebaseInProgressResponse").msgclass
 end
