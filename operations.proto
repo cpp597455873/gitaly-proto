@@ -187,6 +187,7 @@ message UserCommitFilesRequest {
 
 message UserCommitFilesResponse {
   OperationBranchUpdate branch_update = 1;
+  string index_error = 2;
 }
 
 message UserRebaseRequest {
