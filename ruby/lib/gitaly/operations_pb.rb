@@ -138,6 +138,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.UserCommitFilesResponse" do
     optional :branch_update, :message, 1, "gitaly.OperationBranchUpdate"
   end
+  add_message "gitaly.UserRebaseRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :user, :message, 2, "gitaly.User"
+    optional :rebase_id, :string, 3
+    optional :branch, :bytes, 4
+    optional :branch_sha, :string, 5
+    optional :remote_repository, :message, 6, "gitaly.Repository"
+    optional :remote_branch, :bytes, 7
+  end
+  add_message "gitaly.UserRebaseResponse" do
+    optional :rebase_sha, :string, 1
+    optional :pre_receive_error, :string, 2
+    optional :git_error, :string, 3
+  end
 end
 
 module Gitaly
@@ -164,4 +178,6 @@ module Gitaly
   UserCommitFilesRequestHeader = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCommitFilesRequestHeader").msgclass
   UserCommitFilesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCommitFilesRequest").msgclass
   UserCommitFilesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCommitFilesResponse").msgclass
+  UserRebaseRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserRebaseRequest").msgclass
+  UserRebaseResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserRebaseResponse").msgclass
 end
