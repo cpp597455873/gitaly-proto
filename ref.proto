@@ -173,7 +173,8 @@ message ListBranchNamesContainingCommitRequest {
 }
 
 message ListBranchNamesContainingCommitResponse {
-  repeated string branch_names = 1;
+  reserved 1;
+  repeated bytes branch_names = 2;
 }
 
 message ListTagNamesContainingCommitRequest {
@@ -182,5 +183,6 @@ message ListTagNamesContainingCommitRequest {
 }
 
 message ListTagNamesContainingCommitResponse {
-  repeated string tag_names = 1;
+  reserved 1;
+  repeated bytes tag_names = 2;
 }
