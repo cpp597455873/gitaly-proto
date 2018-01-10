@@ -31,6 +31,10 @@ module Gitaly
       rpc :CommitsByMessage, CommitsByMessageRequest, stream(CommitsByMessageResponse)
       rpc :ListCommitsByOid, ListCommitsByOidRequest, stream(ListCommitsByOidResponse)
       rpc :FilterShasWithSignatures, stream(FilterShasWithSignaturesRequest), stream(FilterShasWithSignaturesResponse)
+      # ExtractCommitSignature returns a stream because the signed text may be
+      # arbitrarily large and signature verification is impossible without the
+      # full text.
+      rpc :ExtractCommitSignature, ExtractCommitSignatureRequest, stream(ExtractCommitSignatureResponse)
     end
 
     Stub = Service.rpc_stub_class

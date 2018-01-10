@@ -180,6 +180,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FilterShasWithSignaturesResponse" do
     repeated :shas, :bytes, 1
   end
+  add_message "gitaly.ExtractCommitSignatureRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :commit_id, :string, 2
+  end
+  add_message "gitaly.ExtractCommitSignatureResponse" do
+    optional :signature, :bytes, 1
+    optional :signed_text, :bytes, 2
+  end
 end
 
 module Gitaly
@@ -220,4 +228,6 @@ module Gitaly
   CommitsByMessageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitsByMessageResponse").msgclass
   FilterShasWithSignaturesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FilterShasWithSignaturesRequest").msgclass
   FilterShasWithSignaturesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FilterShasWithSignaturesResponse").msgclass
+  ExtractCommitSignatureRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ExtractCommitSignatureRequest").msgclass
+  ExtractCommitSignatureResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ExtractCommitSignatureResponse").msgclass
 end
