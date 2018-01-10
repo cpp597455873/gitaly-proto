@@ -24,6 +24,11 @@ service CommitService {
 
   rpc ListCommitsByOid(ListCommitsByOidRequest) returns (stream ListCommitsByOidResponse) {}
   rpc FilterShasWithSignatures(stream FilterShasWithSignaturesRequest) returns (stream FilterShasWithSignaturesResponse) {}
+
+  // ExtractCommitSignature returns a stream because the signed text may be
+  // arbitrarily large and signature verification is impossible without the
+  // full text.
+  rpc ExtractCommitSignature(ExtractCommitSignatureRequest) returns (stream ExtractCommitSignatureResponse) {}
 }
 
 message CommitStatsRequest {
@@ -251,4 +256,16 @@ message FilterShasWithSignaturesRequest {
 
 message FilterShasWithSignaturesResponse {
   repeated bytes shas = 1;
+}
+
+message ExtractCommitSignatureRequest {
+  Repository repository = 1;
+  string commit_id = 2;
+}
+
+// Either of the 'signature' and 'signed_text' fields may be present. It
+// is up to the caller to stitch them together.
+message ExtractCommitSignatureResponse {
+  bytes signature = 1;
+  bytes signed_text = 2;
 }
