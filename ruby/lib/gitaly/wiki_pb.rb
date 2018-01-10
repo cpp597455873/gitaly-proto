@@ -27,6 +27,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.WikiGetPageVersionsRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :page_path, :bytes, 2
+    optional :page, :int32, 3
+    optional :per_page, :int32, 4
   end
   add_message "gitaly.WikiGetPageVersionsResponse" do
     repeated :versions, :message, 1, "gitaly.WikiPageVersion"

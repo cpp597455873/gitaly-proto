@@ -43,6 +43,9 @@ message WikiPage {
 message WikiGetPageVersionsRequest {
   Repository repository = 1;
   bytes page_path = 2;
+
+  int32 page = 3;
+  int32 per_page = 4;
 }
 
 message WikiGetPageVersionsResponse {
