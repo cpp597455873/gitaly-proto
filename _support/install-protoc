@@ -37,9 +37,14 @@ def platform
 end
 
 def fetch_protoc(source)
-  return if sha_match?(File.basename(source['url']), source['sha256'])
+  file = File.basename(source['url'])
+  sha = source['sha256']
+
+  return if sha_match?(file, sha)
 
   run!(%W[curl -LO #{source['url']}])
+
+  abort "SHA256 check failed" unless sha_match?(file, sha)
 end
 
 def sha_match?(file, sha)
