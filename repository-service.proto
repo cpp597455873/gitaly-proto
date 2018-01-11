@@ -143,7 +143,9 @@ message WriteRefRequest {
   Repository repository = 1;
   bytes ref = 2;
   bytes revision = 3;
-  bool force = 4;
+  bytes old_revision = 4;
+  bool force = 5;
+  bool shell = 6;
 }
 
 message WriteRefResponse {
