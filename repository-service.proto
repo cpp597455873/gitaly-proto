@@ -22,6 +22,7 @@ service RepositoryService {
   rpc FindMergeBase(FindMergeBaseRequest) returns (FindMergeBaseResponse) {}
   rpc CreateFork(CreateForkRequest) returns (CreateForkResponse) {}
   rpc IsRebaseInProgress(IsRebaseInProgressRequest) returns (IsRebaseInProgressResponse) {}
+  rpc CreateRepositoryFromURL(CreateRepositoryFromURLRequest) returns (CreateRepositoryFromURLResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -179,3 +180,10 @@ message IsRebaseInProgressRequest {
 message IsRebaseInProgressResponse {
   bool in_progress = 1;
 }
+
+message CreateRepositoryFromURLRequest {
+  Repository repository = 1;
+  string url = 2;
+}
+
+message CreateRepositoryFromURLResponse {}
