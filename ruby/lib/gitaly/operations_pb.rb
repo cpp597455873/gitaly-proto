@@ -102,8 +102,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.UserCommitFilesActionHeader" do
     optional :action, :enum, 1, "gitaly.UserCommitFilesActionHeader.ActionType"
-    optional :file_path, :string, 2
-    optional :previous_path, :string, 3
+    optional :file_path, :bytes, 2
+    optional :previous_path, :bytes, 3
     optional :base64_content, :bool, 4
   end
   add_enum "gitaly.UserCommitFilesActionHeader.ActionType" do
