@@ -153,8 +153,8 @@ message UserCommitFilesActionHeader {
     DELETE = 4;
   }
   ActionType action = 1;
-  string file_path = 2;
-  string previous_path = 3;
+  bytes file_path = 2;
+  bytes previous_path = 3;
   bool base64_content = 4;
 }
 
