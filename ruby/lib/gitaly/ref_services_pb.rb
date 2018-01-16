@@ -28,8 +28,8 @@ module Gitaly
       rpc :DeleteBranch, DeleteBranchRequest, DeleteBranchResponse
       rpc :FindBranch, FindBranchRequest, FindBranchResponse
       rpc :DeleteRefs, DeleteRefsRequest, DeleteRefsResponse
-      rpc :ListBranchNamesContainingCommit, ListBranchNamesContainingCommitRequest, ListBranchNamesContainingCommitResponse
-      rpc :ListTagNamesContainingCommit, ListTagNamesContainingCommitRequest, ListTagNamesContainingCommitResponse
+      rpc :ListBranchNamesContainingCommit, ListBranchNamesContainingCommitRequest, stream(ListBranchNamesContainingCommitResponse)
+      rpc :ListTagNamesContainingCommit, ListTagNamesContainingCommitRequest, stream(ListTagNamesContainingCommitResponse)
     end
 
     Stub = Service.rpc_stub_class

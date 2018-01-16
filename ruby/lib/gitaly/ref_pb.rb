@@ -118,6 +118,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.ListBranchNamesContainingCommitRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :commit_id, :string, 2
+    optional :limit, :uint32, 3
   end
   add_message "gitaly.ListBranchNamesContainingCommitResponse" do
     repeated :branch_names, :bytes, 2
@@ -125,6 +126,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.ListTagNamesContainingCommitRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :commit_id, :string, 2
+    optional :limit, :uint32, 3
   end
   add_message "gitaly.ListTagNamesContainingCommitResponse" do
     repeated :tag_names, :bytes, 2
