@@ -19,6 +19,7 @@ module Gitaly
       rpc :CommitsBetween, CommitsBetweenRequest, stream(CommitsBetweenResponse)
       rpc :CountCommits, CountCommitsRequest, CountCommitsResponse
       rpc :GetTreeEntries, GetTreeEntriesRequest, stream(GetTreeEntriesResponse)
+      rpc :GetTreeEntriesBySelector, GetTreeEntriesBySelectorRequest, stream(GetTreeEntriesBySelectorResponse)
       rpc :ListFiles, ListFilesRequest, stream(ListFilesResponse)
       rpc :FindCommit, FindCommitRequest, FindCommitResponse
       rpc :CommitStats, CommitStatsRequest, CommitStatsResponse

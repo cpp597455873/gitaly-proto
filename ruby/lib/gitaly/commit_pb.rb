@@ -188,6 +188,19 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :signature, :bytes, 1
     optional :signed_text, :bytes, 2
   end
+  add_message "gitaly.GetTreeEntriesBySelectorRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :oids, :string, 2
+    optional :revision_paths, :message, 3, "gitaly.GetTreeEntriesBySelectorRequest.RevisionPath"
+    optional :limit, :int64, 4
+  end
+  add_message "gitaly.GetTreeEntriesBySelectorRequest.RevisionPath" do
+    optional :revision, :string, 1
+    optional :path, :bytes, 2
+  end
+  add_message "gitaly.GetTreeEntriesBySelectorResponse" do
+    repeated :entries, :message, 1, "gitaly.TreeEntry"
+  end
 end
 
 module Gitaly
@@ -230,4 +243,7 @@ module Gitaly
   FilterShasWithSignaturesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FilterShasWithSignaturesResponse").msgclass
   ExtractCommitSignatureRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ExtractCommitSignatureRequest").msgclass
   ExtractCommitSignatureResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ExtractCommitSignatureResponse").msgclass
+  GetTreeEntriesBySelectorRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetTreeEntriesBySelectorRequest").msgclass
+  GetTreeEntriesBySelectorRequest::RevisionPath = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetTreeEntriesBySelectorRequest.RevisionPath").msgclass
+  GetTreeEntriesBySelectorResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetTreeEntriesBySelectorResponse").msgclass
 end

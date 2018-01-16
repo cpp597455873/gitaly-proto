@@ -61,6 +61,8 @@ It has these top-level messages:
 	FilterShasWithSignaturesResponse
 	ExtractCommitSignatureRequest
 	ExtractCommitSignatureResponse
+	GetTreeEntriesBySelectorRequest
+	GetTreeEntriesBySelectorResponse
 	ListConflictFilesRequest
 	ConflictFileHeader
 	ConflictFile

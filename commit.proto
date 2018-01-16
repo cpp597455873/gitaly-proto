@@ -11,6 +11,7 @@ service CommitService {
   rpc CommitsBetween(CommitsBetweenRequest) returns (stream CommitsBetweenResponse) {}
   rpc CountCommits(CountCommitsRequest) returns (CountCommitsResponse) {}
   rpc GetTreeEntries(GetTreeEntriesRequest) returns (stream GetTreeEntriesResponse) {}
+  rpc GetTreeEntriesBySelector(GetTreeEntriesBySelectorRequest) returns (stream GetTreeEntriesBySelectorResponse) {}
   rpc ListFiles(ListFilesRequest) returns (stream ListFilesResponse) {}
   rpc FindCommit(FindCommitRequest) returns (FindCommitResponse) {}
   rpc CommitStats(CommitStatsRequest) returns (CommitStatsResponse) {}
@@ -268,4 +269,24 @@ message ExtractCommitSignatureRequest {
 message ExtractCommitSignatureResponse {
   bytes signature = 1;
   bytes signed_text = 2;
+}
+
+message GetTreeEntriesBySelectorRequest {
+  message RevisionPath {
+    string revision = 1;
+    bytes path = 2;
+  }
+
+  Repository repository = 1;
+  // We can't use repeated fields inside a oneof field, so we lay selectors out flat.
+  // Optional selector: Object IDs.
+  string oids = 2;
+  // Optional selector: Revision/Path pairs.
+  RevisionPath revision_paths = 3;
+  // Data limit (if any), 0 to return no data, -1 to return all data.
+  int64 limit = 4;
+}
+
+message GetTreeEntriesBySelectorResponse {
+  repeated TreeEntry entries = 1;
 }
