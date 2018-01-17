@@ -23,6 +23,7 @@ module Gitaly
       # The blobs are sent in a continous stream, the caller is responsible for spliting
       # them up into multiple blobs by their object IDs.
       rpc :GetBlobs, GetBlobsRequest, stream(GetBlobsResponse)
+      rpc :GetLFSPointers, GetLFSPointersRequest, stream(GetLFSPointersResponse)
     end
 
     Stub = Service.rpc_stub_class

@@ -14,6 +14,7 @@ service BlobService {
   // The blobs are sent in a continous stream, the caller is responsible for spliting
   // them up into multiple blobs by their object IDs.
   rpc GetBlobs(GetBlobsRequest) returns (stream GetBlobsResponse) {}
+  rpc GetLFSPointers(GetLFSPointersRequest) returns (stream GetLFSPointersResponse) {}
 }
 
 message GetBlobRequest {
@@ -48,4 +49,19 @@ message GetBlobsResponse {
   bytes data = 2; 
   // Object ID of the current blob. Only present on the first message per blob. Empty if no blob was found.
   string oid = 3;
+}
+
+message LFSPointer {
+  int64 size = 1;
+  bytes data = 2;
+  string oid = 3;
+}
+
+message GetLFSPointersRequest {
+  Repository repository = 1;
+  repeated string blob_ids = 2;
+}
+
+message GetLFSPointersResponse {
+  repeated LFSPointer lfs_pointers = 1;
 }
