@@ -32,6 +32,7 @@ module Gitaly
       rpc :CreateFork, CreateForkRequest, CreateForkResponse
       rpc :IsRebaseInProgress, IsRebaseInProgressRequest, IsRebaseInProgressResponse
       rpc :CreateRepositoryFromURL, CreateRepositoryFromURLRequest, CreateRepositoryFromURLResponse
+      rpc :CreateBundle, CreateBundleRequest, stream(CreateBundleResponse)
     end
 
     Stub = Service.rpc_stub_class
