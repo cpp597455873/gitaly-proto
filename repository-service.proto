@@ -23,6 +23,7 @@ service RepositoryService {
   rpc CreateFork(CreateForkRequest) returns (CreateForkResponse) {}
   rpc IsRebaseInProgress(IsRebaseInProgressRequest) returns (IsRebaseInProgressResponse) {}
   rpc CreateRepositoryFromURL(CreateRepositoryFromURLRequest) returns (CreateRepositoryFromURLResponse) {}
+  rpc CreateBundle(CreateBundleRequest) returns (stream CreateBundleResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -187,3 +188,11 @@ message CreateRepositoryFromURLRequest {
 }
 
 message CreateRepositoryFromURLResponse {}
+
+message CreateBundleRequest {
+  Repository repository = 1;
+}
+
+message CreateBundleResponse {
+  bytes data = 1;
+}
