@@ -10,9 +10,8 @@ The .proto files define the remote procedure calls for interacting
 with Gitaly. We keep auto-generated client libraries for Ruby and Go
 in their respective subdirectories.
 
-Use the `make generate` script from the root of the
-repository to regenerate the client libraries after updating .proto
-files.
+Run `make` from the root of the repository to regenerate the client
+libraries after updating .proto files.
 
 See
 [developers.google.com](https://developers.google.com/protocol-buffers/docs/proto3)
@@ -50,7 +49,7 @@ gRPC provides an implementation framework based on these Protobuf concepts.
 -   Officially a gRPC connection is called a **channel**. In the Go gRPC
     library these channels are called **client connections** because
     'channel' is already a concept in Go itself. In Ruby a gRPC channel
-    is an intance of GRPC::Core::Channel. We use the word 'connection'
+    is an instance of GRPC::Core::Channel. We use the word 'connection'
     in this document. The underlying transport of gRPC, HTTP/2, allows
     multiple remote procedure calls to happen at the same time on a
     single connection to a gRPC server. In principle, a multi-threaded
@@ -61,20 +60,11 @@ gRPC provides an implementation framework based on these Protobuf concepts.
 1.  In Gitaly's case there is one server application
     https://gitlab.com/gitlab-org/gitaly which implements all services
     in the protocol.
-1.  Gitaly clients use one HTTP/2 connection per Gitaly server they
-    interact with. All services used by the client share the same
-    connection.
-1.  Currently each Gitaly client interacts with exactly 1 Gitaly server,
-    on the same host, via a Unix domain socket. In the future each
-    Gitaly client will interact with many different Gitaly servers (one
-    per GitLab storage shard) via TLS connections.
-1.  Gitaly clients will 'cache' their gRPC connections to avoid
-    connection setup overhead on each RPC call. Pitfall: the Ruby 'grpc'
-    gem creates convenience methods that let you establish many new
-    connections if you are not careful. To avoid this we will always use
-    the `Stub.new(nil, credentials, channel_override: the_channel)`
-    invocation pattern instead of
-    `Stub.new('some://address', credentials)` in Ruby Gitaly clients.
+1.  In default GitLab installations each Gitaly client interacts with
+    exactly 1 Gitaly server, on the same host, via a Unix domain socket.
+    In a larger installation each Gitaly client will interact with many
+    different Gitaly servers (one per GitLab storage shard) via TCP
+    connections.
 1.  Gitaly uses
     [grpc.Errorf](https://godoc.org/google.golang.org/grpc#Errorf) to
     return meaningful
