@@ -15,6 +15,7 @@ service OperationService {
   rpc UserRevert(UserRevertRequest) returns (UserRevertResponse) {}
   rpc UserCommitFiles(stream UserCommitFilesRequest) returns (UserCommitFilesResponse) {}
   rpc UserRebase(UserRebaseRequest) returns (UserRebaseResponse) {}
+  rpc UserSquash(UserSquashRequest) returns (UserSquashResponse) {}
 }
 
 message UserCreateBranchRequest {
@@ -203,6 +204,23 @@ message UserRebaseRequest {
 
 message UserRebaseResponse {
   string rebase_sha = 1;
+  string pre_receive_error = 2;
+  string git_error = 3;
+}
+
+message UserSquashRequest {
+  Repository repository = 1;
+  User user = 2;
+  string squash_id = 3;
+  bytes branch = 4;
+  string start_sha = 5;
+  string end_sha = 6;
+  User author = 7;
+  bytes commit_message = 8;
+}
+
+message UserSquashResponse {
+  string squash_sha = 1;
   string pre_receive_error = 2;
   string git_error = 3;
 }
