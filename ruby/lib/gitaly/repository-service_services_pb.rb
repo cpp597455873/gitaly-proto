@@ -31,6 +31,7 @@ module Gitaly
       rpc :FindMergeBase, FindMergeBaseRequest, FindMergeBaseResponse
       rpc :CreateFork, CreateForkRequest, CreateForkResponse
       rpc :IsRebaseInProgress, IsRebaseInProgressRequest, IsRebaseInProgressResponse
+      rpc :IsSquashInProgress, IsSquashInProgressRequest, IsSquashInProgressResponse
       rpc :CreateRepositoryFromURL, CreateRepositoryFromURLRequest, CreateRepositoryFromURLResponse
       rpc :CreateBundle, CreateBundleRequest, stream(CreateBundleResponse)
     end

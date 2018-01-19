@@ -190,6 +190,8 @@ It has these top-level messages:
 	CreateForkResponse
 	IsRebaseInProgressRequest
 	IsRebaseInProgressResponse
+	IsSquashInProgressRequest
+	IsSquashInProgressResponse
 	CreateRepositoryFromURLRequest
 	CreateRepositoryFromURLResponse
 	CreateBundleRequest

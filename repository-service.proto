@@ -22,6 +22,7 @@ service RepositoryService {
   rpc FindMergeBase(FindMergeBaseRequest) returns (FindMergeBaseResponse) {}
   rpc CreateFork(CreateForkRequest) returns (CreateForkResponse) {}
   rpc IsRebaseInProgress(IsRebaseInProgressRequest) returns (IsRebaseInProgressResponse) {}
+  rpc IsSquashInProgress(IsSquashInProgressRequest) returns (IsSquashInProgressResponse) {}
   rpc CreateRepositoryFromURL(CreateRepositoryFromURLRequest) returns (CreateRepositoryFromURLResponse) {}
   rpc CreateBundle(CreateBundleRequest) returns (stream CreateBundleResponse) {}
 }
@@ -179,6 +180,15 @@ message IsRebaseInProgressRequest {
 }
 
 message IsRebaseInProgressResponse {
+  bool in_progress = 1;
+}
+
+message IsSquashInProgressRequest {
+  Repository repository = 1;
+  string squash_id = 2;
+}
+
+message IsSquashInProgressResponse {
   bool in_progress = 1;
 }
 
