@@ -25,6 +25,7 @@ service RepositoryService {
   rpc IsSquashInProgress(IsSquashInProgressRequest) returns (IsSquashInProgressResponse) {}
   rpc CreateRepositoryFromURL(CreateRepositoryFromURLRequest) returns (CreateRepositoryFromURLResponse) {}
   rpc CreateBundle(CreateBundleRequest) returns (stream CreateBundleResponse) {}
+  rpc CreateRepositoryFromBundle(stream CreateRepositoryFromBundleRequest) returns (CreateRepositoryFromBundleResponse) {}
   rpc WriteConfig(WriteConfigRequest) returns (WriteConfigResponse) {}
 }
 
@@ -216,3 +217,11 @@ message WriteConfigRequest {
 message WriteConfigResponse {
   bytes error = 1;
 }
+
+message CreateRepositoryFromBundleRequest {
+  // Only available on the first message
+  Repository repository = 1;
+  bytes data = 2;
+}
+
+message CreateRepositoryFromBundleResponse {}
