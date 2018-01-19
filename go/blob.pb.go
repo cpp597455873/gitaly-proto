@@ -196,6 +196,8 @@ It has these top-level messages:
 	CreateRepositoryFromURLResponse
 	CreateBundleRequest
 	CreateBundleResponse
+	WriteConfigRequest
+	WriteConfigResponse
 	Repository
 	GitCommit
 	CommitAuthor

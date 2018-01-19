@@ -34,6 +34,7 @@ module Gitaly
       rpc :IsSquashInProgress, IsSquashInProgressRequest, IsSquashInProgressResponse
       rpc :CreateRepositoryFromURL, CreateRepositoryFromURLRequest, CreateRepositoryFromURLResponse
       rpc :CreateBundle, CreateBundleRequest, stream(CreateBundleResponse)
+      rpc :WriteConfig, WriteConfigRequest, WriteConfigResponse
     end
 
     Stub = Service.rpc_stub_class
