@@ -25,6 +25,7 @@ service RepositoryService {
   rpc IsSquashInProgress(IsSquashInProgressRequest) returns (IsSquashInProgressResponse) {}
   rpc CreateRepositoryFromURL(CreateRepositoryFromURLRequest) returns (CreateRepositoryFromURLResponse) {}
   rpc CreateBundle(CreateBundleRequest) returns (stream CreateBundleResponse) {}
+  rpc WriteConfig(WriteConfigRequest) returns (WriteConfigResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -205,4 +206,13 @@ message CreateBundleRequest {
 
 message CreateBundleResponse {
   bytes data = 1;
+}
+
+message WriteConfigRequest {
+  Repository repository = 1;
+  string full_path = 2;
+}
+
+message WriteConfigResponse {
+  bytes error = 1;
 }
