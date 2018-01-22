@@ -155,6 +155,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.WriteConfigResponse" do
     optional :error, :bytes, 1
   end
+  add_message "gitaly.CreateRepositoryFromBundleRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :data, :bytes, 2
+  end
+  add_message "gitaly.CreateRepositoryFromBundleResponse" do
+  end
 end
 
 module Gitaly
@@ -201,4 +207,6 @@ module Gitaly
   CreateBundleResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateBundleResponse").msgclass
   WriteConfigRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WriteConfigRequest").msgclass
   WriteConfigResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WriteConfigResponse").msgclass
+  CreateRepositoryFromBundleRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateRepositoryFromBundleRequest").msgclass
+  CreateRepositoryFromBundleResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateRepositoryFromBundleResponse").msgclass
 end
