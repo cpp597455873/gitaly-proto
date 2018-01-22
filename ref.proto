@@ -21,8 +21,8 @@ service RefService {
   rpc FindBranch(FindBranchRequest) returns (FindBranchResponse) {}
   rpc DeleteRefs(DeleteRefsRequest) returns (DeleteRefsResponse) {}
 
-  rpc ListBranchNamesContainingCommit(ListBranchNamesContainingCommitRequest) returns (ListBranchNamesContainingCommitResponse) {}
-  rpc ListTagNamesContainingCommit(ListTagNamesContainingCommitRequest) returns (ListTagNamesContainingCommitResponse) {}
+  rpc ListBranchNamesContainingCommit(ListBranchNamesContainingCommitRequest) returns (stream ListBranchNamesContainingCommitResponse) {}
+  rpc ListTagNamesContainingCommit(ListTagNamesContainingCommitRequest) returns (stream ListTagNamesContainingCommitResponse) {}
 }
 
 message FindDefaultBranchNameRequest {
@@ -170,6 +170,10 @@ message DeleteRefsResponse {}
 message ListBranchNamesContainingCommitRequest {
   Repository repository = 1;
   string commit_id = 2;
+
+  // Limit the number of tag names to be returned
+  // If the limit is set to zero, all items will be returned
+  uint32 limit = 3;
 }
 
 message ListBranchNamesContainingCommitResponse {
@@ -180,6 +184,10 @@ message ListBranchNamesContainingCommitResponse {
 message ListTagNamesContainingCommitRequest {
   Repository repository = 1;
   string commit_id = 2;
+
+  // Limit the number of tag names to be returned
+  // If the limit is set to zero, all items will be returned
+  uint32 limit = 3;
 }
 
 message ListTagNamesContainingCommitResponse {
