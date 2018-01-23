@@ -189,7 +189,9 @@ message UserCommitFilesRequest {
 message UserCommitFilesResponse {
   OperationBranchUpdate branch_update = 1;
   string index_error = 2;
-  string pre_receive_error = 3;
+  // DEPRECATED: https://gitlab.com/gitlab-org/gitaly-proto/merge_requests/158
+  reserved 3;
+  reserved "pre_receive_error";
 }
 
 message UserRebaseRequest {
