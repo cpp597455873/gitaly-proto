@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package gitaly;
+
+service ServerService {
+  rpc ServerVersion(ServerVersionRequest) returns (ServerVersionResponse) {}
+  rpc ServerGitVersion(ServerGitVersionRequest) returns (ServerGitVersionResponse) {}
+}
+
+message ServerVersionRequest {
+}
+
+message ServerVersionResponse {
+  string version = 1;
+}
+
+message ServerGitVersionRequest {
+}
+
+message ServerGitVersionResponse {
+  string version = 1;
+}
