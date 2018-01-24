@@ -11,6 +11,8 @@ service BlobService {
   rpc GetBlob(GetBlobRequest) returns (stream GetBlobResponse) {}
   rpc GetBlobs(GetBlobsRequest) returns (stream GetBlobsResponse) {}
   rpc GetLFSPointers(GetLFSPointersRequest) returns (stream GetLFSPointersResponse) {}
+  rpc GetNewLFSPointers(GetNewLFSPointersRequest) returns (stream GetNewLFSPointersResponse) {}
+  rpc GetAllLFSPointers(GetAllLFSPointersRequest) returns (stream GetAllLFSPointersResponse) {}
 }
 
 message GetBlobRequest {
@@ -23,9 +25,9 @@ message GetBlobRequest {
 
 message GetBlobResponse {
   // Blob size; present only in first response message
-  int64 size = 1; 
+  int64 size = 1;
   // Chunk of blob data
-  bytes data = 2; 
+  bytes data = 2;
   // Object ID of the actual blob returned. Empty if no blob was found.
   string oid = 3;
 }
@@ -68,5 +70,27 @@ message GetLFSPointersRequest {
 }
 
 message GetLFSPointersResponse {
+  repeated LFSPointer lfs_pointers = 1;
+}
+
+message GetNewLFSPointersRequest {
+  Repository repository = 1;
+  bytes revision = 2;
+  int32 limit = 3;
+  // Note: When `not_in_all` is true, `not_in_refs` is ignored
+  bool not_in_all = 4;
+  repeated bytes not_in_refs = 5;
+}
+
+message GetNewLFSPointersResponse {
+  repeated LFSPointer lfs_pointers = 1;
+}
+
+message GetAllLFSPointersRequest {
+  Repository repository = 1;
+  bytes revision = 2;
+}
+
+message GetAllLFSPointersResponse {
   repeated LFSPointer lfs_pointers = 1;
 }
