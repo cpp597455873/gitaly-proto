@@ -138,7 +138,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.UserCommitFilesResponse" do
     optional :branch_update, :message, 1, "gitaly.OperationBranchUpdate"
     optional :index_error, :string, 2
-    optional :pre_receive_error, :string, 3
   end
   add_message "gitaly.UserRebaseRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
