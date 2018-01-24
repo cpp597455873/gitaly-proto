@@ -221,7 +221,7 @@ message UserSquashRequest {
 
 message UserSquashResponse {
   string squash_sha = 1;
-  // DEPRECATED: https://gitlab.com/gitlab-org/gitaly-proto/merge_requests/158
+  // DEPRECATED: https://gitlab.com/gitlab-org/gitaly-proto/merge_requests/161
   reserved 2;
   reserved "pre_receive_error";
   string git_error = 3;
