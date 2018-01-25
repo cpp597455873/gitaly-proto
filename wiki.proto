@@ -13,6 +13,7 @@ service WikiService {
   rpc WikiFindPage(WikiFindPageRequest) returns (stream WikiFindPageResponse) {}
   rpc WikiFindFile(WikiFindFileRequest) returns (stream WikiFindFileResponse) {}
   rpc WikiGetAllPages(WikiGetAllPagesRequest) returns (stream WikiGetAllPagesResponse) {}
+  rpc WikiGetFormattedData(WikiGetFormattedDataRequest) returns (stream WikiGetFormattedDataResponse) {}
 }
 
 message WikiCommitDetails {
@@ -128,4 +129,15 @@ message WikiGetAllPagesResponse {
   WikiPage page = 1;
   // When end_of_page is true it signals a change of page for the next Response message (if any)
   bool end_of_page = 2;
+}
+
+message WikiGetFormattedDataRequest {
+  Repository repository = 1;
+  bytes title = 2;
+  bytes revision = 3;
+  bytes directory = 4;
+}
+
+message WikiGetFormattedDataResponse {
+  bytes data = 1;
 }
