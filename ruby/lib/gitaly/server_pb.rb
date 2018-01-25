@@ -4,21 +4,15 @@
 require 'google/protobuf'
 
 Google::Protobuf::DescriptorPool.generated_pool.build do
-  add_message "gitaly.ServerVersionRequest" do
+  add_message "gitaly.ServerInfoRequest" do
   end
-  add_message "gitaly.ServerVersionResponse" do
-    optional :version, :string, 1
-  end
-  add_message "gitaly.ServerGitVersionRequest" do
-  end
-  add_message "gitaly.ServerGitVersionResponse" do
-    optional :version, :string, 1
+  add_message "gitaly.ServerInfoResponse" do
+    optional :server_version, :string, 1
+    optional :git_version, :string, 2
   end
 end
 
 module Gitaly
-  ServerVersionRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ServerVersionRequest").msgclass
-  ServerVersionResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ServerVersionResponse").msgclass
-  ServerGitVersionRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ServerGitVersionRequest").msgclass
-  ServerGitVersionResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ServerGitVersionResponse").msgclass
+  ServerInfoRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ServerInfoRequest").msgclass
+  ServerInfoResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ServerInfoResponse").msgclass
 end

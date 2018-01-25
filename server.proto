@@ -3,20 +3,13 @@ syntax = "proto3";
 package gitaly;
 
 service ServerService {
-  rpc ServerVersion(ServerVersionRequest) returns (ServerVersionResponse) {}
-  rpc ServerGitVersion(ServerGitVersionRequest) returns (ServerGitVersionResponse) {}
+  rpc ServerInfo(ServerInfoRequest) returns (ServerInfoResponse) {}
 }
 
-message ServerVersionRequest {
+message ServerInfoRequest {
 }
 
-message ServerVersionResponse {
-  string version = 1;
-}
-
-message ServerGitVersionRequest {
-}
-
-message ServerGitVersionResponse {
-  string version = 1;
+message ServerInfoResponse {
+  string server_version = 1;
+  string git_version = 2;
 }
