@@ -112,6 +112,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.DeleteRefsRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     repeated :except_with_prefix, :bytes, 2
+    repeated :refs, :bytes, 3
   end
   add_message "gitaly.DeleteRefsResponse" do
   end
