@@ -14,8 +14,7 @@ module Gitaly
       self.unmarshal_class_method = :decode
       self.service_name = 'gitaly.ServerService'
 
-      rpc :ServerVersion, ServerVersionRequest, ServerVersionResponse
-      rpc :ServerGitVersion, ServerGitVersionRequest, ServerGitVersionResponse
+      rpc :ServerInfo, ServerInfoRequest, ServerInfoResponse
     end
 
     Stub = Service.rpc_stub_class
