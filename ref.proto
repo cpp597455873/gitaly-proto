@@ -167,7 +167,9 @@ message DeleteRefsRequest{
   repeated bytes refs = 3;
 }
 
-message DeleteRefsResponse {}
+message DeleteRefsResponse {
+  string git_error = 1;
+}
 
 message ListBranchNamesContainingCommitRequest {
   Repository repository = 1;

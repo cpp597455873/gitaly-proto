@@ -115,6 +115,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :refs, :bytes, 3
   end
   add_message "gitaly.DeleteRefsResponse" do
+    optional :git_error, :string, 1
   end
   add_message "gitaly.ListBranchNamesContainingCommitRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
