@@ -88,6 +88,7 @@ message UserMergeBranchResponse {
   // Second message
   // If set, the merge has been applied to the branch.
   OperationBranchUpdate branch_update = 3;
+  string pre_receive_error = 4;
 }
 
 message OperationBranchUpdate {
