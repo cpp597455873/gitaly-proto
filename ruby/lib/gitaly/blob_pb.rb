@@ -17,13 +17,21 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.GetBlobsRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
-    repeated :oids, :string, 2
+    repeated :revision_paths, :message, 2, "gitaly.GetBlobsRequest.RevisionPath"
     optional :limit, :int64, 3
+  end
+  add_message "gitaly.GetBlobsRequest.RevisionPath" do
+    optional :revision, :string, 1
+    optional :path, :bytes, 2
   end
   add_message "gitaly.GetBlobsResponse" do
     optional :size, :int64, 1
     optional :data, :bytes, 2
     optional :oid, :string, 3
+    optional :is_submodule, :bool, 4
+    optional :mode, :int32, 5
+    optional :revision, :string, 6
+    optional :path, :bytes, 7
   end
   add_message "gitaly.LFSPointer" do
     optional :size, :int64, 1
@@ -43,6 +51,7 @@ module Gitaly
   GetBlobRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetBlobRequest").msgclass
   GetBlobResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetBlobResponse").msgclass
   GetBlobsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetBlobsRequest").msgclass
+  GetBlobsRequest::RevisionPath = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetBlobsRequest.RevisionPath").msgclass
   GetBlobsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetBlobsResponse").msgclass
   LFSPointer = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.LFSPointer").msgclass
   GetLFSPointersRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetLFSPointersRequest").msgclass
