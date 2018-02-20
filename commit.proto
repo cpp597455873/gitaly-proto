@@ -127,6 +127,7 @@ message GetTreeEntriesRequest {
   Repository repository = 1;
   bytes revision = 2;
   bytes path = 3;
+  bool recursive = 4;
 }
 
 message GetTreeEntriesResponse {
