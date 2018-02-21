@@ -36,6 +36,7 @@ module Gitaly
       rpc :CreateBundle, CreateBundleRequest, stream(CreateBundleResponse)
       rpc :CreateRepositoryFromBundle, stream(CreateRepositoryFromBundleRequest), CreateRepositoryFromBundleResponse
       rpc :WriteConfig, WriteConfigRequest, WriteConfigResponse
+      rpc :FindLicense, FindLicenseRequest, FindLicenseResponse
     end
 
     Stub = Service.rpc_stub_class
