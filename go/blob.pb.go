@@ -159,8 +159,6 @@ It has these top-level messages:
 	UpdateRemoteMirrorResponse
 	RepositoryExistsRequest
 	RepositoryExistsResponse
-	RepositoryIsEmptyRequest
-	RepositoryIsEmptyResponse
 	RepackIncrementalRequest
 	RepackIncrementalResponse
 	RepackFullRequest

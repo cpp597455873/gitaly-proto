@@ -6,7 +6,6 @@ import "shared.proto";
 
 service RepositoryService {
   rpc RepositoryExists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {}
-  rpc RepositoryIsEmpty(RepositoryIsEmptyRequest) returns (RepositoryIsEmptyResponse) {}
   rpc RepackIncremental(RepackIncrementalRequest) returns (RepackIncrementalResponse) {};
   rpc RepackFull(RepackFullRequest) returns (RepackFullResponse) {};
   rpc GarbageCollect(GarbageCollectRequest) returns (GarbageCollectResponse) {};
@@ -36,14 +35,6 @@ message RepositoryExistsRequest {
 
 message RepositoryExistsResponse {
   bool exists = 1;
-}
-
-message RepositoryIsEmptyRequest {
-  Repository repository = 1;
-}
-
-message RepositoryIsEmptyResponse {
-  bool is_empty = 1;
 }
 
 message RepackIncrementalRequest {
