@@ -48,6 +48,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :timeout, :int32, 5
     optional :ssh_key, :string, 6
     optional :known_hosts, :string, 7
+    optional :prune, :bool, 8
   end
   add_message "gitaly.FetchRemoteResponse" do
   end
