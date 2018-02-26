@@ -20,6 +20,8 @@ module Gitaly
       rpc :GetBlob, GetBlobRequest, stream(GetBlobResponse)
       rpc :GetBlobs, GetBlobsRequest, stream(GetBlobsResponse)
       rpc :GetLFSPointers, GetLFSPointersRequest, stream(GetLFSPointersResponse)
+      rpc :GetNewLFSPointers, GetNewLFSPointersRequest, stream(GetNewLFSPointersResponse)
+      rpc :GetAllLFSPointers, GetAllLFSPointersRequest, stream(GetAllLFSPointersResponse)
     end
 
     Stub = Service.rpc_stub_class
