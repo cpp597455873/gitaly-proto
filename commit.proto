@@ -29,6 +29,7 @@ service CommitService {
   // arbitrarily large and signature verification is impossible without the
   // full text.
   rpc ExtractCommitSignature(ExtractCommitSignatureRequest) returns (stream ExtractCommitSignatureResponse) {}
+  rpc GetCommitSignatures(GetCommitSignaturesRequest) returns (stream GetCommitSignaturesResponse) {}
 }
 
 message CommitStatsRequest {
@@ -269,4 +270,17 @@ message ExtractCommitSignatureRequest {
 message ExtractCommitSignatureResponse {
   bytes signature = 1;
   bytes signed_text = 2;
+}
+
+message GetCommitSignaturesRequest {
+  Repository repository = 1;
+  repeated string commit_ids = 2;
+}
+
+message GetCommitSignaturesResponse {
+  // Only present for a new commit signature data.
+  string commit_id = 1;
+  // See ExtractCommitSignatureResponse above for how these fields should be handled.
+  bytes signature = 2;
+  bytes signed_text = 3;
 }
