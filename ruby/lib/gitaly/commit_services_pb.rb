@@ -35,6 +35,7 @@ module Gitaly
       # arbitrarily large and signature verification is impossible without the
       # full text.
       rpc :ExtractCommitSignature, ExtractCommitSignatureRequest, stream(ExtractCommitSignatureResponse)
+      rpc :GetCommitSignatures, GetCommitSignaturesRequest, stream(GetCommitSignaturesResponse)
     end
 
     Stub = Service.rpc_stub_class
