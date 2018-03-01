@@ -97,6 +97,8 @@ message CountCommitsRequest {
   google.protobuf.Timestamp before = 4;
   bytes path = 5;
   int32 max_count = 6;
+  // all and revision are mutually exclusive
+  bool all = 7;
 }
 
 message CountCommitsResponse {
@@ -195,6 +197,8 @@ message FindCommitsRequest {
   bool disable_walk = 8;
   google.protobuf.Timestamp after = 9;
   google.protobuf.Timestamp before = 10;
+  // all and revision are mutually exclusive
+  bool all = 11;
 }
 
 // A single 'page' of the result set
