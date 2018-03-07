@@ -27,6 +27,15 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :stderr, :bytes, 2
     optional :exit_status, :message, 3, "gitaly.ExitStatus"
   end
+  add_message "gitaly.SSHUploadArchiveRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :stdin, :bytes, 2
+  end
+  add_message "gitaly.SSHUploadArchiveResponse" do
+    optional :stdout, :bytes, 1
+    optional :stderr, :bytes, 2
+    optional :exit_status, :message, 3, "gitaly.ExitStatus"
+  end
 end
 
 module Gitaly
@@ -34,4 +43,6 @@ module Gitaly
   SSHUploadPackResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.SSHUploadPackResponse").msgclass
   SSHReceivePackRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.SSHReceivePackRequest").msgclass
   SSHReceivePackResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.SSHReceivePackResponse").msgclass
+  SSHUploadArchiveRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.SSHUploadArchiveRequest").msgclass
+  SSHUploadArchiveResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.SSHUploadArchiveResponse").msgclass
 end
