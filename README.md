@@ -91,7 +91,7 @@ client libraries to guard against the mistake of updating the .proto
 files but not the client libraries. This check uses `git diff` to look
 for changes. Some of the code in the Go client libraries is sensitive
 to implementation details of the Go standard library (specifically,
-the ouput of gzip). **Use the same Go version as .gitlab-ci.yml (Go
+the output of gzip). **Use the same Go version as .gitlab-ci.yml (Go
 1.8)** when generating new client libraries for a merge request.
 
 [DCO + License](CONTRIBUTING.md)
