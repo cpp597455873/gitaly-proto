@@ -18,6 +18,8 @@ module Gitaly
       rpc :SSHUploadPack, stream(SSHUploadPackRequest), stream(SSHUploadPackResponse)
       # To forward 'git receive-pack' to Gitaly for SSH sessions
       rpc :SSHReceivePack, stream(SSHReceivePackRequest), stream(SSHReceivePackResponse)
+      # To forward 'git upload-archive' to Gitaly for SSH sessions
+      rpc :SSHUploadArchive, stream(SSHUploadArchiveRequest), stream(SSHUploadArchiveResponse)
     end
 
     Stub = Service.rpc_stub_class

@@ -10,6 +10,9 @@ service SSHService {
 
   // To forward 'git receive-pack' to Gitaly for SSH sessions
   rpc SSHReceivePack(stream SSHReceivePackRequest) returns (stream SSHReceivePackResponse) {}
+
+  // To forward 'git upload-archive' to Gitaly for SSH sessions
+  rpc SSHUploadArchive(stream SSHUploadArchiveRequest) returns (stream SSHUploadArchiveResponse) {}
 }
 
 message SSHUploadPackRequest {
@@ -53,5 +56,21 @@ message SSHReceivePackResponse {
   bytes stderr = 2;
   // This field may be nil. This is intentional: only when the remote
   // command has finished can we return its exit status.
+  ExitStatus exit_status = 3;
+}
+
+message SSHUploadArchiveRequest {
+  // 'repository' must be present in the first message.
+  Repository repository = 1;
+  // A chunk of raw data to be copied to 'git upload-archive' standard input
+  bytes stdin = 2;
+}
+
+message SSHUploadArchiveResponse {
+  // A chunk of raw data from 'git upload-archive' standard output
+  bytes stdout = 1;
+  // A chunk of raw data from 'git upload-archive' standard error
+  bytes stderr = 2;
+  // This value will only be set on the last message
   ExitStatus exit_status = 3;
 }
