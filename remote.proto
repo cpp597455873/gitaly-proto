@@ -9,6 +9,7 @@ service RemoteService {
     rpc FetchInternalRemote(FetchInternalRemoteRequest) returns (FetchInternalRemoteResponse) {}
     rpc RemoveRemote(RemoveRemoteRequest) returns (RemoveRemoteResponse) {}
     rpc UpdateRemoteMirror(stream UpdateRemoteMirrorRequest) returns (UpdateRemoteMirrorResponse) {}
+    rpc FindRemoteRepository(FindRemoteRepositoryRequest) returns (FindRemoteRepositoryResponse) {}
 }
 
 message AddRemoteRequest {
@@ -49,3 +50,13 @@ message UpdateRemoteMirrorRequest {
 }
 
 message UpdateRemoteMirrorResponse {}
+
+message FindRemoteRepositoryRequest {
+  string remote = 1;
+}
+
+// This migth throw a GRPC Unavailable code, to signal the request failure
+// is transient.
+message FindRemoteRepositoryResponse {
+  bool exists = 1;
+}

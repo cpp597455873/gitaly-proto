@@ -163,6 +163,8 @@ It has these top-level messages:
 	FetchInternalRemoteResponse
 	UpdateRemoteMirrorRequest
 	UpdateRemoteMirrorResponse
+	FindRemoteRepositoryRequest
+	FindRemoteRepositoryResponse
 	RepositoryExistsRequest
 	RepositoryExistsResponse
 	RepackIncrementalRequest
