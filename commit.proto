@@ -30,6 +30,9 @@ service CommitService {
   // full text.
   rpc ExtractCommitSignature(ExtractCommitSignatureRequest) returns (stream ExtractCommitSignatureResponse) {}
   rpc GetCommitSignatures(GetCommitSignaturesRequest) returns (stream GetCommitSignaturesResponse) {}
+
+  // Find Commit by object id
+  rpc GetCommit(GetCommitRequest) returns (GitCommit) {}
 }
 
 message CommitStatsRequest {
@@ -287,4 +290,10 @@ message GetCommitSignaturesResponse {
   // See ExtractCommitSignatureResponse above for how these fields should be handled.
   bytes signature = 2;
   bytes signed_text = 3;
+}
+
+message GetCommitRequest {
+  Repository repository = 1;
+
+  string id = 2;
 }

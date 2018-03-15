@@ -36,6 +36,8 @@ module Gitaly
       # full text.
       rpc :ExtractCommitSignature, ExtractCommitSignatureRequest, stream(ExtractCommitSignatureResponse)
       rpc :GetCommitSignatures, GetCommitSignaturesRequest, stream(GetCommitSignaturesResponse)
+      # Find Commit by object id
+      rpc :GetCommit, GetCommitRequest, GitCommit
     end
 
     Stub = Service.rpc_stub_class

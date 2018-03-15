@@ -200,6 +200,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :signature, :bytes, 2
     optional :signed_text, :bytes, 3
   end
+  add_message "gitaly.GetCommitRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :id, :string, 2
+  end
 end
 
 module Gitaly
@@ -244,4 +248,5 @@ module Gitaly
   ExtractCommitSignatureResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ExtractCommitSignatureResponse").msgclass
   GetCommitSignaturesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetCommitSignaturesRequest").msgclass
   GetCommitSignaturesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetCommitSignaturesResponse").msgclass
+  GetCommitRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetCommitRequest").msgclass
 end

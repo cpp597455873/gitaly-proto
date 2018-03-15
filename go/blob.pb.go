@@ -71,6 +71,7 @@ It has these top-level messages:
 	ExtractCommitSignatureResponse
 	GetCommitSignaturesRequest
 	GetCommitSignaturesResponse
+	GetCommitRequest
 	ListConflictFilesRequest
 	ConflictFileHeader
 	ConflictFile
