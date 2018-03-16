@@ -162,6 +162,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FindLicenseResponse" do
     optional :license_short_name, :string, 1
   end
+  add_message "gitaly.GetInfoAttributesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+  end
+  add_message "gitaly.GetInfoAttributesResponse" do
+    optional :attributes, :bytes, 1
+  end
 end
 
 module Gitaly
@@ -210,4 +216,6 @@ module Gitaly
   CreateRepositoryFromBundleResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateRepositoryFromBundleResponse").msgclass
   FindLicenseRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindLicenseRequest").msgclass
   FindLicenseResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindLicenseResponse").msgclass
+  GetInfoAttributesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetInfoAttributesRequest").msgclass
+  GetInfoAttributesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetInfoAttributesResponse").msgclass
 end

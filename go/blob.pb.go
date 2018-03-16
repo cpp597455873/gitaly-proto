@@ -209,6 +209,8 @@ It has these top-level messages:
 	CreateRepositoryFromBundleResponse
 	FindLicenseRequest
 	FindLicenseResponse
+	GetInfoAttributesRequest
+	GetInfoAttributesResponse
 	ServerInfoRequest
 	ServerInfoResponse
 	Repository

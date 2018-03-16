@@ -27,6 +27,7 @@ service RepositoryService {
   rpc CreateRepositoryFromBundle(stream CreateRepositoryFromBundleRequest) returns (CreateRepositoryFromBundleResponse) {}
   rpc WriteConfig(WriteConfigRequest) returns (WriteConfigResponse) {}
   rpc FindLicense(FindLicenseRequest) returns (FindLicenseResponse) {}
+  rpc GetInfoAttributes(GetInfoAttributesRequest) returns (stream GetInfoAttributesResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -226,4 +227,12 @@ message FindLicenseRequest {
 
 message FindLicenseResponse {
   string license_short_name = 1;
+}
+
+message GetInfoAttributesRequest {
+  Repository repository = 1;
+}
+
+message GetInfoAttributesResponse {
+  bytes attributes = 1;
 }
