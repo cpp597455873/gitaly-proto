@@ -36,6 +36,7 @@ module Gitaly
       # full text.
       rpc :ExtractCommitSignature, ExtractCommitSignatureRequest, stream(ExtractCommitSignatureResponse)
       rpc :GetCommitSignatures, GetCommitSignaturesRequest, stream(GetCommitSignaturesResponse)
+      rpc :GetCommitMessages, GetCommitMessagesRequest, stream(GetCommitMessagesResponse)
     end
 
     Stub = Service.rpc_stub_class
