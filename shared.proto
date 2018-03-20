@@ -30,6 +30,10 @@ message GitCommit {
   CommitAuthor author = 4;
   CommitAuthor committer = 5;
   repeated string parent_ids = 6;
+  // If body exceeds a certain threshold, it will be nullified,
+  // but its size will be set in body_size so we can know if
+  // a commit had a body in the first place.
+  int64 body_size = 7;
 }
 
 message CommitAuthor {
@@ -52,7 +56,11 @@ message Tag {
   bytes name = 1;
   string id = 2;
   GitCommit target_commit = 3;
+  // If message exceeds a certain threshold, it will be nullified,
+  // but its size will be set in message_size so we can know if
+  // a tag had a message in the first place.
   bytes message = 4;
+  int64 message_size = 5;
 }
 
 message User {

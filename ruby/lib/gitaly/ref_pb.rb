@@ -133,6 +133,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.ListTagNamesContainingCommitResponse" do
     repeated :tag_names, :bytes, 2
   end
+  add_message "gitaly.GetTagMessagesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    repeated :tag_names, :bytes, 2
+  end
+  add_message "gitaly.GetTagMessagesResponse" do
+    optional :tag_name, :bytes, 1
+    optional :message, :bytes, 2
+  end
 end
 
 module Gitaly
@@ -169,4 +177,6 @@ module Gitaly
   ListBranchNamesContainingCommitResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListBranchNamesContainingCommitResponse").msgclass
   ListTagNamesContainingCommitRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListTagNamesContainingCommitRequest").msgclass
   ListTagNamesContainingCommitResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListTagNamesContainingCommitResponse").msgclass
+  GetTagMessagesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetTagMessagesRequest").msgclass
+  GetTagMessagesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetTagMessagesResponse").msgclass
 end

@@ -19,6 +19,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :author, :message, 4, "gitaly.CommitAuthor"
     optional :committer, :message, 5, "gitaly.CommitAuthor"
     repeated :parent_ids, :string, 6
+    optional :body_size, :int64, 7
   end
   add_message "gitaly.CommitAuthor" do
     optional :name, :bytes, 1
@@ -37,6 +38,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :id, :string, 2
     optional :target_commit, :message, 3, "gitaly.GitCommit"
     optional :message, :bytes, 4
+    optional :message_size, :int64, 5
   end
   add_message "gitaly.User" do
     optional :gl_id, :string, 1

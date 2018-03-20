@@ -30,6 +30,7 @@ module Gitaly
       rpc :DeleteRefs, DeleteRefsRequest, DeleteRefsResponse
       rpc :ListBranchNamesContainingCommit, ListBranchNamesContainingCommitRequest, stream(ListBranchNamesContainingCommitResponse)
       rpc :ListTagNamesContainingCommit, ListTagNamesContainingCommitRequest, stream(ListTagNamesContainingCommitResponse)
+      rpc :GetTagMessages, GetTagMessagesRequest, stream(GetTagMessagesResponse)
     end
 
     Stub = Service.rpc_stub_class
