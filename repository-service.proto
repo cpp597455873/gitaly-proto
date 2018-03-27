@@ -28,6 +28,7 @@ service RepositoryService {
   rpc WriteConfig(WriteConfigRequest) returns (WriteConfigResponse) {}
   rpc FindLicense(FindLicenseRequest) returns (FindLicenseResponse) {}
   rpc GetInfoAttributes(GetInfoAttributesRequest) returns (stream GetInfoAttributesResponse) {}
+  rpc CalculateChecksum(CalculateChecksumRequest) returns (CalculateChecksumResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -235,4 +236,12 @@ message GetInfoAttributesRequest {
 
 message GetInfoAttributesResponse {
   bytes attributes = 1;
+}
+
+message CalculateChecksumRequest {
+  Repository repository = 1;
+}
+
+message CalculateChecksumResponse {
+  string value = 1;
 }
