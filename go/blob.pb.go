@@ -215,6 +215,8 @@ It has these top-level messages:
 	FindLicenseResponse
 	GetInfoAttributesRequest
 	GetInfoAttributesResponse
+	CalculateChecksumRequest
+	CalculateChecksumResponse
 	ServerInfoRequest
 	ServerInfoResponse
 	Repository

@@ -37,6 +37,7 @@ module Gitaly
       rpc :WriteConfig, WriteConfigRequest, WriteConfigResponse
       rpc :FindLicense, FindLicenseRequest, FindLicenseResponse
       rpc :GetInfoAttributes, GetInfoAttributesRequest, stream(GetInfoAttributesResponse)
+      rpc :CalculateChecksum, CalculateChecksumRequest, CalculateChecksumResponse
     end
 
     Stub = Service.rpc_stub_class
