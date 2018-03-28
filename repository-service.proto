@@ -243,5 +243,5 @@ message CalculateChecksumRequest {
 }
 
 message CalculateChecksumResponse {
-  string value = 1;
+  string checksum = 1;
 }

@@ -172,7 +172,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :repository, :message, 1, "gitaly.Repository"
   end
   add_message "gitaly.CalculateChecksumResponse" do
-    optional :value, :string, 1
+    optional :checksum, :string, 1
   end
 end
 
