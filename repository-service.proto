@@ -29,6 +29,7 @@ service RepositoryService {
   rpc FindLicense(FindLicenseRequest) returns (FindLicenseResponse) {}
   rpc GetInfoAttributes(GetInfoAttributesRequest) returns (stream GetInfoAttributesResponse) {}
   rpc CalculateChecksum(CalculateChecksumRequest) returns (CalculateChecksumResponse) {}
+  rpc Cleanup(CleanupRequest) returns (CleanupResponse) {}
 }
 
 message RepositoryExistsRequest {
