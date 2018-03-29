@@ -59,6 +59,12 @@ message GarbageCollectRequest {
 
 message GarbageCollectResponse {}
 
+message CleanupRequest {
+  Repository repository = 1;
+}
+
+message CleanupResponse {}
+
 message RepositorySizeRequest {
   Repository repository = 1;
 }
