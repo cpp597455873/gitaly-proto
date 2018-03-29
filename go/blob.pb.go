@@ -177,6 +177,8 @@ It has these top-level messages:
 	RepackFullResponse
 	GarbageCollectRequest
 	GarbageCollectResponse
+	CleanupRequest
+	CleanupResponse
 	RepositorySizeRequest
 	RepositorySizeResponse
 	ApplyGitattributesRequest
