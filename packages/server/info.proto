@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package gitaly.server;
+
+service ServerService {
+  rpc GetInfo(InfoRequest) returns (InfoResponse) {}
+}
+
+message InfoRequest {
+}
+
+message InfoResponse {
+  string server_version = 1;
+  string git_version = 2;
+}
