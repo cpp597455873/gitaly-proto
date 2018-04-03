@@ -135,11 +135,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.GetTagMessagesRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
-    repeated :tag_names, :bytes, 2
+    repeated :tag_ids, :string, 3
   end
   add_message "gitaly.GetTagMessagesResponse" do
-    optional :tag_name, :bytes, 1
     optional :message, :bytes, 2
+    optional :tag_id, :string, 3
   end
 end
 

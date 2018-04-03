@@ -202,12 +202,18 @@ message ListTagNamesContainingCommitResponse {
 }
 
 message GetTagMessagesRequest {
+  reserved 2;
+  reserved "tag_names";
+
   Repository repository = 1;
-  repeated bytes tag_names = 2;
+  repeated string tag_ids = 3;
 }
 
 message GetTagMessagesResponse {
-  // Only present for a new tag message
-  bytes tag_name = 1;
+  reserved 1;
+  reserved "tag_name";
+
   bytes message = 2;
+  // Only present for a new tag message
+  string tag_id = 3;
 }
