@@ -39,6 +39,8 @@ module Gitaly
       rpc :GetInfoAttributes, GetInfoAttributesRequest, stream(GetInfoAttributesResponse)
       rpc :CalculateChecksum, CalculateChecksumRequest, CalculateChecksumResponse
       rpc :Cleanup, CleanupRequest, CleanupResponse
+      rpc :GetSnapshot, GetSnapshotRequest, stream(GetSnapshotResponse)
+      rpc :CreateRepositoryFromSnapshot, CreateRepositoryFromSnapshotRequest, CreateRepositoryFromSnapshotResponse
     end
 
     Stub = Service.rpc_stub_class
