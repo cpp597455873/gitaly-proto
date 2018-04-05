@@ -30,6 +30,8 @@ service RepositoryService {
   rpc GetInfoAttributes(GetInfoAttributesRequest) returns (stream GetInfoAttributesResponse) {}
   rpc CalculateChecksum(CalculateChecksumRequest) returns (CalculateChecksumResponse) {}
   rpc Cleanup(CleanupRequest) returns (CleanupResponse) {}
+  rpc GetSnapshot(GetSnapshotRequest) returns (stream GetSnapshotResponse) {}
+  rpc CreateRepositoryFromSnapshot(CreateRepositoryFromSnapshotRequest) returns (CreateRepositoryFromSnapshotResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -252,3 +254,19 @@ message CalculateChecksumRequest {
 message CalculateChecksumResponse {
   string checksum = 1;
 }
+
+message GetSnapshotRequest {
+  Repository repository = 1;
+}
+
+message GetSnapshotResponse {
+  bytes data = 1;
+}
+
+message CreateRepositoryFromSnapshotRequest {
+  Repository repository = 1;
+  string http_url = 2;
+  string http_auth = 3;
+}
+
+message CreateRepositoryFromSnapshotResponse {}

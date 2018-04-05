@@ -179,6 +179,19 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.CalculateChecksumResponse" do
     optional :checksum, :string, 1
   end
+  add_message "gitaly.GetSnapshotRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+  end
+  add_message "gitaly.GetSnapshotResponse" do
+    optional :data, :bytes, 1
+  end
+  add_message "gitaly.CreateRepositoryFromSnapshotRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :http_url, :string, 2
+    optional :http_auth, :string, 3
+  end
+  add_message "gitaly.CreateRepositoryFromSnapshotResponse" do
+  end
 end
 
 module Gitaly
@@ -233,4 +246,8 @@ module Gitaly
   GetInfoAttributesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetInfoAttributesResponse").msgclass
   CalculateChecksumRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CalculateChecksumRequest").msgclass
   CalculateChecksumResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CalculateChecksumResponse").msgclass
+  GetSnapshotRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetSnapshotRequest").msgclass
+  GetSnapshotResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetSnapshotResponse").msgclass
+  CreateRepositoryFromSnapshotRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateRepositoryFromSnapshotRequest").msgclass
+  CreateRepositoryFromSnapshotResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateRepositoryFromSnapshotResponse").msgclass
 end
