@@ -20,6 +20,8 @@ message WikiCommitDetails {
   bytes name = 1;
   bytes email = 2;
   bytes message = 3;
+  int32 user_id = 4;
+  bytes user_name = 5;
 }
 
 message WikiPageVersion {
