@@ -9,6 +9,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :name, :bytes, 1
     optional :email, :bytes, 2
     optional :message, :bytes, 3
+    optional :user_id, :int32, 4
+    optional :user_name, :bytes, 5
   end
   add_message "gitaly.WikiPageVersion" do
     optional :commit, :message, 1, "gitaly.GitCommit"
