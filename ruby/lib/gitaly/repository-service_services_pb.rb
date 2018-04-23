@@ -41,6 +41,7 @@ module Gitaly
       rpc :Cleanup, CleanupRequest, CleanupResponse
       rpc :GetSnapshot, GetSnapshotRequest, stream(GetSnapshotResponse)
       rpc :CreateRepositoryFromSnapshot, CreateRepositoryFromSnapshotRequest, CreateRepositoryFromSnapshotResponse
+      rpc :GetRawChanges, GetRawChangesRequest, stream(GetRawChangesResponse)
     end
 
     Stub = Service.rpc_stub_class

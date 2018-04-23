@@ -32,6 +32,7 @@ service RepositoryService {
   rpc Cleanup(CleanupRequest) returns (CleanupResponse) {}
   rpc GetSnapshot(GetSnapshotRequest) returns (stream GetSnapshotResponse) {}
   rpc CreateRepositoryFromSnapshot(CreateRepositoryFromSnapshotRequest) returns (CreateRepositoryFromSnapshotResponse) {}
+  rpc GetRawChanges(GetRawChangesRequest) returns (stream GetRawChangesResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -270,3 +271,32 @@ message CreateRepositoryFromSnapshotRequest {
 }
 
 message CreateRepositoryFromSnapshotResponse {}
+
+message GetRawChangesRequest {
+  Repository repository = 1;
+  string from_revision = 2;
+  string to_revision = 3;
+}
+
+message GetRawChangesResponse {
+  message RawChange {
+    enum Operation {
+      UNKNOWN = 0;
+      ADDED = 1;
+      COPIED = 2;
+      DELETED = 3;
+      MODIFIED = 4;
+      RENAMED = 5;
+      TYPE_CHANGED = 6;
+    }
+
+    string blob_id = 1;
+    int64 size= 2;
+    string new_path = 3;
+    string old_path = 4;
+    Operation operation= 5;
+    string raw_operation = 6;
+  }
+
+  repeated RawChange raw_changes = 1;
+}
