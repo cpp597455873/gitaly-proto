@@ -192,6 +192,31 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.CreateRepositoryFromSnapshotResponse" do
   end
+  add_message "gitaly.GetRawChangesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :from_revision, :string, 2
+    optional :to_revision, :string, 3
+  end
+  add_message "gitaly.GetRawChangesResponse" do
+    repeated :raw_changes, :message, 1, "gitaly.GetRawChangesResponse.RawChange"
+  end
+  add_message "gitaly.GetRawChangesResponse.RawChange" do
+    optional :blob_id, :string, 1
+    optional :size, :int64, 2
+    optional :new_path, :string, 3
+    optional :old_path, :string, 4
+    optional :operation, :enum, 5, "gitaly.GetRawChangesResponse.RawChange.Operation"
+    optional :raw_operation, :string, 6
+  end
+  add_enum "gitaly.GetRawChangesResponse.RawChange.Operation" do
+    value :UNKNOWN, 0
+    value :ADDED, 1
+    value :COPIED, 2
+    value :DELETED, 3
+    value :MODIFIED, 4
+    value :RENAMED, 5
+    value :TYPE_CHANGED, 6
+  end
 end
 
 module Gitaly
@@ -250,4 +275,8 @@ module Gitaly
   GetSnapshotResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetSnapshotResponse").msgclass
   CreateRepositoryFromSnapshotRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateRepositoryFromSnapshotRequest").msgclass
   CreateRepositoryFromSnapshotResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateRepositoryFromSnapshotResponse").msgclass
+  GetRawChangesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetRawChangesRequest").msgclass
+  GetRawChangesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetRawChangesResponse").msgclass
+  GetRawChangesResponse::RawChange = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetRawChangesResponse.RawChange").msgclass
+  GetRawChangesResponse::RawChange::Operation = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetRawChangesResponse.RawChange.Operation").enummodule
 end
