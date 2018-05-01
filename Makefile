@@ -42,7 +42,7 @@ check-grpc-proto-clients: install-developer-tools
 	_support/check-grpc-proto-clients
 
 .PHONY: install-developer-tools
-install-developer-tools: $(TARGET_SETUP) $(PROTOC) $(PROTOC_GEN_GO) $(PROTOC_GEN_RUBY)
+install-developer-tools: $(TARGET_SETUP) $(PROTOC) $(PROTOC_GEN_RUBY)
 
 .PHONY: docs
 docs: $(TARGET_SETUP) $(PROTOC_GEN_DOC) $(PROTOC)
@@ -53,9 +53,6 @@ docs: $(TARGET_SETUP) $(PROTOC_GEN_DOC) $(PROTOC)
 
 $(PROTOC): $(TARGET_SETUP)
 	_support/install-protoc
-
-$(PROTOC_GEN_GO): $(TARGET_SETUP)
-	go get -v github.com/golang/protobuf/protoc-gen-go
 
 $(PROTOC_GEN_RUBY): $(TARGET_SETUP) _support/Gemfile
 	bundle install --gemfile=_support/Gemfile --binstubs=$(BIN_BUILD_DIR)

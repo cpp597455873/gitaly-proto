@@ -6,15 +6,24 @@ require_relative 'run.rb'
 
 PROTOC_DOWNLOAD = {
   'osx' => {
+    'name' => 'protoc.zip',
     'url' => 'https://github.com/google/protobuf/releases/download/v3.1.0/protoc-3.1.0-osx-x86_64.zip',
     'sha256' => '2cea7b1acb86671362f7aa554a21b907d18de70b15ad1f68e72ad2b50502920e',
   },
   'linux' => {
+    'name' => 'protoc.zip',
     'url' => 'https://github.com/google/protobuf/releases/download/v3.1.0/protoc-3.1.0-linux-x86_64.zip',
     'sha256' => '7c98f9e8a3d77e49a072861b7a9b18ffb22c98e37d2a80650264661bfaad5b3a',
   }
 }
 PROTOC_DIR = '_build/protoc'
+
+PROTO_GO_DOWNLOAD = {
+  'name' => 'protobuf-1.0.0.zip',
+  'url' => 'https://github.com/golang/protobuf/archive/v1.0.0.zip',
+  'sha256' => 'd1055533ddb6efe108c8f6299eda2caf96076fe628772896596a92a556fb6e38'
+}
+PROTO_GO_DIR = '_build'
 
 def main
   current_platform = platform
@@ -22,11 +31,34 @@ def main
     abort "Platform #{RUBY_PLATFORM} is not yet supported by #{$0}"
   end
 
+  install_protoc(current_platform)
+  install_protoc_gen_go
+end
+
+def install_protoc(current_platform)
   # protoc Protobuf compiler
-  fetch_protoc(PROTOC_DOWNLOAD[current_platform])
+  download(PROTOC_DOWNLOAD[current_platform])
   FileUtils.rm_rf(PROTOC_DIR)
   FileUtils.mkdir_p(PROTOC_DIR)
-  run!(%W[unzip #{File.expand_path(File.basename(PROTOC_DOWNLOAD[current_platform]['url']))}], PROTOC_DIR)
+  run!(%W[unzip #{File.expand_path(PROTOC_DOWNLOAD[current_platform]['name'])}], PROTOC_DIR)
+end
+
+def install_protoc_gen_go
+  download(PROTO_GO_DOWNLOAD)
+
+  proto_go_src_parent_dir = File.join(PROTO_GO_DIR, 'src/github.com/golang')
+  proto_go_src_dir = File.join(proto_go_src_parent_dir, 'protobuf')
+  FileUtils.rm_rf(File.join(proto_go_src_dir))
+  FileUtils.mkdir_p(proto_go_src_parent_dir)
+
+  run!(%W[unzip #{File.expand_path(PROTO_GO_DOWNLOAD['name'])}], proto_go_src_parent_dir)
+  FileUtils.mv(
+    File.join(proto_go_src_parent_dir, PROTO_GO_DOWNLOAD['name'].sub(%r{\.zip$}, '')),
+    File.join(proto_go_src_dir)
+  )
+
+  gopath = File.expand_path(PROTO_GO_DIR)
+  run!(%W[/usr/bin/env GOPATH=#{gopath} go install github.com/golang/protobuf/protoc-gen-go])
 end
 
 def platform
@@ -36,13 +68,13 @@ def platform
   end
 end
 
-def fetch_protoc(source)
-  file = File.basename(source['url'])
+def download(source)
+  file = source['name']
   sha = source['sha256']
 
   return if sha_match?(file, sha)
 
-  run!(%W[curl -LO #{source['url']}])
+  run!(%W[curl -L -o #{file} #{source['url']}])
 
   abort "SHA256 check failed" unless sha_match?(file, sha)
 end
