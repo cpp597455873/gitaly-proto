@@ -42,6 +42,8 @@ module Gitaly
       rpc :GetSnapshot, GetSnapshotRequest, stream(GetSnapshotResponse)
       rpc :CreateRepositoryFromSnapshot, CreateRepositoryFromSnapshotRequest, CreateRepositoryFromSnapshotResponse
       rpc :GetRawChanges, GetRawChangesRequest, stream(GetRawChangesResponse)
+      rpc :SearchFilesByContent, SearchFilesByContentRequest, stream(SearchFilesByContentResponse)
+      rpc :SearchFilesByName, SearchFilesByNameRequest, stream(SearchFilesByNameResponse)
     end
 
     Stub = Service.rpc_stub_class

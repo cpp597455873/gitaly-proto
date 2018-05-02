@@ -217,6 +217,22 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :RENAMED, 5
     value :TYPE_CHANGED, 6
   end
+  add_message "gitaly.SearchFilesByNameRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :query, :string, 2
+    optional :ref, :bytes, 3
+  end
+  add_message "gitaly.SearchFilesByNameResponse" do
+    repeated :files, :bytes, 1
+  end
+  add_message "gitaly.SearchFilesByContentRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :query, :string, 2
+    optional :ref, :bytes, 3
+  end
+  add_message "gitaly.SearchFilesByContentResponse" do
+    repeated :matches, :bytes, 1
+  end
 end
 
 module Gitaly
@@ -279,4 +295,8 @@ module Gitaly
   GetRawChangesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetRawChangesResponse").msgclass
   GetRawChangesResponse::RawChange = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetRawChangesResponse.RawChange").msgclass
   GetRawChangesResponse::RawChange::Operation = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetRawChangesResponse.RawChange.Operation").enummodule
+  SearchFilesByNameRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.SearchFilesByNameRequest").msgclass
+  SearchFilesByNameResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.SearchFilesByNameResponse").msgclass
+  SearchFilesByContentRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.SearchFilesByContentRequest").msgclass
+  SearchFilesByContentResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.SearchFilesByContentResponse").msgclass
 end

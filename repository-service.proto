@@ -33,6 +33,8 @@ service RepositoryService {
   rpc GetSnapshot(GetSnapshotRequest) returns (stream GetSnapshotResponse) {}
   rpc CreateRepositoryFromSnapshot(CreateRepositoryFromSnapshotRequest) returns (CreateRepositoryFromSnapshotResponse) {}
   rpc GetRawChanges(GetRawChangesRequest) returns (stream GetRawChangesResponse) {}
+  rpc SearchFilesByContent(SearchFilesByContentRequest) returns (stream SearchFilesByContentResponse) {}
+  rpc SearchFilesByName(SearchFilesByNameRequest) returns (stream SearchFilesByNameResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -299,4 +301,24 @@ message GetRawChangesResponse {
   }
 
   repeated RawChange raw_changes = 1;
+}
+
+message SearchFilesByNameRequest {
+  Repository repository = 1;
+  string query = 2;
+  bytes ref = 3;
+}
+
+message SearchFilesByNameResponse {
+  repeated bytes files = 1;
+}
+
+message SearchFilesByContentRequest{
+  Repository repository = 1;
+  string query = 2;
+  bytes ref = 3;
+}
+
+message SearchFilesByContentResponse {
+  repeated bytes matches = 1;
 }
