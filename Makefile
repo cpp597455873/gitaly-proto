@@ -10,7 +10,6 @@ export PATH := $(GOPATH)/bin:$(PATH)
 
 # Developer Tools
 PROTOC = $(TARGET_DIR)/protoc/bin/protoc
-PROTOC_GEN_RUBY = $(BIN_BUILD_DIR)/grpc_tools_ruby_protoc
 PROTOC_GEN_GO = $(BIN_BUILD_DIR)/protoc-gen-go
 PROTOC_GEN_DOC = $(BIN_BUILD_DIR)/protoc-gen-doc
 
@@ -28,7 +27,7 @@ generate: install-developer-tools
 
 .PHONY: clean
 clean:
-	rm -rf $(TARGET_DIR) public
+	rm -rf $(TARGET_DIR) public .ruby-bundle
 
 .PHONY: release
 release: install-developer-tools
@@ -42,7 +41,7 @@ check-grpc-proto-clients: install-developer-tools
 	_support/check-grpc-proto-clients
 
 .PHONY: install-developer-tools
-install-developer-tools: $(TARGET_SETUP) $(PROTOC) $(PROTOC_GEN_RUBY)
+install-developer-tools: $(TARGET_SETUP) $(PROTOC) .ruby-bundle
 
 .PHONY: docs
 docs: $(TARGET_SETUP) $(PROTOC_GEN_DOC) $(PROTOC)
@@ -54,8 +53,9 @@ docs: $(TARGET_SETUP) $(PROTOC_GEN_DOC) $(PROTOC)
 $(PROTOC): $(TARGET_SETUP)
 	_support/install-protoc
 
-$(PROTOC_GEN_RUBY): $(TARGET_SETUP) _support/Gemfile
+.ruby-bundle: $(TARGET_SETUP) _support/Gemfile.lock
 	bundle install --gemfile=_support/Gemfile --binstubs=$(BIN_BUILD_DIR)
+	touch $@	
 
 $(PROTOC_GEN_DOC): $(TARGET_SETUP)
 	go get -v -u github.com/pseudomuto/protoc-gen-doc/cmd/...
