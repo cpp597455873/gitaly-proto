@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package gitaly;
+
+service StorageService {
+  rpc DeleteAllRepositories(DeleteAllRepositoriesRequest) returns (DeleteAllRepositoriesResponse) {}
+}
+
+message DeleteAllRepositoriesRequest {
+  string storage_name = 1;
+}
+
+message DeleteAllRepositoriesResponse {}
