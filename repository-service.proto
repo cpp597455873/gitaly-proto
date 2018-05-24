@@ -35,6 +35,7 @@ service RepositoryService {
   rpc GetRawChanges(GetRawChangesRequest) returns (stream GetRawChangesResponse) {}
   rpc SearchFilesByContent(SearchFilesByContentRequest) returns (stream SearchFilesByContentResponse) {}
   rpc SearchFilesByName(SearchFilesByNameRequest) returns (stream SearchFilesByNameResponse) {}
+  rpc RestoreCustomHooks(stream RestoreCustomHooksRequest) returns (RestoreCustomHooksResponse);
 }
 
 message RepositoryExistsRequest {
@@ -225,6 +226,13 @@ message WriteConfigRequest {
 message WriteConfigResponse {
   bytes error = 1;
 }
+
+message  RestoreCustomHooksRequest {
+  Repository repository = 1;
+  bytes data = 2;
+}
+
+message RestoreCustomHooksResponse {}
 
 message CreateRepositoryFromBundleRequest {
   // Only available on the first message
