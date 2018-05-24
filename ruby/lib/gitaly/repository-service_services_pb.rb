@@ -44,6 +44,7 @@ module Gitaly
       rpc :GetRawChanges, GetRawChangesRequest, stream(GetRawChangesResponse)
       rpc :SearchFilesByContent, SearchFilesByContentRequest, stream(SearchFilesByContentResponse)
       rpc :SearchFilesByName, SearchFilesByNameRequest, stream(SearchFilesByNameResponse)
+      rpc :RestoreCustomHooks, stream(RestoreCustomHooksRequest), RestoreCustomHooksResponse
     end
 
     Stub = Service.rpc_stub_class
