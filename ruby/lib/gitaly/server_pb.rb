@@ -9,10 +9,17 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.ServerInfoResponse" do
     optional :server_version, :string, 1
     optional :git_version, :string, 2
+    repeated :storage_statuses, :message, 3, "gitaly.ServerInfoResponse.StorageStatus"
+  end
+  add_message "gitaly.ServerInfoResponse.StorageStatus" do
+    optional :storage_name, :string, 1
+    optional :readable, :bool, 2
+    optional :writeable, :bool, 3
   end
 end
 
 module Gitaly
   ServerInfoRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ServerInfoRequest").msgclass
   ServerInfoResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ServerInfoResponse").msgclass
+  ServerInfoResponse::StorageStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ServerInfoResponse.StorageStatus").msgclass
 end
