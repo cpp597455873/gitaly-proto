@@ -162,6 +162,8 @@ It has these top-level messages:
 	ListTagNamesContainingCommitResponse
 	GetTagMessagesRequest
 	GetTagMessagesResponse
+	ListNewCommitsRequest
+	ListNewCommitsResponse
 	AddRemoteRequest
 	AddRemoteResponse
 	RemoveRemoteRequest

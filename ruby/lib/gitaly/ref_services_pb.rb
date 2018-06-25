@@ -31,6 +31,8 @@ module Gitaly
       rpc :ListBranchNamesContainingCommit, ListBranchNamesContainingCommitRequest, stream(ListBranchNamesContainingCommitResponse)
       rpc :ListTagNamesContainingCommit, ListTagNamesContainingCommitRequest, stream(ListTagNamesContainingCommitResponse)
       rpc :GetTagMessages, GetTagMessagesRequest, stream(GetTagMessagesResponse)
+      # Returns commits that are only reachable from the ref passed
+      rpc :ListNewCommits, ListNewCommitsRequest, stream(ListNewCommitsResponse)
     end
 
     Stub = Service.rpc_stub_class
