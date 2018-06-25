@@ -6,6 +6,7 @@ import "shared.proto";
 
 service OperationService {
   rpc UserCreateBranch(UserCreateBranchRequest) returns (UserCreateBranchResponse) {}
+  rpc UserUpdateBranch(UserUpdateBranchRequest) returns (UserUpdateBranchResponse) {}
   rpc UserDeleteBranch(UserDeleteBranchRequest) returns (UserDeleteBranchResponse) {}
   rpc UserCreateTag(UserCreateTagRequest) returns (UserCreateTagResponse) {}
   rpc UserDeleteTag(UserDeleteTagRequest) returns (UserDeleteTagResponse) {}
@@ -30,6 +31,18 @@ message UserCreateBranchResponse {
   // Error returned by the pre-receive hook. If no error was thrown,
   // it's the empty string ("")
   string pre_receive_error = 2;
+}
+
+message UserUpdateBranchRequest {
+  Repository repository = 1;
+  bytes branch_name = 2;
+  User user = 3;
+  bytes newrev = 4;
+  bytes oldrev = 5;
+}
+
+message UserUpdateBranchResponse {
+  string pre_receive_error = 1;
 }
 
 message UserDeleteBranchRequest {

@@ -15,6 +15,16 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :branch, :message, 1, "gitaly.Branch"
     optional :pre_receive_error, :string, 2
   end
+  add_message "gitaly.UserUpdateBranchRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :branch_name, :bytes, 2
+    optional :user, :message, 3, "gitaly.User"
+    optional :newrev, :bytes, 4
+    optional :oldrev, :bytes, 5
+  end
+  add_message "gitaly.UserUpdateBranchResponse" do
+    optional :pre_receive_error, :string, 1
+  end
   add_message "gitaly.UserDeleteBranchRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :branch_name, :bytes, 2
@@ -174,6 +184,8 @@ end
 module Gitaly
   UserCreateBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCreateBranchRequest").msgclass
   UserCreateBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCreateBranchResponse").msgclass
+  UserUpdateBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserUpdateBranchRequest").msgclass
+  UserUpdateBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserUpdateBranchResponse").msgclass
   UserDeleteBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserDeleteBranchRequest").msgclass
   UserDeleteBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserDeleteBranchResponse").msgclass
   UserDeleteTagRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserDeleteTagRequest").msgclass

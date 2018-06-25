@@ -104,6 +104,8 @@ It has these top-level messages:
 	PostReceiveResponse
 	UserCreateBranchRequest
 	UserCreateBranchResponse
+	UserUpdateBranchRequest
+	UserUpdateBranchResponse
 	UserDeleteBranchRequest
 	UserDeleteBranchResponse
 	UserDeleteTagRequest
