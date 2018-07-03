@@ -26,6 +26,8 @@ service RepositoryService {
   rpc CreateBundle(CreateBundleRequest) returns (stream CreateBundleResponse) {}
   rpc CreateRepositoryFromBundle(stream CreateRepositoryFromBundleRequest) returns (CreateRepositoryFromBundleResponse) {}
   rpc WriteConfig(WriteConfigRequest) returns (WriteConfigResponse) {}
+  rpc SetConfig(SetConfigRequest) returns (SetConfigResponse) {}
+  rpc DeleteConfig(DeleteConfigRequest) returns (DeleteConfigResponse) {}
   rpc FindLicense(FindLicenseRequest) returns (FindLicenseResponse) {}
   rpc GetInfoAttributes(GetInfoAttributesRequest) returns (stream GetInfoAttributesResponse) {}
   rpc CalculateChecksum(CalculateChecksumRequest) returns (CalculateChecksumResponse) {}
@@ -227,6 +229,28 @@ message WriteConfigRequest {
 message WriteConfigResponse {
   bytes error = 1;
 }
+
+message SetConfigRequest {
+  Repository repository = 1;
+  message Entry {
+    string key = 1;
+    oneof value {
+      string value_str = 2;
+      int32 value_int32 = 3;
+      bool value_bool = 4;
+    }
+  }
+  repeated Entry entries = 2;
+}
+
+message SetConfigResponse {}
+
+message DeleteConfigRequest {
+  Repository repository = 1;
+  repeated string keys = 2;
+}
+
+message DeleteConfigResponse {}
 
 message  RestoreCustomHooksRequest {
   Repository repository = 1;
