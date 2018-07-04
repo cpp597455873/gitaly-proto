@@ -35,6 +35,8 @@ module Gitaly
       rpc :CreateBundle, CreateBundleRequest, stream(CreateBundleResponse)
       rpc :CreateRepositoryFromBundle, stream(CreateRepositoryFromBundleRequest), CreateRepositoryFromBundleResponse
       rpc :WriteConfig, WriteConfigRequest, WriteConfigResponse
+      rpc :SetConfig, SetConfigRequest, SetConfigResponse
+      rpc :DeleteConfig, DeleteConfigRequest, DeleteConfigResponse
       rpc :FindLicense, FindLicenseRequest, FindLicenseResponse
       rpc :GetInfoAttributes, GetInfoAttributesRequest, stream(GetInfoAttributesResponse)
       rpc :CalculateChecksum, CalculateChecksumRequest, CalculateChecksumResponse
