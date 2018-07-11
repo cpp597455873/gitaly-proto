@@ -148,6 +148,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.ListNewCommitsResponse" do
     repeated :commits, :message, 1, "gitaly.GitCommit"
   end
+  add_message "gitaly.FindAllRemoteBranchesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :remote_name, :string, 2
+  end
+  add_message "gitaly.FindAllRemoteBranchesResponse" do
+    repeated :branches, :message, 1, "gitaly.Branch"
+  end
 end
 
 module Gitaly
@@ -188,4 +195,6 @@ module Gitaly
   GetTagMessagesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetTagMessagesResponse").msgclass
   ListNewCommitsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListNewCommitsRequest").msgclass
   ListNewCommitsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListNewCommitsResponse").msgclass
+  FindAllRemoteBranchesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllRemoteBranchesRequest").msgclass
+  FindAllRemoteBranchesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllRemoteBranchesResponse").msgclass
 end
