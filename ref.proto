@@ -15,6 +15,7 @@ service RefService {
   rpc FindLocalBranches(FindLocalBranchesRequest) returns (stream FindLocalBranchesResponse) {}
   rpc FindAllBranches(FindAllBranchesRequest) returns (stream FindAllBranchesResponse) {}
   rpc FindAllTags(FindAllTagsRequest) returns (stream FindAllTagsResponse) {}
+  rpc FindAllRemoteBranches(FindAllRemoteBranchesRequest) returns (stream FindAllRemoteBranchesResponse) {}
   rpc RefExists(RefExistsRequest) returns (RefExistsResponse) {}
   rpc CreateBranch(CreateBranchRequest) returns (CreateBranchResponse) {}
   rpc DeleteBranch(DeleteBranchRequest) returns (DeleteBranchResponse) {}
@@ -228,4 +229,13 @@ message ListNewCommitsRequest {
 
 message ListNewCommitsResponse {
   repeated GitCommit commits = 1;
+}
+
+message FindAllRemoteBranchesRequest {
+  Repository repository = 1;
+  string remote_name = 2;
+}
+
+message FindAllRemoteBranchesResponse {
+  repeated Branch branches = 1;
 }
