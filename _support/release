@@ -6,13 +6,29 @@ require_relative 'run.rb'
 GEM_NAME = 'gitaly-proto'
 RUBY_PREFIX = 'ruby/lib'
 RUBY_VERSION_FILE = 'gitaly/version.rb'
-REMOTES = {
-  'gitlab.com' => 'gitlab-org/gitaly-proto.git',
-}
 
+REMOTE_REGEX = %r{gitlab.com.gitlab-org/gitaly-proto.git}
 
-def main(version, ssh)
-  run!(%w[_support/generate-from-proto])
+# Sanity check
+%w[
+  git@gitlab.com:gitlab-org/gitaly-proto.git
+  https://gitlab.com/gitlab-org/gitaly-proto.git
+  https://janedoe@gitlab.com/gitlab-org/gitaly-proto.git
+].each do |remote|
+  abort "regex check failed failed for #{remote.inspect}" unless REMOTE_REGEX.match(remote)
+end
+
+def main(version)
+  remote = capture!(%w[git remote get-url --push origin])
+  unless REMOTE_REGEX.match(remote)
+    abort "Git remote 'origin' must match #{REMOTE_REGEX}, got #{remote.inspect}"
+  end
+
+  unless version =~ /^[0-9]/
+    abort "Version string #{version.inspect} does not look like a semver (e.g. \"1.0.2\"). Aborting."
+  end
+
+  run!(%w[make generate])
   puts 'Testing for changed files'
   run!(%w[git diff --quiet --exit-code])
   puts 'Testing for staged changes'
@@ -27,10 +43,8 @@ def main(version, ssh)
   puts "Proceed to publish version #{version}? Enter 'Yes' to continue; Ctrl-C to abort"
   $stdout.flush
   abort unless $stdin.gets.chomp == 'Yes'
-  REMOTES.each do |host, repo|
-    remote = ssh ? "git@#{host}:#{repo}" : "https://#{host}/#{repo}"
-    run!(%W[git push #{remote} HEAD #{tag_name}])
-  end
+
+  run!(%W[git push origin HEAD #{tag_name}])
   run!(%W[gem push #{GEM_NAME}-#{version}.gem])
 end
 
@@ -58,14 +72,8 @@ def error(msg)
   warn "#{$0}: #{msg}"
 end
 
-ssh = false
-if ARGV.first == '--ssh'
-  ssh = true
-  ARGV.shift
-end
-
 unless ARGV.count == 1
-  warn "Usage: #{$0} [--ssh] VERSION"
+  warn "Usage: #{$0} VERSION"
   warn "Specify version as x.y.z"
   abort
 end
@@ -77,4 +85,4 @@ unless git_root_current_file == Dir.pwd
   abort
 end
 
-main(ARGV.first, ssh)
+main(ARGV.first)
