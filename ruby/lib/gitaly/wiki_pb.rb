@@ -85,6 +85,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.WikiGetAllPagesRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
+    optional :limit, :uint32, 2
   end
   add_message "gitaly.WikiGetAllPagesResponse" do
     optional :page, :message, 1, "gitaly.WikiPage"

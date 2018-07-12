@@ -124,6 +124,7 @@ message WikiFindFileResponse {
 
 message WikiGetAllPagesRequest {
   Repository repository = 1;
+  uint32 limit = 2;
 }
 
 // The WikiGetAllPagesResponse stream is a concatenation of WikiPage streams
