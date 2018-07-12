@@ -61,6 +61,7 @@ message Tag {
   // a tag had a message in the first place.
   bytes message = 4;
   int64 message_size = 5;
+  CommitAuthor tagger = 6;
 }
 
 message User {
