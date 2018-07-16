@@ -124,6 +124,7 @@ message WikiFindFileResponse {
 
 message WikiGetAllPagesRequest {
   Repository repository = 1;
+  // Passing 0 means no limit is applied
   uint32 limit = 2;
 }
 
