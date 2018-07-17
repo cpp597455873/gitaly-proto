@@ -12,6 +12,7 @@ service DiffService {
   rpc CommitPatch(CommitPatchRequest) returns (stream CommitPatchResponse) {};
   rpc RawDiff(RawDiffRequest) returns (stream RawDiffResponse) {};
   rpc RawPatch(RawPatchRequest) returns (stream RawPatchResponse) {};
+  rpc DiffStats(DiffStatsRequest) returns (stream DiffStatsResponse) {};
 }
 
 message CommitDiffRequest {
@@ -98,4 +99,20 @@ message RawPatchRequest {
 
 message RawPatchResponse {
   bytes data = 1;
+}
+
+message DiffStatsRequest {
+  Repository repository = 1;
+  string left_commit_id = 2;
+  string right_commit_id = 3;
+}
+
+message DiffStats {
+  bytes path = 1;
+  int32 additions = 2;
+  int32 deletions = 3;
+}
+
+message DiffStatsResponse {
+  repeated DiffStats stats = 1;
 }

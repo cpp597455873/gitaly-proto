@@ -73,6 +73,19 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.RawPatchResponse" do
     optional :data, :bytes, 1
   end
+  add_message "gitaly.DiffStatsRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :left_commit_id, :string, 2
+    optional :right_commit_id, :string, 3
+  end
+  add_message "gitaly.DiffStats" do
+    optional :path, :bytes, 1
+    optional :additions, :int32, 2
+    optional :deletions, :int32, 3
+  end
+  add_message "gitaly.DiffStatsResponse" do
+    repeated :stats, :message, 1, "gitaly.DiffStats"
+  end
 end
 
 module Gitaly
@@ -87,4 +100,7 @@ module Gitaly
   RawDiffResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RawDiffResponse").msgclass
   RawPatchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RawPatchRequest").msgclass
   RawPatchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RawPatchResponse").msgclass
+  DiffStatsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DiffStatsRequest").msgclass
+  DiffStats = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DiffStats").msgclass
+  DiffStatsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DiffStatsResponse").msgclass
 end
