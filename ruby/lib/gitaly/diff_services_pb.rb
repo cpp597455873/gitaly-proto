@@ -21,6 +21,7 @@ module Gitaly
       rpc :CommitPatch, CommitPatchRequest, stream(CommitPatchResponse)
       rpc :RawDiff, RawDiffRequest, stream(RawDiffResponse)
       rpc :RawPatch, RawPatchRequest, stream(RawPatchResponse)
+      rpc :DiffStats, DiffStatsRequest, stream(DiffStatsResponse)
     end
 
     Stub = Service.rpc_stub_class
