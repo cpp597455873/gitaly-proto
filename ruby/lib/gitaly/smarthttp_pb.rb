@@ -8,6 +8,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.InfoRefsRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     repeated :git_config_options, :string, 2
+    optional :git_protocol, :string, 3
   end
   add_message "gitaly.InfoRefsResponse" do
     optional :data, :bytes, 1
@@ -16,6 +17,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :data, :bytes, 2
     repeated :git_config_options, :string, 3
+    optional :git_protocol, :string, 4
   end
   add_message "gitaly.PostUploadPackResponse" do
     optional :data, :bytes, 1
@@ -26,6 +28,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :gl_id, :string, 3
     optional :gl_repository, :string, 4
     optional :gl_username, :string, 5
+    optional :git_protocol, :string, 6
   end
   add_message "gitaly.PostReceivePackResponse" do
     optional :data, :bytes, 1

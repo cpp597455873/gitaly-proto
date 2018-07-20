@@ -9,6 +9,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :stdin, :bytes, 2
     repeated :git_config_options, :string, 4
+    optional :git_protocol, :string, 5
   end
   add_message "gitaly.SSHUploadPackResponse" do
     optional :stdout, :bytes, 1
@@ -21,6 +22,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :gl_id, :string, 3
     optional :gl_repository, :string, 4
     optional :gl_username, :string, 5
+    optional :git_protocol, :string, 6
   end
   add_message "gitaly.SSHReceivePackResponse" do
     optional :stdout, :bytes, 1

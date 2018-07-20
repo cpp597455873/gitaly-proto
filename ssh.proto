@@ -25,6 +25,9 @@ message SSHUploadPackRequest {
   reserved "git_config_parameters";
   // Parameters to use with git -c (key=value pairs)
   repeated string git_config_options = 4;
+
+  // Git protocol version
+  string git_protocol = 5;
 }
 
 message SSHUploadPackResponse {
@@ -47,6 +50,9 @@ message SSHReceivePackRequest {
   string gl_id = 3;
   string gl_repository = 4;
   string gl_username = 5;
+
+  // Git protocol version
+  string git_protocol = 6;
 }
 
 message SSHReceivePackResponse {
