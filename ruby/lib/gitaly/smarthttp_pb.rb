@@ -29,6 +29,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :gl_repository, :string, 4
     optional :gl_username, :string, 5
     optional :git_protocol, :string, 6
+    repeated :git_config_options, :string, 7
   end
   add_message "gitaly.PostReceivePackResponse" do
     optional :data, :bytes, 1

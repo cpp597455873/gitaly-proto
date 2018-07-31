@@ -60,6 +60,9 @@ message PostReceivePackRequest {
   string gl_username = 5;
   // Git protocol version
   string git_protocol = 6;
+
+  // Parameters to use with git -c (key=value pairs)
+  repeated string git_config_options = 7;
 }
 
 message PostReceivePackResponse {
