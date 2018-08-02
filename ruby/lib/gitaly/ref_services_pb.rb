@@ -34,6 +34,7 @@ module Gitaly
       rpc :GetTagMessages, GetTagMessagesRequest, stream(GetTagMessagesResponse)
       # Returns commits that are only reachable from the ref passed
       rpc :ListNewCommits, ListNewCommitsRequest, stream(ListNewCommitsResponse)
+      rpc :ListNewBlobs, ListNewBlobsRequest, stream(ListNewBlobsResponse)
     end
 
     Stub = Service.rpc_stub_class

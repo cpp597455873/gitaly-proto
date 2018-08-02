@@ -64,6 +64,12 @@ message LFSPointer {
   string oid = 3;
 }
 
+message NewBlobObject {
+  int64 size = 1;
+  string oid = 2;
+  bytes path = 3;
+}
+
 message GetLFSPointersRequest {
   Repository repository = 1;
   repeated string blob_ids = 2;
