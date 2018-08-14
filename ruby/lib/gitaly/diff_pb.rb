@@ -32,6 +32,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :end_of_patch, :bool, 10
     optional :overflow_marker, :bool, 11
     optional :collapsed, :bool, 12
+    optional :too_large, :bool, 13
   end
   add_message "gitaly.CommitDeltaRequest" do
     optional :repository, :message, 1, "gitaly.Repository"

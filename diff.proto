@@ -49,6 +49,8 @@ message CommitDiffResponse {
   // in which case only this attribute will be set.
   bool overflow_marker = 11;
   bool collapsed = 12;
+  // Patch is too large and has been pruned
+  bool too_large = 13;
 }
 
 message CommitDeltaRequest {
