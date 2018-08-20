@@ -4,6 +4,8 @@ package gitaly;
 
 import "google/protobuf/timestamp.proto";
 
+option go_package = "gitalypb";
+
 message Repository {
   // DEPRECATED: https://gitlab.com/gitlab-org/gitaly/issues/151
   reserved 1;

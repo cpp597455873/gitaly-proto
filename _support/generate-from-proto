@@ -19,7 +19,7 @@ ENV['PATH'] = [
 
 def main
   FileUtils.rm(Dir['go/**/*.pb.go'])
-  run!(%W[protoc -I #{PROTO_INCLUDE}] + PROTO_FILES + %w[--go_out=plugins=grpc:go])
+  run!(%W[protoc -I #{PROTO_INCLUDE}] + PROTO_FILES + %w[--go_out=plugins=grpc:go/gitalypb])
 
   FileUtils.rm(Dir[File.join(RUBY_PREFIX, '**/*_pb.rb')])
   ruby_lib_gitaly = File.join(RUBY_PREFIX, 'gitaly')
