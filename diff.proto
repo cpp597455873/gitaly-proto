@@ -48,8 +48,11 @@ message CommitDiffResponse {
   // Indicates the diff file at which we overflow according to the limitations sent,
   // in which case only this attribute will be set.
   bool overflow_marker = 11;
+  // Indicates the patch surpassed a "safe" limit and was therefore pruned, but
+  // the client may still request the full patch on a separate request.
   bool collapsed = 12;
-  // Patch is too large and has been pruned
+  // Indicates the patch was pruned since it surpassed a hard limit, and can
+  // therefore not be expanded.
   bool too_large = 13;
 }
 
