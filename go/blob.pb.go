@@ -182,6 +182,8 @@ It has these top-level messages:
 	UpdateRemoteMirrorResponse
 	FindRemoteRepositoryRequest
 	FindRemoteRepositoryResponse
+	RemoteExistsRequest
+	RemoteExistsResponse
 	RepositoryExistsRequest
 	RepositoryExistsResponse
 	RepackIncrementalRequest

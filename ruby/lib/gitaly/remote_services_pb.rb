@@ -18,7 +18,10 @@ module Gitaly
       rpc :FetchInternalRemote, FetchInternalRemoteRequest, FetchInternalRemoteResponse
       rpc :RemoveRemote, RemoveRemoteRequest, RemoveRemoteResponse
       rpc :UpdateRemoteMirror, stream(UpdateRemoteMirrorRequest), UpdateRemoteMirrorResponse
+      # This checks if the remote URL is available (e.g. for imports)
       rpc :FindRemoteRepository, FindRemoteRepositoryRequest, FindRemoteRepositoryResponse
+      # This checks if the remote name or URL exists for a given repository
+      rpc :RemoteExists, RemoteExistsRequest, RemoteExistsResponse
     end
 
     Stub = Service.rpc_stub_class
