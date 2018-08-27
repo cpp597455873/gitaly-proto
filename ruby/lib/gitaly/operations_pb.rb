@@ -141,6 +141,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :commit_author_email, :bytes, 6
     optional :start_branch_name, :bytes, 7
     optional :start_repository, :message, 8, "gitaly.Repository"
+    optional :overwrite_branch, :bool, 9
   end
   add_message "gitaly.UserCommitFilesRequest" do
     oneof :user_commit_files_request_payload do
