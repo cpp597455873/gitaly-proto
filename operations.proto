@@ -166,11 +166,13 @@ message UserCommitFilesActionHeader {
     UPDATE = 2;
     MOVE = 3;
     DELETE = 4;
+    CHMOD = 5;
   }
   ActionType action = 1;
   bytes file_path = 2;
   bytes previous_path = 3;
   bool base64_content = 4;
+  bool execute_filemode = 5;
 }
 
 message UserCommitFilesAction {

@@ -116,6 +116,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :file_path, :bytes, 2
     optional :previous_path, :bytes, 3
     optional :base64_content, :bool, 4
+    optional :execute_filemode, :bool, 5
   end
   add_enum "gitaly.UserCommitFilesActionHeader.ActionType" do
     value :CREATE, 0
@@ -123,6 +124,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     value :UPDATE, 2
     value :MOVE, 3
     value :DELETE, 4
+    value :CHMOD, 5
   end
   add_message "gitaly.UserCommitFilesAction" do
     oneof :user_commit_files_action_payload do
