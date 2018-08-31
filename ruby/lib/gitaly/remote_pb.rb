@@ -40,6 +40,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FindRemoteRepositoryResponse" do
     optional :exists, :bool, 1
   end
+  add_message "gitaly.FindRemoteRootRefRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :remote, :string, 2
+  end
+  add_message "gitaly.FindRemoteRootRefResponse" do
+    optional :ref, :string, 1
+  end
 end
 
 module Gitaly
@@ -53,4 +60,6 @@ module Gitaly
   UpdateRemoteMirrorResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UpdateRemoteMirrorResponse").msgclass
   FindRemoteRepositoryRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindRemoteRepositoryRequest").msgclass
   FindRemoteRepositoryResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindRemoteRepositoryResponse").msgclass
+  FindRemoteRootRefRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindRemoteRootRefRequest").msgclass
+  FindRemoteRootRefResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindRemoteRootRefResponse").msgclass
 end

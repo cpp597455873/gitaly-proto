@@ -10,6 +10,7 @@ service RemoteService {
     rpc RemoveRemote(RemoveRemoteRequest) returns (RemoveRemoteResponse) {}
     rpc UpdateRemoteMirror(stream UpdateRemoteMirrorRequest) returns (UpdateRemoteMirrorResponse) {}
     rpc FindRemoteRepository(FindRemoteRepositoryRequest) returns (FindRemoteRepositoryResponse) {}
+    rpc FindRemoteRootRef(FindRemoteRootRefRequest) returns (FindRemoteRootRefResponse) {}
 }
 
 message AddRemoteRequest {
@@ -59,4 +60,13 @@ message FindRemoteRepositoryRequest {
 // is transient.
 message FindRemoteRepositoryResponse {
   bool exists = 1;
+}
+
+message FindRemoteRootRefRequest {
+  Repository repository = 1;
+  string remote = 2;
+}
+
+message FindRemoteRootRefResponse {
+  string ref = 1;
 }
