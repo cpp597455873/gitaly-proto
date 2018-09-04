@@ -239,6 +239,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :old_path, :string, 4
     optional :operation, :enum, 5, "gitaly.GetRawChangesResponse.RawChange.Operation"
     optional :raw_operation, :string, 6
+    optional :old_mode, :int32, 7
+    optional :new_mode, :int32, 8
   end
   add_enum "gitaly.GetRawChangesResponse.RawChange.Operation" do
     value :UNKNOWN, 0
