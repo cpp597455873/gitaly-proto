@@ -339,6 +339,8 @@ message GetRawChangesResponse {
     string old_path = 4;
     Operation operation= 5;
     string raw_operation = 6;
+    int32 old_mode = 7;
+    int32 new_mode = 8;
   }
 
   repeated RawChange raw_changes = 1;
