@@ -29,6 +29,9 @@ message CommitDiffRequest {
   int32 safe_max_files = 11;
   int32 safe_max_lines = 12;
   int32 safe_max_bytes = 13;
+  // Limitation of a single diff patch,
+  // patches surpassing this limit are pruned by default.
+  int32 max_patch_bytes = 14;
 }
 
 // A CommitDiffResponse corresponds to a single changed file in a commit.
