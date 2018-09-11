@@ -165,6 +165,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.LastCommitForPathResponse" do
     optional :commit, :message, 1, "gitaly.GitCommit"
   end
+  add_message "gitaly.ListLastCommitsForTreeRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :revision, :string, 2
+    optional :path, :bytes, 3
+    optional :limit, :int32, 4
+    optional :offset, :int32, 5
+  end
+  add_message "gitaly.ListLastCommitsForTreeResponse" do
+    repeated :commits, :message, 1, "gitaly.ListLastCommitsForTreeResponse.CommitForTree"
+  end
+  add_message "gitaly.ListLastCommitsForTreeResponse.CommitForTree" do
+    optional :revision, :string, 1
+    optional :commit, :message, 2, "gitaly.GitCommit"
+  end
   add_message "gitaly.CommitsByMessageRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :revision, :bytes, 2
@@ -244,6 +258,9 @@ module Gitaly
   RawBlameResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.RawBlameResponse").msgclass
   LastCommitForPathRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.LastCommitForPathRequest").msgclass
   LastCommitForPathResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.LastCommitForPathResponse").msgclass
+  ListLastCommitsForTreeRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListLastCommitsForTreeRequest").msgclass
+  ListLastCommitsForTreeResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListLastCommitsForTreeResponse").msgclass
+  ListLastCommitsForTreeResponse::CommitForTree = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListLastCommitsForTreeResponse.CommitForTree").msgclass
   CommitsByMessageRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitsByMessageRequest").msgclass
   CommitsByMessageResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitsByMessageResponse").msgclass
   FilterShasWithSignaturesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FilterShasWithSignaturesRequest").msgclass

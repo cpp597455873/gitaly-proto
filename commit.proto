@@ -20,6 +20,7 @@ service CommitService {
   rpc CommitLanguages(CommitLanguagesRequest) returns (CommitLanguagesResponse) {}
   rpc RawBlame(RawBlameRequest) returns (stream RawBlameResponse) {}
   rpc LastCommitForPath(LastCommitForPathRequest) returns (LastCommitForPathResponse) {}
+  rpc ListLastCommitsForTree(ListLastCommitsForTreeRequest) returns (stream ListLastCommitsForTreeResponse) {}
   rpc CommitsByMessage(CommitsByMessageRequest) returns (stream CommitsByMessageResponse) {}
 
   rpc ListCommitsByOid(ListCommitsByOidRequest) returns (stream ListCommitsByOidResponse) {}
@@ -241,6 +242,25 @@ message LastCommitForPathRequest {
 message LastCommitForPathResponse {
   // commit is nil when the commit was not found
   GitCommit commit = 1;
+}
+
+message ListLastCommitsForTreeRequest {
+  Repository repository = 1;
+  string revision = 2;
+  bytes path = 3;
+
+  // limit == -1 will get the last commit for all paths 
+  int32 limit = 4;
+  int32 offset = 5;
+}
+
+message ListLastCommitsForTreeResponse {
+  message CommitForTree {
+    string revision = 1;
+    GitCommit commit = 2;
+
+  }
+  repeated CommitForTree commits = 1;
 }
 
 message CommitsByMessageRequest {

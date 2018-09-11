@@ -28,6 +28,7 @@ module Gitaly
       rpc :CommitLanguages, CommitLanguagesRequest, CommitLanguagesResponse
       rpc :RawBlame, RawBlameRequest, stream(RawBlameResponse)
       rpc :LastCommitForPath, LastCommitForPathRequest, LastCommitForPathResponse
+      rpc :ListLastCommitsForTree, ListLastCommitsForTreeRequest, stream(ListLastCommitsForTreeResponse)
       rpc :CommitsByMessage, CommitsByMessageRequest, stream(CommitsByMessageResponse)
       rpc :ListCommitsByOid, ListCommitsByOidRequest, stream(ListCommitsByOidResponse)
       rpc :FilterShasWithSignatures, stream(FilterShasWithSignaturesRequest), stream(FilterShasWithSignaturesResponse)
