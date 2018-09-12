@@ -176,8 +176,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     repeated :commits, :message, 1, "gitaly.ListLastCommitsForTreeResponse.CommitForTree"
   end
   add_message "gitaly.ListLastCommitsForTreeResponse.CommitForTree" do
-    optional :revision, :string, 1
     optional :commit, :message, 2, "gitaly.GitCommit"
+    optional :path, :string, 3
   end
   add_message "gitaly.CommitsByMessageRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
