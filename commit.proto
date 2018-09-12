@@ -256,9 +256,10 @@ message ListLastCommitsForTreeRequest {
 
 message ListLastCommitsForTreeResponse {
   message CommitForTree {
-    string revision = 1;
-    GitCommit commit = 2;
+    reserved 1;
 
+    GitCommit commit = 2;
+    string path = 3;
   }
   repeated CommitForTree commits = 1;
 }
