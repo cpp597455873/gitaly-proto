@@ -18,6 +18,5 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z #{prefix}`.split("\x0").reject { |f| f.match(%r{^#{prefix}/(test|spec|features)/}) }
   spec.require_paths = ["#{prefix}/lib"]
 
-  spec.add_dependency "google-protobuf", "~> 3.1"
-  spec.add_dependency "grpc", "~> 1.10"
+  spec.add_dependency "grpc", "~> 1.0"
 end
