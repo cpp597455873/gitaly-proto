@@ -1,4 +1,3 @@
 source 'https://rubygems.org'
 
-gem 'grpc', '~> 1.10'
 gem 'grpc-tools'
