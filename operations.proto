@@ -23,6 +23,8 @@ service OperationService {
 }
 
 message UserCreateBranchRequest {
+  option (op_type).op = MUTATOR;
+
   Repository repository = 1;
   bytes branch_name = 2;
   User user = 3;
@@ -37,6 +39,8 @@ message UserCreateBranchResponse {
 }
 
 message UserUpdateBranchRequest {
+  option (op_type).op = MUTATOR;
+
   Repository repository = 1;
   bytes branch_name = 2;
   User user = 3;
@@ -49,6 +53,8 @@ message UserUpdateBranchResponse {
 }
 
 message UserDeleteBranchRequest {
+  option (op_type).op = MUTATOR;
+
   Repository repository = 1;
   bytes branch_name = 2;
   User user = 3;
@@ -59,6 +65,8 @@ message UserDeleteBranchResponse {
 }
 
 message UserDeleteTagRequest {
+  option (op_type).op = MUTATOR;
+
   Repository repository = 1;
   bytes tag_name = 2;
   User user = 3;
@@ -69,6 +77,8 @@ message UserDeleteTagResponse {
 }
 
 message UserCreateTagRequest {
+  option (op_type).op = MUTATOR;
+
   Repository repository = 1;
   bytes tag_name = 2;
   User user = 3;
@@ -83,6 +93,8 @@ message UserCreateTagResponse {
 }
 
 message UserMergeBranchRequest {
+  option (op_type).op = MUTATOR;
+
   // First message
   Repository repository = 1;
   User user = 2;
@@ -108,6 +120,8 @@ message UserMergeBranchResponse {
 }
 
 message UserMergeToRefRequest {
+  option (op_type).op = MUTATOR;
+
   Repository repository = 1;
   User user = 2;
   string source_sha = 3;
@@ -138,6 +152,8 @@ message OperationBranchUpdate {
 }
 
 message UserFFBranchRequest {
+  option (op_type).op = MUTATOR;
+
   Repository repository = 1;
   User user = 2;
   string commit_id = 3;
@@ -150,6 +166,8 @@ message UserFFBranchResponse {
 }
 
 message UserCherryPickRequest {
+  option (op_type).op = MUTATOR;
+
   Repository repository = 1;
   User user = 2;
   GitCommit commit = 3;
@@ -167,6 +185,8 @@ message UserCherryPickResponse {
 }
 
 message UserRevertRequest {
+  option (op_type).op = MUTATOR;
+
   Repository repository = 1;
   User user = 2;
   GitCommit commit = 3;
@@ -223,6 +243,8 @@ message UserCommitFilesRequestHeader {
 }
 
 message UserCommitFilesRequest {
+  option (op_type).op = MUTATOR;
+
   oneof user_commit_files_request_payload {
     // For each request stream there should be first a request with a header and
     // then n requests with actions
@@ -238,6 +260,8 @@ message UserCommitFilesResponse {
 }
 
 message UserRebaseRequest {
+  option (op_type).op = MUTATOR;
+
   Repository repository = 1;
   User user = 2;
   string rebase_id = 3;
@@ -254,6 +278,8 @@ message UserRebaseResponse {
 }
 
 message UserSquashRequest {
+  option (op_type).op = MUTATOR;
+
   Repository repository = 1;
   User user = 2;
   string squash_id = 3;
@@ -273,6 +299,8 @@ message UserSquashResponse {
 }
 
 message UserApplyPatchRequest {
+  option (op_type).op = MUTATOR;
+
   message Header {
     Repository repository = 1;
     User user = 2;
@@ -290,6 +318,8 @@ message UserApplyPatchResponse {
 }
 
 message UserUpdateSubmoduleRequest {
+  option (op_type).op = MUTATOR;
+
   Repository repository = 1;
   User user = 2;
   string commit_sha = 3;

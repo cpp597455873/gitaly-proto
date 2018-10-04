@@ -5,18 +5,18 @@ package gitaly;
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/descriptor.proto";
 
-message CoordinatorMsg {
+message OperationMsg {
   enum Operation {
-    READ = 0;
-    WRITE = 1;
+    MUTATOR = 0;
+    ACCESSOR = 1;
   }
 
   Operation op = 1;
 }
 
-extend google.protobuf.MethodOptions {
+extend google.protobuf.MessageOptions {
   // Random high number..
-  CoordinatorMsg op_type = 82305;
+  OperationMsg op_type = 82302;
 }
 
 option go_package = "gitalypb";

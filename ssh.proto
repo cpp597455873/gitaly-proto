@@ -16,6 +16,8 @@ service SSHService {
 }
 
 message SSHUploadPackRequest {
+  option (op_type).op = ACCESSOR;
+
   // 'repository' must be present in the first message.
   Repository repository = 1;
   // A chunk of raw data to be copied to 'git upload-pack' standard input
@@ -41,6 +43,8 @@ message SSHUploadPackResponse {
 }
 
 message SSHReceivePackRequest {
+  option (op_type).op = MUTATOR;
+
   // 'repository' must be present in the first message.
   Repository repository = 1;
   // A chunk of raw data to be copied to 'git upload-pack' standard input
@@ -69,6 +73,8 @@ message SSHReceivePackResponse {
 }
 
 message SSHUploadArchiveRequest {
+  option (op_type).op = MUTATOR;
+
   // 'repository' must be present in the first message.
   Repository repository = 1;
   // A chunk of raw data to be copied to 'git upload-archive' standard input

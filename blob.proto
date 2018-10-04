@@ -16,6 +16,8 @@ service BlobService {
 }
 
 message GetBlobRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   // Object ID (SHA1) of the blob we want to get
   string oid = 2;
@@ -33,6 +35,8 @@ message GetBlobResponse {
 }
 
 message GetBlobsRequest {
+  option (op_type).op = ACCESSOR;
+
   message RevisionPath {
     string revision = 1;
     bytes path = 2;
@@ -71,6 +75,8 @@ message NewBlobObject {
 }
 
 message GetLFSPointersRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   repeated string blob_ids = 2;
 }
@@ -80,6 +86,8 @@ message GetLFSPointersResponse {
 }
 
 message GetNewLFSPointersRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes revision = 2;
   int32 limit = 3;
@@ -93,6 +101,7 @@ message GetNewLFSPointersResponse {
 }
 
 message GetAllLFSPointersRequest {
+  option (op_type).op = ACCESSOR;
   Repository repository = 1;
   bytes revision = 2;
 }

@@ -37,6 +37,8 @@ service CommitService {
 }
 
 message CommitStatsRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes revision = 2;
 }
@@ -49,6 +51,8 @@ message CommitStatsResponse {
 }
 
 message CommitIsAncestorRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   string ancestor_id = 2;
   string child_id = 3;
@@ -59,6 +63,8 @@ message CommitIsAncestorResponse {
 }
 
 message TreeEntryRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   // commit ID or refname
   bytes revision = 2;
@@ -85,6 +91,8 @@ message TreeEntryResponse {
 }
 
 message CommitsBetweenRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes from = 2;
   bytes to = 3;
@@ -95,6 +103,8 @@ message CommitsBetweenResponse {
 }
 
 message CountCommitsRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes revision = 2;
   google.protobuf.Timestamp after = 3;
@@ -110,6 +120,8 @@ message CountCommitsResponse {
 }
 
 message CountDivergingCommitsRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes from = 2;
   bytes to = 3;
@@ -146,6 +158,8 @@ message TreeEntry {
 }
 
 message GetTreeEntriesRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes revision = 2;
   bytes path = 3;
@@ -157,6 +171,8 @@ message GetTreeEntriesResponse {
 }
 
 message ListFilesRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes revision = 2;
 }
@@ -168,6 +184,8 @@ message ListFilesResponse {
 }
 
 message FindCommitRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes revision = 2;
 }
@@ -178,6 +196,8 @@ message FindCommitResponse {
 }
 
 message ListCommitsByOidRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   repeated string oid = 2;
 }
@@ -187,6 +207,8 @@ message ListCommitsByOidResponse {
 }
 
 message FindAllCommitsRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   // When nil, return all commits reachable by any branch in the repo
   bytes revision = 2;
@@ -206,6 +228,8 @@ message FindAllCommitsResponse {
 }
 
 message FindCommitsRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes revision = 2;
   int32 limit = 3;
@@ -226,6 +250,8 @@ message FindCommitsResponse {
 }
 
 message CommitLanguagesRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes revision = 2;
 }
@@ -240,6 +266,8 @@ message CommitLanguagesResponse {
 }
 
 message RawBlameRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes revision = 2;
   bytes path = 3;
@@ -250,6 +278,8 @@ message RawBlameResponse {
 }
 
 message LastCommitForPathRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes revision = 2;
   bytes path = 3;
@@ -261,6 +291,8 @@ message LastCommitForPathResponse {
 }
 
 message ListLastCommitsForTreeRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   string revision = 2;
   bytes path = 3;
@@ -271,6 +303,8 @@ message ListLastCommitsForTreeRequest {
 }
 
 message ListLastCommitsForTreeResponse {
+  option (op_type).op = ACCESSOR;
+
   message CommitForTree {
     reserved 1;
 
@@ -281,6 +315,8 @@ message ListLastCommitsForTreeResponse {
 }
 
 message CommitsByMessageRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes revision = 2;
   int32 offset = 3;
@@ -295,6 +331,8 @@ message CommitsByMessageResponse {
 }
 
 message FilterShasWithSignaturesRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   repeated bytes shas = 2;
 }
@@ -304,6 +342,8 @@ message FilterShasWithSignaturesResponse {
 }
 
 message ExtractCommitSignatureRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   string commit_id = 2;
 }
@@ -316,6 +356,8 @@ message ExtractCommitSignatureResponse {
 }
 
 message GetCommitSignaturesRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   repeated string commit_ids = 2;
 }
@@ -329,6 +371,8 @@ message GetCommitSignaturesResponse {
 }
 
 message GetCommitMessagesRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   repeated string commit_ids = 2;
 }

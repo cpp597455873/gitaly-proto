@@ -9,6 +9,8 @@ service NotificationService {
 }
 
 message PostReceiveRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
 }
 

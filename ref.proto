@@ -35,6 +35,8 @@ service RefService {
 }
 
 message ListNewBlobsRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   string commit_id = 2;
   // Limit the number of revs to be returned fro mgit-rev-list
@@ -47,6 +49,8 @@ message ListNewBlobsResponse {
 }
 
 message FindDefaultBranchNameRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
 }
 
@@ -55,6 +59,8 @@ message FindDefaultBranchNameResponse {
 }
 
 message FindAllBranchNamesRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
 }
 
@@ -63,6 +69,7 @@ message FindAllBranchNamesResponse {
 }
 
 message FindAllTagNamesRequest {
+  option (op_type).op = ACCESSOR;
   Repository repository = 1;
 }
 
@@ -71,6 +78,8 @@ message FindAllTagNamesResponse {
 }
 
 message FindRefNameRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   // Require that the resulting ref contains this commit as an ancestor
   string commit_id = 2;
@@ -84,6 +93,8 @@ message FindRefNameResponse {
 }
 
 message FindLocalBranchesRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   enum SortBy {
     NAME = 0;
@@ -112,6 +123,8 @@ message FindLocalBranchCommitAuthor {
 }
 
 message FindAllBranchesRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   // Only return branches that are merged into root ref
   bool merged_only = 2;
@@ -129,6 +142,8 @@ message FindAllBranchesResponse {
 }
 
 message FindAllTagsRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
 }
 
@@ -137,6 +152,8 @@ message FindAllTagsResponse {
 }
 
 message RefExistsRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   // Any ref, e.g. 'refs/heads/master' or 'refs/tags/v1.0.1'. Must start with 'refs/'.
   bytes ref = 2;
@@ -147,6 +164,8 @@ message RefExistsResponse {
 }
 
 message CreateBranchRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes name = 2;
   bytes start_point = 3;
@@ -164,6 +183,8 @@ message CreateBranchResponse {
 }
 
 message DeleteBranchRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes name = 2;
 }
@@ -172,6 +193,8 @@ message DeleteBranchRequest {
 message DeleteBranchResponse {}
 
 message FindBranchRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   // Name can be 'master' but also 'refs/heads/master'
   bytes name = 2;
@@ -182,6 +205,8 @@ message FindBranchResponse {
 }
 
 message DeleteRefsRequest{
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   // The following two fields are mutually exclusive
   repeated bytes except_with_prefix = 2;
@@ -193,6 +218,8 @@ message DeleteRefsResponse {
 }
 
 message ListBranchNamesContainingCommitRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   string commit_id = 2;
 
@@ -207,6 +234,8 @@ message ListBranchNamesContainingCommitResponse {
 }
 
 message ListTagNamesContainingCommitRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   string commit_id = 2;
 
@@ -221,6 +250,8 @@ message ListTagNamesContainingCommitResponse {
 }
 
 message GetTagMessagesRequest {
+  option (op_type).op = ACCESSOR;
+
   reserved 2;
   reserved "tag_names";
 
@@ -238,6 +269,8 @@ message GetTagMessagesResponse {
 }
 
 message ListNewCommitsRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   string commit_id = 2;
 }
@@ -247,6 +280,8 @@ message ListNewCommitsResponse {
 }
 
 message FindAllRemoteBranchesRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   string remote_name = 2;
 }

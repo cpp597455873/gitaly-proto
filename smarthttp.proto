@@ -19,6 +19,8 @@ service SmartHTTPService {
 }
 
 message InfoRefsRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   // Parameters to use with git -c (key=value pairs)
   repeated string git_config_options = 2;
@@ -32,6 +34,8 @@ message InfoRefsResponse {
 }
 
 message PostUploadPackRequest {
+  option (op_type).op = ACCESSOR;
+
   // repository should only be present in the first message of the stream
   Repository repository = 1;
   // Raw data to be copied to stdin of 'git upload-pack'
@@ -49,6 +53,8 @@ message PostUploadPackResponse {
 }
 
 message PostReceivePackRequest {
+  option (op_type).op = MUTATOR;
+
   // repository should only be present in the first message of the stream
   Repository repository = 1;
   // Raw data to be copied to stdin of 'git receive-pack'

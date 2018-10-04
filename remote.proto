@@ -15,47 +15,57 @@ service RemoteService {
 }
 
 message AddRemoteRequest {
-    Repository repository = 1;
-    string name = 2;
-    string url = 3;
-    // DEPRECATED: https://gitlab.com/gitlab-org/gitaly-proto/merge_requests/137
-    reserved 4;
-    reserved "mirror_refmap";
-    // If any, the remote is configured as a mirror with those mappings
-    repeated string mirror_refmaps = 5;
+  option (op_type).op = MUTATOR;
+
+  Repository repository = 1;
+  string name = 2;
+  string url = 3;
+  // DEPRECATED: https://gitlab.com/gitlab-org/gitaly-proto/merge_requests/137
+  reserved 4;
+  reserved "mirror_refmap";
+  // If any, the remote is configured as a mirror with those mappings
+  repeated string mirror_refmaps = 5;
 }
 
 message AddRemoteResponse {}
 
 message RemoveRemoteRequest {
-    Repository repository = 1;
-    string name = 2;
+  option (op_type).op = MUTATOR;
+
+  Repository repository = 1;
+  string name = 2;
 }
 
 message RemoveRemoteResponse {
-    bool result = 1;
+  bool result = 1;
 }
 
 message FetchInternalRemoteRequest {
-    Repository repository = 1;
-    Repository remote_repository = 2;
+  option (op_type).op = MUTATOR;
+
+  Repository repository = 1;
+  Repository remote_repository = 2;
 }
 
 message FetchInternalRemoteResponse {
-    bool result = 1;
+  bool result = 1;
 }
 
 message UpdateRemoteMirrorRequest {
-    Repository repository = 1;
-    string ref_name = 2;
-    repeated bytes only_branches_matching = 3;
-    string ssh_key = 4;
-    string known_hosts = 5;
+  option (op_type).op = MUTATOR;
+
+  Repository repository = 1;
+  string ref_name = 2;
+  repeated bytes only_branches_matching = 3;
+  string ssh_key = 4;
+  string known_hosts = 5;
 }
 
 message UpdateRemoteMirrorResponse {}
 
 message FindRemoteRepositoryRequest {
+  option (op_type).op = ACCESSOR;
+
   string remote = 1;
 }
 
@@ -66,6 +76,8 @@ message FindRemoteRepositoryResponse {
 }
 
 message FindRemoteRootRefRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   string remote = 2;
 }
@@ -75,15 +87,17 @@ message FindRemoteRootRefResponse {
 }
 
 message ListRemotesRequest {
-    Repository repository = 1;
+  option (op_type).op = ACCESSOR;
+
+  Repository repository = 1;
 }
 
 message ListRemotesResponse {
-    message Remote {
-        string name = 1;
-        string fetch_url = 2;
-        string push_url = 3;
-    }
+  message Remote {
+    string name = 1;
+    string fetch_url = 2;
+    string push_url = 3;
+  }
 
-    repeated Remote remotes = 1;
+  repeated Remote remotes = 1;
 }

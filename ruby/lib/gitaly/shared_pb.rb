@@ -5,12 +5,12 @@ require 'google/protobuf'
 
 require 'google/protobuf/timestamp_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
-  add_message "gitaly.CoordinatorMsg" do
-    optional :op, :enum, 1, "gitaly.CoordinatorMsg.Operation"
+  add_message "gitaly.OperationMsg" do
+    optional :op, :enum, 1, "gitaly.OperationMsg.Operation"
   end
-  add_enum "gitaly.CoordinatorMsg.Operation" do
-    value :READ, 0
-    value :WRITE, 1
+  add_enum "gitaly.OperationMsg.Operation" do
+    value :MUTATOR, 0
+    value :ACCESSOR, 1
   end
   add_message "gitaly.Repository" do
     optional :storage_name, :string, 2
@@ -61,8 +61,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
 end
 
 module Gitaly
-  CoordinatorMsg = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CoordinatorMsg").msgclass
-  CoordinatorMsg::Operation = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CoordinatorMsg.Operation").enummodule
+  OperationMsg = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.OperationMsg").msgclass
+  OperationMsg::Operation = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.OperationMsg.Operation").enummodule
   Repository = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Repository").msgclass
   GitCommit = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GitCommit").msgclass
   CommitAuthor = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitAuthor").msgclass
