@@ -9,8 +9,6 @@ require 'gitaly/commit_services_pb'
 
 require 'gitaly/conflicts_services_pb'
 
-require 'gitaly/deprecated-services_services_pb'
-
 require 'gitaly/diff_services_pb'
 
 require 'gitaly/namespace_services_pb'
