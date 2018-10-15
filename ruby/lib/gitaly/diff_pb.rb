@@ -16,10 +16,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :max_files, :int32, 8
     optional :max_lines, :int32, 9
     optional :max_bytes, :int32, 10
+    optional :max_patch_bytes, :int32, 14
     optional :safe_max_files, :int32, 11
     optional :safe_max_lines, :int32, 12
     optional :safe_max_bytes, :int32, 13
-    optional :max_patch_bytes, :int32, 14
   end
   add_message "gitaly.CommitDiffResponse" do
     optional :from_path, :bytes, 1
