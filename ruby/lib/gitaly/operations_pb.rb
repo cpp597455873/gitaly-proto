@@ -181,6 +181,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :squash_sha, :string, 1
     optional :git_error, :string, 3
   end
+  add_message "gitaly.UserApplyPatchRequest" do
+    oneof :user_apply_patch_request_payload do
+      optional :header, :message, 1, "gitaly.UserApplyPatchRequest.Header"
+      optional :patches, :bytes, 2
+    end
+  end
+  add_message "gitaly.UserApplyPatchRequest.Header" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :user, :message, 2, "gitaly.User"
+    optional :target_branch, :bytes, 3
+  end
+  add_message "gitaly.UserApplyPatchResponse" do
+    optional :branch_update, :message, 1, "gitaly.OperationBranchUpdate"
+  end
 end
 
 module Gitaly
@@ -213,4 +227,7 @@ module Gitaly
   UserRebaseResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserRebaseResponse").msgclass
   UserSquashRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserSquashRequest").msgclass
   UserSquashResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserSquashResponse").msgclass
+  UserApplyPatchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserApplyPatchRequest").msgclass
+  UserApplyPatchRequest::Header = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserApplyPatchRequest.Header").msgclass
+  UserApplyPatchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserApplyPatchResponse").msgclass
 end

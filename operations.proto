@@ -17,6 +17,7 @@ service OperationService {
   rpc UserCommitFiles(stream UserCommitFilesRequest) returns (UserCommitFilesResponse) {}
   rpc UserRebase(UserRebaseRequest) returns (UserRebaseResponse) {}
   rpc UserSquash(UserSquashRequest) returns (UserSquashResponse) {}
+  rpc UserApplyPatch(stream UserApplyPatchRequest) returns (UserApplyPatchResponse) {}
 }
 
 message UserCreateBranchRequest {
@@ -241,4 +242,21 @@ message UserSquashResponse {
   reserved 2;
   reserved "pre_receive_error";
   string git_error = 3;
+}
+
+message UserApplyPatchRequest {
+  message Header {
+    Repository repository = 1;
+    User user = 2;
+    bytes target_branch = 3;
+  }
+
+  oneof user_apply_patch_request_payload {
+    Header header = 1;
+    bytes patches = 2;
+  }
+}
+
+message UserApplyPatchResponse {
+  OperationBranchUpdate branch_update = 1;
 }

@@ -26,6 +26,7 @@ module Gitaly
       rpc :UserCommitFiles, stream(UserCommitFilesRequest), UserCommitFilesResponse
       rpc :UserRebase, UserRebaseRequest, UserRebaseResponse
       rpc :UserSquash, UserSquashRequest, UserSquashResponse
+      rpc :UserApplyPatch, stream(UserApplyPatchRequest), UserApplyPatchResponse
     end
 
     Stub = Service.rpc_stub_class
