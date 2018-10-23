@@ -18,6 +18,7 @@ service OperationService {
   rpc UserRebase(UserRebaseRequest) returns (UserRebaseResponse) {}
   rpc UserSquash(UserSquashRequest) returns (UserSquashResponse) {}
   rpc UserApplyPatch(stream UserApplyPatchRequest) returns (UserApplyPatchResponse) {}
+  rpc UserUpdateSubmodule(UserUpdateSubmoduleRequest) returns (UserUpdateSubmoduleResponse) {}
 }
 
 message UserCreateBranchRequest {
@@ -259,4 +260,20 @@ message UserApplyPatchRequest {
 
 message UserApplyPatchResponse {
   OperationBranchUpdate branch_update = 1;
+}
+
+message UserUpdateSubmoduleRequest {
+  Repository repository = 1;
+  User user = 2;
+  string commit_sha = 3;
+  bytes branch = 4;
+  bytes submodule = 5;
+  bytes commit_message = 6;
+}
+
+message UserUpdateSubmoduleResponse {
+  OperationBranchUpdate branch_update = 1;
+  string pre_receive_error = 2;
+  string create_tree_error = 3;
+  string commit_error = 4;
 }
