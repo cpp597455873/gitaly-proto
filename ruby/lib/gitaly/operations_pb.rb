@@ -195,6 +195,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.UserApplyPatchResponse" do
     optional :branch_update, :message, 1, "gitaly.OperationBranchUpdate"
   end
+  add_message "gitaly.UserUpdateSubmoduleRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :user, :message, 2, "gitaly.User"
+    optional :commit_sha, :string, 3
+    optional :branch, :bytes, 4
+    optional :submodule, :bytes, 5
+    optional :commit_message, :bytes, 6
+  end
+  add_message "gitaly.UserUpdateSubmoduleResponse" do
+    optional :branch_update, :message, 1, "gitaly.OperationBranchUpdate"
+    optional :pre_receive_error, :string, 2
+    optional :create_tree_error, :string, 3
+    optional :commit_error, :string, 4
+  end
 end
 
 module Gitaly
@@ -230,4 +244,6 @@ module Gitaly
   UserApplyPatchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserApplyPatchRequest").msgclass
   UserApplyPatchRequest::Header = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserApplyPatchRequest.Header").msgclass
   UserApplyPatchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserApplyPatchResponse").msgclass
+  UserUpdateSubmoduleRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserUpdateSubmoduleRequest").msgclass
+  UserUpdateSubmoduleResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserUpdateSubmoduleResponse").msgclass
 end
