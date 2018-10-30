@@ -48,6 +48,8 @@ message UpdateRemoteMirrorRequest {
     Repository repository = 1;
     string ref_name = 2;
     repeated bytes only_branches_matching = 3;
+    string ssh_key = 4;
+    string known_hosts = 5;
 }
 
 message UpdateRemoteMirrorResponse {}
