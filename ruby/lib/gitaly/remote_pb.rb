@@ -31,6 +31,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :ref_name, :string, 2
     repeated :only_branches_matching, :bytes, 3
+    optional :ssh_key, :string, 4
+    optional :known_hosts, :string, 5
   end
   add_message "gitaly.UpdateRemoteMirrorResponse" do
   end
