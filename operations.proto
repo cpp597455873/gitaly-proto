@@ -274,6 +274,8 @@ message UserUpdateSubmoduleRequest {
 message UserUpdateSubmoduleResponse {
   OperationBranchUpdate branch_update = 1;
   string pre_receive_error = 2;
-  string create_tree_error = 3;
+  // DEPRECATED: https://gitlab.com/gitlab-org/gitaly-proto/merge_requests/237
+  reserved 3;
+  reserved "create_tree_error";
   string commit_error = 4;
 }

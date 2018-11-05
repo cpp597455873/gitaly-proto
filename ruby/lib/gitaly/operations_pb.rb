@@ -206,7 +206,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.UserUpdateSubmoduleResponse" do
     optional :branch_update, :message, 1, "gitaly.OperationBranchUpdate"
     optional :pre_receive_error, :string, 2
-    optional :create_tree_error, :string, 3
     optional :commit_error, :string, 4
   end
 end
