@@ -100,6 +100,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.WikiGetFormattedDataResponse" do
     optional :data, :bytes, 1
   end
+  add_message "gitaly.WikiListAllPagesRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :limit, :uint32, 2
+  end
+  add_message "gitaly.WikiListAllPagesResponse" do
+    optional :page, :message, 1, "gitaly.WikiPage"
+    optional :end_of_page, :bool, 2
+  end
 end
 
 module Gitaly
@@ -122,4 +130,6 @@ module Gitaly
   WikiGetAllPagesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiGetAllPagesResponse").msgclass
   WikiGetFormattedDataRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiGetFormattedDataRequest").msgclass
   WikiGetFormattedDataResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiGetFormattedDataResponse").msgclass
+  WikiListAllPagesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiListAllPagesRequest").msgclass
+  WikiListAllPagesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.WikiListAllPagesResponse").msgclass
 end

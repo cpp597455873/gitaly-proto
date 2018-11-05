@@ -23,6 +23,7 @@ module Gitaly
       rpc :WikiFindFile, WikiFindFileRequest, stream(WikiFindFileResponse)
       rpc :WikiGetAllPages, WikiGetAllPagesRequest, stream(WikiGetAllPagesResponse)
       rpc :WikiGetFormattedData, WikiGetFormattedDataRequest, stream(WikiGetFormattedDataResponse)
+      rpc :WikiListAllPages, WikiListAllPagesRequest, stream(WikiListAllPagesResponse)
     end
 
     Stub = Service.rpc_stub_class
