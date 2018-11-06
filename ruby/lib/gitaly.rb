@@ -15,6 +15,8 @@ require 'gitaly/namespace_services_pb'
 
 require 'gitaly/notifications_services_pb'
 
+require 'gitaly/objectpool_services_pb'
+
 require 'gitaly/operations_services_pb'
 
 require 'gitaly/ref_services_pb'
