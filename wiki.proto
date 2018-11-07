@@ -155,7 +155,7 @@ message WikiListPagesRequest {
 
 // The WikiListPagesResponse stream is a concatenation of WikiPage streams without content
 message WikiListPagesResponse {
-  repeated WikiPage pages = 1;
+  repeated WikiPage page = 1;
   // When end_of_page is true it signals a change of page for the next Response message (if any)
   bool end_of_page = 2;
 }

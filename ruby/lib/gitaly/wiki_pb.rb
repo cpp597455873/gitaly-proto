@@ -105,7 +105,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :limit, :uint32, 2
   end
   add_message "gitaly.WikiListPagesResponse" do
-    repeated :pages, :message, 1, "gitaly.WikiPage"
+    repeated :page, :message, 1, "gitaly.WikiPage"
     optional :end_of_page, :bool, 2
   end
 end
