@@ -162,11 +162,15 @@ message WriteRefRequest {
   bytes revision = 3;
   bytes old_revision = 4;
   bool force = 5;
-  bool shell = 6;
+  // This used to be a boolean indicating whether or not to shell out or use
+  // the rugged implementation
+  reserved 6;
 }
 
 message WriteRefResponse {
-  bytes error = 1;
+  // This used to contain an error message. Since we're shelling out
+  // all exceptions are wrapped in GRPC errors.
+  reserved 1;
 }
 
 message FindMergeBaseRequest {
