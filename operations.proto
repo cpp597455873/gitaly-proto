@@ -175,6 +175,10 @@ message UserCommitFilesActionHeader {
   bytes previous_path = 3;
   bool base64_content = 4;
   bool execute_filemode = 5;
+  // Move actions that change the file path, but not its content, should set
+  // infer_content to true instead of populating the content field. Ignored for
+  // other action types.
+  bool infer_content = 6;
 }
 
 message UserCommitFilesAction {
