@@ -117,6 +117,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :previous_path, :bytes, 3
     optional :base64_content, :bool, 4
     optional :execute_filemode, :bool, 5
+    optional :infer_content, :bool, 6
   end
   add_enum "gitaly.UserCommitFilesActionHeader.ActionType" do
     value :CREATE, 0
