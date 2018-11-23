@@ -4,7 +4,7 @@
 
 - Ruby
 - Bundler
-- Go 1.8
+- Go 1.10
 
 ## 1. Install dependencies
 
