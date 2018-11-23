@@ -5,32 +5,35 @@ require 'google/protobuf'
 
 require 'shared_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
+  add_message "gitaly.ObjectPool" do
+    optional :repository, :message, 1, "gitaly.Repository"
+  end
   add_message "gitaly.CreateObjectPoolRequest" do
-    optional :object_pool, :message, 1, "gitaly.Repository"
+    optional :object_pool, :message, 1, "gitaly.ObjectPool"
     optional :origin, :message, 2, "gitaly.Repository"
   end
   add_message "gitaly.CreateObjectPoolResponse" do
   end
   add_message "gitaly.DeleteObjectPoolRequest" do
-    optional :object_pool, :message, 1, "gitaly.Repository"
+    optional :object_pool, :message, 1, "gitaly.ObjectPool"
   end
   add_message "gitaly.DeleteObjectPoolResponse" do
   end
   add_message "gitaly.LinkRepositoryToObjectPoolRequest" do
-    optional :object_pool, :message, 1, "gitaly.Repository"
+    optional :object_pool, :message, 1, "gitaly.ObjectPool"
     optional :repository, :message, 2, "gitaly.Repository"
   end
   add_message "gitaly.LinkRepositoryToObjectPoolResponse" do
   end
   add_message "gitaly.UnlinkRepositoryFromObjectPoolRequest" do
-    optional :object_pool, :message, 1, "gitaly.Repository"
-    optional :repository, :message, 2, "gitaly.Repository"
+    optional :repository, :message, 1, "gitaly.Repository"
   end
   add_message "gitaly.UnlinkRepositoryFromObjectPoolResponse" do
   end
 end
 
 module Gitaly
+  ObjectPool = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ObjectPool").msgclass
   CreateObjectPoolRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateObjectPoolRequest").msgclass
   CreateObjectPoolResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CreateObjectPoolResponse").msgclass
   DeleteObjectPoolRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DeleteObjectPoolRequest").msgclass

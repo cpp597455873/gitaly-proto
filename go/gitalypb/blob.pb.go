@@ -108,6 +108,7 @@ It has these top-level messages:
 	RenameNamespaceResponse
 	PostReceiveRequest
 	PostReceiveResponse
+	ObjectPool
 	CreateObjectPoolRequest
 	CreateObjectPoolResponse
 	DeleteObjectPoolRequest

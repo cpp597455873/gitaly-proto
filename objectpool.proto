@@ -13,29 +13,34 @@ service ObjectPoolService {
   rpc UnlinkRepositoryFromObjectPool(UnlinkRepositoryFromObjectPoolRequest) returns (UnlinkRepositoryFromObjectPoolResponse) {}
 }
 
+message ObjectPool {
+  Repository repository = 1;
+}
+
 // Creates an object pool from the repository. The client is responsible for
 // joining this pool later with this repository.
 message CreateObjectPoolRequest {
-  Repository object_pool = 1;
+  ObjectPool object_pool = 1;
   Repository origin = 2;
 }
 message CreateObjectPoolResponse {}
 
-// Removes the directory from disk, callee is responsible for leaving the object
+// Removes the directory from disk, caller is responsible for leaving the object
 // pool before calling this RPC
 message DeleteObjectPoolRequest {
-  Repository object_pool = 1;
+  ObjectPool object_pool = 1;
 }
 message DeleteObjectPoolResponse {}
 
 message LinkRepositoryToObjectPoolRequest {
-  Repository object_pool = 1;
+  ObjectPool object_pool = 1;
   Repository repository = 2;
 }
 message LinkRepositoryToObjectPoolResponse {}
 
+// This RPC doesn't require the ObjectPool as it will remove the alternates file
+// from the pool participant. The caller is responsible no data loss occurs.
 message UnlinkRepositoryFromObjectPoolRequest {
-  Repository object_pool = 1;
-  Repository repository = 2;
+  Repository repository = 1;
 }
 message UnlinkRepositoryFromObjectPoolResponse {}
