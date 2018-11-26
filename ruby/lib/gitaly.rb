@@ -5,6 +5,8 @@ require 'gitaly/version'
 
 require 'gitaly/blob_services_pb'
 
+require 'gitaly/cleanup_services_pb'
+
 require 'gitaly/commit_services_pb'
 
 require 'gitaly/conflicts_services_pb'
