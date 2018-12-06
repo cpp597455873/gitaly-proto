@@ -42,5 +42,6 @@ message LinkRepositoryToObjectPoolResponse {}
 // from the pool participant. The caller is responsible no data loss occurs.
 message UnlinkRepositoryFromObjectPoolRequest {
   Repository repository = 1;
+  ObjectPool object_pool = 2;
 }
 message UnlinkRepositoryFromObjectPoolResponse {}

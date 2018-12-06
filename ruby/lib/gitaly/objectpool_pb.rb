@@ -27,6 +27,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.UnlinkRepositoryFromObjectPoolRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
+    optional :object_pool, :message, 2, "gitaly.ObjectPool"
   end
   add_message "gitaly.UnlinkRepositoryFromObjectPoolResponse" do
   end
