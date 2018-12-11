@@ -18,6 +18,11 @@ See
 for documentation of the 'proto3' Protocol buffer specification
 language.
 
+## Issues
+
+We have disabled the issue tracker of the gitaly-proto project. Please use the
+[Gitaly issue tracker](https://gitlab.com/gitlab-org/gitaly/issues).
+
 ## gRPC/Protobuf concepts
 
 The core Protobuf concepts we use are rpc, service and message. We use
