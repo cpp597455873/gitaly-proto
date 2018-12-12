@@ -31,6 +31,11 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.UnlinkRepositoryFromObjectPoolResponse" do
   end
+  add_message "gitaly.ReduplicateRepositoryRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+  end
+  add_message "gitaly.ReduplicateRepositoryResponse" do
+  end
 end
 
 module Gitaly
@@ -43,4 +48,6 @@ module Gitaly
   LinkRepositoryToObjectPoolResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.LinkRepositoryToObjectPoolResponse").msgclass
   UnlinkRepositoryFromObjectPoolRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UnlinkRepositoryFromObjectPoolRequest").msgclass
   UnlinkRepositoryFromObjectPoolResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UnlinkRepositoryFromObjectPoolResponse").msgclass
+  ReduplicateRepositoryRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ReduplicateRepositoryRequest").msgclass
+  ReduplicateRepositoryResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ReduplicateRepositoryResponse").msgclass
 end
