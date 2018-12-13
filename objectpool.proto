@@ -11,6 +11,8 @@ service ObjectPoolService {
   // Repositories are assumed to be stored on the same disk
   rpc LinkRepositoryToObjectPool(LinkRepositoryToObjectPoolRequest) returns (LinkRepositoryToObjectPoolResponse) {}
   rpc UnlinkRepositoryFromObjectPool(UnlinkRepositoryFromObjectPoolRequest) returns (UnlinkRepositoryFromObjectPoolResponse) {}
+
+  rpc ReduplicateRepository(ReduplicateRepositoryRequest) returns (ReduplicateRepositoryResponse) {}
 }
 
 message ObjectPool {
@@ -45,3 +47,8 @@ message UnlinkRepositoryFromObjectPoolRequest {
   ObjectPool object_pool = 2;
 }
 message UnlinkRepositoryFromObjectPoolResponse {}
+
+message ReduplicateRepositoryRequest {
+  Repository repository = 1;
+}
+message ReduplicateRepositoryResponse {}

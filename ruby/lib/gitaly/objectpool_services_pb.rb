@@ -19,6 +19,7 @@ module Gitaly
       # Repositories are assumed to be stored on the same disk
       rpc :LinkRepositoryToObjectPool, LinkRepositoryToObjectPoolRequest, LinkRepositoryToObjectPoolResponse
       rpc :UnlinkRepositoryFromObjectPool, UnlinkRepositoryFromObjectPoolRequest, UnlinkRepositoryFromObjectPoolResponse
+      rpc :ReduplicateRepository, ReduplicateRepositoryRequest, ReduplicateRepositoryResponse
     end
 
     Stub = Service.rpc_stub_class
