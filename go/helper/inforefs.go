@@ -3,11 +3,11 @@ package helper
 import (
 	"io"
 
-	pb "gitlab.com/gitlab-org/gitaly-proto/go"
+	"gitlab.com/gitlab-org/gitaly-proto/go/gitalypb"
 )
 
 type InfoRefsClient interface {
-	Recv() (*pb.InfoRefsResponse, error)
+	Recv() (*gitalypb.InfoRefsResponse, error)
 }
 
 type InfoRefsClientWriterTo struct {
