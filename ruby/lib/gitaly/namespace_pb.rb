@@ -16,6 +16,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :storage_name, :string, 1
     optional :from, :string, 2
     optional :to, :string, 3
+    optional :override, :bool, 4
   end
   add_message "gitaly.NamespaceExistsRequest" do
     optional :storage_name, :string, 1

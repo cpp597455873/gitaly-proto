@@ -23,6 +23,7 @@ message RenameNamespaceRequest {
   string storage_name = 1;
   string from = 2;
   string to = 3;
+  bool override = 4;
 }
 
 message NamespaceExistsRequest {
