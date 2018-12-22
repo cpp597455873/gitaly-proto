@@ -264,7 +264,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.SearchFilesByContentResponse" do
     optional :match_data, :bytes, 2
-    optional :end_of_matches, :bool, 3
+    optional :end_of_match, :bool, 3
   end
 end
 
