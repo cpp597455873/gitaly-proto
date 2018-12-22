@@ -367,5 +367,7 @@ message SearchFilesByContentRequest{
 }
 
 message SearchFilesByContentResponse {
-  repeated bytes matches = 1;
+  reserved 1;
+  bytes match_data = 2;
+  bool end_of_matches = 3;
 }
