@@ -10,6 +10,7 @@ service CommitService {
   rpc TreeEntry(TreeEntryRequest) returns (stream TreeEntryResponse) {}
   rpc CommitsBetween(CommitsBetweenRequest) returns (stream CommitsBetweenResponse) {}
   rpc CountCommits(CountCommitsRequest) returns (CountCommitsResponse) {}
+  rpc CountDivergingCommits(CountDivergingCommitsRequest) returns (CountDivergingCommitsResponse) {}
   rpc GetTreeEntries(GetTreeEntriesRequest) returns (stream GetTreeEntriesResponse) {}
   rpc ListFiles(ListFilesRequest) returns (stream ListFilesResponse) {}
   rpc FindCommit(FindCommitRequest) returns (FindCommitResponse) {}
@@ -106,6 +107,21 @@ message CountCommitsRequest {
 
 message CountCommitsResponse {
   int32 count = 1;
+}
+
+message CountDivergingCommitsRequest {
+  Repository repository = 1;
+  bytes from = 2;
+  bytes to = 3;
+  google.protobuf.Timestamp after = 4;
+  google.protobuf.Timestamp before = 5;
+  bytes path = 6;
+  int32 max_count = 7;
+}
+
+message CountDivergingCommitsResponse {
+  int32 left_count = 1;
+  int32 right_count = 2;
 }
 
 message TreeEntry {
