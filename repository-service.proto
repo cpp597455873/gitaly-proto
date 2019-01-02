@@ -364,6 +364,7 @@ message SearchFilesByContentRequest{
   Repository repository = 1;
   string query = 2;
   bytes ref = 3;
+  bool chunked_response = 4;
 }
 
 message SearchFilesByContentResponse {

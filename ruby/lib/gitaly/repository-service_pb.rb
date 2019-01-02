@@ -261,6 +261,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :query, :string, 2
     optional :ref, :bytes, 3
+    optional :chunked_response, :bool, 4
   end
   add_message "gitaly.SearchFilesByContentResponse" do
     repeated :matches, :bytes, 1
