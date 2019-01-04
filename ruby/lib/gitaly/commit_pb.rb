@@ -146,6 +146,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :after, :message, 9, "google.protobuf.Timestamp"
     optional :before, :message, 10, "google.protobuf.Timestamp"
     optional :all, :bool, 11
+    optional :reverse, :bool, 12
   end
   add_message "gitaly.FindCommitsResponse" do
     repeated :commits, :message, 1, "gitaly.GitCommit"
