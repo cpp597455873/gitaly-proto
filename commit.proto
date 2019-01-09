@@ -113,9 +113,9 @@ message CountDivergingCommitsRequest {
   Repository repository = 1;
   bytes from = 2;
   bytes to = 3;
-  google.protobuf.Timestamp after = 4;
-  google.protobuf.Timestamp before = 5;
-  bytes path = 6;
+  reserved 4;
+  reserved 5;
+  reserved 6;
   int32 max_count = 7;
 }
 

@@ -66,9 +66,6 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :from, :bytes, 2
     optional :to, :bytes, 3
-    optional :after, :message, 4, "google.protobuf.Timestamp"
-    optional :before, :message, 5, "google.protobuf.Timestamp"
-    optional :path, :bytes, 6
     optional :max_count, :int32, 7
   end
   add_message "gitaly.CountDivergingCommitsResponse" do
