@@ -23,12 +23,13 @@ message Repository {
   // associated with. May be left empty on RPC's that do not perform callbacks.
   // During project creation, `gl_repository` may not be known.
   string gl_repository = 6;
-  // The human-readable GitLab project name (e.g. gitlab-org/gitlab-ce).
-  // When hashed storage is use, this associates a project name with its
+  reserved 7;
+  // The human-readable GitLab project path (e.g. gitlab-org/gitlab-ce).
+  // When hashed storage is use, this associates a project path with its
   // path on disk. The name can change over time (e.g. when a project is
   // renamed). This is primarily used for logging/debugging at the
   // moment.
-  string gl_project_name = 7;
+  string gl_project_path = 8;
 }
 
 // Corresponds to Gitlab::Git::Commit
