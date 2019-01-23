@@ -11,7 +11,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :git_object_directory, :string, 4
     repeated :git_alternate_object_directories, :string, 5
     optional :gl_repository, :string, 6
-    optional :gl_project_name, :string, 7
+    optional :gl_project_path, :string, 8
   end
   add_message "gitaly.GitCommit" do
     optional :id, :string, 1
