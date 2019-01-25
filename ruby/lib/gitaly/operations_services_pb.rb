@@ -19,6 +19,7 @@ module Gitaly
       rpc :UserDeleteBranch, UserDeleteBranchRequest, UserDeleteBranchResponse
       rpc :UserCreateTag, UserCreateTagRequest, UserCreateTagResponse
       rpc :UserDeleteTag, UserDeleteTagRequest, UserDeleteTagResponse
+      rpc :UserMergeToRef, UserMergeToRefRequest, UserMergeToRefResponse
       rpc :UserMergeBranch, stream(UserMergeBranchRequest), stream(UserMergeBranchResponse)
       rpc :UserFFBranch, UserFFBranchRequest, UserFFBranchResponse
       rpc :UserCherryPick, UserCherryPickRequest, UserCherryPickResponse

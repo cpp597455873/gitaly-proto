@@ -66,6 +66,18 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :branch_update, :message, 3, "gitaly.OperationBranchUpdate"
     optional :pre_receive_error, :string, 4
   end
+  add_message "gitaly.UserMergeToRefRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :user, :message, 2, "gitaly.User"
+    optional :source_sha, :string, 3
+    optional :branch, :bytes, 4
+    optional :target_ref, :bytes, 5
+    optional :message, :bytes, 6
+  end
+  add_message "gitaly.UserMergeToRefResponse" do
+    optional :commit_id, :string, 1
+    optional :pre_receive_error, :string, 2
+  end
   add_message "gitaly.OperationBranchUpdate" do
     optional :commit_id, :string, 1
     optional :repo_created, :bool, 2
@@ -224,6 +236,8 @@ module Gitaly
   UserCreateTagResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCreateTagResponse").msgclass
   UserMergeBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserMergeBranchRequest").msgclass
   UserMergeBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserMergeBranchResponse").msgclass
+  UserMergeToRefRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserMergeToRefRequest").msgclass
+  UserMergeToRefResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserMergeToRefResponse").msgclass
   OperationBranchUpdate = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.OperationBranchUpdate").msgclass
   UserFFBranchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserFFBranchRequest").msgclass
   UserFFBranchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserFFBranchResponse").msgclass
