@@ -11,7 +11,7 @@ service RemoteService {
     rpc UpdateRemoteMirror(stream UpdateRemoteMirrorRequest) returns (UpdateRemoteMirrorResponse) {}
     rpc FindRemoteRepository(FindRemoteRepositoryRequest) returns (FindRemoteRepositoryResponse) {}
     rpc FindRemoteRootRef(FindRemoteRootRefRequest) returns (FindRemoteRootRefResponse) {}
-    rpc ListRemotes(ListRemotesRequest) returns (ListRemotesResponse) {}
+    rpc ListRemotes(ListRemotesRequest) returns (stream ListRemotesResponse) {}
 }
 
 message AddRemoteRequest {
