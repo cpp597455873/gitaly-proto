@@ -10,6 +10,7 @@ service OperationService {
   rpc UserDeleteBranch(UserDeleteBranchRequest) returns (UserDeleteBranchResponse) {}
   rpc UserCreateTag(UserCreateTagRequest) returns (UserCreateTagResponse) {}
   rpc UserDeleteTag(UserDeleteTagRequest) returns (UserDeleteTagResponse) {}
+  rpc UserMergeToRef(UserMergeToRefRequest) returns (UserMergeToRefResponse) {}
   rpc UserMergeBranch(stream UserMergeBranchRequest) returns (stream UserMergeBranchResponse) {}
   rpc UserFFBranch(UserFFBranchRequest) returns (UserFFBranchResponse) {}
   rpc UserCherryPick(UserCherryPickRequest) returns (UserCherryPickResponse) {}
@@ -104,6 +105,27 @@ message UserMergeBranchResponse {
   // If set, the merge has been applied to the branch.
   OperationBranchUpdate branch_update = 3;
   string pre_receive_error = 4;
+}
+
+message UserMergeToRefRequest {
+  Repository repository = 1;
+  User user = 2;
+  string source_sha = 3;
+  bytes branch = 4;
+
+  // The merge of source_sha and branch has target_ref as target. 
+  //
+  // The target_ref is _always_ overwritten when merging source_sha
+  // and branch. That is, if a second request comes in, target_ref
+  // will lose its previous state and be updated to the latest merge
+  // between source_sha and branch.
+  bytes target_ref = 5;
+  bytes message = 6;
+}
+
+message UserMergeToRefResponse {
+  string commit_id = 1;
+  string pre_receive_error = 2;
 }
 
 message OperationBranchUpdate {
