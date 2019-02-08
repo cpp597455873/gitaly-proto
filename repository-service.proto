@@ -39,6 +39,7 @@ service RepositoryService {
   rpc SearchFilesByName(SearchFilesByNameRequest) returns (stream SearchFilesByNameResponse) {}
   rpc RestoreCustomHooks(stream RestoreCustomHooksRequest) returns (RestoreCustomHooksResponse);
   rpc BackupCustomHooks(BackupCustomHooksRequest) returns (stream BackupCustomHooksResponse) {}
+  rpc PreFetch(PreFetchRequest) returns (PreFetchResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -372,3 +373,11 @@ message SearchFilesByContentResponse {
   bytes match_data = 2;
   bool end_of_match = 3;
 }
+
+message PreFetchRequest {
+  Repository source_repository = 1;
+  Repository target_repository = 2;
+  ObjectPool object_pool = 3;
+}
+
+message PreFetchResponse {}
