@@ -21,6 +21,8 @@ module Gitaly
       rpc :CountDivergingCommits, CountDivergingCommitsRequest, CountDivergingCommitsResponse
       rpc :GetTreeEntries, GetTreeEntriesRequest, stream(GetTreeEntriesResponse)
       rpc :ListFiles, ListFilesRequest, stream(ListFilesResponse)
+      # Use a stream to paginate the result set
+      rpc :BatchFindCommit, BatchFindCommitRequest, stream(BatchFindCommitResponse)
       rpc :FindCommit, FindCommitRequest, FindCommitResponse
       rpc :CommitStats, CommitStatsRequest, CommitStatsResponse
       # Use a stream to paginate the result set

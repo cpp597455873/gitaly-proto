@@ -109,6 +109,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FindCommitResponse" do
     optional :commit, :message, 1, "gitaly.GitCommit"
   end
+  add_message "gitaly.BatchFindCommitRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    repeated :revisions, :bytes, 2
+  end
+  add_message "gitaly.BatchFindCommitResponse" do
+    repeated :commits, :message, 1, "gitaly.GitCommit"
+  end
   add_message "gitaly.ListCommitsByOidRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     repeated :oid, :string, 2
@@ -256,6 +263,8 @@ module Gitaly
   ListFilesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListFilesResponse").msgclass
   FindCommitRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindCommitRequest").msgclass
   FindCommitResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindCommitResponse").msgclass
+  BatchFindCommitRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.BatchFindCommitRequest").msgclass
+  BatchFindCommitResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.BatchFindCommitResponse").msgclass
   ListCommitsByOidRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListCommitsByOidRequest").msgclass
   ListCommitsByOidResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListCommitsByOidResponse").msgclass
   FindAllCommitsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllCommitsRequest").msgclass

@@ -13,6 +13,8 @@ service CommitService {
   rpc CountDivergingCommits(CountDivergingCommitsRequest) returns (CountDivergingCommitsResponse) {}
   rpc GetTreeEntries(GetTreeEntriesRequest) returns (stream GetTreeEntriesResponse) {}
   rpc ListFiles(ListFilesRequest) returns (stream ListFilesResponse) {}
+  // Use a stream to paginate the result set
+  rpc BatchFindCommit(BatchFindCommitRequest) returns (stream BatchFindCommitResponse) {}
   rpc FindCommit(FindCommitRequest) returns (FindCommitResponse) {}
   rpc CommitStats(CommitStatsRequest) returns (CommitStatsResponse) {}
   // Use a stream to paginate the result set
@@ -175,6 +177,16 @@ message FindCommitRequest {
 message FindCommitResponse {
   // commit is nil when the commit was not found
   GitCommit commit = 1;
+}
+
+message BatchFindCommitRequest {
+  Repository repository = 1;
+  repeated bytes revisions = 2;
+}
+
+message BatchFindCommitResponse {
+  // nil when the commit was not found
+  repeated GitCommit commits = 1;
 }
 
 message ListCommitsByOidRequest {

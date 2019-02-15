@@ -58,6 +58,8 @@ It has these top-level messages:
 	ListFilesResponse
 	FindCommitRequest
 	FindCommitResponse
+	BatchFindCommitRequest
+	BatchFindCommitResponse
 	ListCommitsByOidRequest
 	ListCommitsByOidResponse
 	FindAllCommitsRequest
