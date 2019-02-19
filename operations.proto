@@ -219,6 +219,7 @@ message UserCommitFilesRequestHeader {
   bytes commit_author_email = 6;
   bytes start_branch_name = 7;
   Repository start_repository = 8;
+  bool force = 9;
 }
 
 message UserCommitFilesRequest {
