@@ -8,6 +8,12 @@ build:
   script:
     - make
 
+lint:
+  before_script: []
+  script:
+    - go get -u gitlab.com/pokstad1/protoc-gen-gitaly
+    - protoc --gitaly_out=. *.proto
+
 check-grpc-proto-clients:
   script:
     - "# Check for the mistake of updating .proto files but not regenerating clients"
