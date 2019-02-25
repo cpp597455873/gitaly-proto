@@ -7,8 +7,9 @@ import "google/protobuf/descriptor.proto";
 
 message OperationMsg {
   enum Operation {
-    MUTATOR = 0;
-    ACCESSOR = 1;
+    UNKNOWN = 0;
+    MUTATOR = 1;
+    ACCESSOR = 2;
   }
 
   Operation op = 1;

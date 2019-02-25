@@ -9,8 +9,9 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :op, :enum, 1, "gitaly.OperationMsg.Operation"
   end
   add_enum "gitaly.OperationMsg.Operation" do
-    value :MUTATOR, 0
-    value :ACCESSOR, 1
+    value :UNKNOWN, 0
+    value :MUTATOR, 1
+    value :ACCESSOR, 2
   end
   add_message "gitaly.Repository" do
     optional :storage_name, :string, 2
