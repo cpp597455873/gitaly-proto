@@ -19,9 +19,9 @@ PROTOC_DOWNLOAD = {
 PROTOC_DIR = '_build/protoc'
 
 PROTO_GO_DOWNLOAD = {
-  'name' => 'protobuf-1.0.0.zip',
-  'url' => 'https://github.com/golang/protobuf/archive/v1.0.0.zip',
-  'sha256' => 'd1055533ddb6efe108c8f6299eda2caf96076fe628772896596a92a556fb6e38'
+  'name' => 'protobuf-1.2.0.zip',
+  'url' => 'https://github.com/golang/protobuf/archive/v1.2.0.zip',
+  'sha256' => '0621edfe304f96b7f57f05ca8892427bc874dd4f186b28792873ca440437f6b8'
 }
 PROTO_GO_DIR = '_build'
 

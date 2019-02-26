@@ -17,6 +17,12 @@ var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
+// This is a compile-time assertion to ensure that this generated file
+// is compatible with the proto package it is being compiled against.
+// A compilation error at this line likely means your copy of the
+// proto package needs to be updated.
+const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
+
 type UserCommitFilesActionHeader_ActionType int32
 
 const (
@@ -49,20 +55,42 @@ func (x UserCommitFilesActionHeader_ActionType) String() string {
 	return proto.EnumName(UserCommitFilesActionHeader_ActionType_name, int32(x))
 }
 func (UserCommitFilesActionHeader_ActionType) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor8, []int{21, 0}
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{21, 0}
 }
 
 type UserCreateBranchRequest struct {
-	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	BranchName []byte      `protobuf:"bytes,2,opt,name=branch_name,json=branchName,proto3" json:"branch_name,omitempty"`
-	User       *User       `protobuf:"bytes,3,opt,name=user" json:"user,omitempty"`
-	StartPoint []byte      `protobuf:"bytes,4,opt,name=start_point,json=startPoint,proto3" json:"start_point,omitempty"`
+	Repository           *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	BranchName           []byte      `protobuf:"bytes,2,opt,name=branch_name,json=branchName,proto3" json:"branch_name,omitempty"`
+	User                 *User       `protobuf:"bytes,3,opt,name=user,proto3" json:"user,omitempty"`
+	StartPoint           []byte      `protobuf:"bytes,4,opt,name=start_point,json=startPoint,proto3" json:"start_point,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *UserCreateBranchRequest) Reset()                    { *m = UserCreateBranchRequest{} }
-func (m *UserCreateBranchRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserCreateBranchRequest) ProtoMessage()               {}
-func (*UserCreateBranchRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{0} }
+func (m *UserCreateBranchRequest) Reset()         { *m = UserCreateBranchRequest{} }
+func (m *UserCreateBranchRequest) String() string { return proto.CompactTextString(m) }
+func (*UserCreateBranchRequest) ProtoMessage()    {}
+func (*UserCreateBranchRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{0}
+}
+func (m *UserCreateBranchRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserCreateBranchRequest.Unmarshal(m, b)
+}
+func (m *UserCreateBranchRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserCreateBranchRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserCreateBranchRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserCreateBranchRequest.Merge(dst, src)
+}
+func (m *UserCreateBranchRequest) XXX_Size() int {
+	return xxx_messageInfo_UserCreateBranchRequest.Size(m)
+}
+func (m *UserCreateBranchRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserCreateBranchRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserCreateBranchRequest proto.InternalMessageInfo
 
 func (m *UserCreateBranchRequest) GetRepository() *Repository {
 	if m != nil {
@@ -93,16 +121,38 @@ func (m *UserCreateBranchRequest) GetStartPoint() []byte {
 }
 
 type UserCreateBranchResponse struct {
-	Branch *Branch `protobuf:"bytes,1,opt,name=branch" json:"branch,omitempty"`
+	Branch *Branch `protobuf:"bytes,1,opt,name=branch,proto3" json:"branch,omitempty"`
 	// Error returned by the pre-receive hook. If no error was thrown,
 	// it's the empty string ("")
-	PreReceiveError string `protobuf:"bytes,2,opt,name=pre_receive_error,json=preReceiveError" json:"pre_receive_error,omitempty"`
+	PreReceiveError      string   `protobuf:"bytes,2,opt,name=pre_receive_error,json=preReceiveError,proto3" json:"pre_receive_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserCreateBranchResponse) Reset()                    { *m = UserCreateBranchResponse{} }
-func (m *UserCreateBranchResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserCreateBranchResponse) ProtoMessage()               {}
-func (*UserCreateBranchResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{1} }
+func (m *UserCreateBranchResponse) Reset()         { *m = UserCreateBranchResponse{} }
+func (m *UserCreateBranchResponse) String() string { return proto.CompactTextString(m) }
+func (*UserCreateBranchResponse) ProtoMessage()    {}
+func (*UserCreateBranchResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{1}
+}
+func (m *UserCreateBranchResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserCreateBranchResponse.Unmarshal(m, b)
+}
+func (m *UserCreateBranchResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserCreateBranchResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserCreateBranchResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserCreateBranchResponse.Merge(dst, src)
+}
+func (m *UserCreateBranchResponse) XXX_Size() int {
+	return xxx_messageInfo_UserCreateBranchResponse.Size(m)
+}
+func (m *UserCreateBranchResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserCreateBranchResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserCreateBranchResponse proto.InternalMessageInfo
 
 func (m *UserCreateBranchResponse) GetBranch() *Branch {
 	if m != nil {
@@ -119,17 +169,39 @@ func (m *UserCreateBranchResponse) GetPreReceiveError() string {
 }
 
 type UserUpdateBranchRequest struct {
-	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	BranchName []byte      `protobuf:"bytes,2,opt,name=branch_name,json=branchName,proto3" json:"branch_name,omitempty"`
-	User       *User       `protobuf:"bytes,3,opt,name=user" json:"user,omitempty"`
-	Newrev     []byte      `protobuf:"bytes,4,opt,name=newrev,proto3" json:"newrev,omitempty"`
-	Oldrev     []byte      `protobuf:"bytes,5,opt,name=oldrev,proto3" json:"oldrev,omitempty"`
+	Repository           *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	BranchName           []byte      `protobuf:"bytes,2,opt,name=branch_name,json=branchName,proto3" json:"branch_name,omitempty"`
+	User                 *User       `protobuf:"bytes,3,opt,name=user,proto3" json:"user,omitempty"`
+	Newrev               []byte      `protobuf:"bytes,4,opt,name=newrev,proto3" json:"newrev,omitempty"`
+	Oldrev               []byte      `protobuf:"bytes,5,opt,name=oldrev,proto3" json:"oldrev,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *UserUpdateBranchRequest) Reset()                    { *m = UserUpdateBranchRequest{} }
-func (m *UserUpdateBranchRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserUpdateBranchRequest) ProtoMessage()               {}
-func (*UserUpdateBranchRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{2} }
+func (m *UserUpdateBranchRequest) Reset()         { *m = UserUpdateBranchRequest{} }
+func (m *UserUpdateBranchRequest) String() string { return proto.CompactTextString(m) }
+func (*UserUpdateBranchRequest) ProtoMessage()    {}
+func (*UserUpdateBranchRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{2}
+}
+func (m *UserUpdateBranchRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserUpdateBranchRequest.Unmarshal(m, b)
+}
+func (m *UserUpdateBranchRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserUpdateBranchRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserUpdateBranchRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserUpdateBranchRequest.Merge(dst, src)
+}
+func (m *UserUpdateBranchRequest) XXX_Size() int {
+	return xxx_messageInfo_UserUpdateBranchRequest.Size(m)
+}
+func (m *UserUpdateBranchRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserUpdateBranchRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserUpdateBranchRequest proto.InternalMessageInfo
 
 func (m *UserUpdateBranchRequest) GetRepository() *Repository {
 	if m != nil {
@@ -167,13 +239,35 @@ func (m *UserUpdateBranchRequest) GetOldrev() []byte {
 }
 
 type UserUpdateBranchResponse struct {
-	PreReceiveError string `protobuf:"bytes,1,opt,name=pre_receive_error,json=preReceiveError" json:"pre_receive_error,omitempty"`
+	PreReceiveError      string   `protobuf:"bytes,1,opt,name=pre_receive_error,json=preReceiveError,proto3" json:"pre_receive_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserUpdateBranchResponse) Reset()                    { *m = UserUpdateBranchResponse{} }
-func (m *UserUpdateBranchResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserUpdateBranchResponse) ProtoMessage()               {}
-func (*UserUpdateBranchResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{3} }
+func (m *UserUpdateBranchResponse) Reset()         { *m = UserUpdateBranchResponse{} }
+func (m *UserUpdateBranchResponse) String() string { return proto.CompactTextString(m) }
+func (*UserUpdateBranchResponse) ProtoMessage()    {}
+func (*UserUpdateBranchResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{3}
+}
+func (m *UserUpdateBranchResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserUpdateBranchResponse.Unmarshal(m, b)
+}
+func (m *UserUpdateBranchResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserUpdateBranchResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserUpdateBranchResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserUpdateBranchResponse.Merge(dst, src)
+}
+func (m *UserUpdateBranchResponse) XXX_Size() int {
+	return xxx_messageInfo_UserUpdateBranchResponse.Size(m)
+}
+func (m *UserUpdateBranchResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserUpdateBranchResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserUpdateBranchResponse proto.InternalMessageInfo
 
 func (m *UserUpdateBranchResponse) GetPreReceiveError() string {
 	if m != nil {
@@ -183,15 +277,37 @@ func (m *UserUpdateBranchResponse) GetPreReceiveError() string {
 }
 
 type UserDeleteBranchRequest struct {
-	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	BranchName []byte      `protobuf:"bytes,2,opt,name=branch_name,json=branchName,proto3" json:"branch_name,omitempty"`
-	User       *User       `protobuf:"bytes,3,opt,name=user" json:"user,omitempty"`
+	Repository           *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	BranchName           []byte      `protobuf:"bytes,2,opt,name=branch_name,json=branchName,proto3" json:"branch_name,omitempty"`
+	User                 *User       `protobuf:"bytes,3,opt,name=user,proto3" json:"user,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *UserDeleteBranchRequest) Reset()                    { *m = UserDeleteBranchRequest{} }
-func (m *UserDeleteBranchRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserDeleteBranchRequest) ProtoMessage()               {}
-func (*UserDeleteBranchRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{4} }
+func (m *UserDeleteBranchRequest) Reset()         { *m = UserDeleteBranchRequest{} }
+func (m *UserDeleteBranchRequest) String() string { return proto.CompactTextString(m) }
+func (*UserDeleteBranchRequest) ProtoMessage()    {}
+func (*UserDeleteBranchRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{4}
+}
+func (m *UserDeleteBranchRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserDeleteBranchRequest.Unmarshal(m, b)
+}
+func (m *UserDeleteBranchRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserDeleteBranchRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserDeleteBranchRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserDeleteBranchRequest.Merge(dst, src)
+}
+func (m *UserDeleteBranchRequest) XXX_Size() int {
+	return xxx_messageInfo_UserDeleteBranchRequest.Size(m)
+}
+func (m *UserDeleteBranchRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserDeleteBranchRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserDeleteBranchRequest proto.InternalMessageInfo
 
 func (m *UserDeleteBranchRequest) GetRepository() *Repository {
 	if m != nil {
@@ -215,13 +331,35 @@ func (m *UserDeleteBranchRequest) GetUser() *User {
 }
 
 type UserDeleteBranchResponse struct {
-	PreReceiveError string `protobuf:"bytes,1,opt,name=pre_receive_error,json=preReceiveError" json:"pre_receive_error,omitempty"`
+	PreReceiveError      string   `protobuf:"bytes,1,opt,name=pre_receive_error,json=preReceiveError,proto3" json:"pre_receive_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserDeleteBranchResponse) Reset()                    { *m = UserDeleteBranchResponse{} }
-func (m *UserDeleteBranchResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserDeleteBranchResponse) ProtoMessage()               {}
-func (*UserDeleteBranchResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{5} }
+func (m *UserDeleteBranchResponse) Reset()         { *m = UserDeleteBranchResponse{} }
+func (m *UserDeleteBranchResponse) String() string { return proto.CompactTextString(m) }
+func (*UserDeleteBranchResponse) ProtoMessage()    {}
+func (*UserDeleteBranchResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{5}
+}
+func (m *UserDeleteBranchResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserDeleteBranchResponse.Unmarshal(m, b)
+}
+func (m *UserDeleteBranchResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserDeleteBranchResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserDeleteBranchResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserDeleteBranchResponse.Merge(dst, src)
+}
+func (m *UserDeleteBranchResponse) XXX_Size() int {
+	return xxx_messageInfo_UserDeleteBranchResponse.Size(m)
+}
+func (m *UserDeleteBranchResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserDeleteBranchResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserDeleteBranchResponse proto.InternalMessageInfo
 
 func (m *UserDeleteBranchResponse) GetPreReceiveError() string {
 	if m != nil {
@@ -231,15 +369,37 @@ func (m *UserDeleteBranchResponse) GetPreReceiveError() string {
 }
 
 type UserDeleteTagRequest struct {
-	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	TagName    []byte      `protobuf:"bytes,2,opt,name=tag_name,json=tagName,proto3" json:"tag_name,omitempty"`
-	User       *User       `protobuf:"bytes,3,opt,name=user" json:"user,omitempty"`
+	Repository           *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	TagName              []byte      `protobuf:"bytes,2,opt,name=tag_name,json=tagName,proto3" json:"tag_name,omitempty"`
+	User                 *User       `protobuf:"bytes,3,opt,name=user,proto3" json:"user,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *UserDeleteTagRequest) Reset()                    { *m = UserDeleteTagRequest{} }
-func (m *UserDeleteTagRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserDeleteTagRequest) ProtoMessage()               {}
-func (*UserDeleteTagRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{6} }
+func (m *UserDeleteTagRequest) Reset()         { *m = UserDeleteTagRequest{} }
+func (m *UserDeleteTagRequest) String() string { return proto.CompactTextString(m) }
+func (*UserDeleteTagRequest) ProtoMessage()    {}
+func (*UserDeleteTagRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{6}
+}
+func (m *UserDeleteTagRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserDeleteTagRequest.Unmarshal(m, b)
+}
+func (m *UserDeleteTagRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserDeleteTagRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserDeleteTagRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserDeleteTagRequest.Merge(dst, src)
+}
+func (m *UserDeleteTagRequest) XXX_Size() int {
+	return xxx_messageInfo_UserDeleteTagRequest.Size(m)
+}
+func (m *UserDeleteTagRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserDeleteTagRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserDeleteTagRequest proto.InternalMessageInfo
 
 func (m *UserDeleteTagRequest) GetRepository() *Repository {
 	if m != nil {
@@ -263,13 +423,35 @@ func (m *UserDeleteTagRequest) GetUser() *User {
 }
 
 type UserDeleteTagResponse struct {
-	PreReceiveError string `protobuf:"bytes,1,opt,name=pre_receive_error,json=preReceiveError" json:"pre_receive_error,omitempty"`
+	PreReceiveError      string   `protobuf:"bytes,1,opt,name=pre_receive_error,json=preReceiveError,proto3" json:"pre_receive_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserDeleteTagResponse) Reset()                    { *m = UserDeleteTagResponse{} }
-func (m *UserDeleteTagResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserDeleteTagResponse) ProtoMessage()               {}
-func (*UserDeleteTagResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{7} }
+func (m *UserDeleteTagResponse) Reset()         { *m = UserDeleteTagResponse{} }
+func (m *UserDeleteTagResponse) String() string { return proto.CompactTextString(m) }
+func (*UserDeleteTagResponse) ProtoMessage()    {}
+func (*UserDeleteTagResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{7}
+}
+func (m *UserDeleteTagResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserDeleteTagResponse.Unmarshal(m, b)
+}
+func (m *UserDeleteTagResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserDeleteTagResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserDeleteTagResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserDeleteTagResponse.Merge(dst, src)
+}
+func (m *UserDeleteTagResponse) XXX_Size() int {
+	return xxx_messageInfo_UserDeleteTagResponse.Size(m)
+}
+func (m *UserDeleteTagResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserDeleteTagResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserDeleteTagResponse proto.InternalMessageInfo
 
 func (m *UserDeleteTagResponse) GetPreReceiveError() string {
 	if m != nil {
@@ -279,17 +461,39 @@ func (m *UserDeleteTagResponse) GetPreReceiveError() string {
 }
 
 type UserCreateTagRequest struct {
-	Repository     *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	TagName        []byte      `protobuf:"bytes,2,opt,name=tag_name,json=tagName,proto3" json:"tag_name,omitempty"`
-	User           *User       `protobuf:"bytes,3,opt,name=user" json:"user,omitempty"`
-	TargetRevision []byte      `protobuf:"bytes,4,opt,name=target_revision,json=targetRevision,proto3" json:"target_revision,omitempty"`
-	Message        []byte      `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
+	Repository           *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	TagName              []byte      `protobuf:"bytes,2,opt,name=tag_name,json=tagName,proto3" json:"tag_name,omitempty"`
+	User                 *User       `protobuf:"bytes,3,opt,name=user,proto3" json:"user,omitempty"`
+	TargetRevision       []byte      `protobuf:"bytes,4,opt,name=target_revision,json=targetRevision,proto3" json:"target_revision,omitempty"`
+	Message              []byte      `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *UserCreateTagRequest) Reset()                    { *m = UserCreateTagRequest{} }
-func (m *UserCreateTagRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserCreateTagRequest) ProtoMessage()               {}
-func (*UserCreateTagRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{8} }
+func (m *UserCreateTagRequest) Reset()         { *m = UserCreateTagRequest{} }
+func (m *UserCreateTagRequest) String() string { return proto.CompactTextString(m) }
+func (*UserCreateTagRequest) ProtoMessage()    {}
+func (*UserCreateTagRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{8}
+}
+func (m *UserCreateTagRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserCreateTagRequest.Unmarshal(m, b)
+}
+func (m *UserCreateTagRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserCreateTagRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserCreateTagRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserCreateTagRequest.Merge(dst, src)
+}
+func (m *UserCreateTagRequest) XXX_Size() int {
+	return xxx_messageInfo_UserCreateTagRequest.Size(m)
+}
+func (m *UserCreateTagRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserCreateTagRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserCreateTagRequest proto.InternalMessageInfo
 
 func (m *UserCreateTagRequest) GetRepository() *Repository {
 	if m != nil {
@@ -327,15 +531,37 @@ func (m *UserCreateTagRequest) GetMessage() []byte {
 }
 
 type UserCreateTagResponse struct {
-	Tag             *Tag   `protobuf:"bytes,1,opt,name=tag" json:"tag,omitempty"`
-	Exists          bool   `protobuf:"varint,2,opt,name=exists" json:"exists,omitempty"`
-	PreReceiveError string `protobuf:"bytes,3,opt,name=pre_receive_error,json=preReceiveError" json:"pre_receive_error,omitempty"`
+	Tag                  *Tag     `protobuf:"bytes,1,opt,name=tag,proto3" json:"tag,omitempty"`
+	Exists               bool     `protobuf:"varint,2,opt,name=exists,proto3" json:"exists,omitempty"`
+	PreReceiveError      string   `protobuf:"bytes,3,opt,name=pre_receive_error,json=preReceiveError,proto3" json:"pre_receive_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserCreateTagResponse) Reset()                    { *m = UserCreateTagResponse{} }
-func (m *UserCreateTagResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserCreateTagResponse) ProtoMessage()               {}
-func (*UserCreateTagResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{9} }
+func (m *UserCreateTagResponse) Reset()         { *m = UserCreateTagResponse{} }
+func (m *UserCreateTagResponse) String() string { return proto.CompactTextString(m) }
+func (*UserCreateTagResponse) ProtoMessage()    {}
+func (*UserCreateTagResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{9}
+}
+func (m *UserCreateTagResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserCreateTagResponse.Unmarshal(m, b)
+}
+func (m *UserCreateTagResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserCreateTagResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserCreateTagResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserCreateTagResponse.Merge(dst, src)
+}
+func (m *UserCreateTagResponse) XXX_Size() int {
+	return xxx_messageInfo_UserCreateTagResponse.Size(m)
+}
+func (m *UserCreateTagResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserCreateTagResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserCreateTagResponse proto.InternalMessageInfo
 
 func (m *UserCreateTagResponse) GetTag() *Tag {
 	if m != nil {
@@ -360,20 +586,42 @@ func (m *UserCreateTagResponse) GetPreReceiveError() string {
 
 type UserMergeBranchRequest struct {
 	// First message
-	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	User       *User       `protobuf:"bytes,2,opt,name=user" json:"user,omitempty"`
-	CommitId   string      `protobuf:"bytes,3,opt,name=commit_id,json=commitId" json:"commit_id,omitempty"`
+	Repository *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	User       *User       `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	CommitId   string      `protobuf:"bytes,3,opt,name=commit_id,json=commitId,proto3" json:"commit_id,omitempty"`
 	Branch     []byte      `protobuf:"bytes,4,opt,name=branch,proto3" json:"branch,omitempty"`
 	Message    []byte      `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
 	// Second message
 	// Tell the server to apply the merge to the branch
-	Apply bool `protobuf:"varint,6,opt,name=apply" json:"apply,omitempty"`
+	Apply                bool     `protobuf:"varint,6,opt,name=apply,proto3" json:"apply,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserMergeBranchRequest) Reset()                    { *m = UserMergeBranchRequest{} }
-func (m *UserMergeBranchRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserMergeBranchRequest) ProtoMessage()               {}
-func (*UserMergeBranchRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{10} }
+func (m *UserMergeBranchRequest) Reset()         { *m = UserMergeBranchRequest{} }
+func (m *UserMergeBranchRequest) String() string { return proto.CompactTextString(m) }
+func (*UserMergeBranchRequest) ProtoMessage()    {}
+func (*UserMergeBranchRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{10}
+}
+func (m *UserMergeBranchRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserMergeBranchRequest.Unmarshal(m, b)
+}
+func (m *UserMergeBranchRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserMergeBranchRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserMergeBranchRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserMergeBranchRequest.Merge(dst, src)
+}
+func (m *UserMergeBranchRequest) XXX_Size() int {
+	return xxx_messageInfo_UserMergeBranchRequest.Size(m)
+}
+func (m *UserMergeBranchRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserMergeBranchRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserMergeBranchRequest proto.InternalMessageInfo
 
 func (m *UserMergeBranchRequest) GetRepository() *Repository {
 	if m != nil {
@@ -420,17 +668,39 @@ func (m *UserMergeBranchRequest) GetApply() bool {
 type UserMergeBranchResponse struct {
 	// First message
 	// The merge commit the branch will be updated to. The caller can still abort the merge.
-	CommitId string `protobuf:"bytes,1,opt,name=commit_id,json=commitId" json:"commit_id,omitempty"`
+	CommitId string `protobuf:"bytes,1,opt,name=commit_id,json=commitId,proto3" json:"commit_id,omitempty"`
 	// Second message
 	// If set, the merge has been applied to the branch.
-	BranchUpdate    *OperationBranchUpdate `protobuf:"bytes,3,opt,name=branch_update,json=branchUpdate" json:"branch_update,omitempty"`
-	PreReceiveError string                 `protobuf:"bytes,4,opt,name=pre_receive_error,json=preReceiveError" json:"pre_receive_error,omitempty"`
+	BranchUpdate         *OperationBranchUpdate `protobuf:"bytes,3,opt,name=branch_update,json=branchUpdate,proto3" json:"branch_update,omitempty"`
+	PreReceiveError      string                 `protobuf:"bytes,4,opt,name=pre_receive_error,json=preReceiveError,proto3" json:"pre_receive_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
 }
 
-func (m *UserMergeBranchResponse) Reset()                    { *m = UserMergeBranchResponse{} }
-func (m *UserMergeBranchResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserMergeBranchResponse) ProtoMessage()               {}
-func (*UserMergeBranchResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{11} }
+func (m *UserMergeBranchResponse) Reset()         { *m = UserMergeBranchResponse{} }
+func (m *UserMergeBranchResponse) String() string { return proto.CompactTextString(m) }
+func (*UserMergeBranchResponse) ProtoMessage()    {}
+func (*UserMergeBranchResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{11}
+}
+func (m *UserMergeBranchResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserMergeBranchResponse.Unmarshal(m, b)
+}
+func (m *UserMergeBranchResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserMergeBranchResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserMergeBranchResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserMergeBranchResponse.Merge(dst, src)
+}
+func (m *UserMergeBranchResponse) XXX_Size() int {
+	return xxx_messageInfo_UserMergeBranchResponse.Size(m)
+}
+func (m *UserMergeBranchResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserMergeBranchResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserMergeBranchResponse proto.InternalMessageInfo
 
 func (m *UserMergeBranchResponse) GetCommitId() string {
 	if m != nil {
@@ -454,9 +724,9 @@ func (m *UserMergeBranchResponse) GetPreReceiveError() string {
 }
 
 type UserMergeToRefRequest struct {
-	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	User       *User       `protobuf:"bytes,2,opt,name=user" json:"user,omitempty"`
-	SourceSha  string      `protobuf:"bytes,3,opt,name=source_sha,json=sourceSha" json:"source_sha,omitempty"`
+	Repository *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	User       *User       `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	SourceSha  string      `protobuf:"bytes,3,opt,name=source_sha,json=sourceSha,proto3" json:"source_sha,omitempty"`
 	Branch     []byte      `protobuf:"bytes,4,opt,name=branch,proto3" json:"branch,omitempty"`
 	// The merge of source_sha and branch has target_ref as target.
 	//
@@ -464,14 +734,36 @@ type UserMergeToRefRequest struct {
 	// and branch. That is, if a second request comes in, target_ref
 	// will lose its previous state and be updated to the latest merge
 	// between source_sha and branch.
-	TargetRef []byte `protobuf:"bytes,5,opt,name=target_ref,json=targetRef,proto3" json:"target_ref,omitempty"`
-	Message   []byte `protobuf:"bytes,6,opt,name=message,proto3" json:"message,omitempty"`
+	TargetRef            []byte   `protobuf:"bytes,5,opt,name=target_ref,json=targetRef,proto3" json:"target_ref,omitempty"`
+	Message              []byte   `protobuf:"bytes,6,opt,name=message,proto3" json:"message,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserMergeToRefRequest) Reset()                    { *m = UserMergeToRefRequest{} }
-func (m *UserMergeToRefRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserMergeToRefRequest) ProtoMessage()               {}
-func (*UserMergeToRefRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{12} }
+func (m *UserMergeToRefRequest) Reset()         { *m = UserMergeToRefRequest{} }
+func (m *UserMergeToRefRequest) String() string { return proto.CompactTextString(m) }
+func (*UserMergeToRefRequest) ProtoMessage()    {}
+func (*UserMergeToRefRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{12}
+}
+func (m *UserMergeToRefRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserMergeToRefRequest.Unmarshal(m, b)
+}
+func (m *UserMergeToRefRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserMergeToRefRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserMergeToRefRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserMergeToRefRequest.Merge(dst, src)
+}
+func (m *UserMergeToRefRequest) XXX_Size() int {
+	return xxx_messageInfo_UserMergeToRefRequest.Size(m)
+}
+func (m *UserMergeToRefRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserMergeToRefRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserMergeToRefRequest proto.InternalMessageInfo
 
 func (m *UserMergeToRefRequest) GetRepository() *Repository {
 	if m != nil {
@@ -516,14 +808,36 @@ func (m *UserMergeToRefRequest) GetMessage() []byte {
 }
 
 type UserMergeToRefResponse struct {
-	CommitId        string `protobuf:"bytes,1,opt,name=commit_id,json=commitId" json:"commit_id,omitempty"`
-	PreReceiveError string `protobuf:"bytes,2,opt,name=pre_receive_error,json=preReceiveError" json:"pre_receive_error,omitempty"`
+	CommitId             string   `protobuf:"bytes,1,opt,name=commit_id,json=commitId,proto3" json:"commit_id,omitempty"`
+	PreReceiveError      string   `protobuf:"bytes,2,opt,name=pre_receive_error,json=preReceiveError,proto3" json:"pre_receive_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserMergeToRefResponse) Reset()                    { *m = UserMergeToRefResponse{} }
-func (m *UserMergeToRefResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserMergeToRefResponse) ProtoMessage()               {}
-func (*UserMergeToRefResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{13} }
+func (m *UserMergeToRefResponse) Reset()         { *m = UserMergeToRefResponse{} }
+func (m *UserMergeToRefResponse) String() string { return proto.CompactTextString(m) }
+func (*UserMergeToRefResponse) ProtoMessage()    {}
+func (*UserMergeToRefResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{13}
+}
+func (m *UserMergeToRefResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserMergeToRefResponse.Unmarshal(m, b)
+}
+func (m *UserMergeToRefResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserMergeToRefResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserMergeToRefResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserMergeToRefResponse.Merge(dst, src)
+}
+func (m *UserMergeToRefResponse) XXX_Size() int {
+	return xxx_messageInfo_UserMergeToRefResponse.Size(m)
+}
+func (m *UserMergeToRefResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserMergeToRefResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserMergeToRefResponse proto.InternalMessageInfo
 
 func (m *UserMergeToRefResponse) GetCommitId() string {
 	if m != nil {
@@ -541,17 +855,39 @@ func (m *UserMergeToRefResponse) GetPreReceiveError() string {
 
 type OperationBranchUpdate struct {
 	// If this string is non-empty the branch has been updated.
-	CommitId string `protobuf:"bytes,1,opt,name=commit_id,json=commitId" json:"commit_id,omitempty"`
+	CommitId string `protobuf:"bytes,1,opt,name=commit_id,json=commitId,proto3" json:"commit_id,omitempty"`
 	// Used for cache invalidation in GitLab
-	RepoCreated bool `protobuf:"varint,2,opt,name=repo_created,json=repoCreated" json:"repo_created,omitempty"`
+	RepoCreated bool `protobuf:"varint,2,opt,name=repo_created,json=repoCreated,proto3" json:"repo_created,omitempty"`
 	// Used for cache invalidation in GitLab
-	BranchCreated bool `protobuf:"varint,3,opt,name=branch_created,json=branchCreated" json:"branch_created,omitempty"`
+	BranchCreated        bool     `protobuf:"varint,3,opt,name=branch_created,json=branchCreated,proto3" json:"branch_created,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *OperationBranchUpdate) Reset()                    { *m = OperationBranchUpdate{} }
-func (m *OperationBranchUpdate) String() string            { return proto.CompactTextString(m) }
-func (*OperationBranchUpdate) ProtoMessage()               {}
-func (*OperationBranchUpdate) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{14} }
+func (m *OperationBranchUpdate) Reset()         { *m = OperationBranchUpdate{} }
+func (m *OperationBranchUpdate) String() string { return proto.CompactTextString(m) }
+func (*OperationBranchUpdate) ProtoMessage()    {}
+func (*OperationBranchUpdate) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{14}
+}
+func (m *OperationBranchUpdate) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_OperationBranchUpdate.Unmarshal(m, b)
+}
+func (m *OperationBranchUpdate) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_OperationBranchUpdate.Marshal(b, m, deterministic)
+}
+func (dst *OperationBranchUpdate) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_OperationBranchUpdate.Merge(dst, src)
+}
+func (m *OperationBranchUpdate) XXX_Size() int {
+	return xxx_messageInfo_OperationBranchUpdate.Size(m)
+}
+func (m *OperationBranchUpdate) XXX_DiscardUnknown() {
+	xxx_messageInfo_OperationBranchUpdate.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_OperationBranchUpdate proto.InternalMessageInfo
 
 func (m *OperationBranchUpdate) GetCommitId() string {
 	if m != nil {
@@ -575,16 +911,38 @@ func (m *OperationBranchUpdate) GetBranchCreated() bool {
 }
 
 type UserFFBranchRequest struct {
-	Repository *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	User       *User       `protobuf:"bytes,2,opt,name=user" json:"user,omitempty"`
-	CommitId   string      `protobuf:"bytes,3,opt,name=commit_id,json=commitId" json:"commit_id,omitempty"`
-	Branch     []byte      `protobuf:"bytes,4,opt,name=branch,proto3" json:"branch,omitempty"`
+	Repository           *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	User                 *User       `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	CommitId             string      `protobuf:"bytes,3,opt,name=commit_id,json=commitId,proto3" json:"commit_id,omitempty"`
+	Branch               []byte      `protobuf:"bytes,4,opt,name=branch,proto3" json:"branch,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *UserFFBranchRequest) Reset()                    { *m = UserFFBranchRequest{} }
-func (m *UserFFBranchRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserFFBranchRequest) ProtoMessage()               {}
-func (*UserFFBranchRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{15} }
+func (m *UserFFBranchRequest) Reset()         { *m = UserFFBranchRequest{} }
+func (m *UserFFBranchRequest) String() string { return proto.CompactTextString(m) }
+func (*UserFFBranchRequest) ProtoMessage()    {}
+func (*UserFFBranchRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{15}
+}
+func (m *UserFFBranchRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserFFBranchRequest.Unmarshal(m, b)
+}
+func (m *UserFFBranchRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserFFBranchRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserFFBranchRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserFFBranchRequest.Merge(dst, src)
+}
+func (m *UserFFBranchRequest) XXX_Size() int {
+	return xxx_messageInfo_UserFFBranchRequest.Size(m)
+}
+func (m *UserFFBranchRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserFFBranchRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserFFBranchRequest proto.InternalMessageInfo
 
 func (m *UserFFBranchRequest) GetRepository() *Repository {
 	if m != nil {
@@ -615,14 +973,36 @@ func (m *UserFFBranchRequest) GetBranch() []byte {
 }
 
 type UserFFBranchResponse struct {
-	BranchUpdate    *OperationBranchUpdate `protobuf:"bytes,1,opt,name=branch_update,json=branchUpdate" json:"branch_update,omitempty"`
-	PreReceiveError string                 `protobuf:"bytes,2,opt,name=pre_receive_error,json=preReceiveError" json:"pre_receive_error,omitempty"`
+	BranchUpdate         *OperationBranchUpdate `protobuf:"bytes,1,opt,name=branch_update,json=branchUpdate,proto3" json:"branch_update,omitempty"`
+	PreReceiveError      string                 `protobuf:"bytes,2,opt,name=pre_receive_error,json=preReceiveError,proto3" json:"pre_receive_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
 }
 
-func (m *UserFFBranchResponse) Reset()                    { *m = UserFFBranchResponse{} }
-func (m *UserFFBranchResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserFFBranchResponse) ProtoMessage()               {}
-func (*UserFFBranchResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{16} }
+func (m *UserFFBranchResponse) Reset()         { *m = UserFFBranchResponse{} }
+func (m *UserFFBranchResponse) String() string { return proto.CompactTextString(m) }
+func (*UserFFBranchResponse) ProtoMessage()    {}
+func (*UserFFBranchResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{16}
+}
+func (m *UserFFBranchResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserFFBranchResponse.Unmarshal(m, b)
+}
+func (m *UserFFBranchResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserFFBranchResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserFFBranchResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserFFBranchResponse.Merge(dst, src)
+}
+func (m *UserFFBranchResponse) XXX_Size() int {
+	return xxx_messageInfo_UserFFBranchResponse.Size(m)
+}
+func (m *UserFFBranchResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserFFBranchResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserFFBranchResponse proto.InternalMessageInfo
 
 func (m *UserFFBranchResponse) GetBranchUpdate() *OperationBranchUpdate {
 	if m != nil {
@@ -639,19 +1019,41 @@ func (m *UserFFBranchResponse) GetPreReceiveError() string {
 }
 
 type UserCherryPickRequest struct {
-	Repository      *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	User            *User       `protobuf:"bytes,2,opt,name=user" json:"user,omitempty"`
-	Commit          *GitCommit  `protobuf:"bytes,3,opt,name=commit" json:"commit,omitempty"`
-	BranchName      []byte      `protobuf:"bytes,4,opt,name=branch_name,json=branchName,proto3" json:"branch_name,omitempty"`
-	Message         []byte      `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
-	StartBranchName []byte      `protobuf:"bytes,6,opt,name=start_branch_name,json=startBranchName,proto3" json:"start_branch_name,omitempty"`
-	StartRepository *Repository `protobuf:"bytes,7,opt,name=start_repository,json=startRepository" json:"start_repository,omitempty"`
+	Repository           *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	User                 *User       `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	Commit               *GitCommit  `protobuf:"bytes,3,opt,name=commit,proto3" json:"commit,omitempty"`
+	BranchName           []byte      `protobuf:"bytes,4,opt,name=branch_name,json=branchName,proto3" json:"branch_name,omitempty"`
+	Message              []byte      `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
+	StartBranchName      []byte      `protobuf:"bytes,6,opt,name=start_branch_name,json=startBranchName,proto3" json:"start_branch_name,omitempty"`
+	StartRepository      *Repository `protobuf:"bytes,7,opt,name=start_repository,json=startRepository,proto3" json:"start_repository,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *UserCherryPickRequest) Reset()                    { *m = UserCherryPickRequest{} }
-func (m *UserCherryPickRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserCherryPickRequest) ProtoMessage()               {}
-func (*UserCherryPickRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{17} }
+func (m *UserCherryPickRequest) Reset()         { *m = UserCherryPickRequest{} }
+func (m *UserCherryPickRequest) String() string { return proto.CompactTextString(m) }
+func (*UserCherryPickRequest) ProtoMessage()    {}
+func (*UserCherryPickRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{17}
+}
+func (m *UserCherryPickRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserCherryPickRequest.Unmarshal(m, b)
+}
+func (m *UserCherryPickRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserCherryPickRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserCherryPickRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserCherryPickRequest.Merge(dst, src)
+}
+func (m *UserCherryPickRequest) XXX_Size() int {
+	return xxx_messageInfo_UserCherryPickRequest.Size(m)
+}
+func (m *UserCherryPickRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserCherryPickRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserCherryPickRequest proto.InternalMessageInfo
 
 func (m *UserCherryPickRequest) GetRepository() *Repository {
 	if m != nil {
@@ -703,16 +1105,38 @@ func (m *UserCherryPickRequest) GetStartRepository() *Repository {
 }
 
 type UserCherryPickResponse struct {
-	BranchUpdate    *OperationBranchUpdate `protobuf:"bytes,1,opt,name=branch_update,json=branchUpdate" json:"branch_update,omitempty"`
-	CreateTreeError string                 `protobuf:"bytes,2,opt,name=create_tree_error,json=createTreeError" json:"create_tree_error,omitempty"`
-	CommitError     string                 `protobuf:"bytes,3,opt,name=commit_error,json=commitError" json:"commit_error,omitempty"`
-	PreReceiveError string                 `protobuf:"bytes,4,opt,name=pre_receive_error,json=preReceiveError" json:"pre_receive_error,omitempty"`
+	BranchUpdate         *OperationBranchUpdate `protobuf:"bytes,1,opt,name=branch_update,json=branchUpdate,proto3" json:"branch_update,omitempty"`
+	CreateTreeError      string                 `protobuf:"bytes,2,opt,name=create_tree_error,json=createTreeError,proto3" json:"create_tree_error,omitempty"`
+	CommitError          string                 `protobuf:"bytes,3,opt,name=commit_error,json=commitError,proto3" json:"commit_error,omitempty"`
+	PreReceiveError      string                 `protobuf:"bytes,4,opt,name=pre_receive_error,json=preReceiveError,proto3" json:"pre_receive_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
 }
 
-func (m *UserCherryPickResponse) Reset()                    { *m = UserCherryPickResponse{} }
-func (m *UserCherryPickResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserCherryPickResponse) ProtoMessage()               {}
-func (*UserCherryPickResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{18} }
+func (m *UserCherryPickResponse) Reset()         { *m = UserCherryPickResponse{} }
+func (m *UserCherryPickResponse) String() string { return proto.CompactTextString(m) }
+func (*UserCherryPickResponse) ProtoMessage()    {}
+func (*UserCherryPickResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{18}
+}
+func (m *UserCherryPickResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserCherryPickResponse.Unmarshal(m, b)
+}
+func (m *UserCherryPickResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserCherryPickResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserCherryPickResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserCherryPickResponse.Merge(dst, src)
+}
+func (m *UserCherryPickResponse) XXX_Size() int {
+	return xxx_messageInfo_UserCherryPickResponse.Size(m)
+}
+func (m *UserCherryPickResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserCherryPickResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserCherryPickResponse proto.InternalMessageInfo
 
 func (m *UserCherryPickResponse) GetBranchUpdate() *OperationBranchUpdate {
 	if m != nil {
@@ -743,19 +1167,41 @@ func (m *UserCherryPickResponse) GetPreReceiveError() string {
 }
 
 type UserRevertRequest struct {
-	Repository      *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	User            *User       `protobuf:"bytes,2,opt,name=user" json:"user,omitempty"`
-	Commit          *GitCommit  `protobuf:"bytes,3,opt,name=commit" json:"commit,omitempty"`
-	BranchName      []byte      `protobuf:"bytes,4,opt,name=branch_name,json=branchName,proto3" json:"branch_name,omitempty"`
-	Message         []byte      `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
-	StartBranchName []byte      `protobuf:"bytes,6,opt,name=start_branch_name,json=startBranchName,proto3" json:"start_branch_name,omitempty"`
-	StartRepository *Repository `protobuf:"bytes,7,opt,name=start_repository,json=startRepository" json:"start_repository,omitempty"`
+	Repository           *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	User                 *User       `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	Commit               *GitCommit  `protobuf:"bytes,3,opt,name=commit,proto3" json:"commit,omitempty"`
+	BranchName           []byte      `protobuf:"bytes,4,opt,name=branch_name,json=branchName,proto3" json:"branch_name,omitempty"`
+	Message              []byte      `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
+	StartBranchName      []byte      `protobuf:"bytes,6,opt,name=start_branch_name,json=startBranchName,proto3" json:"start_branch_name,omitempty"`
+	StartRepository      *Repository `protobuf:"bytes,7,opt,name=start_repository,json=startRepository,proto3" json:"start_repository,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *UserRevertRequest) Reset()                    { *m = UserRevertRequest{} }
-func (m *UserRevertRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserRevertRequest) ProtoMessage()               {}
-func (*UserRevertRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{19} }
+func (m *UserRevertRequest) Reset()         { *m = UserRevertRequest{} }
+func (m *UserRevertRequest) String() string { return proto.CompactTextString(m) }
+func (*UserRevertRequest) ProtoMessage()    {}
+func (*UserRevertRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{19}
+}
+func (m *UserRevertRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserRevertRequest.Unmarshal(m, b)
+}
+func (m *UserRevertRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserRevertRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserRevertRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserRevertRequest.Merge(dst, src)
+}
+func (m *UserRevertRequest) XXX_Size() int {
+	return xxx_messageInfo_UserRevertRequest.Size(m)
+}
+func (m *UserRevertRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserRevertRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserRevertRequest proto.InternalMessageInfo
 
 func (m *UserRevertRequest) GetRepository() *Repository {
 	if m != nil {
@@ -807,16 +1253,38 @@ func (m *UserRevertRequest) GetStartRepository() *Repository {
 }
 
 type UserRevertResponse struct {
-	BranchUpdate    *OperationBranchUpdate `protobuf:"bytes,1,opt,name=branch_update,json=branchUpdate" json:"branch_update,omitempty"`
-	CreateTreeError string                 `protobuf:"bytes,2,opt,name=create_tree_error,json=createTreeError" json:"create_tree_error,omitempty"`
-	CommitError     string                 `protobuf:"bytes,3,opt,name=commit_error,json=commitError" json:"commit_error,omitempty"`
-	PreReceiveError string                 `protobuf:"bytes,4,opt,name=pre_receive_error,json=preReceiveError" json:"pre_receive_error,omitempty"`
+	BranchUpdate         *OperationBranchUpdate `protobuf:"bytes,1,opt,name=branch_update,json=branchUpdate,proto3" json:"branch_update,omitempty"`
+	CreateTreeError      string                 `protobuf:"bytes,2,opt,name=create_tree_error,json=createTreeError,proto3" json:"create_tree_error,omitempty"`
+	CommitError          string                 `protobuf:"bytes,3,opt,name=commit_error,json=commitError,proto3" json:"commit_error,omitempty"`
+	PreReceiveError      string                 `protobuf:"bytes,4,opt,name=pre_receive_error,json=preReceiveError,proto3" json:"pre_receive_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
 }
 
-func (m *UserRevertResponse) Reset()                    { *m = UserRevertResponse{} }
-func (m *UserRevertResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserRevertResponse) ProtoMessage()               {}
-func (*UserRevertResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{20} }
+func (m *UserRevertResponse) Reset()         { *m = UserRevertResponse{} }
+func (m *UserRevertResponse) String() string { return proto.CompactTextString(m) }
+func (*UserRevertResponse) ProtoMessage()    {}
+func (*UserRevertResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{20}
+}
+func (m *UserRevertResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserRevertResponse.Unmarshal(m, b)
+}
+func (m *UserRevertResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserRevertResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserRevertResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserRevertResponse.Merge(dst, src)
+}
+func (m *UserRevertResponse) XXX_Size() int {
+	return xxx_messageInfo_UserRevertResponse.Size(m)
+}
+func (m *UserRevertResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserRevertResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserRevertResponse proto.InternalMessageInfo
 
 func (m *UserRevertResponse) GetBranchUpdate() *OperationBranchUpdate {
 	if m != nil {
@@ -847,21 +1315,43 @@ func (m *UserRevertResponse) GetPreReceiveError() string {
 }
 
 type UserCommitFilesActionHeader struct {
-	Action          UserCommitFilesActionHeader_ActionType `protobuf:"varint,1,opt,name=action,enum=gitaly.UserCommitFilesActionHeader_ActionType" json:"action,omitempty"`
+	Action          UserCommitFilesActionHeader_ActionType `protobuf:"varint,1,opt,name=action,proto3,enum=gitaly.UserCommitFilesActionHeader_ActionType" json:"action,omitempty"`
 	FilePath        []byte                                 `protobuf:"bytes,2,opt,name=file_path,json=filePath,proto3" json:"file_path,omitempty"`
 	PreviousPath    []byte                                 `protobuf:"bytes,3,opt,name=previous_path,json=previousPath,proto3" json:"previous_path,omitempty"`
-	Base64Content   bool                                   `protobuf:"varint,4,opt,name=base64_content,json=base64Content" json:"base64_content,omitempty"`
-	ExecuteFilemode bool                                   `protobuf:"varint,5,opt,name=execute_filemode,json=executeFilemode" json:"execute_filemode,omitempty"`
+	Base64Content   bool                                   `protobuf:"varint,4,opt,name=base64_content,json=base64Content,proto3" json:"base64_content,omitempty"`
+	ExecuteFilemode bool                                   `protobuf:"varint,5,opt,name=execute_filemode,json=executeFilemode,proto3" json:"execute_filemode,omitempty"`
 	// Move actions that change the file path, but not its content, should set
 	// infer_content to true instead of populating the content field. Ignored for
 	// other action types.
-	InferContent bool `protobuf:"varint,6,opt,name=infer_content,json=inferContent" json:"infer_content,omitempty"`
+	InferContent         bool     `protobuf:"varint,6,opt,name=infer_content,json=inferContent,proto3" json:"infer_content,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserCommitFilesActionHeader) Reset()                    { *m = UserCommitFilesActionHeader{} }
-func (m *UserCommitFilesActionHeader) String() string            { return proto.CompactTextString(m) }
-func (*UserCommitFilesActionHeader) ProtoMessage()               {}
-func (*UserCommitFilesActionHeader) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{21} }
+func (m *UserCommitFilesActionHeader) Reset()         { *m = UserCommitFilesActionHeader{} }
+func (m *UserCommitFilesActionHeader) String() string { return proto.CompactTextString(m) }
+func (*UserCommitFilesActionHeader) ProtoMessage()    {}
+func (*UserCommitFilesActionHeader) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{21}
+}
+func (m *UserCommitFilesActionHeader) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserCommitFilesActionHeader.Unmarshal(m, b)
+}
+func (m *UserCommitFilesActionHeader) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserCommitFilesActionHeader.Marshal(b, m, deterministic)
+}
+func (dst *UserCommitFilesActionHeader) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserCommitFilesActionHeader.Merge(dst, src)
+}
+func (m *UserCommitFilesActionHeader) XXX_Size() int {
+	return xxx_messageInfo_UserCommitFilesActionHeader.Size(m)
+}
+func (m *UserCommitFilesActionHeader) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserCommitFilesActionHeader.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserCommitFilesActionHeader proto.InternalMessageInfo
 
 func (m *UserCommitFilesActionHeader) GetAction() UserCommitFilesActionHeader_ActionType {
 	if m != nil {
@@ -910,23 +1400,49 @@ type UserCommitFilesAction struct {
 	//	*UserCommitFilesAction_Header
 	//	*UserCommitFilesAction_Content
 	UserCommitFilesActionPayload isUserCommitFilesAction_UserCommitFilesActionPayload `protobuf_oneof:"user_commit_files_action_payload"`
+	XXX_NoUnkeyedLiteral         struct{}                                             `json:"-"`
+	XXX_unrecognized             []byte                                               `json:"-"`
+	XXX_sizecache                int32                                                `json:"-"`
 }
 
-func (m *UserCommitFilesAction) Reset()                    { *m = UserCommitFilesAction{} }
-func (m *UserCommitFilesAction) String() string            { return proto.CompactTextString(m) }
-func (*UserCommitFilesAction) ProtoMessage()               {}
-func (*UserCommitFilesAction) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{22} }
+func (m *UserCommitFilesAction) Reset()         { *m = UserCommitFilesAction{} }
+func (m *UserCommitFilesAction) String() string { return proto.CompactTextString(m) }
+func (*UserCommitFilesAction) ProtoMessage()    {}
+func (*UserCommitFilesAction) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{22}
+}
+func (m *UserCommitFilesAction) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserCommitFilesAction.Unmarshal(m, b)
+}
+func (m *UserCommitFilesAction) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserCommitFilesAction.Marshal(b, m, deterministic)
+}
+func (dst *UserCommitFilesAction) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserCommitFilesAction.Merge(dst, src)
+}
+func (m *UserCommitFilesAction) XXX_Size() int {
+	return xxx_messageInfo_UserCommitFilesAction.Size(m)
+}
+func (m *UserCommitFilesAction) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserCommitFilesAction.DiscardUnknown(m)
+}
 
-type isUserCommitFilesAction_UserCommitFilesActionPayload interface{ isUserCommitFilesAction_UserCommitFilesActionPayload() }
+var xxx_messageInfo_UserCommitFilesAction proto.InternalMessageInfo
+
+type isUserCommitFilesAction_UserCommitFilesActionPayload interface {
+	isUserCommitFilesAction_UserCommitFilesActionPayload()
+}
 
 type UserCommitFilesAction_Header struct {
-	Header *UserCommitFilesActionHeader `protobuf:"bytes,1,opt,name=header,oneof"`
+	Header *UserCommitFilesActionHeader `protobuf:"bytes,1,opt,name=header,proto3,oneof"`
 }
+
 type UserCommitFilesAction_Content struct {
 	Content []byte `protobuf:"bytes,2,opt,name=content,proto3,oneof"`
 }
 
-func (*UserCommitFilesAction_Header) isUserCommitFilesAction_UserCommitFilesActionPayload()  {}
+func (*UserCommitFilesAction_Header) isUserCommitFilesAction_UserCommitFilesActionPayload() {}
+
 func (*UserCommitFilesAction_Content) isUserCommitFilesAction_UserCommitFilesActionPayload() {}
 
 func (m *UserCommitFilesAction) GetUserCommitFilesActionPayload() isUserCommitFilesAction_UserCommitFilesActionPayload {
@@ -1006,11 +1522,11 @@ func _UserCommitFilesAction_OneofSizer(msg proto.Message) (n int) {
 	switch x := m.UserCommitFilesActionPayload.(type) {
 	case *UserCommitFilesAction_Header:
 		s := proto.Size(x.Header)
-		n += proto.SizeVarint(1<<3 | proto.WireBytes)
+		n += 1 // tag and wire
 		n += proto.SizeVarint(uint64(s))
 		n += s
 	case *UserCommitFilesAction_Content:
-		n += proto.SizeVarint(2<<3 | proto.WireBytes)
+		n += 1 // tag and wire
 		n += proto.SizeVarint(uint64(len(x.Content)))
 		n += len(x.Content)
 	case nil:
@@ -1021,21 +1537,43 @@ func _UserCommitFilesAction_OneofSizer(msg proto.Message) (n int) {
 }
 
 type UserCommitFilesRequestHeader struct {
-	Repository        *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	User              *User       `protobuf:"bytes,2,opt,name=user" json:"user,omitempty"`
-	BranchName        []byte      `protobuf:"bytes,3,opt,name=branch_name,json=branchName,proto3" json:"branch_name,omitempty"`
-	CommitMessage     []byte      `protobuf:"bytes,4,opt,name=commit_message,json=commitMessage,proto3" json:"commit_message,omitempty"`
-	CommitAuthorName  []byte      `protobuf:"bytes,5,opt,name=commit_author_name,json=commitAuthorName,proto3" json:"commit_author_name,omitempty"`
-	CommitAuthorEmail []byte      `protobuf:"bytes,6,opt,name=commit_author_email,json=commitAuthorEmail,proto3" json:"commit_author_email,omitempty"`
-	StartBranchName   []byte      `protobuf:"bytes,7,opt,name=start_branch_name,json=startBranchName,proto3" json:"start_branch_name,omitempty"`
-	StartRepository   *Repository `protobuf:"bytes,8,opt,name=start_repository,json=startRepository" json:"start_repository,omitempty"`
-	Force             bool        `protobuf:"varint,9,opt,name=force" json:"force,omitempty"`
+	Repository           *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	User                 *User       `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	BranchName           []byte      `protobuf:"bytes,3,opt,name=branch_name,json=branchName,proto3" json:"branch_name,omitempty"`
+	CommitMessage        []byte      `protobuf:"bytes,4,opt,name=commit_message,json=commitMessage,proto3" json:"commit_message,omitempty"`
+	CommitAuthorName     []byte      `protobuf:"bytes,5,opt,name=commit_author_name,json=commitAuthorName,proto3" json:"commit_author_name,omitempty"`
+	CommitAuthorEmail    []byte      `protobuf:"bytes,6,opt,name=commit_author_email,json=commitAuthorEmail,proto3" json:"commit_author_email,omitempty"`
+	StartBranchName      []byte      `protobuf:"bytes,7,opt,name=start_branch_name,json=startBranchName,proto3" json:"start_branch_name,omitempty"`
+	StartRepository      *Repository `protobuf:"bytes,8,opt,name=start_repository,json=startRepository,proto3" json:"start_repository,omitempty"`
+	Force                bool        `protobuf:"varint,9,opt,name=force,proto3" json:"force,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *UserCommitFilesRequestHeader) Reset()                    { *m = UserCommitFilesRequestHeader{} }
-func (m *UserCommitFilesRequestHeader) String() string            { return proto.CompactTextString(m) }
-func (*UserCommitFilesRequestHeader) ProtoMessage()               {}
-func (*UserCommitFilesRequestHeader) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{23} }
+func (m *UserCommitFilesRequestHeader) Reset()         { *m = UserCommitFilesRequestHeader{} }
+func (m *UserCommitFilesRequestHeader) String() string { return proto.CompactTextString(m) }
+func (*UserCommitFilesRequestHeader) ProtoMessage()    {}
+func (*UserCommitFilesRequestHeader) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{23}
+}
+func (m *UserCommitFilesRequestHeader) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserCommitFilesRequestHeader.Unmarshal(m, b)
+}
+func (m *UserCommitFilesRequestHeader) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserCommitFilesRequestHeader.Marshal(b, m, deterministic)
+}
+func (dst *UserCommitFilesRequestHeader) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserCommitFilesRequestHeader.Merge(dst, src)
+}
+func (m *UserCommitFilesRequestHeader) XXX_Size() int {
+	return xxx_messageInfo_UserCommitFilesRequestHeader.Size(m)
+}
+func (m *UserCommitFilesRequestHeader) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserCommitFilesRequestHeader.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserCommitFilesRequestHeader proto.InternalMessageInfo
 
 func (m *UserCommitFilesRequestHeader) GetRepository() *Repository {
 	if m != nil {
@@ -1105,23 +1643,49 @@ type UserCommitFilesRequest struct {
 	//	*UserCommitFilesRequest_Header
 	//	*UserCommitFilesRequest_Action
 	UserCommitFilesRequestPayload isUserCommitFilesRequest_UserCommitFilesRequestPayload `protobuf_oneof:"user_commit_files_request_payload"`
+	XXX_NoUnkeyedLiteral          struct{}                                               `json:"-"`
+	XXX_unrecognized              []byte                                                 `json:"-"`
+	XXX_sizecache                 int32                                                  `json:"-"`
 }
 
-func (m *UserCommitFilesRequest) Reset()                    { *m = UserCommitFilesRequest{} }
-func (m *UserCommitFilesRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserCommitFilesRequest) ProtoMessage()               {}
-func (*UserCommitFilesRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{24} }
+func (m *UserCommitFilesRequest) Reset()         { *m = UserCommitFilesRequest{} }
+func (m *UserCommitFilesRequest) String() string { return proto.CompactTextString(m) }
+func (*UserCommitFilesRequest) ProtoMessage()    {}
+func (*UserCommitFilesRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{24}
+}
+func (m *UserCommitFilesRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserCommitFilesRequest.Unmarshal(m, b)
+}
+func (m *UserCommitFilesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserCommitFilesRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserCommitFilesRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserCommitFilesRequest.Merge(dst, src)
+}
+func (m *UserCommitFilesRequest) XXX_Size() int {
+	return xxx_messageInfo_UserCommitFilesRequest.Size(m)
+}
+func (m *UserCommitFilesRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserCommitFilesRequest.DiscardUnknown(m)
+}
 
-type isUserCommitFilesRequest_UserCommitFilesRequestPayload interface{ isUserCommitFilesRequest_UserCommitFilesRequestPayload() }
+var xxx_messageInfo_UserCommitFilesRequest proto.InternalMessageInfo
+
+type isUserCommitFilesRequest_UserCommitFilesRequestPayload interface {
+	isUserCommitFilesRequest_UserCommitFilesRequestPayload()
+}
 
 type UserCommitFilesRequest_Header struct {
-	Header *UserCommitFilesRequestHeader `protobuf:"bytes,1,opt,name=header,oneof"`
+	Header *UserCommitFilesRequestHeader `protobuf:"bytes,1,opt,name=header,proto3,oneof"`
 }
+
 type UserCommitFilesRequest_Action struct {
-	Action *UserCommitFilesAction `protobuf:"bytes,2,opt,name=action,oneof"`
+	Action *UserCommitFilesAction `protobuf:"bytes,2,opt,name=action,proto3,oneof"`
 }
 
 func (*UserCommitFilesRequest_Header) isUserCommitFilesRequest_UserCommitFilesRequestPayload() {}
+
 func (*UserCommitFilesRequest_Action) isUserCommitFilesRequest_UserCommitFilesRequestPayload() {}
 
 func (m *UserCommitFilesRequest) GetUserCommitFilesRequestPayload() isUserCommitFilesRequest_UserCommitFilesRequestPayload {
@@ -1204,12 +1768,12 @@ func _UserCommitFilesRequest_OneofSizer(msg proto.Message) (n int) {
 	switch x := m.UserCommitFilesRequestPayload.(type) {
 	case *UserCommitFilesRequest_Header:
 		s := proto.Size(x.Header)
-		n += proto.SizeVarint(1<<3 | proto.WireBytes)
+		n += 1 // tag and wire
 		n += proto.SizeVarint(uint64(s))
 		n += s
 	case *UserCommitFilesRequest_Action:
 		s := proto.Size(x.Action)
-		n += proto.SizeVarint(2<<3 | proto.WireBytes)
+		n += 1 // tag and wire
 		n += proto.SizeVarint(uint64(s))
 		n += s
 	case nil:
@@ -1220,15 +1784,37 @@ func _UserCommitFilesRequest_OneofSizer(msg proto.Message) (n int) {
 }
 
 type UserCommitFilesResponse struct {
-	BranchUpdate    *OperationBranchUpdate `protobuf:"bytes,1,opt,name=branch_update,json=branchUpdate" json:"branch_update,omitempty"`
-	IndexError      string                 `protobuf:"bytes,2,opt,name=index_error,json=indexError" json:"index_error,omitempty"`
-	PreReceiveError string                 `protobuf:"bytes,3,opt,name=pre_receive_error,json=preReceiveError" json:"pre_receive_error,omitempty"`
+	BranchUpdate         *OperationBranchUpdate `protobuf:"bytes,1,opt,name=branch_update,json=branchUpdate,proto3" json:"branch_update,omitempty"`
+	IndexError           string                 `protobuf:"bytes,2,opt,name=index_error,json=indexError,proto3" json:"index_error,omitempty"`
+	PreReceiveError      string                 `protobuf:"bytes,3,opt,name=pre_receive_error,json=preReceiveError,proto3" json:"pre_receive_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
 }
 
-func (m *UserCommitFilesResponse) Reset()                    { *m = UserCommitFilesResponse{} }
-func (m *UserCommitFilesResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserCommitFilesResponse) ProtoMessage()               {}
-func (*UserCommitFilesResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{25} }
+func (m *UserCommitFilesResponse) Reset()         { *m = UserCommitFilesResponse{} }
+func (m *UserCommitFilesResponse) String() string { return proto.CompactTextString(m) }
+func (*UserCommitFilesResponse) ProtoMessage()    {}
+func (*UserCommitFilesResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{25}
+}
+func (m *UserCommitFilesResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserCommitFilesResponse.Unmarshal(m, b)
+}
+func (m *UserCommitFilesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserCommitFilesResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserCommitFilesResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserCommitFilesResponse.Merge(dst, src)
+}
+func (m *UserCommitFilesResponse) XXX_Size() int {
+	return xxx_messageInfo_UserCommitFilesResponse.Size(m)
+}
+func (m *UserCommitFilesResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserCommitFilesResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserCommitFilesResponse proto.InternalMessageInfo
 
 func (m *UserCommitFilesResponse) GetBranchUpdate() *OperationBranchUpdate {
 	if m != nil {
@@ -1252,19 +1838,41 @@ func (m *UserCommitFilesResponse) GetPreReceiveError() string {
 }
 
 type UserRebaseRequest struct {
-	Repository       *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	User             *User       `protobuf:"bytes,2,opt,name=user" json:"user,omitempty"`
-	RebaseId         string      `protobuf:"bytes,3,opt,name=rebase_id,json=rebaseId" json:"rebase_id,omitempty"`
-	Branch           []byte      `protobuf:"bytes,4,opt,name=branch,proto3" json:"branch,omitempty"`
-	BranchSha        string      `protobuf:"bytes,5,opt,name=branch_sha,json=branchSha" json:"branch_sha,omitempty"`
-	RemoteRepository *Repository `protobuf:"bytes,6,opt,name=remote_repository,json=remoteRepository" json:"remote_repository,omitempty"`
-	RemoteBranch     []byte      `protobuf:"bytes,7,opt,name=remote_branch,json=remoteBranch,proto3" json:"remote_branch,omitempty"`
+	Repository           *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	User                 *User       `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	RebaseId             string      `protobuf:"bytes,3,opt,name=rebase_id,json=rebaseId,proto3" json:"rebase_id,omitempty"`
+	Branch               []byte      `protobuf:"bytes,4,opt,name=branch,proto3" json:"branch,omitempty"`
+	BranchSha            string      `protobuf:"bytes,5,opt,name=branch_sha,json=branchSha,proto3" json:"branch_sha,omitempty"`
+	RemoteRepository     *Repository `protobuf:"bytes,6,opt,name=remote_repository,json=remoteRepository,proto3" json:"remote_repository,omitempty"`
+	RemoteBranch         []byte      `protobuf:"bytes,7,opt,name=remote_branch,json=remoteBranch,proto3" json:"remote_branch,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *UserRebaseRequest) Reset()                    { *m = UserRebaseRequest{} }
-func (m *UserRebaseRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserRebaseRequest) ProtoMessage()               {}
-func (*UserRebaseRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{26} }
+func (m *UserRebaseRequest) Reset()         { *m = UserRebaseRequest{} }
+func (m *UserRebaseRequest) String() string { return proto.CompactTextString(m) }
+func (*UserRebaseRequest) ProtoMessage()    {}
+func (*UserRebaseRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{26}
+}
+func (m *UserRebaseRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserRebaseRequest.Unmarshal(m, b)
+}
+func (m *UserRebaseRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserRebaseRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserRebaseRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserRebaseRequest.Merge(dst, src)
+}
+func (m *UserRebaseRequest) XXX_Size() int {
+	return xxx_messageInfo_UserRebaseRequest.Size(m)
+}
+func (m *UserRebaseRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserRebaseRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserRebaseRequest proto.InternalMessageInfo
 
 func (m *UserRebaseRequest) GetRepository() *Repository {
 	if m != nil {
@@ -1316,15 +1924,37 @@ func (m *UserRebaseRequest) GetRemoteBranch() []byte {
 }
 
 type UserRebaseResponse struct {
-	RebaseSha       string `protobuf:"bytes,1,opt,name=rebase_sha,json=rebaseSha" json:"rebase_sha,omitempty"`
-	PreReceiveError string `protobuf:"bytes,2,opt,name=pre_receive_error,json=preReceiveError" json:"pre_receive_error,omitempty"`
-	GitError        string `protobuf:"bytes,3,opt,name=git_error,json=gitError" json:"git_error,omitempty"`
+	RebaseSha            string   `protobuf:"bytes,1,opt,name=rebase_sha,json=rebaseSha,proto3" json:"rebase_sha,omitempty"`
+	PreReceiveError      string   `protobuf:"bytes,2,opt,name=pre_receive_error,json=preReceiveError,proto3" json:"pre_receive_error,omitempty"`
+	GitError             string   `protobuf:"bytes,3,opt,name=git_error,json=gitError,proto3" json:"git_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserRebaseResponse) Reset()                    { *m = UserRebaseResponse{} }
-func (m *UserRebaseResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserRebaseResponse) ProtoMessage()               {}
-func (*UserRebaseResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{27} }
+func (m *UserRebaseResponse) Reset()         { *m = UserRebaseResponse{} }
+func (m *UserRebaseResponse) String() string { return proto.CompactTextString(m) }
+func (*UserRebaseResponse) ProtoMessage()    {}
+func (*UserRebaseResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{27}
+}
+func (m *UserRebaseResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserRebaseResponse.Unmarshal(m, b)
+}
+func (m *UserRebaseResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserRebaseResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserRebaseResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserRebaseResponse.Merge(dst, src)
+}
+func (m *UserRebaseResponse) XXX_Size() int {
+	return xxx_messageInfo_UserRebaseResponse.Size(m)
+}
+func (m *UserRebaseResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserRebaseResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserRebaseResponse proto.InternalMessageInfo
 
 func (m *UserRebaseResponse) GetRebaseSha() string {
 	if m != nil {
@@ -1348,20 +1978,42 @@ func (m *UserRebaseResponse) GetGitError() string {
 }
 
 type UserSquashRequest struct {
-	Repository    *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	User          *User       `protobuf:"bytes,2,opt,name=user" json:"user,omitempty"`
-	SquashId      string      `protobuf:"bytes,3,opt,name=squash_id,json=squashId" json:"squash_id,omitempty"`
-	Branch        []byte      `protobuf:"bytes,4,opt,name=branch,proto3" json:"branch,omitempty"`
-	StartSha      string      `protobuf:"bytes,5,opt,name=start_sha,json=startSha" json:"start_sha,omitempty"`
-	EndSha        string      `protobuf:"bytes,6,opt,name=end_sha,json=endSha" json:"end_sha,omitempty"`
-	Author        *User       `protobuf:"bytes,7,opt,name=author" json:"author,omitempty"`
-	CommitMessage []byte      `protobuf:"bytes,8,opt,name=commit_message,json=commitMessage,proto3" json:"commit_message,omitempty"`
+	Repository           *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	User                 *User       `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	SquashId             string      `protobuf:"bytes,3,opt,name=squash_id,json=squashId,proto3" json:"squash_id,omitempty"`
+	Branch               []byte      `protobuf:"bytes,4,opt,name=branch,proto3" json:"branch,omitempty"`
+	StartSha             string      `protobuf:"bytes,5,opt,name=start_sha,json=startSha,proto3" json:"start_sha,omitempty"`
+	EndSha               string      `protobuf:"bytes,6,opt,name=end_sha,json=endSha,proto3" json:"end_sha,omitempty"`
+	Author               *User       `protobuf:"bytes,7,opt,name=author,proto3" json:"author,omitempty"`
+	CommitMessage        []byte      `protobuf:"bytes,8,opt,name=commit_message,json=commitMessage,proto3" json:"commit_message,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *UserSquashRequest) Reset()                    { *m = UserSquashRequest{} }
-func (m *UserSquashRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserSquashRequest) ProtoMessage()               {}
-func (*UserSquashRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{28} }
+func (m *UserSquashRequest) Reset()         { *m = UserSquashRequest{} }
+func (m *UserSquashRequest) String() string { return proto.CompactTextString(m) }
+func (*UserSquashRequest) ProtoMessage()    {}
+func (*UserSquashRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{28}
+}
+func (m *UserSquashRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserSquashRequest.Unmarshal(m, b)
+}
+func (m *UserSquashRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserSquashRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserSquashRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserSquashRequest.Merge(dst, src)
+}
+func (m *UserSquashRequest) XXX_Size() int {
+	return xxx_messageInfo_UserSquashRequest.Size(m)
+}
+func (m *UserSquashRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserSquashRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserSquashRequest proto.InternalMessageInfo
 
 func (m *UserSquashRequest) GetRepository() *Repository {
 	if m != nil {
@@ -1420,14 +2072,36 @@ func (m *UserSquashRequest) GetCommitMessage() []byte {
 }
 
 type UserSquashResponse struct {
-	SquashSha string `protobuf:"bytes,1,opt,name=squash_sha,json=squashSha" json:"squash_sha,omitempty"`
-	GitError  string `protobuf:"bytes,3,opt,name=git_error,json=gitError" json:"git_error,omitempty"`
+	SquashSha            string   `protobuf:"bytes,1,opt,name=squash_sha,json=squashSha,proto3" json:"squash_sha,omitempty"`
+	GitError             string   `protobuf:"bytes,3,opt,name=git_error,json=gitError,proto3" json:"git_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UserSquashResponse) Reset()                    { *m = UserSquashResponse{} }
-func (m *UserSquashResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserSquashResponse) ProtoMessage()               {}
-func (*UserSquashResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{29} }
+func (m *UserSquashResponse) Reset()         { *m = UserSquashResponse{} }
+func (m *UserSquashResponse) String() string { return proto.CompactTextString(m) }
+func (*UserSquashResponse) ProtoMessage()    {}
+func (*UserSquashResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{29}
+}
+func (m *UserSquashResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserSquashResponse.Unmarshal(m, b)
+}
+func (m *UserSquashResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserSquashResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserSquashResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserSquashResponse.Merge(dst, src)
+}
+func (m *UserSquashResponse) XXX_Size() int {
+	return xxx_messageInfo_UserSquashResponse.Size(m)
+}
+func (m *UserSquashResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserSquashResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserSquashResponse proto.InternalMessageInfo
 
 func (m *UserSquashResponse) GetSquashSha() string {
 	if m != nil {
@@ -1448,23 +2122,49 @@ type UserApplyPatchRequest struct {
 	//	*UserApplyPatchRequest_Header_
 	//	*UserApplyPatchRequest_Patches
 	UserApplyPatchRequestPayload isUserApplyPatchRequest_UserApplyPatchRequestPayload `protobuf_oneof:"user_apply_patch_request_payload"`
+	XXX_NoUnkeyedLiteral         struct{}                                             `json:"-"`
+	XXX_unrecognized             []byte                                               `json:"-"`
+	XXX_sizecache                int32                                                `json:"-"`
 }
 
-func (m *UserApplyPatchRequest) Reset()                    { *m = UserApplyPatchRequest{} }
-func (m *UserApplyPatchRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserApplyPatchRequest) ProtoMessage()               {}
-func (*UserApplyPatchRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{30} }
+func (m *UserApplyPatchRequest) Reset()         { *m = UserApplyPatchRequest{} }
+func (m *UserApplyPatchRequest) String() string { return proto.CompactTextString(m) }
+func (*UserApplyPatchRequest) ProtoMessage()    {}
+func (*UserApplyPatchRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{30}
+}
+func (m *UserApplyPatchRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserApplyPatchRequest.Unmarshal(m, b)
+}
+func (m *UserApplyPatchRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserApplyPatchRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserApplyPatchRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserApplyPatchRequest.Merge(dst, src)
+}
+func (m *UserApplyPatchRequest) XXX_Size() int {
+	return xxx_messageInfo_UserApplyPatchRequest.Size(m)
+}
+func (m *UserApplyPatchRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserApplyPatchRequest.DiscardUnknown(m)
+}
 
-type isUserApplyPatchRequest_UserApplyPatchRequestPayload interface{ isUserApplyPatchRequest_UserApplyPatchRequestPayload() }
+var xxx_messageInfo_UserApplyPatchRequest proto.InternalMessageInfo
+
+type isUserApplyPatchRequest_UserApplyPatchRequestPayload interface {
+	isUserApplyPatchRequest_UserApplyPatchRequestPayload()
+}
 
 type UserApplyPatchRequest_Header_ struct {
-	Header *UserApplyPatchRequest_Header `protobuf:"bytes,1,opt,name=header,oneof"`
+	Header *UserApplyPatchRequest_Header `protobuf:"bytes,1,opt,name=header,proto3,oneof"`
 }
+
 type UserApplyPatchRequest_Patches struct {
 	Patches []byte `protobuf:"bytes,2,opt,name=patches,proto3,oneof"`
 }
 
 func (*UserApplyPatchRequest_Header_) isUserApplyPatchRequest_UserApplyPatchRequestPayload() {}
+
 func (*UserApplyPatchRequest_Patches) isUserApplyPatchRequest_UserApplyPatchRequestPayload() {}
 
 func (m *UserApplyPatchRequest) GetUserApplyPatchRequestPayload() isUserApplyPatchRequest_UserApplyPatchRequestPayload {
@@ -1544,11 +2244,11 @@ func _UserApplyPatchRequest_OneofSizer(msg proto.Message) (n int) {
 	switch x := m.UserApplyPatchRequestPayload.(type) {
 	case *UserApplyPatchRequest_Header_:
 		s := proto.Size(x.Header)
-		n += proto.SizeVarint(1<<3 | proto.WireBytes)
+		n += 1 // tag and wire
 		n += proto.SizeVarint(uint64(s))
 		n += s
 	case *UserApplyPatchRequest_Patches:
-		n += proto.SizeVarint(2<<3 | proto.WireBytes)
+		n += 1 // tag and wire
 		n += proto.SizeVarint(uint64(len(x.Patches)))
 		n += len(x.Patches)
 	case nil:
@@ -1559,17 +2259,37 @@ func _UserApplyPatchRequest_OneofSizer(msg proto.Message) (n int) {
 }
 
 type UserApplyPatchRequest_Header struct {
-	Repository   *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	User         *User       `protobuf:"bytes,2,opt,name=user" json:"user,omitempty"`
-	TargetBranch []byte      `protobuf:"bytes,3,opt,name=target_branch,json=targetBranch,proto3" json:"target_branch,omitempty"`
+	Repository           *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	User                 *User       `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	TargetBranch         []byte      `protobuf:"bytes,3,opt,name=target_branch,json=targetBranch,proto3" json:"target_branch,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
 func (m *UserApplyPatchRequest_Header) Reset()         { *m = UserApplyPatchRequest_Header{} }
 func (m *UserApplyPatchRequest_Header) String() string { return proto.CompactTextString(m) }
 func (*UserApplyPatchRequest_Header) ProtoMessage()    {}
 func (*UserApplyPatchRequest_Header) Descriptor() ([]byte, []int) {
-	return fileDescriptor8, []int{30, 0}
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{30, 0}
 }
+func (m *UserApplyPatchRequest_Header) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserApplyPatchRequest_Header.Unmarshal(m, b)
+}
+func (m *UserApplyPatchRequest_Header) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserApplyPatchRequest_Header.Marshal(b, m, deterministic)
+}
+func (dst *UserApplyPatchRequest_Header) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserApplyPatchRequest_Header.Merge(dst, src)
+}
+func (m *UserApplyPatchRequest_Header) XXX_Size() int {
+	return xxx_messageInfo_UserApplyPatchRequest_Header.Size(m)
+}
+func (m *UserApplyPatchRequest_Header) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserApplyPatchRequest_Header.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserApplyPatchRequest_Header proto.InternalMessageInfo
 
 func (m *UserApplyPatchRequest_Header) GetRepository() *Repository {
 	if m != nil {
@@ -1593,13 +2313,35 @@ func (m *UserApplyPatchRequest_Header) GetTargetBranch() []byte {
 }
 
 type UserApplyPatchResponse struct {
-	BranchUpdate *OperationBranchUpdate `protobuf:"bytes,1,opt,name=branch_update,json=branchUpdate" json:"branch_update,omitempty"`
+	BranchUpdate         *OperationBranchUpdate `protobuf:"bytes,1,opt,name=branch_update,json=branchUpdate,proto3" json:"branch_update,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
 }
 
-func (m *UserApplyPatchResponse) Reset()                    { *m = UserApplyPatchResponse{} }
-func (m *UserApplyPatchResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserApplyPatchResponse) ProtoMessage()               {}
-func (*UserApplyPatchResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{31} }
+func (m *UserApplyPatchResponse) Reset()         { *m = UserApplyPatchResponse{} }
+func (m *UserApplyPatchResponse) String() string { return proto.CompactTextString(m) }
+func (*UserApplyPatchResponse) ProtoMessage()    {}
+func (*UserApplyPatchResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{31}
+}
+func (m *UserApplyPatchResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserApplyPatchResponse.Unmarshal(m, b)
+}
+func (m *UserApplyPatchResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserApplyPatchResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserApplyPatchResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserApplyPatchResponse.Merge(dst, src)
+}
+func (m *UserApplyPatchResponse) XXX_Size() int {
+	return xxx_messageInfo_UserApplyPatchResponse.Size(m)
+}
+func (m *UserApplyPatchResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserApplyPatchResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserApplyPatchResponse proto.InternalMessageInfo
 
 func (m *UserApplyPatchResponse) GetBranchUpdate() *OperationBranchUpdate {
 	if m != nil {
@@ -1609,18 +2351,40 @@ func (m *UserApplyPatchResponse) GetBranchUpdate() *OperationBranchUpdate {
 }
 
 type UserUpdateSubmoduleRequest struct {
-	Repository    *Repository `protobuf:"bytes,1,opt,name=repository" json:"repository,omitempty"`
-	User          *User       `protobuf:"bytes,2,opt,name=user" json:"user,omitempty"`
-	CommitSha     string      `protobuf:"bytes,3,opt,name=commit_sha,json=commitSha" json:"commit_sha,omitempty"`
-	Branch        []byte      `protobuf:"bytes,4,opt,name=branch,proto3" json:"branch,omitempty"`
-	Submodule     []byte      `protobuf:"bytes,5,opt,name=submodule,proto3" json:"submodule,omitempty"`
-	CommitMessage []byte      `protobuf:"bytes,6,opt,name=commit_message,json=commitMessage,proto3" json:"commit_message,omitempty"`
+	Repository           *Repository `protobuf:"bytes,1,opt,name=repository,proto3" json:"repository,omitempty"`
+	User                 *User       `protobuf:"bytes,2,opt,name=user,proto3" json:"user,omitempty"`
+	CommitSha            string      `protobuf:"bytes,3,opt,name=commit_sha,json=commitSha,proto3" json:"commit_sha,omitempty"`
+	Branch               []byte      `protobuf:"bytes,4,opt,name=branch,proto3" json:"branch,omitempty"`
+	Submodule            []byte      `protobuf:"bytes,5,opt,name=submodule,proto3" json:"submodule,omitempty"`
+	CommitMessage        []byte      `protobuf:"bytes,6,opt,name=commit_message,json=commitMessage,proto3" json:"commit_message,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
+	XXX_unrecognized     []byte      `json:"-"`
+	XXX_sizecache        int32       `json:"-"`
 }
 
-func (m *UserUpdateSubmoduleRequest) Reset()                    { *m = UserUpdateSubmoduleRequest{} }
-func (m *UserUpdateSubmoduleRequest) String() string            { return proto.CompactTextString(m) }
-func (*UserUpdateSubmoduleRequest) ProtoMessage()               {}
-func (*UserUpdateSubmoduleRequest) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{32} }
+func (m *UserUpdateSubmoduleRequest) Reset()         { *m = UserUpdateSubmoduleRequest{} }
+func (m *UserUpdateSubmoduleRequest) String() string { return proto.CompactTextString(m) }
+func (*UserUpdateSubmoduleRequest) ProtoMessage()    {}
+func (*UserUpdateSubmoduleRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{32}
+}
+func (m *UserUpdateSubmoduleRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserUpdateSubmoduleRequest.Unmarshal(m, b)
+}
+func (m *UserUpdateSubmoduleRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserUpdateSubmoduleRequest.Marshal(b, m, deterministic)
+}
+func (dst *UserUpdateSubmoduleRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserUpdateSubmoduleRequest.Merge(dst, src)
+}
+func (m *UserUpdateSubmoduleRequest) XXX_Size() int {
+	return xxx_messageInfo_UserUpdateSubmoduleRequest.Size(m)
+}
+func (m *UserUpdateSubmoduleRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserUpdateSubmoduleRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserUpdateSubmoduleRequest proto.InternalMessageInfo
 
 func (m *UserUpdateSubmoduleRequest) GetRepository() *Repository {
 	if m != nil {
@@ -1665,15 +2429,37 @@ func (m *UserUpdateSubmoduleRequest) GetCommitMessage() []byte {
 }
 
 type UserUpdateSubmoduleResponse struct {
-	BranchUpdate    *OperationBranchUpdate `protobuf:"bytes,1,opt,name=branch_update,json=branchUpdate" json:"branch_update,omitempty"`
-	PreReceiveError string                 `protobuf:"bytes,2,opt,name=pre_receive_error,json=preReceiveError" json:"pre_receive_error,omitempty"`
-	CommitError     string                 `protobuf:"bytes,4,opt,name=commit_error,json=commitError" json:"commit_error,omitempty"`
+	BranchUpdate         *OperationBranchUpdate `protobuf:"bytes,1,opt,name=branch_update,json=branchUpdate,proto3" json:"branch_update,omitempty"`
+	PreReceiveError      string                 `protobuf:"bytes,2,opt,name=pre_receive_error,json=preReceiveError,proto3" json:"pre_receive_error,omitempty"`
+	CommitError          string                 `protobuf:"bytes,4,opt,name=commit_error,json=commitError,proto3" json:"commit_error,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}               `json:"-"`
+	XXX_unrecognized     []byte                 `json:"-"`
+	XXX_sizecache        int32                  `json:"-"`
 }
 
-func (m *UserUpdateSubmoduleResponse) Reset()                    { *m = UserUpdateSubmoduleResponse{} }
-func (m *UserUpdateSubmoduleResponse) String() string            { return proto.CompactTextString(m) }
-func (*UserUpdateSubmoduleResponse) ProtoMessage()               {}
-func (*UserUpdateSubmoduleResponse) Descriptor() ([]byte, []int) { return fileDescriptor8, []int{33} }
+func (m *UserUpdateSubmoduleResponse) Reset()         { *m = UserUpdateSubmoduleResponse{} }
+func (m *UserUpdateSubmoduleResponse) String() string { return proto.CompactTextString(m) }
+func (*UserUpdateSubmoduleResponse) ProtoMessage()    {}
+func (*UserUpdateSubmoduleResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_operations_c652ed28d9f91e3b, []int{33}
+}
+func (m *UserUpdateSubmoduleResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UserUpdateSubmoduleResponse.Unmarshal(m, b)
+}
+func (m *UserUpdateSubmoduleResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UserUpdateSubmoduleResponse.Marshal(b, m, deterministic)
+}
+func (dst *UserUpdateSubmoduleResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UserUpdateSubmoduleResponse.Merge(dst, src)
+}
+func (m *UserUpdateSubmoduleResponse) XXX_Size() int {
+	return xxx_messageInfo_UserUpdateSubmoduleResponse.Size(m)
+}
+func (m *UserUpdateSubmoduleResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UserUpdateSubmoduleResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UserUpdateSubmoduleResponse proto.InternalMessageInfo
 
 func (m *UserUpdateSubmoduleResponse) GetBranchUpdate() *OperationBranchUpdate {
 	if m != nil {
@@ -1743,8 +2529,9 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// Client API for OperationService service
-
+// OperationServiceClient is the client API for OperationService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type OperationServiceClient interface {
 	UserCreateBranch(ctx context.Context, in *UserCreateBranchRequest, opts ...grpc.CallOption) (*UserCreateBranchResponse, error)
 	UserUpdateBranch(ctx context.Context, in *UserUpdateBranchRequest, opts ...grpc.CallOption) (*UserUpdateBranchResponse, error)
@@ -1773,7 +2560,7 @@ func NewOperationServiceClient(cc *grpc.ClientConn) OperationServiceClient {
 
 func (c *operationServiceClient) UserCreateBranch(ctx context.Context, in *UserCreateBranchRequest, opts ...grpc.CallOption) (*UserCreateBranchResponse, error) {
 	out := new(UserCreateBranchResponse)
-	err := grpc.Invoke(ctx, "/gitaly.OperationService/UserCreateBranch", in, out, c.cc, opts...)
+	err := c.cc.Invoke(ctx, "/gitaly.OperationService/UserCreateBranch", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1782,7 +2569,7 @@ func (c *operationServiceClient) UserCreateBranch(ctx context.Context, in *UserC
 
 func (c *operationServiceClient) UserUpdateBranch(ctx context.Context, in *UserUpdateBranchRequest, opts ...grpc.CallOption) (*UserUpdateBranchResponse, error) {
 	out := new(UserUpdateBranchResponse)
-	err := grpc.Invoke(ctx, "/gitaly.OperationService/UserUpdateBranch", in, out, c.cc, opts...)
+	err := c.cc.Invoke(ctx, "/gitaly.OperationService/UserUpdateBranch", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1791,7 +2578,7 @@ func (c *operationServiceClient) UserUpdateBranch(ctx context.Context, in *UserU
 
 func (c *operationServiceClient) UserDeleteBranch(ctx context.Context, in *UserDeleteBranchRequest, opts ...grpc.CallOption) (*UserDeleteBranchResponse, error) {
 	out := new(UserDeleteBranchResponse)
-	err := grpc.Invoke(ctx, "/gitaly.OperationService/UserDeleteBranch", in, out, c.cc, opts...)
+	err := c.cc.Invoke(ctx, "/gitaly.OperationService/UserDeleteBranch", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1800,7 +2587,7 @@ func (c *operationServiceClient) UserDeleteBranch(ctx context.Context, in *UserD
 
 func (c *operationServiceClient) UserCreateTag(ctx context.Context, in *UserCreateTagRequest, opts ...grpc.CallOption) (*UserCreateTagResponse, error) {
 	out := new(UserCreateTagResponse)
-	err := grpc.Invoke(ctx, "/gitaly.OperationService/UserCreateTag", in, out, c.cc, opts...)
+	err := c.cc.Invoke(ctx, "/gitaly.OperationService/UserCreateTag", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1809,7 +2596,7 @@ func (c *operationServiceClient) UserCreateTag(ctx context.Context, in *UserCrea
 
 func (c *operationServiceClient) UserDeleteTag(ctx context.Context, in *UserDeleteTagRequest, opts ...grpc.CallOption) (*UserDeleteTagResponse, error) {
 	out := new(UserDeleteTagResponse)
-	err := grpc.Invoke(ctx, "/gitaly.OperationService/UserDeleteTag", in, out, c.cc, opts...)
+	err := c.cc.Invoke(ctx, "/gitaly.OperationService/UserDeleteTag", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1818,7 +2605,7 @@ func (c *operationServiceClient) UserDeleteTag(ctx context.Context, in *UserDele
 
 func (c *operationServiceClient) UserMergeToRef(ctx context.Context, in *UserMergeToRefRequest, opts ...grpc.CallOption) (*UserMergeToRefResponse, error) {
 	out := new(UserMergeToRefResponse)
-	err := grpc.Invoke(ctx, "/gitaly.OperationService/UserMergeToRef", in, out, c.cc, opts...)
+	err := c.cc.Invoke(ctx, "/gitaly.OperationService/UserMergeToRef", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1826,7 +2613,7 @@ func (c *operationServiceClient) UserMergeToRef(ctx context.Context, in *UserMer
 }
 
 func (c *operationServiceClient) UserMergeBranch(ctx context.Context, opts ...grpc.CallOption) (OperationService_UserMergeBranchClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_OperationService_serviceDesc.Streams[0], c.cc, "/gitaly.OperationService/UserMergeBranch", opts...)
+	stream, err := c.cc.NewStream(ctx, &_OperationService_serviceDesc.Streams[0], "/gitaly.OperationService/UserMergeBranch", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1858,7 +2645,7 @@ func (x *operationServiceUserMergeBranchClient) Recv() (*UserMergeBranchResponse
 
 func (c *operationServiceClient) UserFFBranch(ctx context.Context, in *UserFFBranchRequest, opts ...grpc.CallOption) (*UserFFBranchResponse, error) {
 	out := new(UserFFBranchResponse)
-	err := grpc.Invoke(ctx, "/gitaly.OperationService/UserFFBranch", in, out, c.cc, opts...)
+	err := c.cc.Invoke(ctx, "/gitaly.OperationService/UserFFBranch", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1867,7 +2654,7 @@ func (c *operationServiceClient) UserFFBranch(ctx context.Context, in *UserFFBra
 
 func (c *operationServiceClient) UserCherryPick(ctx context.Context, in *UserCherryPickRequest, opts ...grpc.CallOption) (*UserCherryPickResponse, error) {
 	out := new(UserCherryPickResponse)
-	err := grpc.Invoke(ctx, "/gitaly.OperationService/UserCherryPick", in, out, c.cc, opts...)
+	err := c.cc.Invoke(ctx, "/gitaly.OperationService/UserCherryPick", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1876,7 +2663,7 @@ func (c *operationServiceClient) UserCherryPick(ctx context.Context, in *UserChe
 
 func (c *operationServiceClient) UserRevert(ctx context.Context, in *UserRevertRequest, opts ...grpc.CallOption) (*UserRevertResponse, error) {
 	out := new(UserRevertResponse)
-	err := grpc.Invoke(ctx, "/gitaly.OperationService/UserRevert", in, out, c.cc, opts...)
+	err := c.cc.Invoke(ctx, "/gitaly.OperationService/UserRevert", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1884,7 +2671,7 @@ func (c *operationServiceClient) UserRevert(ctx context.Context, in *UserRevertR
 }
 
 func (c *operationServiceClient) UserCommitFiles(ctx context.Context, opts ...grpc.CallOption) (OperationService_UserCommitFilesClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_OperationService_serviceDesc.Streams[1], c.cc, "/gitaly.OperationService/UserCommitFiles", opts...)
+	stream, err := c.cc.NewStream(ctx, &_OperationService_serviceDesc.Streams[1], "/gitaly.OperationService/UserCommitFiles", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1919,7 +2706,7 @@ func (x *operationServiceUserCommitFilesClient) CloseAndRecv() (*UserCommitFiles
 
 func (c *operationServiceClient) UserRebase(ctx context.Context, in *UserRebaseRequest, opts ...grpc.CallOption) (*UserRebaseResponse, error) {
 	out := new(UserRebaseResponse)
-	err := grpc.Invoke(ctx, "/gitaly.OperationService/UserRebase", in, out, c.cc, opts...)
+	err := c.cc.Invoke(ctx, "/gitaly.OperationService/UserRebase", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1928,7 +2715,7 @@ func (c *operationServiceClient) UserRebase(ctx context.Context, in *UserRebaseR
 
 func (c *operationServiceClient) UserSquash(ctx context.Context, in *UserSquashRequest, opts ...grpc.CallOption) (*UserSquashResponse, error) {
 	out := new(UserSquashResponse)
-	err := grpc.Invoke(ctx, "/gitaly.OperationService/UserSquash", in, out, c.cc, opts...)
+	err := c.cc.Invoke(ctx, "/gitaly.OperationService/UserSquash", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1936,7 +2723,7 @@ func (c *operationServiceClient) UserSquash(ctx context.Context, in *UserSquashR
 }
 
 func (c *operationServiceClient) UserApplyPatch(ctx context.Context, opts ...grpc.CallOption) (OperationService_UserApplyPatchClient, error) {
-	stream, err := grpc.NewClientStream(ctx, &_OperationService_serviceDesc.Streams[2], c.cc, "/gitaly.OperationService/UserApplyPatch", opts...)
+	stream, err := c.cc.NewStream(ctx, &_OperationService_serviceDesc.Streams[2], "/gitaly.OperationService/UserApplyPatch", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1971,15 +2758,14 @@ func (x *operationServiceUserApplyPatchClient) CloseAndRecv() (*UserApplyPatchRe
 
 func (c *operationServiceClient) UserUpdateSubmodule(ctx context.Context, in *UserUpdateSubmoduleRequest, opts ...grpc.CallOption) (*UserUpdateSubmoduleResponse, error) {
 	out := new(UserUpdateSubmoduleResponse)
-	err := grpc.Invoke(ctx, "/gitaly.OperationService/UserUpdateSubmodule", in, out, c.cc, opts...)
+	err := c.cc.Invoke(ctx, "/gitaly.OperationService/UserUpdateSubmodule", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// Server API for OperationService service
-
+// OperationServiceServer is the server API for OperationService service.
 type OperationServiceServer interface {
 	UserCreateBranch(context.Context, *UserCreateBranchRequest) (*UserCreateBranchResponse, error)
 	UserUpdateBranch(context.Context, *UserUpdateBranchRequest) (*UserUpdateBranchResponse, error)
@@ -2370,9 +3156,9 @@ var _OperationService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "operations.proto",
 }
 
-func init() { proto.RegisterFile("operations.proto", fileDescriptor8) }
+func init() { proto.RegisterFile("operations.proto", fileDescriptor_operations_c652ed28d9f91e3b) }
 
-var fileDescriptor8 = []byte{
+var fileDescriptor_operations_c652ed28d9f91e3b = []byte{
 	// 1824 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xec, 0x59, 0xcd, 0x6f, 0x2b, 0x49,
 	0x11, 0xf7, 0xd8, 0xce, 0xc4, 0xae, 0x38, 0x89, 0xd3, 0xfb, 0xe5, 0xf5, 0x4b, 0x48, 0x76, 0xb2,
