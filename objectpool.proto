@@ -15,10 +15,6 @@ service ObjectPoolService {
   rpc ReduplicateRepository(ReduplicateRepositoryRequest) returns (ReduplicateRepositoryResponse) {}
 }
 
-message ObjectPool {
-  Repository repository = 1;
-}
-
 // Creates an object pool from the repository. The client is responsible for
 // joining this pool later with this repository.
 message CreateObjectPoolRequest {

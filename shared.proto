@@ -80,3 +80,7 @@ message User {
   bytes email = 3;
   string gl_username = 4;
 }
+
+message ObjectPool {
+  Repository repository = 1;
+}
