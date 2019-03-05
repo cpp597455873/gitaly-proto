@@ -90,6 +90,104 @@ gRPC provides an implementation framework based on these Protobuf concepts.
     Good: `service CommitService { rpc CommitExists }`. Bad:
     `service CommitService { rpc Exists }`.
 
+### Common field names and types
+
+As a general principle, remember that Git does not enforce encodings on
+most data inside repositories, so we can rarely assume data to be a
+Protobuf "string" (which implies UTF-8).
+
+1.  `bytes revision`: for fields that accept any of branch names / tag
+    names / commit ID's. Uses `bytes` to be encoding agnostic.
+2.  `string commit_id`: for fields that accept a commit ID.
+3.  `bytes ref`: for fields that accept a refname.
+4.  `bytes path`: for paths inside Git repositories, i.e., inside Git
+    `tree` objects.
+5.  `string relative_path`: for paths on disk on a Gitaly server,
+    created by "us" (GitLab the application) instead of the user, we
+    want to use UTF-8, or better, ASCII.
+
+### Stream patterns
+
+These are some patterns we already use, or want to use going forward.
+
+#### Stream response of many small items
+
+```
+rpc FooBar(FooBarRequest) returns (stream FooBarResponse);
+
+message FooBarResponse {
+  message Item {
+    // ...
+  }
+  repeated Item items = 1;
+}
+```
+
+A typical example of an "Item" would be a commit. To avoid the penalty
+of network IO for each Item we return, we batch them together. You can
+think of this as a kind of buffered IO at the level of the Item
+messages. In Go, to ease the bookkeeping you can use
+[gitlab.com/gitlab-org/gitaly/internal/helper/chunker](https://godoc.org/gitlab.com/gitlab-org/gitaly/internal/helper/chunker).
+
+#### Single large item split over multiple messages
+
+```
+rpc FooBar(FooBarRequest) returns (stream FooBarResponse);
+
+message FooBarResponse {
+  message Header {
+    // ...
+  }
+
+  oneof payload {
+    Header header = 1;
+    bytes data = 2;
+  }
+}
+```
+
+A typical example of a large item would be the contents of a Git blob.
+The header might contain the blob OID and the blob size. Only the first
+message in the response stream has `header` set, all others have `data`
+but no `header`.
+
+In the particular case where you're sending back raw binary data from
+Go, you can use
+[gitlab.com/gitlab-org/gitaly/streamio](https://godoc.org/gitlab.com/gitlab-org/gitaly/streamio)
+to turn your gRPC response stream into an `io.Writer`.
+
+> Note that a number of existing RPC's do not use this pattern exactly;
+> they don't use `oneof`. In practice this creates ambiguity (does the
+> first message contain non-empty `data`?) and encourages complex
+> optimization in the server implementation (trying to squeeze data into
+> the first response message). Using `oneof` avoids this ambiguity.
+
+#### Many large items split over multiple messages
+
+```
+rpc FooBar(FooBarRequest) returns (stream FooBarResponse);
+
+message FooBarResponse {
+  message Header {
+    // ...
+  }
+
+  oneof payload {
+    Header header = 1;
+    bytes data = 2;
+  }
+}
+```
+
+This looks the same as the "single large item" case above, except
+whenever a new large item begins, we send a new message with a non-empty
+`header` field.
+
+#### Footers
+
+If the RPC requires it we can also send a footer using `oneof`. But by
+default, we prefer headers.
+
 ## Contributing
 
 The CI at https://gitlab.com/gitlab-org/gitaly-proto regenerates the
