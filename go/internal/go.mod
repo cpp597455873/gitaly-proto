@@ -5,5 +5,5 @@ require (
 	github.com/pseudomuto/protoc-gen-doc v1.1.0
 	github.com/pseudomuto/protokit v0.1.0 // indirect
 	github.com/stretchr/testify v0.0.0-20190109162356-363ebb24d041
-	gitlab.com/gitlab-org/gitaly-proto/go/gitalypb v0.0.0-20190306063018-987d48420cdb
+	gitlab.com/gitlab-org/gitaly-proto/go/gitalypb v0.0.0-20190306195752-3915caaafcb8
 )
