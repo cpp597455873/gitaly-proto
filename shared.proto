@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package gitaly;
 
+option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
+
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/descriptor.proto";
 
@@ -19,8 +21,6 @@ extend google.protobuf.MessageOptions {
   // Random high number..
   OperationMsg op_type = 82302;
 }
-
-option go_package = "gitalypb";
 
 message Repository {
   // DEPRECATED: https://gitlab.com/gitlab-org/gitaly/issues/151

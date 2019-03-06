@@ -1,8 +1,13 @@
 #!/usr/bin/env ruby
+
+require 'fileutils'
+
 require_relative 'run.rb'
 
 def main
   no_changes!
+  FileUtils.rm(Dir[File.join('go/gitalypb/*.pb.go')])
+  run!(%w[make pb-go-stubs])
   run!(%w[_support/generate-from-proto])
   no_changes!
   puts 'OK! The gRPC / Protobuf clients are up-to-date'

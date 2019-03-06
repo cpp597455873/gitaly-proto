@@ -1,18 +1,19 @@
-image: golang:1.10
+image: golang:1.11
+
+variables:
+  GO111MODULE: "on"
 
 before_script:
   - apt-get update -qq
   - apt-get install -qq -y rubygems bundler unzip
 
+test:
+  script:
+    - make test
+
 build:
   script:
     - make
-
-lint:
-  before_script: []
-  script:
-    - go get -u gitlab.com/pokstad1/protoc-gen-gitaly
-    - protoc --gitaly_out=. *.proto
 
 check-grpc-proto-clients:
   script:

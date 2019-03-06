@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package gitaly;
 
+option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
+
 import "shared.proto";
 
 service ServerService {
@@ -9,11 +11,10 @@ service ServerService {
 }
 
 message ServerInfoRequest {
+  option (op_type).op = ACCESSOR;
 }
 
 message ServerInfoResponse {
-  option (op_type).op = ACCESSOR;
-
   message StorageStatus {
     string storage_name = 1;
     bool readable = 2;

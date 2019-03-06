@@ -3,6 +3,8 @@ syntax = "proto3";
 package gitaly;
 
 import "blob.proto";
+option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
+
 import "shared.proto";
 import "google/protobuf/timestamp.proto";
 

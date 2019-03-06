@@ -5,13 +5,13 @@ BIN_BUILD_DIR := $(TARGET_DIR)/bin
 unexport GOROOT
 unexport GOBIN
 
-export GOPATH := $(TARGET_DIR)
-export PATH := $(GOPATH)/bin:$(PATH)
+export PATH := $(TARGET_DIR)/bin:$(PATH)
 
 # Developer Tools
 PROTOC = $(TARGET_DIR)/protoc/bin/protoc
 PROTOC_GEN_GO = $(BIN_BUILD_DIR)/protoc-gen-go
 PROTOC_GEN_DOC = $(BIN_BUILD_DIR)/protoc-gen-doc
+PROTOC_GEN_GITALY := $(BIN_BUILD_DIR)/protoc-gen-gitaly
 
 .PHONY: all
 all: generate
@@ -22,7 +22,7 @@ $(TARGET_SETUP):
 	touch $(TARGET_SETUP)
 
 .PHONY: generate
-generate: install-developer-tools
+generate: install-developer-tools go/gitalypb/*.pb.go
 	_support/generate-from-proto
 
 .PHONY: clean
@@ -41,7 +41,7 @@ check-grpc-proto-clients: install-developer-tools
 	_support/check-grpc-proto-clients
 
 .PHONY: install-developer-tools
-install-developer-tools: $(TARGET_SETUP) $(PROTOC) .ruby-bundle
+install-developer-tools: $(TARGET_SETUP) $(PROTOC) .ruby-bundle $(PROTOC_GEN_GITALY)
 
 .PHONY: docs
 docs: $(TARGET_SETUP) $(PROTOC_GEN_DOC) $(PROTOC)
@@ -57,5 +57,25 @@ $(PROTOC): $(TARGET_SETUP)
 	bundle install --gemfile=_support/Gemfile --binstubs=$(BIN_BUILD_DIR)
 	touch $@	
 
+$(PROTOC_GEN_GO): $(TARGET_SETUP)
+	cd go/internal; go build -o $@ github.com/golang/protobuf/protoc-gen-go
+
 $(PROTOC_GEN_DOC): $(TARGET_SETUP)
-	go get -v -u github.com/pseudomuto/protoc-gen-doc/cmd/...
+	cd go/internal; go build -o $@ github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
+
+$(PROTOC_GEN_GITALY): $(TARGET_SETUP) go/internal/linter/testdata/*.pb.go
+	# Check if test protobuf stubs are stale
+	cd go/internal; go build -o $@ gitlab.com/gitlab-org/gitaly-proto/go/internal/cmd/protoc-gen-gitaly
+
+.PHONY: pb-go-stubs
+pb-go-stubs: go/gitalypb/*.pb.go
+
+go/gitalypb/%.pb.go: %.proto $(PROTOC) $(PROTOC_GEN_GO)
+	$(PROTOC) --go_out=paths=source_relative,plugins=grpc:./go/gitalypb -I$(shell pwd) *.proto
+
+go/internal/linter/testdata/%.pb.go: go/internal/linter/testdata/%.proto $(PROTOC) $(PROTOC_GEN_GO) go/gitalypb/*.pb.go
+	$(PROTOC) --go_out=paths=source_relative:. -I$(shell pwd) -I$(shell pwd)/go/internal/linter/testdata go/internal/linter/testdata/*.proto
+
+.PHONY: test
+test:
+	cd go/internal; go test ./...

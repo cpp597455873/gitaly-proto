@@ -6,3 +6,4 @@
 /*.gem
 public
 .ruby-bundle
+/go/vendor

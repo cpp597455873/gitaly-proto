@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
+
 import "shared.proto";
 
 package gitaly;
