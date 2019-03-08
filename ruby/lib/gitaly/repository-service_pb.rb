@@ -268,12 +268,14 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :match_data, :bytes, 2
     optional :end_of_match, :bool, 3
   end
-  add_message "gitaly.PreFetchRequest" do
+  add_message "gitaly.GeoFetchWithPoolRequest" do
     optional :source_repository, :message, 1, "gitaly.Repository"
     optional :target_repository, :message, 2, "gitaly.Repository"
     optional :object_pool, :message, 3, "gitaly.ObjectPool"
+    optional :remote_url, :string, 4
+    optional :jwt_authentication_header, :message, 5, "gitaly.SetConfigRequest.Entry"
   end
-  add_message "gitaly.PreFetchResponse" do
+  add_message "gitaly.GeoFetchWithPoolResponse" do
   end
 end
 
@@ -350,6 +352,6 @@ module Gitaly
   SearchFilesByNameResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.SearchFilesByNameResponse").msgclass
   SearchFilesByContentRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.SearchFilesByContentRequest").msgclass
   SearchFilesByContentResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.SearchFilesByContentResponse").msgclass
-  PreFetchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PreFetchRequest").msgclass
-  PreFetchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PreFetchResponse").msgclass
+  GeoFetchWithPoolRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GeoFetchWithPoolRequest").msgclass
+  GeoFetchWithPoolResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GeoFetchWithPoolResponse").msgclass
 end
