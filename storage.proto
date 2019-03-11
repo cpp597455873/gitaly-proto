@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package gitaly;
 
-option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
-
 import "shared.proto";
 
 service StorageService {
