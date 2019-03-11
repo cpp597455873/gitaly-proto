@@ -77,5 +77,17 @@ go/internal/linter/testdata/%.pb.go: go/internal/linter/testdata/%.proto $(PROTO
 	$(PROTOC) --go_out=paths=source_relative:. -I$(shell pwd) -I$(shell pwd)/go/internal/linter/testdata go/internal/linter/testdata/*.proto
 
 .PHONY: test
-test:
+test: test-go-pkg-opt
 	cd go/internal; go test ./...
+
+# test-go-pkg-opt checks if the go_package option is specified in all *.proto
+# files
+.PHONY: test-go-pkg-opt
+test-go-pkg-opt:
+	@for p in *.proto ; do \
+		grep -Fq "option go_package" $${p} ; \
+		if [ $$? -ne 0 ] ; then \
+			echo "$${p} is missing the go_package option" ; \
+			exit 1 ; \
+		fi \
+	done
