@@ -47,7 +47,7 @@ func (x FindLocalBranchesRequest_SortBy) String() string {
 	return proto.EnumName(FindLocalBranchesRequest_SortBy_name, int32(x))
 }
 func (FindLocalBranchesRequest_SortBy) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{10, 0}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{10, 0}
 }
 
 type CreateBranchResponse_Status int32
@@ -76,7 +76,7 @@ func (x CreateBranchResponse_Status) String() string {
 	return proto.EnumName(CreateBranchResponse_Status_name, int32(x))
 }
 func (CreateBranchResponse_Status) EnumDescriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{21, 0}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{21, 0}
 }
 
 type ListNewBlobsRequest struct {
@@ -94,7 +94,7 @@ func (m *ListNewBlobsRequest) Reset()         { *m = ListNewBlobsRequest{} }
 func (m *ListNewBlobsRequest) String() string { return proto.CompactTextString(m) }
 func (*ListNewBlobsRequest) ProtoMessage()    {}
 func (*ListNewBlobsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{0}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{0}
 }
 func (m *ListNewBlobsRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListNewBlobsRequest.Unmarshal(m, b)
@@ -146,7 +146,7 @@ func (m *ListNewBlobsResponse) Reset()         { *m = ListNewBlobsResponse{} }
 func (m *ListNewBlobsResponse) String() string { return proto.CompactTextString(m) }
 func (*ListNewBlobsResponse) ProtoMessage()    {}
 func (*ListNewBlobsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{1}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{1}
 }
 func (m *ListNewBlobsResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListNewBlobsResponse.Unmarshal(m, b)
@@ -184,7 +184,7 @@ func (m *FindDefaultBranchNameRequest) Reset()         { *m = FindDefaultBranchN
 func (m *FindDefaultBranchNameRequest) String() string { return proto.CompactTextString(m) }
 func (*FindDefaultBranchNameRequest) ProtoMessage()    {}
 func (*FindDefaultBranchNameRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{2}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{2}
 }
 func (m *FindDefaultBranchNameRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindDefaultBranchNameRequest.Unmarshal(m, b)
@@ -222,7 +222,7 @@ func (m *FindDefaultBranchNameResponse) Reset()         { *m = FindDefaultBranch
 func (m *FindDefaultBranchNameResponse) String() string { return proto.CompactTextString(m) }
 func (*FindDefaultBranchNameResponse) ProtoMessage()    {}
 func (*FindDefaultBranchNameResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{3}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{3}
 }
 func (m *FindDefaultBranchNameResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindDefaultBranchNameResponse.Unmarshal(m, b)
@@ -260,7 +260,7 @@ func (m *FindAllBranchNamesRequest) Reset()         { *m = FindAllBranchNamesReq
 func (m *FindAllBranchNamesRequest) String() string { return proto.CompactTextString(m) }
 func (*FindAllBranchNamesRequest) ProtoMessage()    {}
 func (*FindAllBranchNamesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{4}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{4}
 }
 func (m *FindAllBranchNamesRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindAllBranchNamesRequest.Unmarshal(m, b)
@@ -298,7 +298,7 @@ func (m *FindAllBranchNamesResponse) Reset()         { *m = FindAllBranchNamesRe
 func (m *FindAllBranchNamesResponse) String() string { return proto.CompactTextString(m) }
 func (*FindAllBranchNamesResponse) ProtoMessage()    {}
 func (*FindAllBranchNamesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{5}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{5}
 }
 func (m *FindAllBranchNamesResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindAllBranchNamesResponse.Unmarshal(m, b)
@@ -336,7 +336,7 @@ func (m *FindAllTagNamesRequest) Reset()         { *m = FindAllTagNamesRequest{}
 func (m *FindAllTagNamesRequest) String() string { return proto.CompactTextString(m) }
 func (*FindAllTagNamesRequest) ProtoMessage()    {}
 func (*FindAllTagNamesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{6}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{6}
 }
 func (m *FindAllTagNamesRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindAllTagNamesRequest.Unmarshal(m, b)
@@ -374,7 +374,7 @@ func (m *FindAllTagNamesResponse) Reset()         { *m = FindAllTagNamesResponse
 func (m *FindAllTagNamesResponse) String() string { return proto.CompactTextString(m) }
 func (*FindAllTagNamesResponse) ProtoMessage()    {}
 func (*FindAllTagNamesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{7}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{7}
 }
 func (m *FindAllTagNamesResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindAllTagNamesResponse.Unmarshal(m, b)
@@ -416,7 +416,7 @@ func (m *FindRefNameRequest) Reset()         { *m = FindRefNameRequest{} }
 func (m *FindRefNameRequest) String() string { return proto.CompactTextString(m) }
 func (*FindRefNameRequest) ProtoMessage()    {}
 func (*FindRefNameRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{8}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{8}
 }
 func (m *FindRefNameRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindRefNameRequest.Unmarshal(m, b)
@@ -469,7 +469,7 @@ func (m *FindRefNameResponse) Reset()         { *m = FindRefNameResponse{} }
 func (m *FindRefNameResponse) String() string { return proto.CompactTextString(m) }
 func (*FindRefNameResponse) ProtoMessage()    {}
 func (*FindRefNameResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{9}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{9}
 }
 func (m *FindRefNameResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindRefNameResponse.Unmarshal(m, b)
@@ -508,7 +508,7 @@ func (m *FindLocalBranchesRequest) Reset()         { *m = FindLocalBranchesReque
 func (m *FindLocalBranchesRequest) String() string { return proto.CompactTextString(m) }
 func (*FindLocalBranchesRequest) ProtoMessage()    {}
 func (*FindLocalBranchesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{10}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{10}
 }
 func (m *FindLocalBranchesRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindLocalBranchesRequest.Unmarshal(m, b)
@@ -553,7 +553,7 @@ func (m *FindLocalBranchesResponse) Reset()         { *m = FindLocalBranchesResp
 func (m *FindLocalBranchesResponse) String() string { return proto.CompactTextString(m) }
 func (*FindLocalBranchesResponse) ProtoMessage()    {}
 func (*FindLocalBranchesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{11}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{11}
 }
 func (m *FindLocalBranchesResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindLocalBranchesResponse.Unmarshal(m, b)
@@ -595,7 +595,7 @@ func (m *FindLocalBranchResponse) Reset()         { *m = FindLocalBranchResponse
 func (m *FindLocalBranchResponse) String() string { return proto.CompactTextString(m) }
 func (*FindLocalBranchResponse) ProtoMessage()    {}
 func (*FindLocalBranchResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{12}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{12}
 }
 func (m *FindLocalBranchResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindLocalBranchResponse.Unmarshal(m, b)
@@ -663,7 +663,7 @@ func (m *FindLocalBranchCommitAuthor) Reset()         { *m = FindLocalBranchComm
 func (m *FindLocalBranchCommitAuthor) String() string { return proto.CompactTextString(m) }
 func (*FindLocalBranchCommitAuthor) ProtoMessage()    {}
 func (*FindLocalBranchCommitAuthor) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{13}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{13}
 }
 func (m *FindLocalBranchCommitAuthor) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindLocalBranchCommitAuthor.Unmarshal(m, b)
@@ -720,7 +720,7 @@ func (m *FindAllBranchesRequest) Reset()         { *m = FindAllBranchesRequest{}
 func (m *FindAllBranchesRequest) String() string { return proto.CompactTextString(m) }
 func (*FindAllBranchesRequest) ProtoMessage()    {}
 func (*FindAllBranchesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{14}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{14}
 }
 func (m *FindAllBranchesRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindAllBranchesRequest.Unmarshal(m, b)
@@ -772,7 +772,7 @@ func (m *FindAllBranchesResponse) Reset()         { *m = FindAllBranchesResponse
 func (m *FindAllBranchesResponse) String() string { return proto.CompactTextString(m) }
 func (*FindAllBranchesResponse) ProtoMessage()    {}
 func (*FindAllBranchesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{15}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{15}
 }
 func (m *FindAllBranchesResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindAllBranchesResponse.Unmarshal(m, b)
@@ -811,7 +811,7 @@ func (m *FindAllBranchesResponse_Branch) Reset()         { *m = FindAllBranchesR
 func (m *FindAllBranchesResponse_Branch) String() string { return proto.CompactTextString(m) }
 func (*FindAllBranchesResponse_Branch) ProtoMessage()    {}
 func (*FindAllBranchesResponse_Branch) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{15, 0}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{15, 0}
 }
 func (m *FindAllBranchesResponse_Branch) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindAllBranchesResponse_Branch.Unmarshal(m, b)
@@ -856,7 +856,7 @@ func (m *FindAllTagsRequest) Reset()         { *m = FindAllTagsRequest{} }
 func (m *FindAllTagsRequest) String() string { return proto.CompactTextString(m) }
 func (*FindAllTagsRequest) ProtoMessage()    {}
 func (*FindAllTagsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{16}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{16}
 }
 func (m *FindAllTagsRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindAllTagsRequest.Unmarshal(m, b)
@@ -894,7 +894,7 @@ func (m *FindAllTagsResponse) Reset()         { *m = FindAllTagsResponse{} }
 func (m *FindAllTagsResponse) String() string { return proto.CompactTextString(m) }
 func (*FindAllTagsResponse) ProtoMessage()    {}
 func (*FindAllTagsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{17}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{17}
 }
 func (m *FindAllTagsResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindAllTagsResponse.Unmarshal(m, b)
@@ -934,7 +934,7 @@ func (m *RefExistsRequest) Reset()         { *m = RefExistsRequest{} }
 func (m *RefExistsRequest) String() string { return proto.CompactTextString(m) }
 func (*RefExistsRequest) ProtoMessage()    {}
 func (*RefExistsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{18}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{18}
 }
 func (m *RefExistsRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RefExistsRequest.Unmarshal(m, b)
@@ -979,7 +979,7 @@ func (m *RefExistsResponse) Reset()         { *m = RefExistsResponse{} }
 func (m *RefExistsResponse) String() string { return proto.CompactTextString(m) }
 func (*RefExistsResponse) ProtoMessage()    {}
 func (*RefExistsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{19}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{19}
 }
 func (m *RefExistsResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_RefExistsResponse.Unmarshal(m, b)
@@ -1019,7 +1019,7 @@ func (m *CreateBranchRequest) Reset()         { *m = CreateBranchRequest{} }
 func (m *CreateBranchRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateBranchRequest) ProtoMessage()    {}
 func (*CreateBranchRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{20}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{20}
 }
 func (m *CreateBranchRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CreateBranchRequest.Unmarshal(m, b)
@@ -1072,7 +1072,7 @@ func (m *CreateBranchResponse) Reset()         { *m = CreateBranchResponse{} }
 func (m *CreateBranchResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateBranchResponse) ProtoMessage()    {}
 func (*CreateBranchResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{21}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{21}
 }
 func (m *CreateBranchResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CreateBranchResponse.Unmarshal(m, b)
@@ -1118,7 +1118,7 @@ func (m *DeleteBranchRequest) Reset()         { *m = DeleteBranchRequest{} }
 func (m *DeleteBranchRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteBranchRequest) ProtoMessage()    {}
 func (*DeleteBranchRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{22}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{22}
 }
 func (m *DeleteBranchRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_DeleteBranchRequest.Unmarshal(m, b)
@@ -1163,7 +1163,7 @@ func (m *DeleteBranchResponse) Reset()         { *m = DeleteBranchResponse{} }
 func (m *DeleteBranchResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteBranchResponse) ProtoMessage()    {}
 func (*DeleteBranchResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{23}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{23}
 }
 func (m *DeleteBranchResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_DeleteBranchResponse.Unmarshal(m, b)
@@ -1196,7 +1196,7 @@ func (m *FindBranchRequest) Reset()         { *m = FindBranchRequest{} }
 func (m *FindBranchRequest) String() string { return proto.CompactTextString(m) }
 func (*FindBranchRequest) ProtoMessage()    {}
 func (*FindBranchRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{24}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{24}
 }
 func (m *FindBranchRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindBranchRequest.Unmarshal(m, b)
@@ -1241,7 +1241,7 @@ func (m *FindBranchResponse) Reset()         { *m = FindBranchResponse{} }
 func (m *FindBranchResponse) String() string { return proto.CompactTextString(m) }
 func (*FindBranchResponse) ProtoMessage()    {}
 func (*FindBranchResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{25}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{25}
 }
 func (m *FindBranchResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindBranchResponse.Unmarshal(m, b)
@@ -1282,7 +1282,7 @@ func (m *DeleteRefsRequest) Reset()         { *m = DeleteRefsRequest{} }
 func (m *DeleteRefsRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteRefsRequest) ProtoMessage()    {}
 func (*DeleteRefsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{26}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{26}
 }
 func (m *DeleteRefsRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_DeleteRefsRequest.Unmarshal(m, b)
@@ -1334,7 +1334,7 @@ func (m *DeleteRefsResponse) Reset()         { *m = DeleteRefsResponse{} }
 func (m *DeleteRefsResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteRefsResponse) ProtoMessage()    {}
 func (*DeleteRefsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{27}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{27}
 }
 func (m *DeleteRefsResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_DeleteRefsResponse.Unmarshal(m, b)
@@ -1378,7 +1378,7 @@ func (m *ListBranchNamesContainingCommitRequest) Reset() {
 func (m *ListBranchNamesContainingCommitRequest) String() string { return proto.CompactTextString(m) }
 func (*ListBranchNamesContainingCommitRequest) ProtoMessage()    {}
 func (*ListBranchNamesContainingCommitRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{28}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{28}
 }
 func (m *ListBranchNamesContainingCommitRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListBranchNamesContainingCommitRequest.Unmarshal(m, b)
@@ -1432,7 +1432,7 @@ func (m *ListBranchNamesContainingCommitResponse) Reset() {
 func (m *ListBranchNamesContainingCommitResponse) String() string { return proto.CompactTextString(m) }
 func (*ListBranchNamesContainingCommitResponse) ProtoMessage()    {}
 func (*ListBranchNamesContainingCommitResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{29}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{29}
 }
 func (m *ListBranchNamesContainingCommitResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListBranchNamesContainingCommitResponse.Unmarshal(m, b)
@@ -1474,7 +1474,7 @@ func (m *ListTagNamesContainingCommitRequest) Reset()         { *m = ListTagName
 func (m *ListTagNamesContainingCommitRequest) String() string { return proto.CompactTextString(m) }
 func (*ListTagNamesContainingCommitRequest) ProtoMessage()    {}
 func (*ListTagNamesContainingCommitRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{30}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{30}
 }
 func (m *ListTagNamesContainingCommitRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListTagNamesContainingCommitRequest.Unmarshal(m, b)
@@ -1526,7 +1526,7 @@ func (m *ListTagNamesContainingCommitResponse) Reset()         { *m = ListTagNam
 func (m *ListTagNamesContainingCommitResponse) String() string { return proto.CompactTextString(m) }
 func (*ListTagNamesContainingCommitResponse) ProtoMessage()    {}
 func (*ListTagNamesContainingCommitResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{31}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{31}
 }
 func (m *ListTagNamesContainingCommitResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListTagNamesContainingCommitResponse.Unmarshal(m, b)
@@ -1565,7 +1565,7 @@ func (m *GetTagMessagesRequest) Reset()         { *m = GetTagMessagesRequest{} }
 func (m *GetTagMessagesRequest) String() string { return proto.CompactTextString(m) }
 func (*GetTagMessagesRequest) ProtoMessage()    {}
 func (*GetTagMessagesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{32}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{32}
 }
 func (m *GetTagMessagesRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GetTagMessagesRequest.Unmarshal(m, b)
@@ -1612,7 +1612,7 @@ func (m *GetTagMessagesResponse) Reset()         { *m = GetTagMessagesResponse{}
 func (m *GetTagMessagesResponse) String() string { return proto.CompactTextString(m) }
 func (*GetTagMessagesResponse) ProtoMessage()    {}
 func (*GetTagMessagesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{33}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{33}
 }
 func (m *GetTagMessagesResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GetTagMessagesResponse.Unmarshal(m, b)
@@ -1658,7 +1658,7 @@ func (m *ListNewCommitsRequest) Reset()         { *m = ListNewCommitsRequest{} }
 func (m *ListNewCommitsRequest) String() string { return proto.CompactTextString(m) }
 func (*ListNewCommitsRequest) ProtoMessage()    {}
 func (*ListNewCommitsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{34}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{34}
 }
 func (m *ListNewCommitsRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListNewCommitsRequest.Unmarshal(m, b)
@@ -1703,7 +1703,7 @@ func (m *ListNewCommitsResponse) Reset()         { *m = ListNewCommitsResponse{}
 func (m *ListNewCommitsResponse) String() string { return proto.CompactTextString(m) }
 func (*ListNewCommitsResponse) ProtoMessage()    {}
 func (*ListNewCommitsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{35}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{35}
 }
 func (m *ListNewCommitsResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ListNewCommitsResponse.Unmarshal(m, b)
@@ -1742,7 +1742,7 @@ func (m *FindAllRemoteBranchesRequest) Reset()         { *m = FindAllRemoteBranc
 func (m *FindAllRemoteBranchesRequest) String() string { return proto.CompactTextString(m) }
 func (*FindAllRemoteBranchesRequest) ProtoMessage()    {}
 func (*FindAllRemoteBranchesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{36}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{36}
 }
 func (m *FindAllRemoteBranchesRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindAllRemoteBranchesRequest.Unmarshal(m, b)
@@ -1787,7 +1787,7 @@ func (m *FindAllRemoteBranchesResponse) Reset()         { *m = FindAllRemoteBran
 func (m *FindAllRemoteBranchesResponse) String() string { return proto.CompactTextString(m) }
 func (*FindAllRemoteBranchesResponse) ProtoMessage()    {}
 func (*FindAllRemoteBranchesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_ref_4f71906b36b9f6c5, []int{37}
+	return fileDescriptor_ref_a3b568a6c89846e1, []int{37}
 }
 func (m *FindAllRemoteBranchesResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_FindAllRemoteBranchesResponse.Unmarshal(m, b)
@@ -2795,9 +2795,9 @@ var _RefService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "ref.proto",
 }
 
-func init() { proto.RegisterFile("ref.proto", fileDescriptor_ref_4f71906b36b9f6c5) }
+func init() { proto.RegisterFile("ref.proto", fileDescriptor_ref_a3b568a6c89846e1) }
 
-var fileDescriptor_ref_4f71906b36b9f6c5 = []byte{
+var fileDescriptor_ref_a3b568a6c89846e1 = []byte{
 	// 1598 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x58, 0x5b, 0x6f, 0x1b, 0x45,
 	0x14, 0xce, 0x3a, 0x89, 0x63, 0x1f, 0xbb, 0xce, 0x66, 0x72, 0xa9, 0xbb, 0x69, 0x9b, 0x74, 0x7b,

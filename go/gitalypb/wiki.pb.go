@@ -38,7 +38,7 @@ func (m *WikiCommitDetails) Reset()         { *m = WikiCommitDetails{} }
 func (m *WikiCommitDetails) String() string { return proto.CompactTextString(m) }
 func (*WikiCommitDetails) ProtoMessage()    {}
 func (*WikiCommitDetails) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{0}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{0}
 }
 func (m *WikiCommitDetails) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiCommitDetails.Unmarshal(m, b)
@@ -105,7 +105,7 @@ func (m *WikiPageVersion) Reset()         { *m = WikiPageVersion{} }
 func (m *WikiPageVersion) String() string { return proto.CompactTextString(m) }
 func (*WikiPageVersion) ProtoMessage()    {}
 func (*WikiPageVersion) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{1}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{1}
 }
 func (m *WikiPageVersion) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiPageVersion.Unmarshal(m, b)
@@ -159,7 +159,7 @@ func (m *WikiPage) Reset()         { *m = WikiPage{} }
 func (m *WikiPage) String() string { return proto.CompactTextString(m) }
 func (*WikiPage) ProtoMessage()    {}
 func (*WikiPage) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{2}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{2}
 }
 func (m *WikiPage) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiPage.Unmarshal(m, b)
@@ -249,7 +249,7 @@ func (m *WikiGetPageVersionsRequest) Reset()         { *m = WikiGetPageVersionsR
 func (m *WikiGetPageVersionsRequest) String() string { return proto.CompactTextString(m) }
 func (*WikiGetPageVersionsRequest) ProtoMessage()    {}
 func (*WikiGetPageVersionsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{3}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{3}
 }
 func (m *WikiGetPageVersionsRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiGetPageVersionsRequest.Unmarshal(m, b)
@@ -308,7 +308,7 @@ func (m *WikiGetPageVersionsResponse) Reset()         { *m = WikiGetPageVersions
 func (m *WikiGetPageVersionsResponse) String() string { return proto.CompactTextString(m) }
 func (*WikiGetPageVersionsResponse) ProtoMessage()    {}
 func (*WikiGetPageVersionsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{4}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{4}
 }
 func (m *WikiGetPageVersionsResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiGetPageVersionsResponse.Unmarshal(m, b)
@@ -353,7 +353,7 @@ func (m *WikiWritePageRequest) Reset()         { *m = WikiWritePageRequest{} }
 func (m *WikiWritePageRequest) String() string { return proto.CompactTextString(m) }
 func (*WikiWritePageRequest) ProtoMessage()    {}
 func (*WikiWritePageRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{5}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{5}
 }
 func (m *WikiWritePageRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiWritePageRequest.Unmarshal(m, b)
@@ -419,7 +419,7 @@ func (m *WikiWritePageResponse) Reset()         { *m = WikiWritePageResponse{} }
 func (m *WikiWritePageResponse) String() string { return proto.CompactTextString(m) }
 func (*WikiWritePageResponse) ProtoMessage()    {}
 func (*WikiWritePageResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{6}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{6}
 }
 func (m *WikiWritePageResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiWritePageResponse.Unmarshal(m, b)
@@ -464,7 +464,7 @@ func (m *WikiUpdatePageRequest) Reset()         { *m = WikiUpdatePageRequest{} }
 func (m *WikiUpdatePageRequest) String() string { return proto.CompactTextString(m) }
 func (*WikiUpdatePageRequest) ProtoMessage()    {}
 func (*WikiUpdatePageRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{7}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{7}
 }
 func (m *WikiUpdatePageRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiUpdatePageRequest.Unmarshal(m, b)
@@ -537,7 +537,7 @@ func (m *WikiUpdatePageResponse) Reset()         { *m = WikiUpdatePageResponse{}
 func (m *WikiUpdatePageResponse) String() string { return proto.CompactTextString(m) }
 func (*WikiUpdatePageResponse) ProtoMessage()    {}
 func (*WikiUpdatePageResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{8}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{8}
 }
 func (m *WikiUpdatePageResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiUpdatePageResponse.Unmarshal(m, b)
@@ -577,7 +577,7 @@ func (m *WikiDeletePageRequest) Reset()         { *m = WikiDeletePageRequest{} }
 func (m *WikiDeletePageRequest) String() string { return proto.CompactTextString(m) }
 func (*WikiDeletePageRequest) ProtoMessage()    {}
 func (*WikiDeletePageRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{9}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{9}
 }
 func (m *WikiDeletePageRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiDeletePageRequest.Unmarshal(m, b)
@@ -628,7 +628,7 @@ func (m *WikiDeletePageResponse) Reset()         { *m = WikiDeletePageResponse{}
 func (m *WikiDeletePageResponse) String() string { return proto.CompactTextString(m) }
 func (*WikiDeletePageResponse) ProtoMessage()    {}
 func (*WikiDeletePageResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{10}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{10}
 }
 func (m *WikiDeletePageResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiDeletePageResponse.Unmarshal(m, b)
@@ -662,7 +662,7 @@ func (m *WikiFindPageRequest) Reset()         { *m = WikiFindPageRequest{} }
 func (m *WikiFindPageRequest) String() string { return proto.CompactTextString(m) }
 func (*WikiFindPageRequest) ProtoMessage()    {}
 func (*WikiFindPageRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{11}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{11}
 }
 func (m *WikiFindPageRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiFindPageRequest.Unmarshal(m, b)
@@ -723,7 +723,7 @@ func (m *WikiFindPageResponse) Reset()         { *m = WikiFindPageResponse{} }
 func (m *WikiFindPageResponse) String() string { return proto.CompactTextString(m) }
 func (*WikiFindPageResponse) ProtoMessage()    {}
 func (*WikiFindPageResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{12}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{12}
 }
 func (m *WikiFindPageResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiFindPageResponse.Unmarshal(m, b)
@@ -764,7 +764,7 @@ func (m *WikiFindFileRequest) Reset()         { *m = WikiFindFileRequest{} }
 func (m *WikiFindFileRequest) String() string { return proto.CompactTextString(m) }
 func (*WikiFindFileRequest) ProtoMessage()    {}
 func (*WikiFindFileRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{13}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{13}
 }
 func (m *WikiFindFileRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiFindFileRequest.Unmarshal(m, b)
@@ -820,7 +820,7 @@ func (m *WikiFindFileResponse) Reset()         { *m = WikiFindFileResponse{} }
 func (m *WikiFindFileResponse) String() string { return proto.CompactTextString(m) }
 func (*WikiFindFileResponse) ProtoMessage()    {}
 func (*WikiFindFileResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{14}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{14}
 }
 func (m *WikiFindFileResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiFindFileResponse.Unmarshal(m, b)
@@ -881,7 +881,7 @@ func (m *WikiGetAllPagesRequest) Reset()         { *m = WikiGetAllPagesRequest{}
 func (m *WikiGetAllPagesRequest) String() string { return proto.CompactTextString(m) }
 func (*WikiGetAllPagesRequest) ProtoMessage()    {}
 func (*WikiGetAllPagesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{15}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{15}
 }
 func (m *WikiGetAllPagesRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiGetAllPagesRequest.Unmarshal(m, b)
@@ -929,7 +929,7 @@ func (m *WikiGetAllPagesResponse) Reset()         { *m = WikiGetAllPagesResponse
 func (m *WikiGetAllPagesResponse) String() string { return proto.CompactTextString(m) }
 func (*WikiGetAllPagesResponse) ProtoMessage()    {}
 func (*WikiGetAllPagesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{16}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{16}
 }
 func (m *WikiGetAllPagesResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiGetAllPagesResponse.Unmarshal(m, b)
@@ -977,7 +977,7 @@ func (m *WikiGetFormattedDataRequest) Reset()         { *m = WikiGetFormattedDat
 func (m *WikiGetFormattedDataRequest) String() string { return proto.CompactTextString(m) }
 func (*WikiGetFormattedDataRequest) ProtoMessage()    {}
 func (*WikiGetFormattedDataRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{17}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{17}
 }
 func (m *WikiGetFormattedDataRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiGetFormattedDataRequest.Unmarshal(m, b)
@@ -1036,7 +1036,7 @@ func (m *WikiGetFormattedDataResponse) Reset()         { *m = WikiGetFormattedDa
 func (m *WikiGetFormattedDataResponse) String() string { return proto.CompactTextString(m) }
 func (*WikiGetFormattedDataResponse) ProtoMessage()    {}
 func (*WikiGetFormattedDataResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_wiki_199c79309dd2172b, []int{18}
+	return fileDescriptor_wiki_1ff6c45472bfea3a, []int{18}
 }
 func (m *WikiGetFormattedDataResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_WikiGetFormattedDataResponse.Unmarshal(m, b)
@@ -1594,9 +1594,9 @@ var _WikiService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "wiki.proto",
 }
 
-func init() { proto.RegisterFile("wiki.proto", fileDescriptor_wiki_199c79309dd2172b) }
+func init() { proto.RegisterFile("wiki.proto", fileDescriptor_wiki_1ff6c45472bfea3a) }
 
-var fileDescriptor_wiki_199c79309dd2172b = []byte{
+var fileDescriptor_wiki_1ff6c45472bfea3a = []byte{
 	// 990 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x57, 0xcd, 0x72, 0xdc, 0x44,
 	0x10, 0x8e, 0xd6, 0xfb, 0xa3, 0x6d, 0xff, 0x84, 0x0c, 0x21, 0x56, 0xd6, 0xc6, 0xb8, 0x44, 0xaa,
