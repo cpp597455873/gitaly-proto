@@ -4,6 +4,7 @@ BIN_BUILD_DIR := $(TARGET_DIR)/bin
 
 unexport GOROOT
 unexport GOBIN
+export GO111MODULE = on
 
 export PATH := $(TARGET_DIR)/bin:$(PATH)
 
