@@ -85,8 +85,7 @@ test: test-go-pkg-opt
 .PHONY: test-go-pkg-opt
 test-go-pkg-opt:
 	@for p in *.proto ; do \
-		grep -Fq "option go_package" $${p} ; \
-		if [ $$? -ne 0 ] ; then \
+		if ! grep -Fq "option go_package" $${p} ; then \
 			echo "$${p} is missing the go_package option" ; \
 			exit 1 ; \
 		fi \
