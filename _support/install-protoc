@@ -18,13 +18,6 @@ PROTOC_DOWNLOAD = {
 }
 PROTOC_DIR = '_build/protoc'
 
-PROTO_GO_DOWNLOAD = {
-  'name' => 'protobuf-1.2.0.zip',
-  'url' => 'https://github.com/golang/protobuf/archive/v1.2.0.zip',
-  'sha256' => '0621edfe304f96b7f57f05ca8892427bc874dd4f186b28792873ca440437f6b8'
-}
-PROTO_GO_DIR = '_build'
-
 def main
   current_platform = platform
   unless current_platform
@@ -32,7 +25,6 @@ def main
   end
 
   install_protoc(current_platform)
-  install_protoc_gen_go
 end
 
 def install_protoc(current_platform)
@@ -41,24 +33,6 @@ def install_protoc(current_platform)
   FileUtils.rm_rf(PROTOC_DIR)
   FileUtils.mkdir_p(PROTOC_DIR)
   run!(%W[unzip #{File.expand_path(PROTOC_DOWNLOAD[current_platform]['name'])}], PROTOC_DIR)
-end
-
-def install_protoc_gen_go
-  download(PROTO_GO_DOWNLOAD)
-
-  proto_go_src_parent_dir = File.join(PROTO_GO_DIR, 'src/github.com/golang')
-  proto_go_src_dir = File.join(proto_go_src_parent_dir, 'protobuf')
-  FileUtils.rm_rf(File.join(proto_go_src_dir))
-  FileUtils.mkdir_p(proto_go_src_parent_dir)
-
-  run!(%W[unzip #{File.expand_path(PROTO_GO_DOWNLOAD['name'])}], proto_go_src_parent_dir)
-  FileUtils.mv(
-    File.join(proto_go_src_parent_dir, PROTO_GO_DOWNLOAD['name'].sub(%r{\.zip$}, '')),
-    File.join(proto_go_src_dir)
-  )
-
-  gopath = File.expand_path(PROTO_GO_DIR)
-  run!(%W[/usr/bin/env GOPATH=#{gopath} go install github.com/golang/protobuf/protoc-gen-go])
 end
 
 def platform

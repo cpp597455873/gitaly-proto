@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+package test;
+
+// IncompleteRequest is missing the required option, so we expect a failure
+message IncompleteRequest {}
