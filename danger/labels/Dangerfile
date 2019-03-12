@@ -1,0 +1,19 @@
+require 'set'
+
+GITALY_TEAM = %w[jacobvosmaer-gitlab johncai pokstad1 zj]
+
+if GITALY_TEAM.include?(gitlab.mr_author) && !gitlab.mr_labels.include?("Gitaly")
+  gitlab.api.update_merge_request(
+    gitlab.mr_json['project_id'],
+    gitlab.mr_json['iid'],
+    labels: (gitlab.mr_labels | ["Gitaly"]).join(",")
+  )
+end
+
+CLASSIFY_LABELS = %w[feature bug backstage security]
+
+if (gitlab.mr_labels & CLASSIFY_LABELS).empty?
+  fail "**Required label missing.** Please apply one of #{CLASSIFY_LABELS.join}"
+end
+
+# vim: ft=ruby
