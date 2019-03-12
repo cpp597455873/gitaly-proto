@@ -2,9 +2,25 @@ syntax = "proto3";
 
 package gitaly;
 
-import "google/protobuf/timestamp.proto";
+option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
 
-option go_package = "gitalypb";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/descriptor.proto";
+
+message OperationMsg {
+  enum Operation {
+    UNKNOWN = 0;
+    MUTATOR = 1;
+    ACCESSOR = 2;
+  }
+
+  Operation op = 1;
+}
+
+extend google.protobuf.MessageOptions {
+  // Random high number..
+  OperationMsg op_type = 82302;
+}
 
 message Repository {
   // DEPRECATED: https://gitlab.com/gitlab-org/gitaly/issues/151

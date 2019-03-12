@@ -3,6 +3,7 @@
 
 require 'google/protobuf'
 
+require 'shared_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.AddNamespaceRequest" do
     optional :storage_name, :string, 1

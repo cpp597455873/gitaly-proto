@@ -4,6 +4,8 @@ import "shared.proto";
 
 package gitaly;
 
+option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
+
 service WikiService {
   rpc WikiGetPageVersions(WikiGetPageVersionsRequest) returns (stream WikiGetPageVersionsResponse) {}
   rpc WikiWritePage(stream WikiWritePageRequest) returns (WikiWritePageResponse) {}
@@ -44,6 +46,8 @@ message WikiPage {
 }
 
 message WikiGetPageVersionsRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes page_path = 2;
 
@@ -57,6 +61,8 @@ message WikiGetPageVersionsResponse {
 
 // This message is sent in a stream because the 'content' field may be large.
 message WikiWritePageRequest {
+  option (op_type).op = MUTATOR;
+
   // These following fields are only present in the first message.
   Repository repository = 1;
   bytes name = 2;
@@ -71,6 +77,8 @@ message WikiWritePageResponse {
 }
 
 message WikiUpdatePageRequest {
+  option (op_type).op = MUTATOR;
+
   // There fields are only present in the first message of the stream
   Repository repository = 1;
   bytes page_path = 2;
@@ -87,6 +95,8 @@ message WikiUpdatePageResponse {
 }
 
 message WikiDeletePageRequest {
+  option (op_type).op = MUTATOR;
+
   Repository repository = 1;
   bytes page_path = 2;
   WikiCommitDetails commit_details = 3;
@@ -95,6 +105,8 @@ message WikiDeletePageRequest {
 message WikiDeletePageResponse {}
 
 message WikiFindPageRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes title = 2;
   bytes revision = 3;
@@ -108,6 +120,8 @@ message WikiFindPageResponse {
 }
 
 message WikiFindFileRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes name = 2;
   // Optional: revision
@@ -123,6 +137,8 @@ message WikiFindFileResponse {
 }
 
 message WikiGetAllPagesRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   // Passing 0 means no limit is applied
   uint32 limit = 2;
@@ -136,6 +152,8 @@ message WikiGetAllPagesResponse {
 }
 
 message WikiGetFormattedDataRequest {
+  option (op_type).op = ACCESSOR;
+
   Repository repository = 1;
   bytes title = 2;
   bytes revision = 3;

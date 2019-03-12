@@ -5,6 +5,14 @@ require 'google/protobuf'
 
 require 'google/protobuf/timestamp_pb'
 Google::Protobuf::DescriptorPool.generated_pool.build do
+  add_message "gitaly.OperationMsg" do
+    optional :op, :enum, 1, "gitaly.OperationMsg.Operation"
+  end
+  add_enum "gitaly.OperationMsg.Operation" do
+    value :UNKNOWN, 0
+    value :MUTATOR, 1
+    value :ACCESSOR, 2
+  end
   add_message "gitaly.Repository" do
     optional :storage_name, :string, 2
     optional :relative_path, :string, 3
@@ -54,6 +62,8 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
 end
 
 module Gitaly
+  OperationMsg = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.OperationMsg").msgclass
+  OperationMsg::Operation = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.OperationMsg.Operation").enummodule
   Repository = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Repository").msgclass
   GitCommit = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GitCommit").msgclass
   CommitAuthor = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitAuthor").msgclass
