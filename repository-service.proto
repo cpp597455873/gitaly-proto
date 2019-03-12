@@ -41,8 +41,8 @@ service RepositoryService {
   rpc SearchFilesByName(SearchFilesByNameRequest) returns (stream SearchFilesByNameResponse) {}
   rpc RestoreCustomHooks(stream RestoreCustomHooksRequest) returns (RestoreCustomHooksResponse) {}
   rpc BackupCustomHooks(BackupCustomHooksRequest) returns (stream BackupCustomHooksResponse) {}
-  rpc PreFetch(PreFetchRequest) returns (PreFetchResponse) {}
   rpc FetchHTTPRemote(FetchHTTPRemoteRequest) returns (FetchHTTPRemoteResponse) {}
+  rpc GeoFastInitialFetch(GeoFastInitialFetchRequest) returns (GeoFastInitialFetchResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -450,8 +450,7 @@ message PreFetchRequest {
 
   Repository source_repository = 1;
   Repository target_repository = 2;
-  ObjectPool object_pool = 3;
-}
+  ObjectPool object_pool = 3; }
 
 message PreFetchResponse {}
 
@@ -471,3 +470,14 @@ message FetchHTTPRemoteRequest {
 }
 
 message FetchHTTPRemoteResponse {}
+
+message GeoFastInitialFetchRequest {
+  option (op_type).op = MUTATOR;
+
+  Repository repository = 1;
+  ObjectPool object_pool = 2;
+  Remote remote = 3;
+  int32 timeout = 4;
+}
+
+message GeoFastInitialFetchResponse {}

@@ -285,13 +285,15 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :remote, :message, 2, "gitaly.Remote"
     optional :timeout, :int32, 3
   end
-<<<<<<< HEAD
   add_message "gitaly.FetchHTTPRemoteResponse" do
-=======
-  add_message "gitaly.FetchHttpRemoteResponse" do
+  end
+  add_message "gitaly.GeoFastInitialFetchRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
-    optional :geo_remote, :message, 2, "gitaly.Remote"
->>>>>>> Adding GeoFetch RPC and messages
+    optional :object_pool, :message, 2, "gitaly.ObjectPool"
+    optional :remote, :message, 3, "gitaly.Remote"
+    optional :timeout, :int32, 4
+  end
+  add_message "gitaly.GeoFastInitialFetchResponse" do
   end
 end
 
@@ -373,4 +375,6 @@ module Gitaly
   Remote = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Remote").msgclass
   FetchHTTPRemoteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchHTTPRemoteRequest").msgclass
   FetchHTTPRemoteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchHTTPRemoteResponse").msgclass
+  GeoFastInitialFetchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GeoFastInitialFetchRequest").msgclass
+  GeoFastInitialFetchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GeoFastInitialFetchResponse").msgclass
 end
