@@ -8,7 +8,7 @@ before_script:
   - apt-get install -qq -y rubygems bundler unzip
 
 test:
-  script:	
+  script:
     - make test
 
 build:
