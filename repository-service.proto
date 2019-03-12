@@ -24,7 +24,6 @@ service RepositoryService {
   rpc CreateFork(CreateForkRequest) returns (CreateForkResponse) {}
   rpc IsRebaseInProgress(IsRebaseInProgressRequest) returns (IsRebaseInProgressResponse) {}
   rpc IsSquashInProgress(IsSquashInProgressRequest) returns (IsSquashInProgressResponse) {}
-
   rpc CreateRepositoryFromURL(CreateRepositoryFromURLRequest) returns (CreateRepositoryFromURLResponse) {}
   rpc CreateBundle(CreateBundleRequest) returns (stream CreateBundleResponse) {}
   rpc CreateRepositoryFromBundle(stream CreateRepositoryFromBundleRequest) returns (CreateRepositoryFromBundleResponse) {}

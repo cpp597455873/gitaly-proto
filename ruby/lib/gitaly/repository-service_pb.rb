@@ -285,7 +285,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :remote, :message, 2, "gitaly.Remote"
     optional :timeout, :int32, 3
   end
+<<<<<<< HEAD
   add_message "gitaly.FetchHTTPRemoteResponse" do
+=======
+  add_message "gitaly.FetchHttpRemoteResponse" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :geo_remote, :message, 2, "gitaly.Remote"
+>>>>>>> Adding GeoFetch RPC and messages
   end
 end
 
