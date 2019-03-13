@@ -188,6 +188,33 @@ whenever a new large item begins, we send a new message with a non-empty
 If the RPC requires it we can also send a footer using `oneof`. But by
 default, we prefer headers.
 
+### RPC Annotations
+
+In preparation for Gitaly HA, we are now requiring all RPC's to be annotated
+with an appropriate designation. All request messages (i.e. message types with
+suffix `Request`) must contain one of the following lines:
+
+- `option (op_type).op = ACCESSOR;`
+  - Designates an RPC as being read-only (i.e. side effect free)
+- `option (op_type).op = MUTATOR;`
+  - Designates that an RPC modifies the repository
+
+Failing to designate an RPC correctly will result in a CI error. For example:
+
+`--gitaly_out: server.proto: Message ServerInfoRequest missing op_type option`
+
+### Go Package
+
+If adding new protobuf files, make sure to correctly set the `go_package` option
+near the top of the file:
+
+`option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";`
+
+This allows other protobuf files to locate and import the Go generated stubs. If
+you forget to add a `go_package` option, you may receive an error similar to:
+
+`blob.proto is missing the go_package option`
+
 ## Contributing
 
 The CI at https://gitlab.com/gitlab-org/gitaly-proto regenerates the
@@ -196,7 +223,7 @@ files but not the client libraries. This check uses `git diff` to look
 for changes. Some of the code in the Go client libraries is sensitive
 to implementation details of the Go standard library (specifically,
 the output of gzip). **Use the same Go version as .gitlab-ci.yml (Go
-1.8)** when generating new client libraries for a merge request.
+1.11)** when generating new client libraries for a merge request.
 
 [DCO + License](CONTRIBUTING.md)
 
