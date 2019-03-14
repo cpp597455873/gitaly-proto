@@ -8,7 +8,7 @@ code for Go and Ruby.
 
 The .proto files define the remote procedure calls for interacting
 with Gitaly. We keep auto-generated client libraries for Ruby and Go
-in their respective subdirectories. The list of RPCs can be 
+in their respective subdirectories. The list of RPCs can be
 [found here](https://gitlab-org.gitlab.io/gitaly-proto/).
 
 Run `make` from the root of the repository to regenerate the client
@@ -89,6 +89,35 @@ gRPC provides an implementation framework based on these Protobuf concepts.
 1.  When choosing an RPC name don't use the service name as context.
     Good: `service CommitService { rpc CommitExists }`. Bad:
     `service CommitService { rpc Exists }`.
+
+### RPC naming conventions
+
+Gitaly-Proto has RPCs that are resource based, for example when querying for a
+commit. Another class of RPCs are operations, where the result might be empty
+or one of the RPC error codes but the fact that the operation took place is
+of importance.
+
+For all RPCs, start the name with a verb, followed by an entity, and if required
+followed by a further specification. For example:
+- GetCommit
+- RepackRepositoryIncremental
+- CreateRepositoryFromBundle
+
+For resource RPCs the verbs in use are limited to: Get, List, Create, Update,
+Delete, or Is. Where both Get and List as verbs denote these operations have no side
+effects. These verbs differ in terms of the expected number of results the query
+yields. Get queries are limited to one result, and are expected to return one
+result to the client. List queries have zero or more results, and generally will
+create a gRPC stream for their results. When the `Is` verb is used, this RPC
+is expected to return a boolean, or an error. For example: `IsRepositoryEmpty`.
+
+
+When an operation based RPC is defined, the verb should map to the first verb in
+the Git command it represents. Example; FetchRemote.
+
+Note that the current interface defined in this repository does not yet abide
+fully to these conventions. Newly defined RPCs should, though, so eventually
+gitaly-proto converges to a common standard.
 
 ### Common field names and types
 
