@@ -275,6 +275,17 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.PreFetchResponse" do
   end
+  add_message "gitaly.Remote" do
+    optional :url, :string, 1
+    optional :name, :string, 2
+    optional :http_authorization_header, :string, 3
+  end
+  add_message "gitaly.FetchHttpRemoteRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :remote, :message, 2, "gitaly.Remote"
+  end
+  add_message "gitaly.FetchHttpRemoteResponse" do
+  end
 end
 
 module Gitaly
@@ -352,4 +363,7 @@ module Gitaly
   SearchFilesByContentResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.SearchFilesByContentResponse").msgclass
   PreFetchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PreFetchRequest").msgclass
   PreFetchResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PreFetchResponse").msgclass
+  Remote = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Remote").msgclass
+  FetchHttpRemoteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchHttpRemoteRequest").msgclass
+  FetchHttpRemoteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchHttpRemoteResponse").msgclass
 end

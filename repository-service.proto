@@ -43,6 +43,7 @@ service RepositoryService {
   rpc RestoreCustomHooks(stream RestoreCustomHooksRequest) returns (RestoreCustomHooksResponse) {}
   rpc BackupCustomHooks(BackupCustomHooksRequest) returns (stream BackupCustomHooksResponse) {}
   rpc PreFetch(PreFetchRequest) returns (PreFetchResponse) {}
+  rpc FetchHttpRemote(FetchHttpRemoteRequest) returns (FetchHttpRemoteResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -452,3 +453,16 @@ message PreFetchRequest {
 }
 
 message PreFetchResponse {}
+
+message Remote {
+  string url = 1;
+  string name = 2;
+  string http_authorization_header = 3;
+}
+
+message FetchHttpRemoteRequest {
+  Repository repository = 1;
+  Remote remote = 2;
+}
+
+message FetchHttpRemoteResponse {}
