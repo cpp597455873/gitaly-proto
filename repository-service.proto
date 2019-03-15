@@ -447,6 +447,8 @@ message SearchFilesByContentResponse {
 }
 
 message PreFetchRequest {
+  option (op_type).op = ACCESSOR;
+  
   Repository source_repository = 1;
   Repository target_repository = 2;
   ObjectPool object_pool = 3;
@@ -461,6 +463,8 @@ message Remote {
 }
 
 message FetchHttpRemoteRequest {
+  option (op_type).op = ACCESSOR;
+  
   Repository repository = 1;
   Remote remote = 2;
 }
