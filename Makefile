@@ -64,15 +64,15 @@ $(PROTOC_GEN_GO): $(TARGET_SETUP)
 $(PROTOC_GEN_DOC): $(TARGET_SETUP)
 	cd go/internal; go build -o $@ github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
 
-$(PROTOC_GEN_GITALY): $(TARGET_SETUP) go/internal/linter/testdata/*.pb.go
+$(PROTOC_GEN_GITALY): $(TARGET_SETUP)
 	# Check if test protobuf stubs are stale
 	cd go/internal; go build -o $@ gitlab.com/gitlab-org/gitaly-proto/go/internal/cmd/protoc-gen-gitaly
 
 .PHONY: pb-go-stubs
 pb-go-stubs: go/gitalypb/*.pb.go
 
-go/gitalypb/%.pb.go: %.proto $(PROTOC) $(PROTOC_GEN_GO)
-	$(PROTOC) --go_out=paths=source_relative,plugins=grpc:./go/gitalypb -I$(shell pwd) *.proto
+go/gitalypb/%.pb.go: %.proto $(PROTOC) $(PROTOC_GEN_GO) $(PROTOC_GEN_GITALY)
+	$(PROTOC) --gitaly_out=. --go_out=paths=source_relative,plugins=grpc:./go/gitalypb -I$(shell pwd) *.proto
 
 go/internal/linter/testdata/%.pb.go: go/internal/linter/testdata/%.proto $(PROTOC) $(PROTOC_GEN_GO) go/gitalypb/*.pb.go
 	$(PROTOC) --go_out=paths=source_relative:. -I$(shell pwd) -I$(shell pwd)/go/internal/linter/testdata go/internal/linter/testdata/*.proto
