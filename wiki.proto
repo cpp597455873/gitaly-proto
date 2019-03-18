@@ -142,6 +142,13 @@ message WikiGetAllPagesRequest {
   Repository repository = 1;
   // Passing 0 means no limit is applied
   uint32 limit = 2;
+  bool direction_desc = 3;
+
+  enum SortBy {
+    TITLE = 0;
+    CREATED_AT = 1;
+  }
+  SortBy sort = 4;
 }
 
 // The WikiGetAllPagesResponse stream is a concatenation of WikiPage streams
