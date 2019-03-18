@@ -283,6 +283,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FetchHttpRemoteRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :remote, :message, 2, "gitaly.Remote"
+    optional :timeout, :int32, 3
   end
   add_message "gitaly.FetchHttpRemoteResponse" do
   end
