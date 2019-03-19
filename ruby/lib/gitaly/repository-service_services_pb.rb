@@ -49,7 +49,7 @@ module Gitaly
       rpc :RestoreCustomHooks, stream(RestoreCustomHooksRequest), RestoreCustomHooksResponse
       rpc :BackupCustomHooks, BackupCustomHooksRequest, stream(BackupCustomHooksResponse)
       rpc :PreFetch, PreFetchRequest, PreFetchResponse
-      rpc :FetchHttpRemote, FetchHttpRemoteRequest, FetchHttpRemoteResponse
+      rpc :FetchHTTPRemote, FetchHTTPRemoteRequest, FetchHTTPRemoteResponse
     end
 
     Stub = Service.rpc_stub_class
