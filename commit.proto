@@ -111,6 +111,7 @@ message TreeEntryRequest {
 }
 
 message TreeEntryResponse {
+  // TODO: Replace this enum with ObjectType in shared.proto
   enum ObjectType {
     COMMIT = 0;
     BLOB = 1;
@@ -168,6 +169,7 @@ message CountDivergingCommitsResponse {
 }
 
 message TreeEntry {
+  // TODO: Replace this enum with ObjectType in shared.proto
   enum EntryType {
     BLOB = 0;
     TREE = 1;
