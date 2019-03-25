@@ -148,6 +148,7 @@ message GetArchiveRequest {
   string commit_id = 2;
   string prefix = 3;
   Format format = 4;
+  bytes path = 5;
 }
 
 message GetArchiveResponse {
