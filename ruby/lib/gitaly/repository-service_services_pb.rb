@@ -17,6 +17,7 @@ module Gitaly
       rpc :RepositoryExists, RepositoryExistsRequest, RepositoryExistsResponse
       rpc :RepackIncremental, RepackIncrementalRequest, RepackIncrementalResponse
       rpc :RepackFull, RepackFullRequest, RepackFullResponse
+      rpc :PackRefs, PackRefsRequest, PackRefsRequest
       rpc :GarbageCollect, GarbageCollectRequest, GarbageCollectResponse
       rpc :RepositorySize, RepositorySizeRequest, RepositorySizeResponse
       rpc :ApplyGitattributes, ApplyGitattributesRequest, ApplyGitattributesResponse

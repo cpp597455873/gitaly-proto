@@ -10,6 +10,7 @@ service RepositoryService {
   rpc RepositoryExists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {}
   rpc RepackIncremental(RepackIncrementalRequest) returns (RepackIncrementalResponse) {}
   rpc RepackFull(RepackFullRequest) returns (RepackFullResponse) {}
+  rpc PackRefs(PackRefsRequest) returns (PackRefsRequest) {}
   rpc GarbageCollect(GarbageCollectRequest) returns (GarbageCollectResponse) {}
   rpc RepositorySize(RepositorySizeRequest) returns (RepositorySizeResponse) {}
   rpc ApplyGitattributes(ApplyGitattributesRequest) returns (ApplyGitattributesResponse) {}
@@ -72,6 +73,15 @@ message RepackFullRequest {
 }
 
 message RepackFullResponse {}
+
+message PackRefsRequest {
+  option (op_type).op = MUTATOR;
+
+  Repository repository = 1;
+  bool all = 2;
+}
+
+message PackRefsResponse {}
 
 message GarbageCollectRequest {
   option (op_type).op = MUTATOR;
