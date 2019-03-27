@@ -299,7 +299,7 @@ message ListLastCommitsForTreeRequest {
   string revision = 2;
   bytes path = 3;
 
-  // limit == -1 will get the last commit for all paths 
+  // limit == -1 will get the last commit for all paths
   int32 limit = 4;
   int32 offset = 5;
 }

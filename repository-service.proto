@@ -122,6 +122,7 @@ message FetchRemoteRequest {
   string known_hosts = 7;
   reserved 8;
   bool no_prune = 9;
+  Remote remote_params = 10;
 }
 
 message FetchRemoteResponse {}
@@ -461,6 +462,7 @@ message Remote {
   string url = 1;
   string name = 2;
   string http_authorization_header = 3;
+  repeated string mirror_refmaps = 4;
 }
 
 message FetchHTTPRemoteRequest {
