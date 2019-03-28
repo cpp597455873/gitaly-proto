@@ -44,6 +44,7 @@ service RepositoryService {
   rpc BackupCustomHooks(BackupCustomHooksRequest) returns (stream BackupCustomHooksResponse) {}
   rpc PreFetch(PreFetchRequest) returns (PreFetchResponse) {}
   rpc FetchHTTPRemote(FetchHTTPRemoteRequest) returns (FetchHTTPRemoteResponse) {}
+  rpc DisconnectAlternates(DisconnectAlternatesRequest) returns (DisconnectAlternatesResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -473,3 +474,11 @@ message FetchHTTPRemoteRequest {
 }
 
 message FetchHTTPRemoteResponse {}
+
+message DisconnectAlternatesRequest {
+  option (op_type).op = MUTATOR;
+
+  Repository repository = 1;
+}
+
+message DisconnectAlternatesResponse {}
