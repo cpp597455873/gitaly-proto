@@ -34,6 +34,7 @@ service RefService {
   rpc ListNewCommits(ListNewCommitsRequest) returns (stream ListNewCommitsResponse) {}
 
   rpc ListNewBlobs(ListNewBlobsRequest) returns (stream ListNewBlobsResponse) {}
+  rpc PackRefs(PackRefsRequest) returns (PackRefsResponse) {}
 }
 
 message ListNewBlobsRequest {
@@ -291,3 +292,12 @@ message FindAllRemoteBranchesRequest {
 message FindAllRemoteBranchesResponse {
   repeated Branch branches = 1;
 }
+
+message PackRefsRequest {
+  option (op_type).op = MUTATOR;
+
+  Repository repository = 1;
+  bool all_refs = 2;
+}
+
+message PackRefsResponse{}

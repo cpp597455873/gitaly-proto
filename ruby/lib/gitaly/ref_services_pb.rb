@@ -35,6 +35,7 @@ module Gitaly
       # Returns commits that are only reachable from the ref passed
       rpc :ListNewCommits, ListNewCommitsRequest, stream(ListNewCommitsResponse)
       rpc :ListNewBlobs, ListNewBlobsRequest, stream(ListNewBlobsResponse)
+      rpc :PackRefs, PackRefsRequest, PackRefsResponse
     end
 
     Stub = Service.rpc_stub_class

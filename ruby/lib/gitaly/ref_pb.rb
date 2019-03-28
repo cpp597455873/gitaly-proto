@@ -164,6 +164,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.FindAllRemoteBranchesResponse" do
     repeated :branches, :message, 1, "gitaly.Branch"
   end
+  add_message "gitaly.PackRefsRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :all_refs, :bool, 2
+  end
+  add_message "gitaly.PackRefsResponse" do
+  end
 end
 
 module Gitaly
@@ -208,4 +214,6 @@ module Gitaly
   ListNewCommitsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ListNewCommitsResponse").msgclass
   FindAllRemoteBranchesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllRemoteBranchesRequest").msgclass
   FindAllRemoteBranchesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FindAllRemoteBranchesResponse").msgclass
+  PackRefsRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PackRefsRequest").msgclass
+  PackRefsResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.PackRefsResponse").msgclass
 end
