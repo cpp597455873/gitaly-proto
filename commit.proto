@@ -311,7 +311,8 @@ message ListLastCommitsForTreeResponse {
     reserved 1;
 
     GitCommit commit = 2;
-    string path = 3;
+    string path = 3 [deprecated = true];
+    bytes path_bytes = 4;
   }
   repeated CommitForTree commits = 1;
 }
