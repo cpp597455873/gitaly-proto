@@ -1,8 +1,21 @@
 image: golang:1.11
 
+cache:
+  paths:
+    - .go/pkg/mod/
+
+variables:
+  GOPATH: $CI_PROJECT_DIR/.go
+
 before_script:
   - apt-get update -qq
   - apt-get install -qq -y rubygems bundler unzip
+  - mkdir -p .go
+
+cache:
+  key: go-mod-cache
+  paths:
+    - ${GOPATH}/pkg/mod
 
 test:
   script:
@@ -29,6 +42,7 @@ pages:
 danger-review:
   image: registry.gitlab.com/gitlab-org/gitlab-build-images:danger
   before_script: []
+  cache: {}
   only:
     - branches@gitlab-org/gitaly-proto
   except:

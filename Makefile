@@ -56,7 +56,7 @@ $(PROTOC): $(TARGET_SETUP)
 
 .ruby-bundle: $(TARGET_SETUP) _support/Gemfile.lock
 	bundle install --gemfile=_support/Gemfile --binstubs=$(BIN_BUILD_DIR)
-	touch $@	
+	touch $@
 
 $(PROTOC_GEN_GO): $(TARGET_SETUP)
 	cd go/internal; go build -o $@ github.com/golang/protobuf/protoc-gen-go
