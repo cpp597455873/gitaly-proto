@@ -54,6 +54,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :ssh_key, :string, 6
     optional :known_hosts, :string, 7
     optional :no_prune, :bool, 9
+    optional :remote_params, :message, 10, "gitaly.Remote"
   end
   add_message "gitaly.FetchRemoteResponse" do
   end
@@ -280,6 +281,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :url, :string, 1
     optional :name, :string, 2
     optional :http_authorization_header, :string, 3
+    repeated :mirror_refmaps, :string, 4
   end
   add_message "gitaly.FetchHTTPRemoteRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
