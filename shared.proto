@@ -22,6 +22,11 @@ extend google.protobuf.MessageOptions {
   OperationMsg op_type = 82302;
 }
 
+extend google.protobuf.MethodOptions {
+  // Random high number..
+  OperationMsg op_type_1 = 82303;
+}
+
 message Repository {
   // DEPRECATED: https://gitlab.com/gitlab-org/gitaly/issues/151
   reserved 1;

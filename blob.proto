@@ -10,8 +10,12 @@ service BlobService {
   // GetBlob returns the contents of a blob object referenced by its object
   // ID. We use a stream to return a chunked arbitrarily large binary
   // response
-  rpc GetBlob(GetBlobRequest) returns (stream GetBlobResponse) {}
-  rpc GetBlobs(GetBlobsRequest) returns (stream GetBlobsResponse) {}
+  rpc GetBlob(GetBlobRequest) returns (stream GetBlobResponse) {
+    option (op_type_1).op = ACCESSOR;
+  }
+  rpc GetBlobs(GetBlobsRequest) returns (stream GetBlobsResponse) {
+    option (op_type_1).op = MUTATOR;
+  }
   rpc GetLFSPointers(GetLFSPointersRequest) returns (stream GetLFSPointersResponse) {}
   rpc GetNewLFSPointers(GetNewLFSPointersRequest) returns (stream GetNewLFSPointersResponse) {}
   rpc GetAllLFSPointers(GetAllLFSPointersRequest) returns (stream GetAllLFSPointersResponse) {}
