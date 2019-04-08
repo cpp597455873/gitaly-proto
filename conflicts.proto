@@ -7,13 +7,15 @@ option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
 import "shared.proto";
 
 service ConflictsService {
-  rpc ListConflictFiles(ListConflictFilesRequest) returns (stream ListConflictFilesResponse) {}
-  rpc ResolveConflicts(stream ResolveConflictsRequest) returns (ResolveConflictsResponse) {}
+  rpc ListConflictFiles(ListConflictFilesRequest) returns (stream ListConflictFilesResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc ResolveConflicts(stream ResolveConflictsRequest) returns (ResolveConflictsResponse) {
+    option (op_type).op = MUTATOR;
+  }
 }
 
 message ListConflictFilesRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string our_commit_oid = 2;
   string their_commit_oid = 3;
@@ -50,8 +52,6 @@ message ResolveConflictsRequestHeader {
 }
 
 message ResolveConflictsRequest {
-  option (op_type).op = MUTATOR;
-
   oneof resolve_conflicts_request_payload {
     ResolveConflictsRequestHeader header = 1;
     bytes files_json = 2;

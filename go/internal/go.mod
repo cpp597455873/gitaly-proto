@@ -10,3 +10,5 @@ require (
 	golang.org/x/sync v0.0.0-20190227155943-e225da77a7e6 // indirect
 	google.golang.org/grpc v1.19.0 // indirect
 )
+
+replace gitlab.com/gitlab-org/gitaly-proto/go/gitalypb => ../gitalypb

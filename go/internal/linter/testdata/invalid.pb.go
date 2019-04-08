@@ -19,52 +19,85 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion2 // please upgrade the proto package
 
-// InvalidRequest did not set the operation type to a valid option
-type InvalidRequest struct {
+type InvalidMethodRequest struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *InvalidRequest) Reset()         { *m = InvalidRequest{} }
-func (m *InvalidRequest) String() string { return proto.CompactTextString(m) }
-func (*InvalidRequest) ProtoMessage()    {}
-func (*InvalidRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_invalid_5bca2cebab571725, []int{0}
+func (m *InvalidMethodRequest) Reset()         { *m = InvalidMethodRequest{} }
+func (m *InvalidMethodRequest) String() string { return proto.CompactTextString(m) }
+func (*InvalidMethodRequest) ProtoMessage()    {}
+func (*InvalidMethodRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_invalid_106d0a67559e637c, []int{0}
 }
-func (m *InvalidRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_InvalidRequest.Unmarshal(m, b)
+func (m *InvalidMethodRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_InvalidMethodRequest.Unmarshal(m, b)
 }
-func (m *InvalidRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_InvalidRequest.Marshal(b, m, deterministic)
+func (m *InvalidMethodRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_InvalidMethodRequest.Marshal(b, m, deterministic)
 }
-func (dst *InvalidRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_InvalidRequest.Merge(dst, src)
+func (dst *InvalidMethodRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InvalidMethodRequest.Merge(dst, src)
 }
-func (m *InvalidRequest) XXX_Size() int {
-	return xxx_messageInfo_InvalidRequest.Size(m)
+func (m *InvalidMethodRequest) XXX_Size() int {
+	return xxx_messageInfo_InvalidMethodRequest.Size(m)
 }
-func (m *InvalidRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_InvalidRequest.DiscardUnknown(m)
+func (m *InvalidMethodRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_InvalidMethodRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_InvalidRequest proto.InternalMessageInfo
+var xxx_messageInfo_InvalidMethodRequest proto.InternalMessageInfo
+
+type InvalidMethodResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *InvalidMethodResponse) Reset()         { *m = InvalidMethodResponse{} }
+func (m *InvalidMethodResponse) String() string { return proto.CompactTextString(m) }
+func (*InvalidMethodResponse) ProtoMessage()    {}
+func (*InvalidMethodResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_invalid_106d0a67559e637c, []int{1}
+}
+func (m *InvalidMethodResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_InvalidMethodResponse.Unmarshal(m, b)
+}
+func (m *InvalidMethodResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_InvalidMethodResponse.Marshal(b, m, deterministic)
+}
+func (dst *InvalidMethodResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_InvalidMethodResponse.Merge(dst, src)
+}
+func (m *InvalidMethodResponse) XXX_Size() int {
+	return xxx_messageInfo_InvalidMethodResponse.Size(m)
+}
+func (m *InvalidMethodResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_InvalidMethodResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_InvalidMethodResponse proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterType((*InvalidRequest)(nil), "test.InvalidRequest")
+	proto.RegisterType((*InvalidMethodRequest)(nil), "test.InvalidMethodRequest")
+	proto.RegisterType((*InvalidMethodResponse)(nil), "test.InvalidMethodResponse")
 }
 
 func init() {
-	proto.RegisterFile("go/internal/linter/testdata/invalid.proto", fileDescriptor_invalid_5bca2cebab571725)
+	proto.RegisterFile("go/internal/linter/testdata/invalid.proto", fileDescriptor_invalid_106d0a67559e637c)
 }
 
-var fileDescriptor_invalid_5bca2cebab571725 = []byte{
-	// 104 bytes of a gzipped FileDescriptorProto
+var fileDescriptor_invalid_106d0a67559e637c = []byte{
+	// 156 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xd2, 0x4c, 0xcf, 0xd7, 0xcf,
 	0xcc, 0x2b, 0x49, 0x2d, 0xca, 0x4b, 0xcc, 0xd1, 0xcf, 0x01, 0xb3, 0xf4, 0x4b, 0x52, 0x8b, 0x4b,
 	0x52, 0x12, 0x4b, 0x12, 0xf5, 0x33, 0xf3, 0xca, 0x12, 0x73, 0x32, 0x53, 0xf4, 0x0a, 0x8a, 0xf2,
 	0x4b, 0xf2, 0x85, 0x58, 0x40, 0xe2, 0x52, 0x3c, 0xc5, 0x19, 0x89, 0x45, 0xa9, 0x50, 0x31, 0x25,
-	0x09, 0x2e, 0x3e, 0x4f, 0x88, 0xa2, 0xa0, 0xd4, 0xc2, 0xd2, 0xd4, 0xe2, 0x12, 0x2b, 0xb6, 0x4f,
-	0xd3, 0x35, 0x98, 0x38, 0x18, 0x92, 0xd8, 0xc0, 0x0a, 0x8c, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff,
-	0x58, 0x50, 0x54, 0x44, 0x61, 0x00, 0x00, 0x00,
+	0x31, 0x2e, 0x11, 0x4f, 0x88, 0x22, 0xdf, 0xd4, 0x92, 0x8c, 0xfc, 0x94, 0xa0, 0xd4, 0xc2, 0xd2,
+	0xd4, 0xe2, 0x12, 0x25, 0x71, 0x2e, 0x51, 0x34, 0xf1, 0xe2, 0x82, 0xfc, 0xbc, 0xe2, 0x54, 0xa3,
+	0x24, 0x2e, 0x3e, 0xa8, 0x44, 0x70, 0x6a, 0x51, 0x59, 0x66, 0x72, 0xaa, 0x50, 0x00, 0x17, 0x2f,
+	0x8a, 0x52, 0x21, 0x29, 0x3d, 0x90, 0x45, 0x7a, 0xd8, 0xcc, 0x95, 0x92, 0xc6, 0x2a, 0x07, 0x31,
+	0x5b, 0x89, 0xed, 0xd7, 0x74, 0x0d, 0x26, 0x0e, 0x86, 0x24, 0x36, 0xb0, 0xdb, 0x8c, 0x01, 0x01,
+	0x00, 0x00, 0xff, 0xff, 0xe6, 0x7b, 0x2c, 0x1b, 0xdc, 0x00, 0x00, 0x00,
 }

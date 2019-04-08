@@ -23,9 +23,9 @@ module Gitaly
       rpc :UserMergeBranch, stream(UserMergeBranchRequest), stream(UserMergeBranchResponse)
       rpc :UserFFBranch, UserFFBranchRequest, UserFFBranchResponse
       rpc :UserCherryPick, UserCherryPickRequest, UserCherryPickResponse
-      rpc :UserRevert, UserRevertRequest, UserRevertResponse
       rpc :UserCommitFiles, stream(UserCommitFilesRequest), UserCommitFilesResponse
       rpc :UserRebase, UserRebaseRequest, UserRebaseResponse
+      rpc :UserRevert, UserRevertRequest, UserRevertResponse
       rpc :UserSquash, UserSquashRequest, UserSquashResponse
       rpc :UserApplyPatch, stream(UserApplyPatchRequest), UserApplyPatchResponse
       rpc :UserUpdateSubmodule, UserUpdateSubmoduleRequest, UserUpdateSubmoduleResponse

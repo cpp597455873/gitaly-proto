@@ -8,39 +8,78 @@ import "shared.proto";
 import "google/protobuf/timestamp.proto";
 
 service CommitService {
-  rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) {}
-  rpc TreeEntry(TreeEntryRequest) returns (stream TreeEntryResponse) {}
-  rpc CommitsBetween(CommitsBetweenRequest) returns (stream CommitsBetweenResponse) {}
-  rpc CountCommits(CountCommitsRequest) returns (CountCommitsResponse) {}
-  rpc CountDivergingCommits(CountDivergingCommitsRequest) returns (CountDivergingCommitsResponse) {}
-  rpc GetTreeEntries(GetTreeEntriesRequest) returns (stream GetTreeEntriesResponse) {}
-  rpc ListFiles(ListFilesRequest) returns (stream ListFilesResponse) {}
-  rpc FindCommit(FindCommitRequest) returns (FindCommitResponse) {}
-  rpc CommitStats(CommitStatsRequest) returns (CommitStatsResponse) {}
+  rpc CommitIsAncestor(CommitIsAncestorRequest) returns (CommitIsAncestorResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc TreeEntry(TreeEntryRequest) returns (stream TreeEntryResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc CommitsBetween(CommitsBetweenRequest) returns (stream CommitsBetweenResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc CountCommits(CountCommitsRequest) returns (CountCommitsResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc CountDivergingCommits(CountDivergingCommitsRequest) returns (CountDivergingCommitsResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc GetTreeEntries(GetTreeEntriesRequest) returns (stream GetTreeEntriesResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc ListFiles(ListFilesRequest) returns (stream ListFilesResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc FindCommit(FindCommitRequest) returns (FindCommitResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc CommitStats(CommitStatsRequest) returns (CommitStatsResponse) {
+    option (op_type).op = ACCESSOR;
+  }
   // Use a stream to paginate the result set
-  rpc FindAllCommits(FindAllCommitsRequest) returns (stream FindAllCommitsResponse) {}
-  rpc FindCommits(FindCommitsRequest) returns (stream FindCommitsResponse) {}
-  rpc CommitLanguages(CommitLanguagesRequest) returns (CommitLanguagesResponse) {}
-  rpc RawBlame(RawBlameRequest) returns (stream RawBlameResponse) {}
-  rpc LastCommitForPath(LastCommitForPathRequest) returns (LastCommitForPathResponse) {}
-  rpc ListLastCommitsForTree(ListLastCommitsForTreeRequest) returns (stream ListLastCommitsForTreeResponse) {}
-  rpc CommitsByMessage(CommitsByMessageRequest) returns (stream CommitsByMessageResponse) {}
-
-  rpc ListCommitsByOid(ListCommitsByOidRequest) returns (stream ListCommitsByOidResponse) {}
-  rpc FilterShasWithSignatures(stream FilterShasWithSignaturesRequest) returns (stream FilterShasWithSignaturesResponse) {}
+  rpc FindAllCommits(FindAllCommitsRequest) returns (stream FindAllCommitsResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc FindCommits(FindCommitsRequest) returns (stream FindCommitsResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc CommitLanguages(CommitLanguagesRequest) returns (CommitLanguagesResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc RawBlame(RawBlameRequest) returns (stream RawBlameResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc LastCommitForPath(LastCommitForPathRequest) returns (LastCommitForPathResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc ListLastCommitsForTree(ListLastCommitsForTreeRequest) returns (stream ListLastCommitsForTreeResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc CommitsByMessage(CommitsByMessageRequest) returns (stream CommitsByMessageResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc ListCommitsByOid(ListCommitsByOidRequest) returns (stream ListCommitsByOidResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc FilterShasWithSignatures(stream FilterShasWithSignaturesRequest) returns (stream FilterShasWithSignaturesResponse) {
+    option (op_type).op = ACCESSOR;
+  }
 
   // ExtractCommitSignature returns a stream because the signed text may be
   // arbitrarily large and signature verification is impossible without the
   // full text.
-  rpc ExtractCommitSignature(ExtractCommitSignatureRequest) returns (stream ExtractCommitSignatureResponse) {}
-  rpc GetCommitSignatures(GetCommitSignaturesRequest) returns (stream GetCommitSignaturesResponse) {}
+  rpc ExtractCommitSignature(ExtractCommitSignatureRequest) returns (stream ExtractCommitSignatureResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc GetCommitSignatures(GetCommitSignaturesRequest) returns (stream GetCommitSignaturesResponse) {
+    option (op_type).op = ACCESSOR;
+  }
 
-  rpc GetCommitMessages(GetCommitMessagesRequest) returns (stream GetCommitMessagesResponse) {}
+  rpc GetCommitMessages(GetCommitMessagesRequest) returns (stream GetCommitMessagesResponse) {
+    option (op_type).op = ACCESSOR;
+  }
 }
 
 message CommitStatsRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   bytes revision = 2;
 }
@@ -53,8 +92,6 @@ message CommitStatsResponse {
 }
 
 message CommitIsAncestorRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string ancestor_id = 2;
   string child_id = 3;
@@ -65,8 +102,6 @@ message CommitIsAncestorResponse {
 }
 
 message TreeEntryRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   // commit ID or refname
   bytes revision = 2;
@@ -93,8 +128,6 @@ message TreeEntryResponse {
 }
 
 message CommitsBetweenRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   bytes from = 2;
   bytes to = 3;
@@ -105,8 +138,6 @@ message CommitsBetweenResponse {
 }
 
 message CountCommitsRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   bytes revision = 2;
   google.protobuf.Timestamp after = 3;
@@ -122,8 +153,6 @@ message CountCommitsResponse {
 }
 
 message CountDivergingCommitsRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   bytes from = 2;
   bytes to = 3;
@@ -160,8 +189,6 @@ message TreeEntry {
 }
 
 message GetTreeEntriesRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   bytes revision = 2;
   bytes path = 3;
@@ -173,8 +200,6 @@ message GetTreeEntriesResponse {
 }
 
 message ListFilesRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   bytes revision = 2;
 }
@@ -186,8 +211,6 @@ message ListFilesResponse {
 }
 
 message FindCommitRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   bytes revision = 2;
 }
@@ -198,8 +221,6 @@ message FindCommitResponse {
 }
 
 message ListCommitsByOidRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   repeated string oid = 2;
 }
@@ -209,8 +230,6 @@ message ListCommitsByOidResponse {
 }
 
 message FindAllCommitsRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   // When nil, return all commits reachable by any branch in the repo
   bytes revision = 2;
@@ -230,8 +249,6 @@ message FindAllCommitsResponse {
 }
 
 message FindCommitsRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   bytes revision = 2;
   int32 limit = 3;
@@ -252,8 +269,6 @@ message FindCommitsResponse {
 }
 
 message CommitLanguagesRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   bytes revision = 2;
 }
@@ -268,8 +283,6 @@ message CommitLanguagesResponse {
 }
 
 message RawBlameRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   bytes revision = 2;
   bytes path = 3;
@@ -280,8 +293,6 @@ message RawBlameResponse {
 }
 
 message LastCommitForPathRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   bytes revision = 2;
   bytes path = 3;
@@ -293,8 +304,6 @@ message LastCommitForPathResponse {
 }
 
 message ListLastCommitsForTreeRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string revision = 2;
   bytes path = 3;
@@ -305,8 +314,6 @@ message ListLastCommitsForTreeRequest {
 }
 
 message ListLastCommitsForTreeResponse {
-  option (op_type).op = ACCESSOR;
-
   message CommitForTree {
     reserved 1;
 
@@ -318,8 +325,6 @@ message ListLastCommitsForTreeResponse {
 }
 
 message CommitsByMessageRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   bytes revision = 2;
   int32 offset = 3;
@@ -334,8 +339,6 @@ message CommitsByMessageResponse {
 }
 
 message FilterShasWithSignaturesRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   repeated bytes shas = 2;
 }
@@ -345,8 +348,6 @@ message FilterShasWithSignaturesResponse {
 }
 
 message ExtractCommitSignatureRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string commit_id = 2;
 }
@@ -359,8 +360,6 @@ message ExtractCommitSignatureResponse {
 }
 
 message GetCommitSignaturesRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   repeated string commit_ids = 2;
 }
@@ -374,8 +373,6 @@ message GetCommitSignaturesResponse {
 }
 
 message GetCommitMessagesRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   repeated string commit_ids = 2;
 }
