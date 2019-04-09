@@ -39,6 +39,13 @@ service CommitService {
   rpc FindAllCommits(FindAllCommitsRequest) returns (stream FindAllCommitsResponse) {
     option (op_type).op = ACCESSOR;
   }
+
+  // ListCommits is a bidirectional stream where the server opens one git process and as such the
+  // start up costs are armortized.
+  rpc ListCommits(stream ListCommitsRequest) returns (stream ListCommitsResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+
   rpc FindCommits(FindCommitsRequest) returns (stream FindCommitsResponse) {
     option (op_type).op = ACCESSOR;
   }
@@ -217,6 +224,21 @@ message FindCommitRequest {
 
 message FindCommitResponse {
   // commit is nil when the commit was not found
+  GitCommit commit = 1;
+}
+
+message ListCommitsRequest {
+  message Header {
+    Repository repository = 1;
+  }
+
+  oneof payload {
+    Header header = 1;
+    bytes revision = 2;
+  }
+}
+
+message ListCommitsResponse {
   GitCommit commit = 1;
 }
 

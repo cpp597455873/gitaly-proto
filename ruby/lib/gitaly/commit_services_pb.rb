@@ -25,6 +25,9 @@ module Gitaly
       rpc :CommitStats, CommitStatsRequest, CommitStatsResponse
       # Use a stream to paginate the result set
       rpc :FindAllCommits, FindAllCommitsRequest, stream(FindAllCommitsResponse)
+      # ListCommits is a bidirectional stream where the server opens one git process and as such the
+      # start up costs are armortized.
+      rpc :ListCommits, stream(ListCommitsRequest), stream(ListCommitsResponse)
       rpc :FindCommits, FindCommitsRequest, stream(FindCommitsResponse)
       rpc :CommitLanguages, CommitLanguagesRequest, CommitLanguagesResponse
       rpc :RawBlame, RawBlameRequest, stream(RawBlameResponse)
