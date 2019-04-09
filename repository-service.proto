@@ -7,48 +7,118 @@ option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
 import "shared.proto";
 
 service RepositoryService {
-  rpc RepositoryExists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {}
-  rpc RepackIncremental(RepackIncrementalRequest) returns (RepackIncrementalResponse) {}
-  rpc RepackFull(RepackFullRequest) returns (RepackFullResponse) {}
-  rpc GarbageCollect(GarbageCollectRequest) returns (GarbageCollectResponse) {}
-  rpc RepositorySize(RepositorySizeRequest) returns (RepositorySizeResponse) {}
-  rpc ApplyGitattributes(ApplyGitattributesRequest) returns (ApplyGitattributesResponse) {}
-  rpc FetchRemote(FetchRemoteRequest) returns (FetchRemoteResponse) {}
-  rpc CreateRepository(CreateRepositoryRequest) returns (CreateRepositoryResponse) {}
-  rpc GetArchive(GetArchiveRequest) returns (stream GetArchiveResponse) {}
-  rpc HasLocalBranches(HasLocalBranchesRequest) returns (HasLocalBranchesResponse) {}
-  rpc FetchSourceBranch(FetchSourceBranchRequest) returns (FetchSourceBranchResponse) {}
-  rpc Fsck(FsckRequest) returns (FsckResponse) {}
-  rpc WriteRef(WriteRefRequest) returns (WriteRefResponse) {}
-  rpc FindMergeBase(FindMergeBaseRequest) returns (FindMergeBaseResponse) {}
-  rpc CreateFork(CreateForkRequest) returns (CreateForkResponse) {}
-  rpc IsRebaseInProgress(IsRebaseInProgressRequest) returns (IsRebaseInProgressResponse) {}
-  rpc IsSquashInProgress(IsSquashInProgressRequest) returns (IsSquashInProgressResponse) {}
+  rpc RepositoryExists(RepositoryExistsRequest) returns (RepositoryExistsResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc RepackIncremental(RepackIncrementalRequest) returns (RepackIncrementalResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc RepackFull(RepackFullRequest) returns (RepackFullResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc GarbageCollect(GarbageCollectRequest) returns (GarbageCollectResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc RepositorySize(RepositorySizeRequest) returns (RepositorySizeResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc ApplyGitattributes(ApplyGitattributesRequest) returns (ApplyGitattributesResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc FetchRemote(FetchRemoteRequest) returns (FetchRemoteResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc CreateRepository(CreateRepositoryRequest) returns (CreateRepositoryResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc GetArchive(GetArchiveRequest) returns (stream GetArchiveResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc HasLocalBranches(HasLocalBranchesRequest) returns (HasLocalBranchesResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc FetchSourceBranch(FetchSourceBranchRequest) returns (FetchSourceBranchResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc Fsck(FsckRequest) returns (FsckResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc WriteRef(WriteRefRequest) returns (WriteRefResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc FindMergeBase(FindMergeBaseRequest) returns (FindMergeBaseResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc CreateFork(CreateForkRequest) returns (CreateForkResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc IsRebaseInProgress(IsRebaseInProgressRequest) returns (IsRebaseInProgressResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc IsSquashInProgress(IsSquashInProgressRequest) returns (IsSquashInProgressResponse) {
+    option (op_type).op = ACCESSOR;
+  }
 
-  rpc CreateRepositoryFromURL(CreateRepositoryFromURLRequest) returns (CreateRepositoryFromURLResponse) {}
-  rpc CreateBundle(CreateBundleRequest) returns (stream CreateBundleResponse) {}
-  rpc CreateRepositoryFromBundle(stream CreateRepositoryFromBundleRequest) returns (CreateRepositoryFromBundleResponse) {}
-  rpc WriteConfig(WriteConfigRequest) returns (WriteConfigResponse) {}
-  rpc SetConfig(SetConfigRequest) returns (SetConfigResponse) {}
-  rpc DeleteConfig(DeleteConfigRequest) returns (DeleteConfigResponse) {}
-  rpc FindLicense(FindLicenseRequest) returns (FindLicenseResponse) {}
-  rpc GetInfoAttributes(GetInfoAttributesRequest) returns (stream GetInfoAttributesResponse) {}
-  rpc CalculateChecksum(CalculateChecksumRequest) returns (CalculateChecksumResponse) {}
-  rpc Cleanup(CleanupRequest) returns (CleanupResponse) {}
-  rpc GetSnapshot(GetSnapshotRequest) returns (stream GetSnapshotResponse) {}
-  rpc CreateRepositoryFromSnapshot(CreateRepositoryFromSnapshotRequest) returns (CreateRepositoryFromSnapshotResponse) {}
-  rpc GetRawChanges(GetRawChangesRequest) returns (stream GetRawChangesResponse) {}
-  rpc SearchFilesByContent(SearchFilesByContentRequest) returns (stream SearchFilesByContentResponse) {}
-  rpc SearchFilesByName(SearchFilesByNameRequest) returns (stream SearchFilesByNameResponse) {}
-  rpc RestoreCustomHooks(stream RestoreCustomHooksRequest) returns (RestoreCustomHooksResponse) {}
-  rpc BackupCustomHooks(BackupCustomHooksRequest) returns (stream BackupCustomHooksResponse) {}
-  rpc PreFetch(PreFetchRequest) returns (PreFetchResponse) {}
-  rpc FetchHTTPRemote(FetchHTTPRemoteRequest) returns (FetchHTTPRemoteResponse) {}
+  rpc CreateRepositoryFromURL(CreateRepositoryFromURLRequest) returns (CreateRepositoryFromURLResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc CreateBundle(CreateBundleRequest) returns (stream CreateBundleResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc CreateRepositoryFromBundle(stream CreateRepositoryFromBundleRequest) returns (CreateRepositoryFromBundleResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc WriteConfig(WriteConfigRequest) returns (WriteConfigResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc SetConfig(SetConfigRequest) returns (SetConfigResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc DeleteConfig(DeleteConfigRequest) returns (DeleteConfigResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc FindLicense(FindLicenseRequest) returns (FindLicenseResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc GetInfoAttributes(GetInfoAttributesRequest) returns (stream GetInfoAttributesResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc CalculateChecksum(CalculateChecksumRequest) returns (CalculateChecksumResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc Cleanup(CleanupRequest) returns (CleanupResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc GetSnapshot(GetSnapshotRequest) returns (stream GetSnapshotResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc CreateRepositoryFromSnapshot(CreateRepositoryFromSnapshotRequest) returns (CreateRepositoryFromSnapshotResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc GetRawChanges(GetRawChangesRequest) returns (stream GetRawChangesResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc SearchFilesByContent(SearchFilesByContentRequest) returns (stream SearchFilesByContentResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc SearchFilesByName(SearchFilesByNameRequest) returns (stream SearchFilesByNameResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc RestoreCustomHooks(stream RestoreCustomHooksRequest) returns (RestoreCustomHooksResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc BackupCustomHooks(BackupCustomHooksRequest) returns (stream BackupCustomHooksResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc PreFetch(PreFetchRequest) returns (PreFetchResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc FetchHTTPRemote(FetchHTTPRemoteRequest) returns (FetchHTTPRemoteResponse) {
+    option (op_type).op = MUTATOR;
+  }
 }
 
 message RepositoryExistsRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
 }
 
@@ -57,16 +127,12 @@ message RepositoryExistsResponse {
 }
 
 message RepackIncrementalRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
 }
 
 message RepackIncrementalResponse {}
 
 message RepackFullRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   bool create_bitmap = 2;
 }
@@ -74,8 +140,6 @@ message RepackFullRequest {
 message RepackFullResponse {}
 
 message GarbageCollectRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   bool create_bitmap = 2;
 }
@@ -83,16 +147,12 @@ message GarbageCollectRequest {
 message GarbageCollectResponse {}
 
 message CleanupRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
 }
 
 message CleanupResponse {}
 
 message RepositorySizeRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
 }
 
@@ -102,8 +162,6 @@ message RepositorySizeResponse {
 }
 
 message ApplyGitattributesRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   bytes revision = 2;
 }
@@ -111,8 +169,6 @@ message ApplyGitattributesRequest {
 message ApplyGitattributesResponse {}
 
 message FetchRemoteRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   string remote = 2;
   bool force = 3;
@@ -128,16 +184,12 @@ message FetchRemoteRequest {
 message FetchRemoteResponse {}
 
 message CreateRepositoryRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
 }
 
 message CreateRepositoryResponse {}
 
 message GetArchiveRequest {
-  option (op_type).op = ACCESSOR;
-
   enum Format {
     ZIP = 0;
     TAR = 1;
@@ -157,8 +209,6 @@ message GetArchiveResponse {
 }
 
 message HasLocalBranchesRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
 }
 
@@ -167,8 +217,6 @@ message HasLocalBranchesResponse {
 }
 
 message FetchSourceBranchRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   Repository source_repository = 2;
   bytes source_branch = 3;
@@ -180,8 +228,6 @@ message FetchSourceBranchResponse {
 }
 
 message FsckRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
 }
 
@@ -190,8 +236,6 @@ message FsckResponse {
 }
 
 message WriteRefRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   bytes ref = 2;
   bytes revision = 3;
@@ -209,8 +253,6 @@ message WriteRefResponse {
 }
 
 message FindMergeBaseRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   // We use a repeated field because rugged supports finding a base
   // for more than 2 revisions, so if we needed that in the future we don't
@@ -223,8 +265,6 @@ message FindMergeBaseResponse {
 }
 
 message CreateForkRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   Repository source_repository = 2;
 }
@@ -232,8 +272,6 @@ message CreateForkRequest {
 message CreateForkResponse {}
 
 message IsRebaseInProgressRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string rebase_id = 2;
 }
@@ -243,8 +281,6 @@ message IsRebaseInProgressResponse {
 }
 
 message IsSquashInProgressRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string squash_id = 2;
 }
@@ -254,8 +290,6 @@ message IsSquashInProgressResponse {
 }
 
 message CreateRepositoryFromURLRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   string url = 2;
 }
@@ -263,8 +297,6 @@ message CreateRepositoryFromURLRequest {
 message CreateRepositoryFromURLResponse {}
 
 message CreateBundleRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
 }
 
@@ -273,8 +305,6 @@ message CreateBundleResponse {
 }
 
 message WriteConfigRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   string full_path = 2;
 }
@@ -284,8 +314,6 @@ message WriteConfigResponse {
 }
 
 message SetConfigRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   message Entry {
     string key = 1;
@@ -301,8 +329,6 @@ message SetConfigRequest {
 message SetConfigResponse {}
 
 message DeleteConfigRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   repeated string keys = 2;
 }
@@ -310,8 +336,6 @@ message DeleteConfigRequest {
 message DeleteConfigResponse {}
 
 message  RestoreCustomHooksRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   bytes data = 2;
 }
@@ -319,8 +343,6 @@ message  RestoreCustomHooksRequest {
 message RestoreCustomHooksResponse {}
 
 message BackupCustomHooksRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
 }
 
@@ -329,8 +351,6 @@ message BackupCustomHooksResponse {
 }
 
 message CreateRepositoryFromBundleRequest {
-  option (op_type).op = MUTATOR;
-
   // Only available on the first message
   Repository repository = 1;
   bytes data = 2;
@@ -339,8 +359,6 @@ message CreateRepositoryFromBundleRequest {
 message CreateRepositoryFromBundleResponse {}
 
 message FindLicenseRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
 }
 
@@ -349,8 +367,6 @@ message FindLicenseResponse {
 }
 
 message GetInfoAttributesRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
 }
 
@@ -359,8 +375,6 @@ message GetInfoAttributesResponse {
 }
 
 message CalculateChecksumRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
 }
 
@@ -369,8 +383,6 @@ message CalculateChecksumResponse {
 }
 
 message GetSnapshotRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
 }
 
@@ -379,8 +391,6 @@ message GetSnapshotResponse {
 }
 
 message CreateRepositoryFromSnapshotRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   string http_url = 2;
   string http_auth = 3;
@@ -389,8 +399,6 @@ message CreateRepositoryFromSnapshotRequest {
 message CreateRepositoryFromSnapshotResponse {}
 
 message GetRawChangesRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string from_revision = 2;
   string to_revision = 3;
@@ -422,8 +430,6 @@ message GetRawChangesResponse {
 }
 
 message SearchFilesByNameRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string query = 2;
   bytes ref = 3;
@@ -433,9 +439,7 @@ message SearchFilesByNameResponse {
   repeated bytes files = 1;
 }
 
-message SearchFilesByContentRequest{
-  option (op_type).op = ACCESSOR;
-
+message SearchFilesByContentRequest {
   Repository repository = 1;
   string query = 2;
   bytes ref = 3;
@@ -449,8 +453,6 @@ message SearchFilesByContentResponse {
 }
 
 message PreFetchRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository source_repository = 1;
   Repository target_repository = 2;
   ObjectPool object_pool = 3;
@@ -466,12 +468,9 @@ message Remote {
 }
 
 message FetchHTTPRemoteRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   Remote remote = 2;
   int32 timeout = 3;
-
 }
 
 message FetchHTTPRemoteResponse {}

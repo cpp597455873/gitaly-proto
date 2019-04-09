@@ -8,18 +8,28 @@ import "shared.proto";
 
 service DiffService {
   // Returns stream of CommitDiffResponse with patches chunked over messages
-  rpc CommitDiff(CommitDiffRequest) returns (stream CommitDiffResponse) {}
+  rpc CommitDiff(CommitDiffRequest) returns (stream CommitDiffResponse) {
+    option (op_type).op = ACCESSOR;
+  }
   // Return a stream so we can divide the response in chunks of deltas
-  rpc CommitDelta(CommitDeltaRequest) returns (stream CommitDeltaResponse) {}
-  rpc CommitPatch(CommitPatchRequest) returns (stream CommitPatchResponse) {}
-  rpc RawDiff(RawDiffRequest) returns (stream RawDiffResponse) {}
-  rpc RawPatch(RawPatchRequest) returns (stream RawPatchResponse) {}
-  rpc DiffStats(DiffStatsRequest) returns (stream DiffStatsResponse) {}
+  rpc CommitDelta(CommitDeltaRequest) returns (stream CommitDeltaResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc CommitPatch(CommitPatchRequest) returns (stream CommitPatchResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc RawDiff(RawDiffRequest) returns (stream RawDiffResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc RawPatch(RawPatchRequest) returns (stream RawPatchResponse) {
+    option (op_type).op = ACCESSOR;
+  }
+  rpc DiffStats(DiffStatsRequest) returns (stream DiffStatsResponse) {
+    option (op_type).op = ACCESSOR;
+  }
 }
 
 message CommitDiffRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string left_commit_id = 2;
   string right_commit_id = 3;
@@ -69,8 +79,6 @@ message CommitDiffResponse {
 }
 
 message CommitDeltaRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string left_commit_id = 2;
   string right_commit_id = 3;
@@ -92,8 +100,6 @@ message CommitDeltaResponse {
 }
 
 message CommitPatchRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   bytes revision = 2;
 }
@@ -103,8 +109,6 @@ message CommitPatchResponse {
 }
 
 message RawDiffRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string left_commit_id = 2;
   string right_commit_id = 3;
@@ -115,8 +119,6 @@ message RawDiffResponse {
 }
 
 message RawPatchRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string left_commit_id = 2;
   string right_commit_id = 3;
@@ -127,8 +129,6 @@ message RawPatchResponse {
 }
 
 message DiffStatsRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string left_commit_id = 2;
   string right_commit_id = 3;

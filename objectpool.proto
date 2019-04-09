@@ -7,21 +7,29 @@ option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
 import "shared.proto";
 
 service ObjectPoolService {
-  rpc CreateObjectPool(CreateObjectPoolRequest) returns (CreateObjectPoolResponse) {}
-  rpc DeleteObjectPool(DeleteObjectPoolRequest) returns (DeleteObjectPoolResponse) {}
+  rpc CreateObjectPool(CreateObjectPoolRequest) returns (CreateObjectPoolResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc DeleteObjectPool(DeleteObjectPoolRequest) returns (DeleteObjectPoolResponse) {
+    option (op_type).op = MUTATOR;
+  }
 
   // Repositories are assumed to be stored on the same disk
-  rpc LinkRepositoryToObjectPool(LinkRepositoryToObjectPoolRequest) returns (LinkRepositoryToObjectPoolResponse) {}
-  rpc UnlinkRepositoryFromObjectPool(UnlinkRepositoryFromObjectPoolRequest) returns (UnlinkRepositoryFromObjectPoolResponse) {}
+  rpc LinkRepositoryToObjectPool(LinkRepositoryToObjectPoolRequest) returns (LinkRepositoryToObjectPoolResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc UnlinkRepositoryFromObjectPool(UnlinkRepositoryFromObjectPoolRequest) returns (UnlinkRepositoryFromObjectPoolResponse) {
+    option (op_type).op = MUTATOR;
+  }
 
-  rpc ReduplicateRepository(ReduplicateRepositoryRequest) returns (ReduplicateRepositoryResponse) {}
+  rpc ReduplicateRepository(ReduplicateRepositoryRequest) returns (ReduplicateRepositoryResponse) {
+    option (op_type).op = MUTATOR;
+  }
 }
 
 // Creates an object pool from the repository. The client is responsible for
 // joining this pool later with this repository.
 message CreateObjectPoolRequest {
-  option (op_type).op = MUTATOR;
-
   ObjectPool object_pool = 1;
   Repository origin = 2;
 }
@@ -30,15 +38,11 @@ message CreateObjectPoolResponse {}
 // Removes the directory from disk, caller is responsible for leaving the object
 // pool before calling this RPC
 message DeleteObjectPoolRequest {
-  option (op_type).op = MUTATOR;
-
   ObjectPool object_pool = 1;
 }
 message DeleteObjectPoolResponse {}
 
 message LinkRepositoryToObjectPoolRequest {
-  option (op_type).op = MUTATOR;
-
   ObjectPool object_pool = 1;
   Repository repository = 2;
 }
@@ -47,16 +51,12 @@ message LinkRepositoryToObjectPoolResponse {}
 // This RPC doesn't require the ObjectPool as it will remove the alternates file
 // from the pool participant. The caller is responsible no data loss occurs.
 message UnlinkRepositoryFromObjectPoolRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   ObjectPool object_pool = 2;
 }
 message UnlinkRepositoryFromObjectPoolResponse {}
 
 message ReduplicateRepositoryRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
 }
 message ReduplicateRepositoryResponse {}

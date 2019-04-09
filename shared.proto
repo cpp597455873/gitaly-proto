@@ -17,14 +17,9 @@ message OperationMsg {
   Operation op = 1;
 }
 
-extend google.protobuf.MessageOptions {
-  // Random high number..
-  OperationMsg op_type = 82302;
-}
-
 extend google.protobuf.MethodOptions {
   // Random high number..
-  OperationMsg op_type_1 = 82303;
+  OperationMsg op_type = 82303;
 }
 
 message Repository {

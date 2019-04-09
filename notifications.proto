@@ -7,12 +7,12 @@ option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
 import "shared.proto";
 
 service NotificationService {
-  rpc PostReceive(PostReceiveRequest) returns (PostReceiveResponse) {}
+  rpc PostReceive(PostReceiveRequest) returns (PostReceiveResponse) {
+    option (op_type).op = ACCESSOR;
+  }
 }
 
 message PostReceiveRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
 }
 
