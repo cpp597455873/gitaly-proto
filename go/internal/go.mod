@@ -5,10 +5,8 @@ require (
 	github.com/pseudomuto/protoc-gen-doc v1.1.0
 	github.com/pseudomuto/protokit v0.1.0 // indirect
 	github.com/stretchr/testify v0.0.0-20190109162356-363ebb24d041
-	gitlab.com/gitlab-org/gitaly-proto/go/gitalypb v0.0.0-20190312170322-2788afc322a2
+	gitlab.com/gitlab-org/gitaly-proto/go/gitalypb v0.0.0-20190312170322-310c5c9a1246
 	golang.org/x/net v0.0.0-20190301231341-16b79f2e4e95 // indirect
 	golang.org/x/sync v0.0.0-20190227155943-e225da77a7e6 // indirect
 	google.golang.org/grpc v1.19.0 // indirect
 )
-
-replace gitlab.com/gitlab-org/gitaly-proto/go/gitalypb => ../gitalypb

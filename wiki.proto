@@ -29,6 +29,9 @@ service WikiService {
   rpc WikiGetAllPages(WikiGetAllPagesRequest) returns (stream WikiGetAllPagesResponse) {
     option (op_type).op = ACCESSOR;
   }
+  rpc WikiListPages(WikiListPagesRequest) returns (stream WikiListPagesResponse) {
+    option (op_type).op = ACCESSOR;
+  }
   rpc WikiGetFormattedData(WikiGetFormattedDataRequest) returns (stream WikiGetFormattedDataResponse) {
     option (op_type).op = ACCESSOR;
   }

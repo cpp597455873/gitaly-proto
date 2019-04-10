@@ -22,6 +22,7 @@ module Gitaly
       rpc :WikiFindPage, WikiFindPageRequest, stream(WikiFindPageResponse)
       rpc :WikiFindFile, WikiFindFileRequest, stream(WikiFindFileResponse)
       rpc :WikiGetAllPages, WikiGetAllPagesRequest, stream(WikiGetAllPagesResponse)
+      rpc :WikiListPages, WikiListPagesRequest, stream(WikiListPagesResponse)
       rpc :WikiGetFormattedData, WikiGetFormattedDataRequest, stream(WikiGetFormattedDataResponse)
     end
 
