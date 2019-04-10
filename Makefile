@@ -72,7 +72,7 @@ $(PROTOC_GEN_GITALY): $(TARGET_SETUP)
 pb-go-stubs: go/gitalypb/*.pb.go
 
 go/gitalypb/%.pb.go: %.proto $(PROTOC) $(PROTOC_GEN_GO) $(PROTOC_GEN_GITALY)
-	$(PROTOC) --gitaly_out=. --go_out=paths=source_relative,plugins=grpc:./go/gitalypb -I$(shell pwd) *.proto
+	$(PROTOC) --gitaly_out=proto_dir=.,gitalypb_dir=go/gitalypb:. --go_out=paths=source_relative,plugins=grpc:./go/gitalypb -I$(shell pwd) *.proto
 
 go/internal/linter/testdata/%.pb.go: go/internal/linter/testdata/%.proto $(PROTOC) $(PROTOC_GEN_GO) go/gitalypb/*.pb.go
 	$(PROTOC) --go_out=paths=source_relative:. -I$(shell pwd) -I$(shell pwd)/go/internal/linter/testdata go/internal/linter/testdata/*.proto
