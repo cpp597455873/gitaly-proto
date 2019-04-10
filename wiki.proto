@@ -15,6 +15,7 @@ service WikiService {
   rpc WikiFindPage(WikiFindPageRequest) returns (stream WikiFindPageResponse) {}
   rpc WikiFindFile(WikiFindFileRequest) returns (stream WikiFindFileResponse) {}
   rpc WikiGetAllPages(WikiGetAllPagesRequest) returns (stream WikiGetAllPagesResponse) {}
+  rpc WikiListPages(WikiListPagesRequest) returns (stream WikiListPagesResponse) {}
   rpc WikiGetFormattedData(WikiGetFormattedDataRequest) returns (stream WikiGetFormattedDataResponse) {}
 }
 
@@ -169,4 +170,26 @@ message WikiGetFormattedDataRequest {
 
 message WikiGetFormattedDataResponse {
   bytes data = 1;
+}
+
+message WikiListPagesRequest {
+  option (op_type).op = ACCESSOR;
+
+  Repository repository = 1;
+  // Passing 0 means no limit is applied
+  uint32 limit = 2;
+  bool direction_desc = 3;
+
+  enum SortBy {
+    TITLE = 0;
+    CREATED_AT = 1;
+  }
+  SortBy sort = 4;
+
+  uint32 offset = 5;
+}
+
+// The WikiListPagesResponse stream is a concatenation of WikiPage streams without content
+message WikiListPagesResponse {
+  WikiPage page = 1;
 }
