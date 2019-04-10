@@ -15,6 +15,7 @@ service ObjectPoolService {
   rpc UnlinkRepositoryFromObjectPool(UnlinkRepositoryFromObjectPoolRequest) returns (UnlinkRepositoryFromObjectPoolResponse) {}
 
   rpc ReduplicateRepository(ReduplicateRepositoryRequest) returns (ReduplicateRepositoryResponse) {}
+  rpc DisconnectGitAlternates(DisconnectGitAlternatesRequest) returns (DisconnectGitAlternatesResponse) {}
 }
 
 // Creates an object pool from the repository. The client is responsible for
@@ -60,3 +61,11 @@ message ReduplicateRepositoryRequest {
   Repository repository = 1;
 }
 message ReduplicateRepositoryResponse {}
+
+message DisconnectGitAlternatesRequest {
+  option (op_type).op = MUTATOR;
+
+  Repository repository = 1;
+}
+
+message DisconnectGitAlternatesResponse {}
