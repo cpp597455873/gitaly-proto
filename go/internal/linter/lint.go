@@ -2,31 +2,26 @@ package linter
 
 import (
 	"fmt"
-	"regexp"
 
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/protoc-gen-go/descriptor"
 	"gitlab.com/gitlab-org/gitaly-proto/go/gitalypb"
 )
 
-var (
-	requestRegex = regexp.MustCompile("^.*Request$")
-)
-
-// ensureMsgOpType will ensure that message includes the op_type option.
+// ensureMethodOpType will ensure that method includes the op_type option.
 // See proto example below:
 //
-//   message ExampleRequest {
+//  rpc ExampleMethod(ExampleMethodRequest) returns (ExampleMethodResponse) {
 //     option (op_type).op = ACCESSOR;
 //   }
-func ensureMsgOpType(file string, msg *descriptor.DescriptorProto) error {
-	options := msg.GetOptions()
+func ensureMethodOpType(file string, m *descriptor.MethodDescriptorProto) error {
+	options := m.GetOptions()
 
 	if !proto.HasExtension(options, gitalypb.E_OpType) {
 		return fmt.Errorf(
-			"%s: Message %s missing op_type option",
+			"%s: Method %s missing op_type option",
 			file,
-			msg.GetName(),
+			m.GetName(),
 		)
 	}
 
@@ -50,21 +45,19 @@ func ensureMsgOpType(file string, msg *descriptor.DescriptorProto) error {
 
 	case gitalypb.OperationMsg_UNKNOWN:
 		return fmt.Errorf(
-			"%s: Message %s has op set to UNKNOWN",
+			"%s: Method %s has op set to UNKNOWN",
 			file,
-			msg.GetName(),
+			m.GetName(),
 		)
 
 	default:
 		return fmt.Errorf(
-			"%s: Message %s has invalid operation class with int32 value of %d",
+			"%s: Method %s has invalid operation class with int32 value of %d",
 			file,
-			msg.GetName(),
+			m.GetName(),
 			opCode,
 		)
 	}
-
-	return nil
 }
 
 // LintFile ensures the file described meets Gitaly required processes.
@@ -73,16 +66,13 @@ func ensureMsgOpType(file string, msg *descriptor.DescriptorProto) error {
 func LintFile(file *descriptor.FileDescriptorProto) []error {
 	var errs []error
 
-	for _, msg := range file.GetMessageType() {
-		if !requestRegex.MatchString(msg.GetName()) {
-			continue
+	for _, serviceDescriptorProto := range file.GetService() {
+		for _, methodDescriptorProto := range serviceDescriptorProto.GetMethod() {
+			err := ensureMethodOpType(file.GetName(), methodDescriptorProto)
+			if err != nil {
+				errs = append(errs, err)
+			}
 		}
-
-		err := ensureMsgOpType(file.GetName(), msg)
-		if err != nil {
-			errs = append(errs, err)
-		}
-
 	}
 
 	return errs

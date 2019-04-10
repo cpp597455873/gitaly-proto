@@ -7,37 +7,37 @@ option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
 import "shared.proto";
 
 service NamespaceService {
-  rpc AddNamespace(AddNamespaceRequest) returns (AddNamespaceResponse) {}
-  rpc RemoveNamespace(RemoveNamespaceRequest) returns (RemoveNamespaceResponse) {}
-  rpc RenameNamespace(RenameNamespaceRequest) returns (RenameNamespaceResponse) {}
-  rpc NamespaceExists(NamespaceExistsRequest) returns (NamespaceExistsResponse) {}
+  rpc AddNamespace(AddNamespaceRequest) returns (AddNamespaceResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc RemoveNamespace(RemoveNamespaceRequest) returns (RemoveNamespaceResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc RenameNamespace(RenameNamespaceRequest) returns (RenameNamespaceResponse) {
+    option (op_type).op = MUTATOR;
+  }
+  rpc NamespaceExists(NamespaceExistsRequest) returns (NamespaceExistsResponse) {
+    option (op_type).op = ACCESSOR;
+  }
 }
 
 message AddNamespaceRequest {
-  option (op_type).op = MUTATOR;
-
   string storage_name = 1;
   string name = 2;
 }
 
 message RemoveNamespaceRequest {
-  option (op_type).op = MUTATOR;
-
   string storage_name = 1;
   string name = 2;
 }
 
 message RenameNamespaceRequest {
-  option (op_type).op = MUTATOR;
-
   string storage_name = 1;
   string from = 2;
   string to = 3;
 }
 
 message NamespaceExistsRequest {
-  option (op_type).op = ACCESSOR;
-
   string storage_name = 1;
   string name = 2;
 }

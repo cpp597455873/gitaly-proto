@@ -28,13 +28,13 @@ func TestLintFile(t *testing.T) {
 		{
 			protoPath: "go/internal/linter/testdata/invalid.proto",
 			errs: []error{
-				errors.New("go/internal/linter/testdata/invalid.proto: Message InvalidRequest has op set to UNKNOWN"),
+				errors.New("go/internal/linter/testdata/invalid.proto: Method InvalidMethod has op set to UNKNOWN"),
 			},
 		},
 		{
 			protoPath: "go/internal/linter/testdata/incomplete.proto",
 			errs: []error{
-				errors.New("go/internal/linter/testdata/incomplete.proto: Message IncompleteRequest missing op_type option"),
+				errors.New("go/internal/linter/testdata/incomplete.proto: Method IncompleteMethod missing op_type option"),
 			},
 		},
 	} {

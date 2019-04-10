@@ -6,6 +6,12 @@ import "shared.proto";
 
 // TestRequest has the required option, so we should not expect it to cause
 // a failure
-message TestRequest {
-  option (gitaly.op_type).op = ACCESSOR;
+message TestRequest {}
+
+message TestResponse{}
+
+service TestService {
+  rpc TestMethod(TestRequest) returns (TestResponse) {
+    option (gitaly.op_type).op = ACCESSOR;
+  }
 }

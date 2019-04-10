@@ -220,8 +220,7 @@ default, we prefer headers.
 ### RPC Annotations
 
 In preparation for Gitaly HA, we are now requiring all RPC's to be annotated
-with an appropriate designation. All request messages (i.e. message types with
-suffix `Request`) must contain one of the following lines:
+with an appropriate designation. All methods must contain one of the following lines:
 
 - `option (op_type).op = ACCESSOR;`
   - Designates an RPC as being read-only (i.e. side effect free)
@@ -230,7 +229,7 @@ suffix `Request`) must contain one of the following lines:
 
 Failing to designate an RPC correctly will result in a CI error. For example:
 
-`--gitaly_out: server.proto: Message ServerInfoRequest missing op_type option`
+`--gitaly_out: server.proto: Method ServerInfo missing op_type option`
 
 ### Go Package
 

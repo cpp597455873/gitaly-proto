@@ -7,12 +7,12 @@ option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
 import "shared.proto";
 
 service ServerService {
-  rpc ServerInfo(ServerInfoRequest) returns (ServerInfoResponse) {}
+  rpc ServerInfo(ServerInfoRequest) returns (ServerInfoResponse) {
+    option (op_type).op = ACCESSOR;
+  }
 }
 
-message ServerInfoRequest {
-  option (op_type).op = ACCESSOR;
-}
+message ServerInfoRequest {}
 
 message ServerInfoResponse {
   message StorageStatus {

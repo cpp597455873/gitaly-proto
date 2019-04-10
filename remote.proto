@@ -7,18 +7,31 @@ option go_package = "gitlab.com/gitlab-org/gitaly-proto/go/gitalypb";
 import "shared.proto";
 
 service RemoteService {
-    rpc AddRemote(AddRemoteRequest) returns (AddRemoteResponse) {}
-    rpc FetchInternalRemote(FetchInternalRemoteRequest) returns (FetchInternalRemoteResponse) {}
-    rpc RemoveRemote(RemoveRemoteRequest) returns (RemoveRemoteResponse) {}
-    rpc UpdateRemoteMirror(stream UpdateRemoteMirrorRequest) returns (UpdateRemoteMirrorResponse) {}
-    rpc FindRemoteRepository(FindRemoteRepositoryRequest) returns (FindRemoteRepositoryResponse) {}
-    rpc FindRemoteRootRef(FindRemoteRootRefRequest) returns (FindRemoteRootRefResponse) {}
-    rpc ListRemotes(ListRemotesRequest) returns (stream ListRemotesResponse) {}
+    rpc AddRemote(AddRemoteRequest) returns (AddRemoteResponse) {
+      option (op_type).op = MUTATOR;
+    }
+    rpc FetchInternalRemote(FetchInternalRemoteRequest) returns (FetchInternalRemoteResponse) {
+      option (op_type).op = MUTATOR;
+    }
+    rpc RemoveRemote(RemoveRemoteRequest) returns (RemoveRemoteResponse) {
+      option (op_type).op = MUTATOR;
+    }
+
+    rpc UpdateRemoteMirror(stream UpdateRemoteMirrorRequest) returns (UpdateRemoteMirrorResponse) {
+      option (op_type).op = MUTATOR;
+    }
+    rpc FindRemoteRepository(FindRemoteRepositoryRequest) returns (FindRemoteRepositoryResponse) {
+      option (op_type).op = ACCESSOR;
+    }
+    rpc FindRemoteRootRef(FindRemoteRootRefRequest) returns (FindRemoteRootRefResponse) {
+      option (op_type).op = ACCESSOR;
+    }
+    rpc ListRemotes(ListRemotesRequest) returns (stream ListRemotesResponse) {
+      option (op_type).op = ACCESSOR;
+    }
 }
 
 message AddRemoteRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   string name = 2;
   string url = 3;
@@ -32,8 +45,6 @@ message AddRemoteRequest {
 message AddRemoteResponse {}
 
 message RemoveRemoteRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   string name = 2;
 }
@@ -43,8 +54,6 @@ message RemoveRemoteResponse {
 }
 
 message FetchInternalRemoteRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   Repository remote_repository = 2;
 }
@@ -54,8 +63,6 @@ message FetchInternalRemoteResponse {
 }
 
 message UpdateRemoteMirrorRequest {
-  option (op_type).op = MUTATOR;
-
   Repository repository = 1;
   string ref_name = 2;
   repeated bytes only_branches_matching = 3;
@@ -66,8 +73,6 @@ message UpdateRemoteMirrorRequest {
 message UpdateRemoteMirrorResponse {}
 
 message FindRemoteRepositoryRequest {
-  option (op_type).op = ACCESSOR;
-
   string remote = 1;
 }
 
@@ -78,8 +83,6 @@ message FindRemoteRepositoryResponse {
 }
 
 message FindRemoteRootRefRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
   string remote = 2;
 }
@@ -89,8 +92,6 @@ message FindRemoteRootRefResponse {
 }
 
 message ListRemotesRequest {
-  option (op_type).op = ACCESSOR;
-
   Repository repository = 1;
 }
 
