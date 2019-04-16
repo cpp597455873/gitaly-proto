@@ -38,6 +38,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.DisconnectGitAlternatesResponse" do
   end
+  add_message "gitaly.FetchIntoObjectPoolRequest" do
+    optional :origin, :message, 1, "gitaly.Repository"
+    optional :object_pool, :message, 2, "gitaly.ObjectPool"
+    optional :repack, :bool, 3
+  end
+  add_message "gitaly.FetchIntoObjectPoolResponse" do
+  end
 end
 
 module Gitaly
@@ -53,4 +60,6 @@ module Gitaly
   ReduplicateRepositoryResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ReduplicateRepositoryResponse").msgclass
   DisconnectGitAlternatesRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DisconnectGitAlternatesRequest").msgclass
   DisconnectGitAlternatesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.DisconnectGitAlternatesResponse").msgclass
+  FetchIntoObjectPoolRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchIntoObjectPoolRequest").msgclass
+  FetchIntoObjectPoolResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchIntoObjectPoolResponse").msgclass
 end

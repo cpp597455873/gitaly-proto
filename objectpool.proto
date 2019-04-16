@@ -28,6 +28,9 @@ service ObjectPoolService {
   rpc DisconnectGitAlternates(DisconnectGitAlternatesRequest) returns (DisconnectGitAlternatesResponse) {
     option (op_type).op = MUTATOR;
   }
+  rpc FetchIntoObjectPool(FetchIntoObjectPoolRequest) returns (FetchIntoObjectPoolResponse) {
+    option (op_type).op = MUTATOR;
+  }
 }
 
 // Creates an object pool from the repository. The client is responsible for
@@ -69,3 +72,10 @@ message DisconnectGitAlternatesRequest {
 }
 
 message DisconnectGitAlternatesResponse {}
+
+message FetchIntoObjectPoolRequest {
+  Repository origin = 1;
+  ObjectPool object_pool = 2;
+  bool repack = 3;
+}
+message FetchIntoObjectPoolResponse {}
