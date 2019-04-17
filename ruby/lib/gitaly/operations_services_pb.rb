@@ -25,6 +25,7 @@ module Gitaly
       rpc :UserCherryPick, UserCherryPickRequest, UserCherryPickResponse
       rpc :UserCommitFiles, stream(UserCommitFilesRequest), UserCommitFilesResponse
       rpc :UserRebase, UserRebaseRequest, UserRebaseResponse
+      rpc :UserRebaseConfirmable, stream(UserRebaseConfirmableRequest), stream(UserRebaseConfirmableResponse)
       rpc :UserRevert, UserRevertRequest, UserRevertResponse
       rpc :UserSquash, UserSquashRequest, UserSquashResponse
       rpc :UserApplyPatch, stream(UserApplyPatchRequest), UserApplyPatchResponse
