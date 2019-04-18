@@ -11,9 +11,16 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.ApplyBfgObjectMapResponse" do
   end
+  add_message "gitaly.CloseSessionRequest" do
+    optional :session_id, :string, 1
+  end
+  add_message "gitaly.CloseSessionResponse" do
+  end
 end
 
 module Gitaly
   ApplyBfgObjectMapRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ApplyBfgObjectMapRequest").msgclass
   ApplyBfgObjectMapResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ApplyBfgObjectMapResponse").msgclass
+  CloseSessionRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CloseSessionRequest").msgclass
+  CloseSessionResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CloseSessionResponse").msgclass
 end

@@ -15,6 +15,7 @@ module Gitaly
       self.service_name = 'gitaly.CleanupService'
 
       rpc :ApplyBfgObjectMap, stream(ApplyBfgObjectMapRequest), ApplyBfgObjectMapResponse
+      rpc :CloseSession, CloseSessionRequest, CloseSessionResponse
     end
 
     Stub = Service.rpc_stub_class
