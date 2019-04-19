@@ -38,7 +38,7 @@ func (m *ApplyBfgObjectMapRequest) Reset()         { *m = ApplyBfgObjectMapReque
 func (m *ApplyBfgObjectMapRequest) String() string { return proto.CompactTextString(m) }
 func (*ApplyBfgObjectMapRequest) ProtoMessage()    {}
 func (*ApplyBfgObjectMapRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cleanup_cc4bfe54b51ce874, []int{0}
+	return fileDescriptor_cleanup_9b2987dd57e0bf93, []int{0}
 }
 func (m *ApplyBfgObjectMapRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ApplyBfgObjectMapRequest.Unmarshal(m, b)
@@ -82,7 +82,7 @@ func (m *ApplyBfgObjectMapResponse) Reset()         { *m = ApplyBfgObjectMapResp
 func (m *ApplyBfgObjectMapResponse) String() string { return proto.CompactTextString(m) }
 func (*ApplyBfgObjectMapResponse) ProtoMessage()    {}
 func (*ApplyBfgObjectMapResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_cleanup_cc4bfe54b51ce874, []int{1}
+	return fileDescriptor_cleanup_9b2987dd57e0bf93, []int{1}
 }
 func (m *ApplyBfgObjectMapResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_ApplyBfgObjectMapResponse.Unmarshal(m, b)
@@ -102,9 +102,79 @@ func (m *ApplyBfgObjectMapResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ApplyBfgObjectMapResponse proto.InternalMessageInfo
 
+type CloseSessionRequest struct {
+	SessionId            string   `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CloseSessionRequest) Reset()         { *m = CloseSessionRequest{} }
+func (m *CloseSessionRequest) String() string { return proto.CompactTextString(m) }
+func (*CloseSessionRequest) ProtoMessage()    {}
+func (*CloseSessionRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_cleanup_9b2987dd57e0bf93, []int{2}
+}
+func (m *CloseSessionRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CloseSessionRequest.Unmarshal(m, b)
+}
+func (m *CloseSessionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CloseSessionRequest.Marshal(b, m, deterministic)
+}
+func (dst *CloseSessionRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CloseSessionRequest.Merge(dst, src)
+}
+func (m *CloseSessionRequest) XXX_Size() int {
+	return xxx_messageInfo_CloseSessionRequest.Size(m)
+}
+func (m *CloseSessionRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CloseSessionRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CloseSessionRequest proto.InternalMessageInfo
+
+func (m *CloseSessionRequest) GetSessionId() string {
+	if m != nil {
+		return m.SessionId
+	}
+	return ""
+}
+
+type CloseSessionResponse struct {
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CloseSessionResponse) Reset()         { *m = CloseSessionResponse{} }
+func (m *CloseSessionResponse) String() string { return proto.CompactTextString(m) }
+func (*CloseSessionResponse) ProtoMessage()    {}
+func (*CloseSessionResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_cleanup_9b2987dd57e0bf93, []int{3}
+}
+func (m *CloseSessionResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CloseSessionResponse.Unmarshal(m, b)
+}
+func (m *CloseSessionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CloseSessionResponse.Marshal(b, m, deterministic)
+}
+func (dst *CloseSessionResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CloseSessionResponse.Merge(dst, src)
+}
+func (m *CloseSessionResponse) XXX_Size() int {
+	return xxx_messageInfo_CloseSessionResponse.Size(m)
+}
+func (m *CloseSessionResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CloseSessionResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CloseSessionResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*ApplyBfgObjectMapRequest)(nil), "gitaly.ApplyBfgObjectMapRequest")
 	proto.RegisterType((*ApplyBfgObjectMapResponse)(nil), "gitaly.ApplyBfgObjectMapResponse")
+	proto.RegisterType((*CloseSessionRequest)(nil), "gitaly.CloseSessionRequest")
+	proto.RegisterType((*CloseSessionResponse)(nil), "gitaly.CloseSessionResponse")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -120,6 +190,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type CleanupServiceClient interface {
 	ApplyBfgObjectMap(ctx context.Context, opts ...grpc.CallOption) (CleanupService_ApplyBfgObjectMapClient, error)
+	CloseSession(ctx context.Context, in *CloseSessionRequest, opts ...grpc.CallOption) (*CloseSessionResponse, error)
 }
 
 type cleanupServiceClient struct {
@@ -164,9 +235,19 @@ func (x *cleanupServiceApplyBfgObjectMapClient) CloseAndRecv() (*ApplyBfgObjectM
 	return m, nil
 }
 
+func (c *cleanupServiceClient) CloseSession(ctx context.Context, in *CloseSessionRequest, opts ...grpc.CallOption) (*CloseSessionResponse, error) {
+	out := new(CloseSessionResponse)
+	err := c.cc.Invoke(ctx, "/gitaly.CleanupService/CloseSession", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CleanupServiceServer is the server API for CleanupService service.
 type CleanupServiceServer interface {
 	ApplyBfgObjectMap(CleanupService_ApplyBfgObjectMapServer) error
+	CloseSession(context.Context, *CloseSessionRequest) (*CloseSessionResponse, error)
 }
 
 func RegisterCleanupServiceServer(s *grpc.Server, srv CleanupServiceServer) {
@@ -199,10 +280,33 @@ func (x *cleanupServiceApplyBfgObjectMapServer) Recv() (*ApplyBfgObjectMapReques
 	return m, nil
 }
 
+func _CleanupService_CloseSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CloseSessionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CleanupServiceServer).CloseSession(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/gitaly.CleanupService/CloseSession",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CleanupServiceServer).CloseSession(ctx, req.(*CloseSessionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _CleanupService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "gitaly.CleanupService",
 	HandlerType: (*CleanupServiceServer)(nil),
-	Methods:     []grpc.MethodDesc{},
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CloseSession",
+			Handler:    _CleanupService_CloseSession_Handler,
+		},
+	},
 	Streams: []grpc.StreamDesc{
 		{
 			StreamName:    "ApplyBfgObjectMap",
@@ -213,23 +317,27 @@ var _CleanupService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "cleanup.proto",
 }
 
-func init() { proto.RegisterFile("cleanup.proto", fileDescriptor_cleanup_cc4bfe54b51ce874) }
+func init() { proto.RegisterFile("cleanup.proto", fileDescriptor_cleanup_9b2987dd57e0bf93) }
 
-var fileDescriptor_cleanup_cc4bfe54b51ce874 = []byte{
-	// 232 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x4d, 0xce, 0x49, 0x4d,
-	0xcc, 0x2b, 0x2d, 0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x4b, 0xcf, 0x2c, 0x49, 0xcc,
-	0xa9, 0x94, 0xe2, 0x29, 0xce, 0x48, 0x2c, 0x4a, 0x4d, 0x81, 0x88, 0x2a, 0xe5, 0x72, 0x49, 0x38,
-	0x16, 0x14, 0xe4, 0x54, 0x3a, 0xa5, 0xa5, 0xfb, 0x27, 0x65, 0xa5, 0x26, 0x97, 0xf8, 0x26, 0x16,
-	0x04, 0xa5, 0x16, 0x96, 0xa6, 0x16, 0x97, 0x08, 0x19, 0x71, 0x71, 0x15, 0xa5, 0x16, 0xe4, 0x17,
-	0x67, 0x96, 0xe4, 0x17, 0x55, 0x4a, 0x30, 0x2a, 0x30, 0x6a, 0x70, 0x1b, 0x09, 0xe9, 0x41, 0x8c,
-	0xd1, 0x0b, 0x82, 0xcb, 0x04, 0x21, 0xa9, 0x12, 0x92, 0xe5, 0xe2, 0xca, 0x07, 0x9b, 0x13, 0x9f,
-	0x9b, 0x58, 0x20, 0xc1, 0xa4, 0xc0, 0xa8, 0xc1, 0x13, 0xc4, 0x99, 0x0f, 0x33, 0x59, 0x49, 0x9a,
-	0x4b, 0x12, 0x8b, 0x75, 0xc5, 0x05, 0xf9, 0x79, 0xc5, 0xa9, 0x46, 0x25, 0x5c, 0x7c, 0xce, 0x10,
-	0x27, 0x07, 0xa7, 0x16, 0x95, 0x65, 0x26, 0xa7, 0x0a, 0x25, 0x71, 0x09, 0x62, 0x28, 0x17, 0x52,
-	0x80, 0x39, 0x01, 0x97, 0xc3, 0xa5, 0x14, 0xf1, 0xa8, 0x80, 0xd8, 0xa5, 0xc4, 0xf6, 0x6b, 0xba,
-	0x06, 0x13, 0x07, 0xa3, 0x06, 0xa3, 0x93, 0x41, 0x14, 0x48, 0x75, 0x4e, 0x62, 0x92, 0x5e, 0x72,
-	0x7e, 0xae, 0x3e, 0x84, 0xa9, 0x9b, 0x5f, 0x94, 0xae, 0x0f, 0x31, 0x43, 0x17, 0x1c, 0x4e, 0xfa,
-	0xe9, 0xf9, 0x50, 0x7e, 0x41, 0x52, 0x12, 0x1b, 0x58, 0xc8, 0x18, 0x10, 0x00, 0x00, 0xff, 0xff,
-	0xb0, 0x11, 0x96, 0xf6, 0x61, 0x01, 0x00, 0x00,
+var fileDescriptor_cleanup_9b2987dd57e0bf93 = []byte{
+	// 290 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x51, 0xc1, 0x4e, 0x83, 0x40,
+	0x10, 0xcd, 0xf6, 0x40, 0x64, 0x44, 0x13, 0x57, 0x63, 0x90, 0xda, 0x04, 0x39, 0x71, 0x29, 0x18,
+	0xf4, 0x07, 0x6c, 0x4f, 0x1e, 0x8c, 0x91, 0xde, 0xbc, 0x34, 0x0b, 0xac, 0x88, 0x01, 0x66, 0xdd,
+	0xa5, 0x26, 0x7c, 0x89, 0x9f, 0xe4, 0x3f, 0x79, 0x32, 0xb2, 0x60, 0xda, 0x88, 0xde, 0x76, 0xdf,
+	0xbc, 0xf7, 0xe6, 0xcd, 0x0c, 0x1c, 0xa4, 0x25, 0x67, 0xf5, 0x46, 0x04, 0x42, 0x62, 0x83, 0xd4,
+	0xc8, 0x8b, 0x86, 0x95, 0xad, 0x63, 0xa9, 0x67, 0x26, 0x79, 0xa6, 0x51, 0xaf, 0x02, 0xfb, 0x46,
+	0x88, 0xb2, 0x5d, 0x3c, 0xe5, 0xf7, 0xc9, 0x0b, 0x4f, 0x9b, 0x3b, 0x26, 0x62, 0xfe, 0xba, 0xe1,
+	0xaa, 0xa1, 0x11, 0x80, 0xe4, 0x02, 0x55, 0xd1, 0xa0, 0x6c, 0x6d, 0xe2, 0x12, 0x7f, 0x3f, 0xa2,
+	0x81, 0xb6, 0x09, 0xe2, 0x9f, 0x4a, 0xbc, 0xc5, 0xa2, 0x33, 0x00, 0xec, 0x7c, 0xd6, 0x15, 0x13,
+	0xf6, 0xc4, 0x25, 0xbe, 0x15, 0x9b, 0x38, 0x38, 0x7b, 0x53, 0x38, 0x1b, 0x69, 0xa7, 0x04, 0xd6,
+	0x8a, 0x7b, 0xd7, 0x70, 0xbc, 0x2c, 0x51, 0xf1, 0x15, 0x57, 0xaa, 0xc0, 0x7a, 0x88, 0x31, 0x03,
+	0x50, 0x1a, 0x59, 0x17, 0x59, 0x17, 0xc3, 0x8c, 0xcd, 0x1e, 0xb9, 0xcd, 0xbc, 0x53, 0x38, 0xd9,
+	0x55, 0x69, 0xb7, 0xe8, 0x83, 0xc0, 0xe1, 0x52, 0x6f, 0x60, 0xc5, 0xe5, 0x5b, 0x91, 0x72, 0x9a,
+	0xc0, 0xd1, 0xaf, 0xee, 0xd4, 0x1d, 0x26, 0xfa, 0x6b, 0x0f, 0xce, 0xc5, 0x3f, 0x8c, 0x3e, 0xba,
+	0xf1, 0xf9, 0xee, 0x4f, 0xf6, 0x88, 0x4f, 0xe8, 0x03, 0x58, 0xdb, 0x71, 0xe8, 0x74, 0x10, 0x8f,
+	0x8c, 0xe6, 0x9c, 0x8f, 0x17, 0x77, 0x4d, 0x17, 0x97, 0x8f, 0xdf, 0xb4, 0x92, 0x25, 0x41, 0x8a,
+	0x55, 0xa8, 0x9f, 0x73, 0x94, 0x79, 0xa8, 0xc5, 0xf3, 0xee, 0x92, 0x61, 0x8e, 0xfd, 0x5f, 0x24,
+	0x89, 0xd1, 0x41, 0x57, 0x5f, 0x01, 0x00, 0x00, 0xff, 0xff, 0xa4, 0xa6, 0x3f, 0xb1, 0x03, 0x02,
+	0x00, 0x00,
 }

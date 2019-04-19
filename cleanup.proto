@@ -10,6 +10,10 @@ service CleanupService {
   rpc ApplyBfgObjectMap(stream ApplyBfgObjectMapRequest) returns (ApplyBfgObjectMapResponse) {
     option (op_type).op = MUTATOR;
   }
+
+  rpc CloseSession(CloseSessionRequest) returns (CloseSessionResponse) {
+    option (op_type).op = MUTATOR;
+  }
 }
 
 message ApplyBfgObjectMapRequest {
@@ -21,3 +25,9 @@ message ApplyBfgObjectMapRequest {
 }
 
 message ApplyBfgObjectMapResponse {}
+
+message CloseSessionRequest{
+  string session_id = 1;
+}
+
+message CloseSessionResponse{}
