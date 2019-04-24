@@ -181,6 +181,29 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :pre_receive_error, :string, 2
     optional :git_error, :string, 3
   end
+  add_message "gitaly.UserRebaseConfirmableRequest" do
+    oneof :user_rebase_confirmable_request_payload do
+      optional :header, :message, 1, "gitaly.UserRebaseConfirmableRequest.Header"
+      optional :apply, :bool, 2
+    end
+  end
+  add_message "gitaly.UserRebaseConfirmableRequest.Header" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :user, :message, 2, "gitaly.User"
+    optional :rebase_id, :string, 3
+    optional :branch, :bytes, 4
+    optional :branch_sha, :string, 5
+    optional :remote_repository, :message, 6, "gitaly.Repository"
+    optional :remote_branch, :bytes, 7
+  end
+  add_message "gitaly.UserRebaseConfirmableResponse" do
+    optional :pre_receive_error, :string, 3
+    optional :git_error, :string, 4
+    oneof :user_rebase_confirmable_response_payload do
+      optional :rebase_sha, :string, 1
+      optional :rebase_applied, :bool, 2
+    end
+  end
   add_message "gitaly.UserSquashRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
     optional :user, :message, 2, "gitaly.User"
@@ -254,6 +277,9 @@ module Gitaly
   UserCommitFilesResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserCommitFilesResponse").msgclass
   UserRebaseRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserRebaseRequest").msgclass
   UserRebaseResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserRebaseResponse").msgclass
+  UserRebaseConfirmableRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserRebaseConfirmableRequest").msgclass
+  UserRebaseConfirmableRequest::Header = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserRebaseConfirmableRequest.Header").msgclass
+  UserRebaseConfirmableResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserRebaseConfirmableResponse").msgclass
   UserSquashRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserSquashRequest").msgclass
   UserSquashResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserSquashResponse").msgclass
   UserApplyPatchRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.UserApplyPatchRequest").msgclass
