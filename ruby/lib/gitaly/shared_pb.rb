@@ -59,6 +59,13 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.ObjectPool" do
     optional :repository, :message, 1, "gitaly.Repository"
   end
+  add_enum "gitaly.ObjectType" do
+    value :UNKNOWN, 0
+    value :COMMIT, 1
+    value :BLOB, 2
+    value :TREE, 3
+    value :TAG, 4
+  end
 end
 
 module Gitaly
@@ -72,4 +79,5 @@ module Gitaly
   Tag = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Tag").msgclass
   User = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.User").msgclass
   ObjectPool = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ObjectPool").msgclass
+  ObjectType = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ObjectType").enummodule
 end

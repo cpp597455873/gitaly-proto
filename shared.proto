@@ -17,6 +17,14 @@ message OperationMsg {
   Operation op = 1;
 }
 
+enum ObjectType {
+  UNKNOWN = 0;
+  COMMIT = 1;
+  BLOB = 2;
+  TREE = 3;
+  TAG = 4;
+}
+
 extend google.protobuf.MethodOptions {
   // Random high number..
   OperationMsg op_type = 82303;
