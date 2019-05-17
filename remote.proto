@@ -8,17 +8,29 @@ import "shared.proto";
 
 service RemoteService {
     rpc AddRemote(AddRemoteRequest) returns (AddRemoteResponse) {
-      option (op_type).op = MUTATOR;
+      option (op_type) = {
+        op: MUTATOR
+        target_repository_field: "1"
+      };
     }
     rpc FetchInternalRemote(FetchInternalRemoteRequest) returns (FetchInternalRemoteResponse) {
-      option (op_type).op = MUTATOR;
+      option (op_type) = {
+        op: MUTATOR
+        target_repository_field: "1"
+      };
     }
     rpc RemoveRemote(RemoveRemoteRequest) returns (RemoveRemoteResponse) {
-      option (op_type).op = MUTATOR;
+      option (op_type) = {
+        op: MUTATOR
+        target_repository_field: "1"
+      };
     }
 
     rpc UpdateRemoteMirror(stream UpdateRemoteMirrorRequest) returns (UpdateRemoteMirrorResponse) {
-      option (op_type).op = MUTATOR;
+      option (op_type) = {
+        op: MUTATOR
+        target_repository_field: "1"
+      };
     }
     rpc FindRemoteRepository(FindRemoteRepositoryRequest) returns (FindRemoteRepositoryResponse) {
       option (op_type).op = ACCESSOR;

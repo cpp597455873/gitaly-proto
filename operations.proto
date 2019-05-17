@@ -8,53 +8,101 @@ import "shared.proto";
 
 service OperationService {
   rpc UserCreateBranch(UserCreateBranchRequest) returns (UserCreateBranchResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc UserUpdateBranch(UserUpdateBranchRequest) returns (UserUpdateBranchResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc UserDeleteBranch(UserDeleteBranchRequest) returns (UserDeleteBranchResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc UserCreateTag(UserCreateTagRequest) returns (UserCreateTagResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc UserDeleteTag(UserDeleteTagRequest) returns (UserDeleteTagResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc UserMergeToRef(UserMergeToRefRequest) returns (UserMergeToRefResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc UserMergeBranch(stream UserMergeBranchRequest) returns (stream UserMergeBranchResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc UserFFBranch(UserFFBranchRequest) returns (UserFFBranchResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc UserCherryPick(UserCherryPickRequest) returns (UserCherryPickResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc UserCommitFiles(stream UserCommitFilesRequest) returns (UserCommitFilesResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1.1"
+    };
   }
   rpc UserRebase(UserRebaseRequest) returns (UserRebaseResponse) {
     option deprecated = true;
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc UserRebaseConfirmable(stream UserRebaseConfirmableRequest) returns (stream UserRebaseConfirmableResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1.1"
+    };
   }
   rpc UserRevert(UserRevertRequest) returns (UserRevertResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc UserSquash(UserSquashRequest) returns (UserSquashResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc UserApplyPatch(stream UserApplyPatchRequest) returns (UserApplyPatchResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1.1"
+    };
   }
   rpc UserUpdateSubmodule(UserUpdateSubmoduleRequest) returns (UserUpdateSubmoduleResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
 }
 

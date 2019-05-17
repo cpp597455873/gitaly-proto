@@ -11,46 +11,82 @@ service RepositoryService {
     option (op_type).op = ACCESSOR;
   }
   rpc RepackIncremental(RepackIncrementalRequest) returns (RepackIncrementalResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc RepackFull(RepackFullRequest) returns (RepackFullResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc GarbageCollect(GarbageCollectRequest) returns (GarbageCollectResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc RepositorySize(RepositorySizeRequest) returns (RepositorySizeResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc ApplyGitattributes(ApplyGitattributesRequest) returns (ApplyGitattributesResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc FetchRemote(FetchRemoteRequest) returns (FetchRemoteResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc CreateRepository(CreateRepositoryRequest) returns (CreateRepositoryResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc GetArchive(GetArchiveRequest) returns (stream GetArchiveResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc HasLocalBranches(HasLocalBranchesRequest) returns (HasLocalBranchesResponse) {
     option (op_type).op = ACCESSOR;
   }
   rpc FetchSourceBranch(FetchSourceBranchRequest) returns (FetchSourceBranchResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc Fsck(FsckRequest) returns (FsckResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc WriteRef(WriteRefRequest) returns (WriteRefResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc FindMergeBase(FindMergeBaseRequest) returns (FindMergeBaseResponse) {
     option (op_type).op = ACCESSOR;
   }
   rpc CreateFork(CreateForkRequest) returns (CreateForkResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc IsRebaseInProgress(IsRebaseInProgressRequest) returns (IsRebaseInProgressResponse) {
     option (op_type).op = ACCESSOR;
@@ -60,22 +96,40 @@ service RepositoryService {
   }
 
   rpc CreateRepositoryFromURL(CreateRepositoryFromURLRequest) returns (CreateRepositoryFromURLResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc CreateBundle(CreateBundleRequest) returns (stream CreateBundleResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      scope_level: SERVER,
+    };
   }
   rpc CreateRepositoryFromBundle(stream CreateRepositoryFromBundleRequest) returns (CreateRepositoryFromBundleResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc WriteConfig(WriteConfigRequest) returns (WriteConfigResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc SetConfig(SetConfigRequest) returns (SetConfigResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc DeleteConfig(DeleteConfigRequest) returns (DeleteConfigResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc FindLicense(FindLicenseRequest) returns (FindLicenseResponse) {
     option (op_type).op = ACCESSOR;
@@ -87,13 +141,19 @@ service RepositoryService {
     option (op_type).op = ACCESSOR;
   }
   rpc Cleanup(CleanupRequest) returns (CleanupResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc GetSnapshot(GetSnapshotRequest) returns (stream GetSnapshotResponse) {
     option (op_type).op = ACCESSOR;
   }
   rpc CreateRepositoryFromSnapshot(CreateRepositoryFromSnapshotRequest) returns (CreateRepositoryFromSnapshotResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc GetRawChanges(GetRawChangesRequest) returns (stream GetRawChangesResponse) {
     option (op_type).op = ACCESSOR;
@@ -105,16 +165,25 @@ service RepositoryService {
     option (op_type).op = ACCESSOR;
   }
   rpc RestoreCustomHooks(stream RestoreCustomHooksRequest) returns (RestoreCustomHooksResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc BackupCustomHooks(BackupCustomHooksRequest) returns (stream BackupCustomHooksResponse) {
     option (op_type).op = ACCESSOR;
   }
   rpc PreFetch(PreFetchRequest) returns (PreFetchResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc FetchHTTPRemote(FetchHTTPRemoteRequest) returns (FetchHTTPRemoteResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
 }
 
