@@ -8,16 +8,28 @@ import "shared.proto";
 
 service NamespaceService {
   rpc AddNamespace(AddNamespaceRequest) returns (AddNamespaceResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      scope_level: SERVER,
+    };
   }
   rpc RemoveNamespace(RemoveNamespaceRequest) returns (RemoveNamespaceResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      scope_level: SERVER,
+    };
   }
   rpc RenameNamespace(RenameNamespaceRequest) returns (RenameNamespaceResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      scope_level: SERVER,
+    };
   }
   rpc NamespaceExists(NamespaceExistsRequest) returns (NamespaceExistsResponse) {
-    option (op_type).op = ACCESSOR;
+    option (op_type) = {
+      op: MUTATOR
+      scope_level: SERVER,
+    };
   }
 }
 

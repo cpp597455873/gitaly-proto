@@ -231,6 +231,27 @@ Failing to designate an RPC correctly will result in a CI error. For example:
 
 `--gitaly_out: server.proto: Method ServerInfo missing op_type option`
 
+Additionally, all mutator RPC's require additional annotations to clearly
+indicate what is being modified:
+
+- When an RPC modifies a server-wide resource, the scope should specify `SERVER`.
+- When an RPC modifies a specific repository, the scope should specify `REPOSITORY`.
+  - Additionally, every RPC with `SERVER` scope, should also specify the target repository.
+
+The target repository represents the location or address of the repository
+being modified by the operation. This is needed by Praefect (Gitaly HA) in
+order to properly schedule replications to keep repository replicas up to date.
+
+The target repository annotation specifies where the target repository can be
+found in the message. The annotation looks similar to an IP address, but
+variable in length (e.g. "1", "1.1", "1.1.1"). Each dot delimited field
+represents the field number of how to traverse the protobuf request message to
+find the target repository. The target repository **must** be of protobuf
+message type `gitaly.Repository`.
+
+See our examples of [valid](go/internal/linter/testdata/valid.proto) and
+[invalid](go/internal/linter/testdata/invalid.proto) proto annotations.
+
 ### Go Package
 
 If adding new protobuf files, make sure to correctly set the `go_package` option

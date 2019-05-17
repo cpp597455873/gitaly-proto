@@ -8,10 +8,16 @@ import "shared.proto";
 
 service StorageService {
   rpc ListDirectories(ListDirectoriesRequest) returns (stream ListDirectoriesResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      scope_level: SERVER,
+    };
   }
   rpc DeleteAllRepositories(DeleteAllRepositoriesRequest) returns (DeleteAllRepositoriesResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      scope_level: SERVER,
+    };
   }
 }
 

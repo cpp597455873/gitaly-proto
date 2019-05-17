@@ -1,11 +1,12 @@
 package linter
 
 import (
+	"errors"
 	"fmt"
 
-	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/protoc-gen-go/descriptor"
 	"gitlab.com/gitlab-org/gitaly-proto/go/gitalypb"
+	"gitlab.com/gitlab-org/gitaly-proto/go/internal"
 )
 
 // ensureMethodOpType will ensure that method includes the op_type option.
@@ -14,49 +15,32 @@ import (
 //  rpc ExampleMethod(ExampleMethodRequest) returns (ExampleMethodResponse) {
 //     option (op_type).op = ACCESSOR;
 //   }
-func ensureMethodOpType(file string, m *descriptor.MethodDescriptorProto) error {
-	options := m.GetOptions()
-
-	if !proto.HasExtension(options, gitalypb.E_OpType) {
-		return fmt.Errorf(
-			"%s: Method %s missing op_type option",
-			file,
-			m.GetName(),
-		)
-	}
-
-	ext, err := proto.GetExtension(options, gitalypb.E_OpType)
+func ensureMethodOpType(fileDesc *descriptor.FileDescriptorProto, m *descriptor.MethodDescriptorProto) error {
+	opMsg, err := internal.GetOpExtension(m)
 	if err != nil {
 		return err
 	}
 
-	opMsg, ok := ext.(*gitalypb.OperationMsg)
-	if !ok {
-		return fmt.Errorf("unable to obtain OperationMsg from %#v", ext)
+	ml := methodLinter{
+		fileDesc:   fileDesc,
+		methodDesc: m,
+		opMsg:      opMsg,
 	}
 
 	switch opCode := opMsg.GetOp(); opCode {
 
 	case gitalypb.OperationMsg_ACCESSOR:
-		return nil
+		return ml.validateAccessor()
 
 	case gitalypb.OperationMsg_MUTATOR:
-		return nil
+		// if mutator, we need to make sure we specify scope or target repo
+		return ml.validateMutator()
 
 	case gitalypb.OperationMsg_UNKNOWN:
-		return fmt.Errorf(
-			"%s: Method %s has op set to UNKNOWN",
-			file,
-			m.GetName(),
-		)
+		return errors.New("op set to UNKNOWN")
 
 	default:
-		return fmt.Errorf(
-			"%s: Method %s has invalid operation class with int32 value of %d",
-			file,
-			m.GetName(),
-			opCode,
-		)
+		return fmt.Errorf("invalid operation class with int32 value of %d", opCode)
 	}
 }
 
@@ -68,8 +52,13 @@ func LintFile(file *descriptor.FileDescriptorProto) []error {
 
 	for _, serviceDescriptorProto := range file.GetService() {
 		for _, methodDescriptorProto := range serviceDescriptorProto.GetMethod() {
-			err := ensureMethodOpType(file.GetName(), methodDescriptorProto)
+			err := ensureMethodOpType(file, methodDescriptorProto)
 			if err != nil {
+				// decorate error with current file and method
+				err = fmt.Errorf(
+					"%s: Method %q: %s",
+					file.GetName(), methodDescriptorProto.GetName(), err,
+				)
 				errs = append(errs, err)
 			}
 		}

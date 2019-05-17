@@ -11,7 +11,10 @@ service ConflictsService {
     option (op_type).op = ACCESSOR;
   }
   rpc ResolveConflicts(stream ResolveConflictsRequest) returns (ResolveConflictsResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1.1"
+    };
   }
 }
 

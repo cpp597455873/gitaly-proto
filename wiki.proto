@@ -11,13 +11,22 @@ service WikiService {
     option (op_type).op = ACCESSOR;
   }
   rpc WikiWritePage(stream WikiWritePageRequest) returns (WikiWritePageResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc WikiUpdatePage(stream WikiUpdatePageRequest) returns (WikiUpdatePageResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc WikiDeletePage(WikiDeletePageRequest) returns (WikiDeletePageResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   // WikiFindPage returns a stream because the page's raw_data field may be arbitrarily large.
   rpc WikiFindPage(WikiFindPageRequest) returns (stream WikiFindPageResponse) {

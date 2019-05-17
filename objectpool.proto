@@ -8,28 +8,49 @@ import "shared.proto";
 
 service ObjectPoolService {
   rpc CreateObjectPool(CreateObjectPoolRequest) returns (CreateObjectPoolResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1.1"
+    };
   }
   rpc DeleteObjectPool(DeleteObjectPoolRequest) returns (DeleteObjectPoolResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1.1"
+    };
   }
 
   // Repositories are assumed to be stored on the same disk
   rpc LinkRepositoryToObjectPool(LinkRepositoryToObjectPoolRequest) returns (LinkRepositoryToObjectPoolResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1.1"
+    };
   }
   rpc UnlinkRepositoryFromObjectPool(UnlinkRepositoryFromObjectPoolRequest) returns (UnlinkRepositoryFromObjectPoolResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
 
   rpc ReduplicateRepository(ReduplicateRepositoryRequest) returns (ReduplicateRepositoryResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc DisconnectGitAlternates(DisconnectGitAlternatesRequest) returns (DisconnectGitAlternatesResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc FetchIntoObjectPool(FetchIntoObjectPoolRequest) returns (FetchIntoObjectPoolResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
 }
 

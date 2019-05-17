@@ -14,12 +14,18 @@ service SSHService {
 
   // To forward 'git receive-pack' to Gitaly for SSH sessions
   rpc SSHReceivePack(stream SSHReceivePackRequest) returns (stream SSHReceivePackResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
 
   // To forward 'git upload-archive' to Gitaly for SSH sessions
   rpc SSHUploadArchive(stream SSHUploadArchiveRequest) returns (stream SSHUploadArchiveResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
 }
 

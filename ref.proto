@@ -40,16 +40,25 @@ service RefService {
     option (op_type).op = ACCESSOR;
   }
   rpc CreateBranch(CreateBranchRequest) returns (CreateBranchResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc DeleteBranch(DeleteBranchRequest) returns (DeleteBranchResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
   rpc FindBranch(FindBranchRequest) returns (FindBranchResponse) {
     option (op_type).op = ACCESSOR;
   }
   rpc DeleteRefs(DeleteRefsRequest) returns (DeleteRefsResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
 
   rpc ListBranchNamesContainingCommit(ListBranchNamesContainingCommitRequest) returns (stream ListBranchNamesContainingCommitResponse) {
@@ -72,7 +81,10 @@ service RefService {
     option (op_type).op = ACCESSOR;
   }
   rpc PackRefs(PackRefsRequest) returns (PackRefsResponse) {
-    option (op_type).op = MUTATOR;
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
   }
 }
 

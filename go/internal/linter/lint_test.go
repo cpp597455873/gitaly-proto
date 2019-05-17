@@ -1,17 +1,13 @@
 package linter_test
 
 import (
-	"bytes"
-	"compress/gzip"
 	"errors"
-	"fmt"
-	"io/ioutil"
 	"testing"
 
 	"github.com/golang/protobuf/proto"
-	"github.com/golang/protobuf/protoc-gen-go/descriptor"
 	"github.com/stretchr/testify/require"
 
+	"gitlab.com/gitlab-org/gitaly-proto/go/internal"
 	"gitlab.com/gitlab-org/gitaly-proto/go/internal/linter"
 	_ "gitlab.com/gitlab-org/gitaly-proto/go/internal/linter/testdata"
 )
@@ -28,43 +24,26 @@ func TestLintFile(t *testing.T) {
 		{
 			protoPath: "go/internal/linter/testdata/invalid.proto",
 			errs: []error{
-				errors.New("go/internal/linter/testdata/invalid.proto: Method InvalidMethod has op set to UNKNOWN"),
-			},
-		},
-		{
-			protoPath: "go/internal/linter/testdata/incomplete.proto",
-			errs: []error{
-				errors.New("go/internal/linter/testdata/incomplete.proto: Method IncompleteMethod missing op_type option"),
+				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod0": missing op_type option`),
+				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod1": op set to UNKNOWN`),
+				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod2": accessors cannot specify target repos`),
+				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod3": server level scoped RPC should not specify target repo`),
+				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod4": missing target repository field`),
+				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod5": unable to parse target field OID 🐛: strconv.Atoi: parsing "🐛": invalid syntax`),
+				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod6": target repo OID [1] does not exist in request message`),
+				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod7": unexpected type TYPE_INT32 (expected .gitaly.Repository) for target repo field addressed by [1]`),
+				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod8": expected 1-th field of OID [1 1] to be TYPE_MESSAGE, but got TYPE_INT32`),
+				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod9": target repo OID [1 2] does not exist in request message`),
+				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod10": unexpected type TYPE_INT32 (expected .gitaly.Repository) for target repo field addressed by [1 1]`),
 			},
 		},
 	} {
-		fd, err := extractFile(proto.FileDescriptor(tt.protoPath))
-		require.NoError(t, err)
+		t.Run(tt.protoPath, func(t *testing.T) {
+			fd, err := internal.ExtractFile(proto.FileDescriptor(tt.protoPath))
+			require.NoError(t, err)
 
-		errs := linter.LintFile(fd)
-		require.Equal(t, tt.errs, errs)
+			errs := linter.LintFile(fd)
+			require.Equal(t, tt.errs, errs)
+		})
 	}
-}
-
-// extractFile extracts a FileDescriptorProto from a gzip'd buffer.
-// Note: function is copied from the github.com/golang/protobuf dependency:
-// https://github.com/golang/protobuf/blob/9eb2c01ac278a5d89ce4b2be68fe4500955d8179/descriptor/descriptor.go#L50
-func extractFile(gz []byte) (*descriptor.FileDescriptorProto, error) {
-	r, err := gzip.NewReader(bytes.NewReader(gz))
-	if err != nil {
-		return nil, fmt.Errorf("failed to open gzip reader: %v", err)
-	}
-	defer r.Close()
-
-	b, err := ioutil.ReadAll(r)
-	if err != nil {
-		return nil, fmt.Errorf("failed to uncompress descriptor: %v", err)
-	}
-
-	fd := new(descriptor.FileDescriptorProto)
-	if err := proto.Unmarshal(b, fd); err != nil {
-		return nil, fmt.Errorf("malformed FileDescriptorProto: %v", err)
-	}
-
-	return fd, nil
 }
