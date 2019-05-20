@@ -26,10 +26,7 @@ service NamespaceService {
     };
   }
   rpc NamespaceExists(NamespaceExistsRequest) returns (NamespaceExistsResponse) {
-    option (op_type) = {
-      op: MUTATOR
-      scope_level: SERVER,
-    };
+    option (op_type).op = ACCESSOR;
   }
 }
 
