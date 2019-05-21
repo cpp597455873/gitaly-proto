@@ -165,12 +165,7 @@ func generateProtolistGo(req *plugin.CodeGeneratorRequest) error {
 
 	for _, fi := range files {
 		if !fi.IsDir() && strings.HasSuffix(fi.Name(), ".proto") {
-			fd := proto.FileDescriptor(fi.Name())
-			fdp, err := extractFile(fd)
-			if err != nil {
-				return fmt.Errorf("failed to extract %s: %v", fi.Name(), err)
-			}
-			protoNames = append(protoNames, fmt.Sprintf(`"%s"`, fdp.GetName()))
+			protoNames = append(protoNames, fmt.Sprintf(`"%s"`, fi.Name()))
 		}
 	}
 
