@@ -16,6 +16,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :storage_name, :string, 1
     optional :readable, :bool, 2
     optional :writeable, :bool, 3
+    optional :fs_type, :string, 4
   end
 end
 
