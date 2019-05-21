@@ -19,6 +19,7 @@ message ServerInfoResponse {
     string storage_name = 1;
     bool readable = 2;
     bool writeable = 3;
+    string fs_type = 4;
   }
 
   string server_version = 1;
