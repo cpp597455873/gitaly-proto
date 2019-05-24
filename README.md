@@ -236,7 +236,7 @@ indicate what is being modified:
 
 - When an RPC modifies a server-wide resource, the scope should specify `SERVER`.
 - When an RPC modifies a specific repository, the scope should specify `REPOSITORY`.
-  - Additionally, every RPC with `SERVER` scope, should also specify the target repository.
+  - Additionally, every RPC with `REPOSITORY` scope, should also specify the target repository.
 
 The target repository represents the location or address of the repository
 being modified by the operation. This is needed by Praefect (Gitaly HA) in
