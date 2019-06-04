@@ -185,6 +185,9 @@ service RepositoryService {
       target_repository_field: "1"
     };
   }
+  rpc GetObjectDirectorySize(GetObjectDirectorySizeRequest) returns (GetObjectDirectorySizeResponse) {
+    option (op_type).op = ACCESSOR;
+  }
 }
 
 message RepositoryExistsRequest {
@@ -550,3 +553,12 @@ message FetchHTTPRemoteRequest {
 }
 
 message FetchHTTPRemoteResponse {}
+
+message GetObjectDirectorySizeRequest {
+  Repository repository = 1;
+}
+
+message GetObjectDirectorySizeResponse {
+  // Object directory size in kilobytes
+  int64 size = 1;
+}
