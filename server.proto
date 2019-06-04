@@ -20,6 +20,7 @@ message ServerInfoResponse {
     bool readable = 2;
     bool writeable = 3;
     string fs_type = 4;
+    string filesystem_id = 5;
   }
 
   string server_version = 1;
