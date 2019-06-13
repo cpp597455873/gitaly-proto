@@ -17,8 +17,8 @@ github.com/pseudomuto/protokit v0.1.0/go.mod h1:2PdH30hxVHsup8KpBTOXTBeMVhJZVio3
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v0.0.0-20190109162356-363ebb24d041 h1:Jy3vb7QLEaCKB0IU6h2SKxCffKtZVnj3mks4+v04Iag=
 github.com/stretchr/testify v0.0.0-20190109162356-363ebb24d041/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
-gitlab.com/gitlab-org/gitaly-proto/go/gitalypb v0.0.0-20190502201637-e6bad277e401 h1:rJiPtWiPPqK9lkZSmsM4/9mtMpDE2uZ9vXxB1aVe7/8=
-gitlab.com/gitlab-org/gitaly-proto/go/gitalypb v0.0.0-20190502201637-e6bad277e401/go.mod h1:dGmH1a/qej91t5EmKA9ghVc61Lsjr16ZAyXQiiiN7xg=
+gitlab.com/gitlab-org/gitaly-proto v1.32.0 h1:TRe/iw/Gid1RNM2VzK+WICIw4/N7V5s0IdhmgiPyqNE=
+gitlab.com/gitlab-org/gitaly-proto v1.32.0/go.mod h1:zNjk/86bjwLVJ4NcvInBcXcLdptdRFQ28sYrdFbrFgY=
 golang.org/x/lint v0.0.0-20181026193005-c67002cb31c3/go.mod h1:UVdnD1Gm6xHRNCYTkRU2/jEulfH38KcIWyp/GAMgvoE=
 golang.org/x/net v0.0.0-20180826012351-8a410e7b638d/go.mod h1:mL1N/T3taQHkDXs73rZJwtUhF3w3ftmwwsq0BUmARs4=
 golang.org/x/net v0.0.0-20190301231341-16b79f2e4e95 h1:fY7Dsw114eJN4boqzVSbpVHO6rTdhq6/GnXeu+PKnzU=
