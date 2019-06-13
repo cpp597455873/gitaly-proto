@@ -59,14 +59,14 @@ $(PROTOC): $(TARGET_SETUP)
 	touch $@
 
 $(PROTOC_GEN_GO): $(TARGET_SETUP)
-	cd go/internal; go build -o $@ github.com/golang/protobuf/protoc-gen-go
+	cd go/internal && go build -o $@ github.com/golang/protobuf/protoc-gen-go
 
 $(PROTOC_GEN_DOC): $(TARGET_SETUP)
-	cd go/internal; go build -o $@ github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
+	cd go/internal && go build -o $@ github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
 
 $(PROTOC_GEN_GITALY): $(TARGET_SETUP)
 	# Check if test protobuf stubs are stale
-	cd go/internal; go build -o $@ gitlab.com/gitlab-org/gitaly-proto/go/internal/cmd/protoc-gen-gitaly
+	cd go/internal && go build -o $@ gitlab.com/gitlab-org/gitaly-proto/go/internal/cmd/protoc-gen-gitaly
 
 .PHONY: pb-go-stubs
 pb-go-stubs: go/gitalypb/*.pb.go
@@ -79,7 +79,7 @@ go/internal/linter/testdata/%.pb.go: go/internal/linter/testdata/%.proto $(PROTO
 
 .PHONY: test
 test: test-go-pkg-opt
-	cd go/internal; go test ./...
+	cd go/internal && go test ./...
 
 # test-go-pkg-opt checks if the go_package option is specified in all *.proto
 # files
