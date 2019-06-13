@@ -304,6 +304,7 @@ message UserCommitFilesRequestHeader {
   bytes start_branch_name = 7;
   Repository start_repository = 8;
   bool force = 9;
+  string start_sha = 10;
 }
 
 message UserCommitFilesRequest {

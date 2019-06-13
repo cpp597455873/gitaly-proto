@@ -155,6 +155,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :start_branch_name, :bytes, 7
     optional :start_repository, :message, 8, "gitaly.Repository"
     optional :force, :bool, 9
+    optional :start_sha, :string, 10
   end
   add_message "gitaly.UserCommitFilesRequest" do
     oneof :user_commit_files_request_payload do
