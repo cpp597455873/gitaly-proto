@@ -313,6 +313,7 @@ message ListLastCommitsForTreeRequest {
   // limit == -1 will get the last commit for all paths
   int32 limit = 4;
   int32 offset = 5;
+  repeated bytes entries = 6;
 }
 
 message ListLastCommitsForTreeResponse {
