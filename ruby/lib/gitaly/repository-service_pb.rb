@@ -288,6 +288,12 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.FetchHTTPRemoteResponse" do
   end
+  add_message "gitaly.GetObjectDirectorySizeRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+  end
+  add_message "gitaly.GetObjectDirectorySizeResponse" do
+    optional :size, :int64, 1
+  end
 end
 
 module Gitaly
@@ -368,4 +374,6 @@ module Gitaly
   Remote = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Remote").msgclass
   FetchHTTPRemoteRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchHTTPRemoteRequest").msgclass
   FetchHTTPRemoteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchHTTPRemoteResponse").msgclass
+  GetObjectDirectorySizeRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetObjectDirectorySizeRequest").msgclass
+  GetObjectDirectorySizeResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetObjectDirectorySizeResponse").msgclass
 end
