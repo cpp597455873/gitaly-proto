@@ -44,6 +44,7 @@ service RepositoryService {
   rpc BackupCustomHooks(BackupCustomHooksRequest) returns (stream BackupCustomHooksResponse) {}
   rpc PreFetch(PreFetchRequest) returns (PreFetchResponse) {}
   rpc FetchHTTPRemote(FetchHTTPRemoteRequest) returns (FetchHTTPRemoteResponse) {}
+  rpc GetObjectDirectorySize(GetObjectDirectorySizeRequest) returns (GetObjectDirectorySizeResponse) {}
 }
 
 message RepositoryExistsRequest {
@@ -473,3 +474,14 @@ message FetchHTTPRemoteRequest {
 }
 
 message FetchHTTPRemoteResponse {}
+
+message GetObjectDirectorySizeRequest {
+  option (op_type).op = ACCESSOR;
+
+  Repository repository = 1;
+}
+
+message GetObjectDirectorySizeResponse {
+  // Object directory size in kilobytes
+  int64 size = 1;
+}
