@@ -116,6 +116,9 @@ service RepositoryService {
   rpc FetchHTTPRemote(FetchHTTPRemoteRequest) returns (FetchHTTPRemoteResponse) {
     option (op_type).op = MUTATOR;
   }
+  rpc GetObjectDirectorySize(GetObjectDirectorySizeRequest) returns (GetObjectDirectorySizeResponse) {
+    option (op_type).op = ACCESSOR;
+  }
 }
 
 message RepositoryExistsRequest {
@@ -481,3 +484,12 @@ message FetchHTTPRemoteRequest {
 }
 
 message FetchHTTPRemoteResponse {}
+
+message GetObjectDirectorySizeRequest {
+  Repository repository = 1;
+}
+
+message GetObjectDirectorySizeResponse {
+  // Object directory size in kilobytes
+  int64 size = 1;
+}
