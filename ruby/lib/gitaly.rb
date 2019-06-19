@@ -13,6 +13,8 @@ require 'gitaly/conflicts_services_pb'
 
 require 'gitaly/diff_services_pb'
 
+require 'gitaly/hook_services_pb'
+
 require 'gitaly/namespace_services_pb'
 
 require 'gitaly/notifications_services_pb'
