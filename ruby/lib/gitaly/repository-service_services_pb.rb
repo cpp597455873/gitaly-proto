@@ -50,6 +50,7 @@ module Gitaly
       rpc :BackupCustomHooks, BackupCustomHooksRequest, stream(BackupCustomHooksResponse)
       rpc :PreFetch, PreFetchRequest, PreFetchResponse
       rpc :FetchHTTPRemote, FetchHTTPRemoteRequest, FetchHTTPRemoteResponse
+      rpc :GetObjectDirectorySize, GetObjectDirectorySizeRequest, GetObjectDirectorySizeResponse
     end
 
     Stub = Service.rpc_stub_class
