@@ -111,6 +111,11 @@ message Branch {
   GitCommit target_commit = 2;
 }
 
+message Ref {
+  bytes ref_path = 1;
+  GitCommit target_commit = 2;
+}
+  
 message Tag {
   bytes name = 1;
   string id = 2;

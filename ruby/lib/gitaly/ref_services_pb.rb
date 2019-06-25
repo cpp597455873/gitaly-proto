@@ -28,6 +28,7 @@ module Gitaly
       rpc :CreateBranch, CreateBranchRequest, CreateBranchResponse
       rpc :DeleteBranch, DeleteBranchRequest, DeleteBranchResponse
       rpc :FindBranch, FindBranchRequest, FindBranchResponse
+      rpc :FindRef, FindRefRequest, FindRefResponse
       rpc :DeleteRefs, DeleteRefsRequest, DeleteRefsResponse
       rpc :ListBranchNamesContainingCommit, ListBranchNamesContainingCommitRequest, stream(ListBranchNamesContainingCommitResponse)
       rpc :ListTagNamesContainingCommit, ListTagNamesContainingCommitRequest, stream(ListTagNamesContainingCommitResponse)

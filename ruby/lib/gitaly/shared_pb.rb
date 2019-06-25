@@ -48,6 +48,10 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
     optional :name, :bytes, 1
     optional :target_commit, :message, 2, "gitaly.GitCommit"
   end
+  add_message "gitaly.Ref" do
+    optional :ref_path, :bytes, 1
+    optional :target_commit, :message, 2, "gitaly.GitCommit"
+  end
   add_message "gitaly.Tag" do
     optional :name, :bytes, 1
     optional :id, :string, 2
@@ -83,6 +87,7 @@ module Gitaly
   CommitAuthor = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CommitAuthor").msgclass
   ExitStatus = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ExitStatus").msgclass
   Branch = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Branch").msgclass
+  Ref = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Ref").msgclass
   Tag = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.Tag").msgclass
   User = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.User").msgclass
   ObjectPool = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.ObjectPool").msgclass

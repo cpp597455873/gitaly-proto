@@ -54,6 +54,9 @@ service RefService {
   rpc FindBranch(FindBranchRequest) returns (FindBranchResponse) {
     option (op_type).op = ACCESSOR;
   }
+  rpc FindRef(FindRefRequest) returns (FindRefResponse) {
+    option (op_type).op = ACCESSOR;
+  }
   rpc DeleteRefs(DeleteRefsRequest) returns (DeleteRefsResponse) {
     option (op_type) = {
       op: MUTATOR
@@ -233,6 +236,15 @@ message FindBranchRequest {
 
 message FindBranchResponse {
   Branch branch = 1;
+}
+
+message FindRefRequest {
+  Repository repository = 1;
+  bytes ref_path = 2;
+}
+
+message FindRefResponse {
+  Ref ref = 1;
 }
 
 message DeleteRefsRequest{
