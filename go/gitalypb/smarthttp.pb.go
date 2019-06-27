@@ -38,7 +38,7 @@ func (m *InfoRefsRequest) Reset()         { *m = InfoRefsRequest{} }
 func (m *InfoRefsRequest) String() string { return proto.CompactTextString(m) }
 func (*InfoRefsRequest) ProtoMessage()    {}
 func (*InfoRefsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_smarthttp_9001150430066872, []int{0}
+	return fileDescriptor_smarthttp_b3f1dd9d474dfd57, []int{0}
 }
 func (m *InfoRefsRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_InfoRefsRequest.Unmarshal(m, b)
@@ -90,7 +90,7 @@ func (m *InfoRefsResponse) Reset()         { *m = InfoRefsResponse{} }
 func (m *InfoRefsResponse) String() string { return proto.CompactTextString(m) }
 func (*InfoRefsResponse) ProtoMessage()    {}
 func (*InfoRefsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_smarthttp_9001150430066872, []int{1}
+	return fileDescriptor_smarthttp_b3f1dd9d474dfd57, []int{1}
 }
 func (m *InfoRefsResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_InfoRefsResponse.Unmarshal(m, b)
@@ -135,7 +135,7 @@ func (m *PostUploadPackRequest) Reset()         { *m = PostUploadPackRequest{} }
 func (m *PostUploadPackRequest) String() string { return proto.CompactTextString(m) }
 func (*PostUploadPackRequest) ProtoMessage()    {}
 func (*PostUploadPackRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_smarthttp_9001150430066872, []int{2}
+	return fileDescriptor_smarthttp_b3f1dd9d474dfd57, []int{2}
 }
 func (m *PostUploadPackRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_PostUploadPackRequest.Unmarshal(m, b)
@@ -195,7 +195,7 @@ func (m *PostUploadPackResponse) Reset()         { *m = PostUploadPackResponse{}
 func (m *PostUploadPackResponse) String() string { return proto.CompactTextString(m) }
 func (*PostUploadPackResponse) ProtoMessage()    {}
 func (*PostUploadPackResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_smarthttp_9001150430066872, []int{3}
+	return fileDescriptor_smarthttp_b3f1dd9d474dfd57, []int{3}
 }
 func (m *PostUploadPackResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_PostUploadPackResponse.Unmarshal(m, b)
@@ -245,7 +245,7 @@ func (m *PostReceivePackRequest) Reset()         { *m = PostReceivePackRequest{}
 func (m *PostReceivePackRequest) String() string { return proto.CompactTextString(m) }
 func (*PostReceivePackRequest) ProtoMessage()    {}
 func (*PostReceivePackRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_smarthttp_9001150430066872, []int{4}
+	return fileDescriptor_smarthttp_b3f1dd9d474dfd57, []int{4}
 }
 func (m *PostReceivePackRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_PostReceivePackRequest.Unmarshal(m, b)
@@ -326,7 +326,7 @@ func (m *PostReceivePackResponse) Reset()         { *m = PostReceivePackResponse
 func (m *PostReceivePackResponse) String() string { return proto.CompactTextString(m) }
 func (*PostReceivePackResponse) ProtoMessage()    {}
 func (*PostReceivePackResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_smarthttp_9001150430066872, []int{5}
+	return fileDescriptor_smarthttp_b3f1dd9d474dfd57, []int{5}
 }
 func (m *PostReceivePackResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_PostReceivePackResponse.Unmarshal(m, b)
@@ -375,8 +375,12 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type SmartHTTPServiceClient interface {
 	// The response body for GET /info/refs?service=git-upload-pack
+	// Will be invoked when the user executes a `git fetch`, meaning the server
+	// will upload the packs to that user. The user doesn't upload new objects.
 	InfoRefsUploadPack(ctx context.Context, in *InfoRefsRequest, opts ...grpc.CallOption) (SmartHTTPService_InfoRefsUploadPackClient, error)
 	// The response body for GET /info/refs?service=git-receive-pack
+	// Will be invoked when the user executes a `git push`, meaning the server
+	// will receive new objects in the pack from the user.
 	InfoRefsReceivePack(ctx context.Context, in *InfoRefsRequest, opts ...grpc.CallOption) (SmartHTTPService_InfoRefsReceivePackClient, error)
 	// Request and response body for POST /upload-pack
 	PostUploadPack(ctx context.Context, opts ...grpc.CallOption) (SmartHTTPService_PostUploadPackClient, error)
@@ -521,8 +525,12 @@ func (x *smartHTTPServicePostReceivePackClient) Recv() (*PostReceivePackResponse
 // SmartHTTPServiceServer is the server API for SmartHTTPService service.
 type SmartHTTPServiceServer interface {
 	// The response body for GET /info/refs?service=git-upload-pack
+	// Will be invoked when the user executes a `git fetch`, meaning the server
+	// will upload the packs to that user. The user doesn't upload new objects.
 	InfoRefsUploadPack(*InfoRefsRequest, SmartHTTPService_InfoRefsUploadPackServer) error
 	// The response body for GET /info/refs?service=git-receive-pack
+	// Will be invoked when the user executes a `git push`, meaning the server
+	// will receive new objects in the pack from the user.
 	InfoRefsReceivePack(*InfoRefsRequest, SmartHTTPService_InfoRefsReceivePackServer) error
 	// Request and response body for POST /upload-pack
 	PostUploadPack(SmartHTTPService_PostUploadPackServer) error
@@ -659,9 +667,9 @@ var _SmartHTTPService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "smarthttp.proto",
 }
 
-func init() { proto.RegisterFile("smarthttp.proto", fileDescriptor_smarthttp_9001150430066872) }
+func init() { proto.RegisterFile("smarthttp.proto", fileDescriptor_smarthttp_b3f1dd9d474dfd57) }
 
-var fileDescriptor_smarthttp_9001150430066872 = []byte{
+var fileDescriptor_smarthttp_b3f1dd9d474dfd57 = []byte{
 	// 469 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x53, 0xcb, 0x6e, 0xd3, 0x40,
 	0x14, 0xd5, 0x38, 0x0f, 0x9a, 0x9b, 0x40, 0xa2, 0x5b, 0x41, 0x2d, 0x4b, 0xd0, 0x60, 0x24, 0xe4,
