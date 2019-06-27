@@ -15,8 +15,12 @@ module Gitaly
       self.service_name = 'gitaly.SmartHTTPService'
 
       # The response body for GET /info/refs?service=git-upload-pack
+      # Will be invoked when the user executes a `git fetch`, meaning the server
+      # will upload the packs to that user. The user doesn't upload new objects.
       rpc :InfoRefsUploadPack, InfoRefsRequest, stream(InfoRefsResponse)
       # The response body for GET /info/refs?service=git-receive-pack
+      # Will be invoked when the user executes a `git push`, meaning the server
+      # will receive new objects in the pack from the user.
       rpc :InfoRefsReceivePack, InfoRefsRequest, stream(InfoRefsResponse)
       # Request and response body for POST /upload-pack
       rpc :PostUploadPack, stream(PostUploadPackRequest), stream(PostUploadPackResponse)
