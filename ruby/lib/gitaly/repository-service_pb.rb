@@ -298,6 +298,20 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   add_message "gitaly.GetObjectDirectorySizeResponse" do
     optional :size, :int64, 1
   end
+  add_message "gitaly.CloneFromPoolRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :pool, :message, 2, "gitaly.ObjectPool"
+    optional :remote, :message, 3, "gitaly.Remote"
+  end
+  add_message "gitaly.CloneFromPoolResponse" do
+  end
+  add_message "gitaly.CloneFromPoolInternalRequest" do
+    optional :repository, :message, 1, "gitaly.Repository"
+    optional :pool, :message, 2, "gitaly.ObjectPool"
+    optional :source_repository, :message, 3, "gitaly.Repository"
+  end
+  add_message "gitaly.CloneFromPoolInternalResponse" do
+  end
 end
 
 module Gitaly
@@ -380,4 +394,8 @@ module Gitaly
   FetchHTTPRemoteResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.FetchHTTPRemoteResponse").msgclass
   GetObjectDirectorySizeRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetObjectDirectorySizeRequest").msgclass
   GetObjectDirectorySizeResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.GetObjectDirectorySizeResponse").msgclass
+  CloneFromPoolRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CloneFromPoolRequest").msgclass
+  CloneFromPoolResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CloneFromPoolResponse").msgclass
+  CloneFromPoolInternalRequest = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CloneFromPoolInternalRequest").msgclass
+  CloneFromPoolInternalResponse = Google::Protobuf::DescriptorPool.generated_pool.lookup("gitaly.CloneFromPoolInternalResponse").msgclass
 end
