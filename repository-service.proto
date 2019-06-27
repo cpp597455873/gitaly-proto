@@ -188,6 +188,18 @@ service RepositoryService {
   rpc GetObjectDirectorySize(GetObjectDirectorySizeRequest) returns (GetObjectDirectorySizeResponse) {
     option (op_type).op = ACCESSOR;
   }
+  rpc CloneFromPool(CloneFromPoolRequest) returns (CloneFromPoolResponse) {
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
+  }
+  rpc CloneFromPoolInternal(CloneFromPoolInternalRequest) returns (CloneFromPoolInternalResponse) {
+    option (op_type) = {
+      op: MUTATOR
+      target_repository_field: "1"
+    };
+  }
 }
 
 message RepositoryExistsRequest {
@@ -561,4 +573,22 @@ message GetObjectDirectorySizeRequest {
 message GetObjectDirectorySizeResponse {
   // Object directory size in kilobytes
   int64 size = 1;
+}
+
+message CloneFromPoolRequest {
+  Repository repository = 1;
+  ObjectPool pool = 2;
+  Remote remote = 3;
+}
+
+message CloneFromPoolResponse {
+}
+
+message CloneFromPoolInternalRequest {
+  Repository repository = 1;
+  ObjectPool pool = 2;
+  Repository source_repository = 3;
+}
+
+message CloneFromPoolInternalResponse {
 }

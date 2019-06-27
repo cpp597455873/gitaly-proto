@@ -51,6 +51,8 @@ module Gitaly
       rpc :PreFetch, PreFetchRequest, PreFetchResponse
       rpc :FetchHTTPRemote, FetchHTTPRemoteRequest, FetchHTTPRemoteResponse
       rpc :GetObjectDirectorySize, GetObjectDirectorySizeRequest, GetObjectDirectorySizeResponse
+      rpc :CloneFromPool, CloneFromPoolRequest, CloneFromPoolResponse
+      rpc :CloneFromPoolInternal, CloneFromPoolInternalRequest, CloneFromPoolInternalResponse
     end
 
     Stub = Service.rpc_stub_class
