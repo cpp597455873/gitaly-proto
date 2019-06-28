@@ -192,19 +192,18 @@ message UserMergeBranchResponse {
 }
 
 message UserMergeToRefRequest {
+  // UserMergeRef creates a merge commit and updates target_ref to point to that
+  // new commit. The first parent of the merge commit (the main line) is taken
+  // from first_parent_ref. The second parent is specified by its commit ID in source_sha.
+  // If target_ref already exists it will be overwritten.
   Repository repository = 1;
   User user = 2;
   string source_sha = 3;
+  // branch is deprecated in favor of `first_parent_ref`.
   bytes branch = 4;
-
-  // The merge of source_sha and branch has target_ref as target.
-  //
-  // The target_ref is _always_ overwritten when merging source_sha
-  // and branch. That is, if a second request comes in, target_ref
-  // will lose its previous state and be updated to the latest merge
-  // between source_sha and branch.
   bytes target_ref = 5;
   bytes message = 6;
+  bytes first_parent_ref = 7;
 }
 
 message UserMergeToRefResponse {
