@@ -60,6 +60,9 @@ service CommitService {
   rpc ListCommitsByOid(ListCommitsByOidRequest) returns (stream ListCommitsByOidResponse) {
     option (op_type).op = ACCESSOR;
   }
+  rpc ListCommitsByRefName(ListCommitsByRefNameRequest) returns (stream ListCommitsByRefNameResponse) {
+    option (op_type).op = ACCESSOR;
+  }
   rpc FilterShasWithSignatures(stream FilterShasWithSignaturesRequest) returns (stream FilterShasWithSignaturesResponse) {
     option (op_type).op = ACCESSOR;
   }
@@ -228,6 +231,15 @@ message ListCommitsByOidRequest {
 }
 
 message ListCommitsByOidResponse {
+  repeated GitCommit commits = 1;
+}
+
+message ListCommitsByRefNameRequest {
+  Repository repository = 1;
+  repeated bytes ref_name = 2;
+}
+
+message ListCommitsByRefNameResponse {
   repeated GitCommit commits = 1;
 }
 

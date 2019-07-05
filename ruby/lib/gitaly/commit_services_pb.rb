@@ -32,6 +32,7 @@ module Gitaly
       rpc :ListLastCommitsForTree, ListLastCommitsForTreeRequest, stream(ListLastCommitsForTreeResponse)
       rpc :CommitsByMessage, CommitsByMessageRequest, stream(CommitsByMessageResponse)
       rpc :ListCommitsByOid, ListCommitsByOidRequest, stream(ListCommitsByOidResponse)
+      rpc :ListCommitsByRefName, ListCommitsByRefNameRequest, stream(ListCommitsByRefNameResponse)
       rpc :FilterShasWithSignatures, stream(FilterShasWithSignaturesRequest), stream(FilterShasWithSignaturesResponse)
       # ExtractCommitSignature returns a stream because the signed text may be
       # arbitrarily large and signature verification is impossible without the
