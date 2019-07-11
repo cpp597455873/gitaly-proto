@@ -118,7 +118,7 @@ Google::Protobuf::DescriptorPool.generated_pool.build do
   end
   add_message "gitaly.ListCommitsByRefNameRequest" do
     optional :repository, :message, 1, "gitaly.Repository"
-    repeated :ref_name, :bytes, 2
+    repeated :ref_names, :bytes, 2
   end
   add_message "gitaly.ListCommitsByRefNameResponse" do
     repeated :commits, :message, 1, "gitaly.GitCommit"

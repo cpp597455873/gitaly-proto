@@ -236,7 +236,7 @@ message ListCommitsByOidResponse {
 
 message ListCommitsByRefNameRequest {
   Repository repository = 1;
-  repeated bytes ref_name = 2;
+  repeated bytes ref_names = 2;
 }
 
 message ListCommitsByRefNameResponse {
