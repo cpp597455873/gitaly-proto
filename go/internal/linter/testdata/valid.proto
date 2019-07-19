@@ -28,7 +28,10 @@ message ValidInnerNestedRequest {
 
 service ValidService {
   rpc TestMethod(ValidRequest) returns (ValidResponse) {
-    option (gitaly.op_type).op = ACCESSOR;
+    option (gitaly.op_type) = {
+      op: ACCESSOR
+      target_repository_field: "1"
+    };
   }
   
   rpc TestMethod2(ValidRequest) returns (ValidResponse) {
