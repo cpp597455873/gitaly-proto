@@ -26,7 +26,7 @@ func TestLintFile(t *testing.T) {
 			errs: []error{
 				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod0": missing op_type option`),
 				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod1": op set to UNKNOWN`),
-				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod2": accessors cannot specify target repos`),
+				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod2": missing target repository field`),
 				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod3": server level scoped RPC should not specify target repo`),
 				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod4": missing target repository field`),
 				errors.New(`go/internal/linter/testdata/invalid.proto: Method "InvalidMethod5": unable to parse target field OID 🐛: strconv.Atoi: parsing "🐛": invalid syntax`),

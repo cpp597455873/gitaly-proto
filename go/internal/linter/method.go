@@ -21,8 +21,8 @@ type methodLinter struct {
 // validateAccessor will ensure the accessor method does not specify a target
 // repo
 func (ml methodLinter) validateAccessor() error {
-	if ml.opMsg.GetTargetRepositoryField() != "" {
-		return errors.New("accessors cannot specify target repos")
+	if ml.opMsg.GetScopeLevel() == gitalypb.OperationMsg_REPOSITORY {
+		return ml.ensureValidRepoScope()
 	}
 	return nil
 }
