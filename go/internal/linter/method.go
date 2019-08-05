@@ -21,9 +21,15 @@ type methodLinter struct {
 // validateAccessor will ensure the accessor method does not specify a target
 // repo
 func (ml methodLinter) validateAccessor() error {
-	if ml.opMsg.GetScopeLevel() == gitalypb.OperationMsg_REPOSITORY {
+	switch ml.opMsg.GetScopeLevel() {
+	case gitalypb.OperationMsg_REPOSITORY:
 		return ml.ensureValidRepoScope()
+		// TODO: replace the following value with gitalypb.OpermationMsg_STORAGE
+		// after this change is merged into master
+	case gitalypb.OperationMsg_Scope(2):
+		return ml.ensureValidStorageScope()
 	}
+
 	return nil
 }
 
@@ -39,10 +45,23 @@ func (ml methodLinter) validateMutator() error {
 	case gitalypb.OperationMsg_SERVER:
 		return ml.ensureValidServerScope()
 
+		// TODO: replace value with gitalypb.OperationMsg_SCOPE after
+		// this change is merged to master
+	case gitalypb.OperationMsg_Scope(2):
+		return ml.ensureValidStorageScope()
+
 	default:
 		return fmt.Errorf("unknown operation scope level %d", scope)
 
 	}
+}
+
+// TODO: add checks for storage location via valid field annotation for Gitaly HA
+func (ml methodLinter) ensureValidStorageScope() error {
+	if ml.opMsg.GetTargetRepositoryField() != "" {
+		return errors.New("storage level scoped RPC should not specify target repo")
+	}
+	return nil
 }
 
 func (ml methodLinter) ensureValidServerScope() error {
