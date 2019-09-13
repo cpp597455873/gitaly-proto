@@ -1,1 +1,3 @@
-module gitlab.com/gitlab-org/gitaly-proto
+module cpp597455873/gitaly-proto
+
+go 1.12
